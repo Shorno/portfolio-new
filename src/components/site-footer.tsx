@@ -13,10 +13,9 @@ export function SiteFooter() {
           <div className="flex flex-col gap-2">
             <span className="mono-label">§ COLOPHON</span>
             <p className="max-w-md font-mono text-[12px] leading-relaxed text-muted">
-              Set in Fraunces & Geist Mono. Hand-built with Next.js{" "}
+              Set in Fraunces & Geist Mono. Built with Next.js{" "}
               <span className="text-fg-soft">16</span>, Tailwind{" "}
-              <span className="text-fg-soft">v4</span> & Motion. No templates,
-              no AI design.
+              <span className="text-fg-soft">v4</span> & Motion.
             </p>
           </div>
           <div className="flex flex-col gap-2 sm:items-end">

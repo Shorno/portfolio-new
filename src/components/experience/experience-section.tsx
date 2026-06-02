@@ -2,7 +2,7 @@ import { Container } from "@/components/primitives/container";
 import { Grid } from "@/components/primitives/grid";
 import { SectionMark } from "@/components/primitives/section-mark";
 import { Rule } from "@/components/primitives/rule";
-import { experience, totalMonths } from "@/lib/experience";
+import { education, experience, totalMonths } from "@/lib/experience";
 import { ExperienceEntry } from "./experience-entry";
 
 /**
@@ -49,8 +49,32 @@ export function ExperienceSection() {
         </div>
 
         <Rule variant="ticked" />
+
+        <p className="mt-6 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5 font-mono text-[11.5px] tracking-tight text-fg-soft">
+          <span className="mono-label text-accent">EDU</span>
+          <Sep />
+          <span>
+            {education.degree}, {education.field}
+          </span>
+          <Sep />
+          <span className="text-faint">{education.school}</span>
+          <Sep />
+          <span className="text-faint">
+            {education.start}—{education.end}
+          </span>
+          <Sep />
+          <span className="text-faint">CGPA {education.cgpa}</span>
+        </p>
       </Container>
     </section>
+  );
+}
+
+function Sep() {
+  return (
+    <span aria-hidden className="text-line">
+      ·
+    </span>
   );
 }
 

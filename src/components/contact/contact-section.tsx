@@ -164,19 +164,19 @@ function SocialLink({ href, children }: { href: string; children: string }) {
 
 const whatToSend: Array<{ heading: string; body: string }> = [
   {
-    heading: "The shape of the problem",
-    body: "A paragraph is enough — what the system needs to do, what it currently does, who suffers when it doesn't work.",
+    heading: "What you're building",
+    body: "A quick paragraph. What the product is, who uses it, what's not working right now.",
   },
   {
-    heading: "Where you are",
-    body: "Greenfield, mid-rewrite, on fire — all fine. The honest answer changes my answer.",
+    heading: "Where you're at",
+    body: "Starting fresh, halfway built, or a rewrite. Just say which.",
   },
   {
     heading: "Timeline & budget",
-    body: "Even a rough range. Helps me say yes or no faster, and that's better for both of us.",
+    body: "A rough range is fine. Lets me say yes or no quickly.",
   },
   {
-    heading: "What you've ruled out",
-    body: "Constraints are useful. \"Not WordPress\" or \"must stay on AWS\" — say so.",
+    heading: "Anything ruled out",
+    body: "Already decided against a stack, vendor, or hosting? Tell me upfront.",
   },
 ];

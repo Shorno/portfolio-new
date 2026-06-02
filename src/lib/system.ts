@@ -56,7 +56,7 @@ export const systemStack: SystemGroup[] = [
         since: "2024",
       },
       {
-        name: "Neon · Supabase",
+        name: "Neon",
         role: "Managed Postgres. Branching for previews.",
         since: "2024",
       },
@@ -87,6 +87,16 @@ export const systemStack: SystemGroup[] = [
         since: "2022",
       },
       {
+        name: "shadcn/ui",
+        role: "Owned components, not a dependency. Tailored each time.",
+        since: "2023",
+      },
+      {
+        name: "Ant Design",
+        role: "Reach for it on dashboard-heavy projects with dense tables and forms.",
+        since: "2024",
+      },
+      {
         name: "Motion (Framer)",
         role: "Scroll-linked animation, layout transitions, presence.",
         since: "2023",
@@ -95,11 +105,6 @@ export const systemStack: SystemGroup[] = [
         name: "Lexical",
         role: "Rich text content stored as JSON alongside everything else.",
         since: "2025",
-      },
-      {
-        name: "shadcn/ui",
-        role: "Owned components, not a dependency. Tailored each time.",
-        since: "2023",
       },
     ],
   },
@@ -123,9 +128,14 @@ export const systemStack: SystemGroup[] = [
         since: "2023",
       },
       {
-        name: "Vercel",
-        role: "Default deploy target. Preview deploys per PR.",
-        since: "2021",
+        name: "Hostinger VPS",
+        role: "Where projects live. Owned hardware, predictable cost, no per-deploy lock-in.",
+        since: "2024",
+      },
+      {
+        name: "Coolify",
+        role: "Self-hosted control panel for the VPS — deploys, builds, and CI/CD in one place.",
+        since: "2024",
       },
     ],
   },

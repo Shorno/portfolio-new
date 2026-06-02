@@ -86,11 +86,28 @@ export const experience: ExperienceEntry[] = [
       "TypeScript",
       "Tailwind CSS",
       "Ant Design",
-      "shadcn/ui",
       "TanStack Query",
     ],
   },
 ];
+
+/* ──────────────────────────────────────────────────────────────
+   Education
+   ────────────────────────────────────────────────────────────── */
+
+/**
+ * Education footnote rendered at the bottom of §02 EXPERIENCE.
+ * Single line — anchors the "part-time" framing of the roles above
+ * without earning its own section.
+ */
+export const education = {
+  degree: "BSc",
+  field: "Computer Science & Engineering",
+  school: "Daffodil International University",
+  start: "2022",
+  end: "2026",
+  cgpa: "3.30 / 4.00",
+} as const;
 
 /* ──────────────────────────────────────────────────────────────
    Formatters

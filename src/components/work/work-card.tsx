@@ -8,13 +8,18 @@ import { ProjectArt } from "./project-art";
  * Editorial case-study card. Two-column on desktop (art + content),
  * stacks on mobile. Used inside the scroll-stack so each card behaves
  * like a self-contained spec sheet.
+ *
+ * Pass `vt` to opt this card into View Transitions — only one card per
+ * slug should opt in to avoid duplicate view-transition-name collisions.
  */
 export function WorkCard({
   project,
   className,
+  vt = false,
 }: {
   project: Project;
   className?: string;
+  vt?: boolean;
 }) {
   const statusLabel: Record<Project["status"], { label: string; tone: "ok" | "default" | "warn" }> = {
     live: { label: "live in production", tone: "ok" },
@@ -43,7 +48,14 @@ export function WorkCard({
       {/* Body grid */}
       <div className="grid grid-cols-1 md:grid-cols-12">
         {/* Art slot */}
-        <div className="relative aspect-[16/10] border-b border-line md:col-span-7 md:aspect-auto md:border-b-0 md:border-r">
+        <div
+          className="relative aspect-[16/10] border-b border-line md:col-span-7 md:aspect-auto md:border-b-0 md:border-r"
+          style={
+            vt
+              ? ({ viewTransitionName: `work-art-${project.slug}` } as React.CSSProperties)
+              : undefined
+          }
+        >
           <ProjectArt project={project} />
         </div>
 
@@ -51,7 +63,14 @@ export function WorkCard({
         <div className="flex flex-col gap-5 p-6 md:col-span-5 md:gap-6 md:p-8">
           <header className="flex flex-col gap-2">
             <span className="mono-label">{project.kind}</span>
-            <h3 className="font-display text-balance text-5xl text-fg md:text-6xl">
+            <h3
+              className="font-display text-balance text-5xl text-fg md:text-6xl"
+              style={
+                vt
+                  ? ({ viewTransitionName: `work-name-${project.slug}` } as React.CSSProperties)
+                  : undefined
+              }
+            >
               {project.name}
             </h3>
           </header>

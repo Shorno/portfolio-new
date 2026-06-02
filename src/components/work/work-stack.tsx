@@ -46,7 +46,8 @@ export function WorkStack({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      {/* Desktop — scroll-stacked */}
+      {/* Desktop — scroll-stacked. View-transition opt-in lives here so only
+          one WorkCard per slug claims each view-transition-name. */}
       <div className="hidden md:block">
         {projects.map((p, i) => (
           <StackSlot
@@ -115,7 +116,7 @@ function StackSlot({
           }
           className="w-full origin-top"
         >
-          <WorkCard project={project} />
+          <WorkCard project={project} vt />
         </motion.div>
       </div>
     </div>

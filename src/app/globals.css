@@ -178,6 +178,29 @@
 }
 
 /* ---------------------------------------------------------------
+   View Transitions — slower, more intentional morphs.
+   Names live on WorkCard / CaseStudyHero ("work-name-<slug>",
+   "work-art-<slug>") so the project name and art tile morph from
+   the homepage card into the case study hero on navigate.
+   --------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+::view-transition-group(*) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  mix-blend-mode: normal;
+}
+
+/* ---------------------------------------------------------------
    Reduced motion respect
    --------------------------------------------------------------- */
 
@@ -189,5 +212,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

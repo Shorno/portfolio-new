@@ -9,12 +9,28 @@ export type LatestPush = {
   isPrivate: boolean;
 };
 
+export type RepoSummary = {
+  name: string;
+  description: string | null;
+  url: string;
+  pushedAt: string;
+  createdAt: string;
+  language: string | null;
+  stars: number;
+  topics: string[];
+  isPrivate: boolean;
+  isArchived: boolean;
+};
+
 type GitHubRepo = {
   name: string;
   description: string | null;
   html_url: string;
   pushed_at: string;
+  created_at: string;
   language: string | null;
+  stargazers_count: number;
+  topics?: string[];
   private: boolean;
   fork: boolean;
   archived: boolean;
@@ -67,6 +83,50 @@ export async function getLatestPush(): Promise<LatestPush | null> {
 }
 
 /**
+ * Fetch every public repo for the configured user, sorted by most-recently
+ * pushed first. Filters out forks and (optionally) archived repos.
+ * Cached for 1 hour. Returns a dev fallback set when rate-limited locally.
+ */
+export async function getAllRepos(): Promise<RepoSummary[]> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": `${site.github_handle}-portfolio`,
+  };
+  const token = process.env.GITHUB_TOKEN;
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  try {
+    const url = `https://api.github.com/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=100&type=owner`;
+    const res = await fetch(url, {
+      next: { revalidate: 3600, tags: ["github", "github-archive"] },
+      headers,
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (!res.ok) return devArchiveFallback();
+
+    const repos = (await res.json()) as GitHubRepo[];
+    return repos
+      .filter((r) => !r.fork)
+      .map((r) => ({
+        name: r.name,
+        description: r.description,
+        url: r.html_url,
+        pushedAt: r.pushed_at,
+        createdAt: r.created_at,
+        language: r.language,
+        stars: r.stargazers_count,
+        topics: r.topics ?? [],
+        isPrivate: r.private,
+        isArchived: r.archived,
+      }));
+  } catch {
+    return devArchiveFallback();
+  }
+}
+
+/**
  * Development-only fallback so the editorial design can be iterated on
  * even when GitHub is rate-limiting. Returns null in production so we
  * never show fake data to a real visitor.
@@ -81,6 +141,26 @@ function devFallback(): LatestPush | null {
     language: "TypeScript",
     isPrivate: false,
   };
+}
+
+function devArchiveFallback(): RepoSummary[] {
+  if (process.env.NODE_ENV !== "development") return [];
+  const now = Date.now();
+  const sample: Array<Omit<RepoSummary, "url" | "isPrivate" | "isArchived">> = [
+    { name: "portfolio-new", description: "This site. Hand-built editorial portfolio in Next.js 16.", pushedAt: new Date(now - 1000 * 60 * 60).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 7).toISOString(), language: "TypeScript", stars: 0, topics: ["nextjs", "tailwind"] },
+    { name: "bikalpo-project", description: "B2B commerce platform — Turborepo rewrite.", pushedAt: new Date(now - 1000 * 60 * 60 * 6).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 30).toISOString(), language: "TypeScript", stars: 0, topics: ["turborepo"] },
+    { name: "bright-tutor", description: "Multi-tenant SaaS for a tutoring business.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 3).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 90).toISOString(), language: "TypeScript", stars: 0, topics: ["monorepo", "expo"] },
+    { name: "stock-management-frontend", description: "Inventory + POS frontend (Vite + React).", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 0, topics: ["vite"] },
+    { name: "stock-management-server", description: "Backend for stock-management.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 0, topics: ["api"] },
+    { name: "auth-experiments", description: "Better-Auth integration sandboxes.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 45).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 1, topics: [] },
+    { name: "shorno", description: "Personal scratchpad — older site.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 365).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 800).toISOString(), language: "TypeScript", stars: 0, topics: [] },
+  ];
+  return sample.map((r) => ({
+    ...r,
+    url: `https://github.com/${site.github_handle}/${r.name}`,
+    isPrivate: false,
+    isArchived: false,
+  }));
 }
 
 /**

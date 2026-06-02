@@ -47,7 +47,14 @@ export function CaseStudyHero({ project }: { project: Project }) {
               <span className="mono-label text-faint">· {project.year}</span>
             </div>
 
-            <h1 className="font-display text-balance text-[clamp(2.75rem,8vw,8rem)] text-fg">
+            <h1
+              className="font-display text-balance text-[clamp(2.75rem,8vw,8rem)] text-fg"
+              style={
+                {
+                  viewTransitionName: `work-name-${project.slug}`,
+                } as React.CSSProperties
+              }
+            >
               {project.name}
             </h1>
 
@@ -106,7 +113,14 @@ export function CaseStudyHero({ project }: { project: Project }) {
         </div>
 
         {/* Hero art */}
-        <div className="mt-12 aspect-[21/9] overflow-hidden rounded-lg border border-line md:mt-16">
+        <div
+          className="mt-12 aspect-[21/9] overflow-hidden rounded-lg border border-line md:mt-16"
+          style={
+            {
+              viewTransitionName: `work-art-${project.slug}`,
+            } as React.CSSProperties
+          }
+        >
           <ProjectArt project={project} priority />
         </div>
       </Container>

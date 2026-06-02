@@ -1,0 +1,17 @@
+export const site = {
+  name: "Shorno",
+  fullName: "Md. Shorno Mohaiminul",
+  role: "Full-stack engineer",
+  location: "Dhaka, Bangladesh",
+  timezone: "Asia/Dhaka",
+  email: "fb.shorno@gmail.com",
+  url: "https://www.shorno.me",
+  github: "https://github.com/Shorno",
+  github_handle: "Shorno",
+  company: "AppCube",
+  status: "available" as "available" | "limited" | "booked",
+  tagline:
+    "I build operational software for businesses that can't afford downtime.",
+  subline:
+    "Multi-tenant SaaS, B2B commerce, internal tooling. End-to-end — from Postgres schemas to the last pixel.",
+} as const;

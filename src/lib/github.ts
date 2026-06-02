@@ -1,3 +1,4 @@
+import { resolveRepoDescription } from "./repo-descriptions";
 import { excludeRepos, site } from "./site";
 
 export type LatestPush = {
@@ -81,7 +82,7 @@ export async function getLatestPush(): Promise<LatestPush | null> {
 
     return {
       name: first.name,
-      description: first.description,
+      description: resolveRepoDescription(first.full_name, first.description),
       url: first.html_url,
       pushedAt: first.pushed_at,
       language: first.language,
@@ -135,7 +136,7 @@ export async function getAllRepos(): Promise<RepoSummary[]> {
         ownerLogin: r.owner.login,
         role:
           r.owner.login === site.github_handle ? "owner" : "contributor",
-        description: r.description,
+        description: resolveRepoDescription(r.full_name, r.description),
         url: r.html_url,
         pushedAt: r.pushed_at,
         createdAt: r.created_at,
@@ -181,15 +182,19 @@ function devArchiveFallback(): RepoSummary[] {
     { name: "auth-experiments", description: "Better-Auth integration sandboxes.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 45).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 1, topics: [] },
     { name: "shorno", description: "Personal scratchpad — older site.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 365).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 800).toISOString(), language: "TypeScript", stars: 0, topics: [] },
   ];
-  return sample.map((r): RepoSummary => ({
-    ...r,
-    fullName: `${site.github_handle}/${r.name}`,
-    ownerLogin: site.github_handle,
-    role: "owner",
-    url: `https://github.com/${site.github_handle}/${r.name}`,
-    isPrivate: false,
-    isArchived: false,
-  }));
+  return sample.map((r): RepoSummary => {
+    const fullName = `${site.github_handle}/${r.name}`;
+    return {
+      ...r,
+      fullName,
+      description: resolveRepoDescription(fullName, r.description),
+      ownerLogin: site.github_handle,
+      role: "owner",
+      url: `https://github.com/${site.github_handle}/${r.name}`,
+      isPrivate: false,
+      isArchived: false,
+    };
+  });
 }
 
 /**

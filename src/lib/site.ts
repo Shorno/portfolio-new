@@ -19,6 +19,11 @@ export const site = {
 } as const;
 
 /**
+ * Repo blurbs when GitHub has no description — see `src/lib/repo-descriptions.ts`.
+ * Edit that file to add or change INDEX copy without touching GitHub.
+ */
+
+/**
  * Repo full-names (`"owner/repo"`) to suppress from §03 INDEX.
  *
  * Useful when auto-discovery surfaces contributor / org-member repos

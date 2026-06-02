@@ -1,6 +1,6 @@
 export const site = {
   name: "Shorno",
-  fullName: "Md. Shorno Mohaiminul",
+  fullName: "Shorno Kamal Roy",
   role: "Full-stack engineer",
   location: "Dhaka, Bangladesh",
   timezone: "Asia/Dhaka",

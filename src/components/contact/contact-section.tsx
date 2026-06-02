@@ -37,7 +37,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative py-24 md:py-32">
       <Container>
-        <SectionMark index={4} label="CONTACT" hint="one line is fine" />
+        <SectionMark index={5} label="CONTACT" hint="one line is fine" />
 
         {/* Headline */}
         <div className="mt-12 max-w-4xl">

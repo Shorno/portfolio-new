@@ -2,6 +2,7 @@ import { Container } from "@/components/primitives/container";
 import { SectionMark } from "@/components/primitives/section-mark";
 import { Hero } from "@/components/hero/hero";
 import { WorkStack } from "@/components/work/work-stack";
+import { ExperienceSection } from "@/components/experience/experience-section";
 import { SystemSection } from "@/components/system/system-section";
 import { IndexSection } from "@/components/index/index-section";
 import { ContactSection } from "@/components/contact/contact-section";
@@ -26,6 +27,7 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <ExperienceSection />
       <SystemSection />
       <IndexSection />
       <ContactSection />

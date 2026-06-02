@@ -18,7 +18,7 @@ export async function IndexSection() {
   return (
     <section id="index" className="relative py-20 md:py-28">
       <Container>
-        <SectionMark index={3} label="INDEX" hint="full archive" />
+        <SectionMark index={4} label="INDEX" hint="full archive" />
 
         {/* Header row */}
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">

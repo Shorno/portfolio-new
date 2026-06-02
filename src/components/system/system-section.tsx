@@ -12,7 +12,7 @@ export function SystemSection() {
   return (
     <section id="system" className="relative py-20 md:py-28">
       <Container>
-        <SectionMark index={2} label="SYSTEM" hint="tools of trade" />
+        <SectionMark index={3} label="SYSTEM" hint="tools of trade" />
 
         <Grid className="mt-14">
           <div className="col-span-4 md:col-span-5">

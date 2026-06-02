@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { excludeRepos, site } from "./site";
 
 export type LatestPush = {
   name: string;
@@ -9,9 +9,16 @@ export type LatestPush = {
   isPrivate: boolean;
 };
 
+export type RepoRole = "owner" | "contributor";
 
 export type RepoSummary = {
   name: string;
+  /** Full name in `"owner/repo"` form — used as a stable React key. */
+  fullName: string;
+  /** Login of the owning user/org. Equals `site.github_handle` for owner repos. */
+  ownerLogin: string;
+  /** Whether the configured user owns this repo or is a collaborator/member. */
+  role: RepoRole;
   description: string | null;
   url: string;
   pushedAt: string;
@@ -25,6 +32,8 @@ export type RepoSummary = {
 
 type GitHubRepo = {
   name: string;
+  full_name: string;
+  owner: { login: string };
   description: string | null;
   html_url: string;
   pushed_at: string;
@@ -84,9 +93,15 @@ export async function getLatestPush(): Promise<LatestPush | null> {
 }
 
 /**
- * Fetch every public repo for the configured user, sorted by most-recently
- * pushed first. Filters out forks and (optionally) archived repos.
- * Cached for 1 hour. Returns a dev fallback set when rate-limited locally.
+ * Fetch every repo the configured user has access to, sorted by most-recently
+ * pushed first. With a `GITHUB_TOKEN` present, this includes repos the user
+ * is a collaborator on or an organization member of (auto-discovery via the
+ * authenticated `/user/repos` endpoint). Without a token, falls back to the
+ * public `/users/{handle}/repos` endpoint (owner-only, public repos only).
+ *
+ * Forks are filtered. Repos listed in `excludeRepos` (see `src/lib/site.ts`)
+ * are also filtered. Cached for 1 hour. Returns a dev fallback set when
+ * rate-limited locally.
  */
 export async function getAllRepos(): Promise<RepoSummary[]> {
   const headers: Record<string, string> = {
@@ -97,8 +112,11 @@ export async function getAllRepos(): Promise<RepoSummary[]> {
   const token = process.env.GITHUB_TOKEN;
   if (token) headers.Authorization = `Bearer ${token}`;
 
+  const url = token
+    ? `https://api.github.com/user/repos?affiliation=owner,collaborator,organization_member&visibility=all&sort=pushed&direction=desc&per_page=100`
+    : `https://api.github.com/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=100&type=owner`;
+
   try {
-    const url = `https://api.github.com/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=100&type=owner`;
     const res = await fetch(url, {
       next: { revalidate: 3600, tags: ["github", "github-archive"] },
       headers,
@@ -110,8 +128,13 @@ export async function getAllRepos(): Promise<RepoSummary[]> {
     const repos = (await res.json()) as GitHubRepo[];
     return repos
       .filter((r) => !r.fork)
-      .map((r) => ({
+      .filter((r) => !excludeRepos.includes(r.full_name))
+      .map((r): RepoSummary => ({
         name: r.name,
+        fullName: r.full_name,
+        ownerLogin: r.owner.login,
+        role:
+          r.owner.login === site.github_handle ? "owner" : "contributor",
         description: r.description,
         url: r.html_url,
         pushedAt: r.pushed_at,
@@ -147,7 +170,9 @@ function devFallback(): LatestPush | null {
 function devArchiveFallback(): RepoSummary[] {
   if (process.env.NODE_ENV !== "development") return [];
   const now = Date.now();
-  const sample: Array<Omit<RepoSummary, "url" | "isPrivate" | "isArchived">> = [
+  const sample: Array<
+    Omit<RepoSummary, "url" | "isPrivate" | "isArchived" | "fullName" | "ownerLogin" | "role">
+  > = [
     { name: "portfolio-new", description: "This site. Hand-built editorial portfolio in Next.js 16.", pushedAt: new Date(now - 1000 * 60 * 60).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 7).toISOString(), language: "TypeScript", stars: 0, topics: ["nextjs", "tailwind"] },
     { name: "bikalpo-project", description: "B2B commerce platform — Turborepo rewrite.", pushedAt: new Date(now - 1000 * 60 * 60 * 6).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 30).toISOString(), language: "TypeScript", stars: 0, topics: ["turborepo"] },
     { name: "bright-tutor", description: "Multi-tenant SaaS for a tutoring business.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 3).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 90).toISOString(), language: "TypeScript", stars: 0, topics: ["monorepo", "expo"] },
@@ -156,8 +181,11 @@ function devArchiveFallback(): RepoSummary[] {
     { name: "auth-experiments", description: "Better-Auth integration sandboxes.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 45).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 1, topics: [] },
     { name: "shorno", description: "Personal scratchpad — older site.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 365).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 800).toISOString(), language: "TypeScript", stars: 0, topics: [] },
   ];
-  return sample.map((r) => ({
+  return sample.map((r): RepoSummary => ({
     ...r,
+    fullName: `${site.github_handle}/${r.name}`,
+    ownerLogin: site.github_handle,
+    role: "owner",
     url: `https://github.com/${site.github_handle}/${r.name}`,
     isPrivate: false,
     isArchived: false,

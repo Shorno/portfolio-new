@@ -39,6 +39,20 @@ export function SiteHeader() {
           <NavItem href="/#index" label="Index" idx="04" />
           <NavItem href="/#contact" label="Contact" idx="05" />
           <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
+          <Link
+            href={site.cvUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+          >
+            CV
+            <span
+              aria-hidden
+              className="text-faint transition-colors group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </Link>
           <ThemeToggle className="hidden sm:inline-flex" />
         </nav>
       </Container>

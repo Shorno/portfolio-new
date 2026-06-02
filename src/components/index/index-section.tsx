@@ -69,7 +69,7 @@ function YearBlock({ year, items }: { year: string; items: RepoSummary[] }) {
 
       <ul className="flex flex-col">
         {items.map((repo, i) => (
-          <RepoRow key={repo.name} repo={repo} index={i + 1} />
+          <RepoRow key={repo.fullName} repo={repo} index={i + 1} />
         ))}
       </ul>
     </div>
@@ -84,14 +84,22 @@ function RepoRow({ repo, index }: { repo: RepoSummary; index: number }) {
         href={repo.url}
         target="_blank"
         rel="noreferrer"
-        className="group/row grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-x-4 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_14rem_minmax(0,1fr)_auto] md:gap-x-6"
+        className="group/row grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-x-4 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_minmax(14rem,20rem)_minmax(0,1fr)_auto] md:gap-x-6"
       >
         <span className="mono-label text-faint">
           {String(index).padStart(2, "0")}
         </span>
 
-        <span className="font-mono text-[13.5px] text-fg group-hover/row:text-accent">
-          {repo.name}
+        <span className="min-w-0 truncate font-mono text-[13.5px] text-fg group-hover/row:text-accent">
+          {repo.role === "contributor" ? (
+            <>
+              <span className="text-faint">{repo.ownerLogin}/</span>
+              {repo.name}
+              <span className="mono-label ml-2 text-accent">co</span>
+            </>
+          ) : (
+            repo.name
+          )}
           {repo.isArchived ? (
             <span className="mono-label ml-2 text-faint">[archived]</span>
           ) : null}

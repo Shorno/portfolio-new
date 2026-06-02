@@ -61,7 +61,7 @@ export async function Hero() {
               {site.subline}
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3">
               <Link
                 href="#work"
                 className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-[12px] tracking-wide text-accent-fg transition-transform hover:-translate-y-0.5"
@@ -75,8 +75,22 @@ export async function Hero() {
                 </span>
               </Link>
               <Link
+                href={site.cvUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border border-line bg-bg-elev/40 px-5 py-2.5 font-mono text-[12px] tracking-wide text-fg transition-colors hover:border-accent hover:text-accent"
+              >
+                View CV
+                <span
+                  aria-hidden
+                  className="text-faint transition-colors group-hover:text-accent"
+                >
+                  ↗
+                </span>
+              </Link>
+              <Link
                 href={`mailto:${site.email}`}
-                className="font-mono text-[12px] text-fg-soft underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-fg hover:decoration-accent"
+                className="ml-2 font-mono text-[12px] text-fg-soft underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-fg hover:decoration-accent"
               >
                 {site.email}
               </Link>

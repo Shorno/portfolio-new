@@ -1,0 +1,117 @@
+## The brief
+
+A tutoring business wanted to stop running on spreadsheets, WhatsApp, and three disconnected admin panels. They had teachers, guardians, and an internal ops team — three audiences, three workflows, and three opinions on what &ldquo;the dashboard&rdquo; meant.
+
+The brief: one platform, three first-class experiences, one source of truth. The constraint: it had to feel native to each role — not the same screen with different fields hidden.
+
+## The problem
+
+<Callout label="constraint">
+Multi-tenant SaaS often means &ldquo;tenant&rdquo; = company. Here &ldquo;tenant&rdquo; = role. Same data, three completely different shapes.
+</Callout>
+
+Three jobs to be done:
+
+- **Teachers** need to manage their schedule, see who's enrolled, log attendance, and get paid. They use it on phones.
+- **Guardians** need to enrol their kid, see attendance + progress, and pay tuition. They use it on phones too.
+- **Admins** need to onboard teachers, set tuition, run payroll, and answer support — at a desk, on a real screen.
+
+A single dashboard with role-conditional fields would have been faster to ship and miserable to use. So I built five apps.
+
+## The approach
+
+The system is a [Turborepo](https://turbo.build) monorepo with five apps and shared packages. Every app talks to the same Hono server through an [oRPC](https://orpc.unnoq.com) contract — so types flow end-to-end from the Drizzle schema to the React Native screen.
+
+<Diagram caption="five apps, one schema. subdomain-scoped roles, shared contract, single Postgres">
+  <svg viewBox="0 0 980 480" className="h-auto w-full text-line">
+    <g fontFamily="var(--font-mono)" fontSize="14" fill="var(--fg-soft)" textAnchor="middle">
+      {/* connecting edges (drawn first so nodes overlay them) */}
+      {[
+        { x: 150, y: 70, side: "top" },
+        { x: 830, y: 70, side: "top" },
+        { x: 150, y: 380, side: "bot" },
+        { x: 490, y: 420, side: "bot" },
+        { x: 830, y: 380, side: "bot" },
+      ].map((a, i) => (
+        <line
+          key={i}
+          x1={a.x}
+          y1={a.side === "top" ? a.y + 25 : a.y - 25}
+          x2="490"
+          y2="220"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          opacity="0.45"
+        />
+      ))}
+
+      {/* hub */}
+      <circle cx="490" cy="220" r="90" fill="var(--accent-soft)" stroke="var(--accent)" strokeWidth="1.5" />
+      <text x="490" y="215" fill="var(--accent)" fontSize="16">api.brighttutor</text>
+      <text x="490" y="238" fontSize="13" opacity="0.85">hono · oRPC</text>
+
+      {/* apps */}
+      {[
+        { x: 150, y: 70, label: "brighttutor.com", role: "marketing · web" },
+        { x: 830, y: 70, label: "admin.brighttutor", role: "console · web" },
+        { x: 150, y: 380, label: "teacher.brighttutor", role: "schedule · web" },
+        { x: 490, y: 420, label: "expo app", role: "guardian · native" },
+        { x: 830, y: 380, label: "sms-gateway", role: "delivery · service" },
+      ].map((a, i) => (
+        <g key={i}>
+          <rect x={a.x - 110} y={a.y - 25} width="220" height="50" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+          <text x={a.x} y={a.y - 5}>{a.label}</text>
+          <text x={a.x} y={a.y + 14} fontSize="12" opacity="0.7">{a.role}</text>
+        </g>
+      ))}
+    </g>
+  </svg>
+</Diagram>
+
+<Callout label="shared">
+Every app imports a tiny set of internal packages — <code>packages/db</code> (Drizzle schema), <code>packages/auth</code> (Better-Auth client), <code>packages/contracts</code> (the oRPC router type). One change, every app stays in sync.
+</Callout>
+
+## The hard parts
+
+### Subdomain-routed roles
+
+Teachers log in at `teacher.brighttutor.*`, guardians at the native app or `guardian.brighttutor.*`, admins at `admin.brighttutor.*`. Routing is at the subdomain — not at a `/teacher` path — so every screen, every cookie, every error page belongs to the role. It's also a pleasant local DNS exercise; the README ships with the `/etc/hosts` lines for the dev loop.
+
+<Callout label="why subdomains">
+Two reasons. First, the URL becomes part of the role's identity — guardians never see `/admin` in their browser bar and wonder. Second, cookies, CSP, and rate limits scope cleanly per subdomain without conditional middleware.
+</Callout>
+
+### End-to-end types across five apps
+
+Every endpoint, every error code, every payload flows through one oRPC router. The React Native app, the admin console, and the teacher web app all import the same typed client. When the schema changes in `packages/db`, every app that uses the affected route fails its type check in CI. There's no &ldquo;hopefully the mobile build picks it up&rdquo;.
+
+<Stack
+  items={[
+    { name: "Turborepo", note: "Pipelines: shared db gens block app builds.", group: "infra" },
+    { name: "Hono + oRPC", note: "One router, typed clients in every app.", group: "api" },
+    { name: "Drizzle + Postgres", note: "Single schema, generated migrations checked in.", group: "data" },
+    { name: "Better-Auth", note: "Role-scoped sessions across subdomains.", group: "auth" },
+    { name: "Expo / React Native", note: "Guardian app — same oRPC client, native UI.", group: "mobile" },
+    { name: "SMS gateway", note: "A small worker so OTP + reminders don't block requests.", group: "channels" },
+  ]}
+/>
+
+### Notifications across channels
+
+Teachers want push. Guardians want SMS. Admins want email. I split delivery into a small `sms-gateway` app so the API server never blocks on a third-party SMS provider, and so retries and rate limiting live in one place. Push goes through Expo's service; email through a small Brevo wrapper.
+
+## What's running today
+
+<StatRow>
+  <Stat value="5" label="apps in the monorepo" />
+  <Stat value="3" label="audience roles · subdomain-scoped" />
+  <Stat value="1" label="oRPC contract end-to-end" />
+  <Stat value="ts" label="100% typescript" />
+</StatRow>
+
+The platform is in active client deployment. Specifics intentionally private — happy to walk through the architecture in detail under NDA.
+
+## What I'd do differently
+
+I'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them &ldquo;no, this is the shape&rdquo;. With the contract in place first, every app gets the same answer the same way.

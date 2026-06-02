@@ -33,10 +33,10 @@ export function SiteHeader() {
         </div>
 
         <nav className="flex items-center gap-1">
-          <NavItem href="#work" label="Work" idx="01" />
-          <NavItem href="#system" label="System" idx="02" />
-          <NavItem href="#index" label="Index" idx="03" />
-          <NavItem href="#contact" label="Contact" idx="04" />
+          <NavItem href="/#work" label="Work" idx="01" />
+          <NavItem href="/#system" label="System" idx="02" />
+          <NavItem href="/#index" label="Index" idx="03" />
+          <NavItem href="/#contact" label="Contact" idx="04" />
           <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
           <ThemeToggle className="hidden sm:inline-flex" />
         </nav>

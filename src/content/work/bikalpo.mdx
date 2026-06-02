@@ -1,0 +1,93 @@
+## The brief
+
+A Dhaka-based distributor wanted a B2B storefront that didn't feel like a downsized B2C shop. Their wholesalers buy in tiers, see different prices, expect their own catalogue, and place orders that span dozens of SKUs. The off-the-shelf Shopify-style platforms collapse under all four.
+
+I shipped the first version at [bikalpo.com](https://bikalpo.com) — a Next.js app backed by Postgres on Neon, with Better-Auth, Drizzle, and a Lexical-powered rich content layer for product copy and policy pages. That version is now in production, and the rewrite into a Turborepo monorepo (web + native + Hono server) is mid-flight.
+
+## The problem
+
+<Callout label="constraint">
+B2B commerce isn't &ldquo;cart, checkout, paid&rdquo;. It's &ldquo;quote, approve, schedule, fulfil, invoice&rdquo; — and each step has its own audience.
+</Callout>
+
+The status quo had four pain points:
+
+- **Per-customer pricing** — every wholesale account negotiates their own tiered price, and the storefront has to respect it without leaking other customers' tiers.
+- **Catalogue scale** — thousands of SKUs across dozens of brands, each with its own copy, imagery, and inventory state.
+- **Rich content alongside commerce** — landing pages, brand stories, and policy pages live next to the catalogue and need first-class editing, not a CMS bolted on the side.
+- **Bangladesh-specific payments** — local payment rails, COD, and partial-payment flows that most platforms ignore.
+
+## The approach
+
+The system is one Next.js 16 app at the edge, talking to a single Postgres database via Drizzle. Auth, sessions, and role gating run through Better-Auth — including the per-customer pricing keyed off the authenticated identity. React Compiler is enabled, so the catalogue pages stay fast even with dense, cell-heavy renders.
+
+Rich content (product copy, blocks on landing pages, policy pages) is authored in [Lexical](https://lexical.dev) and stored as serialised JSON in the same Postgres tables as the rest of the catalogue. That decision matters: it means a product page and a policy page render through the same primitives, with no separate CMS lifecycle to keep in sync.
+
+<Diagram caption="system shape — one Next.js app, one Postgres, Lexical content alongside catalogue rows">
+  <svg viewBox="0 0 800 360" className="h-auto w-full text-line">
+    <g fontFamily="var(--font-mono)" fontSize="16" fill="var(--fg-soft)" textAnchor="middle">
+      {/* edges */}
+      <g stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.55">
+        <line x1="400" y1="90" x2="400" y2="150" />
+        <line x1="400" y1="230" x2="200" y2="290" />
+        <line x1="400" y1="230" x2="400" y2="290" />
+        <line x1="400" y1="230" x2="600" y2="290" />
+      </g>
+      {/* nodes */}
+      <g>
+        <rect x="290" y="40" width="220" height="50" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="400" y="70">browser · b2b storefront</text>
+      </g>
+      <g>
+        <rect x="290" y="150" width="220" height="80" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" strokeWidth="1.5" />
+        <text x="400" y="180" fill="var(--accent)" fontSize="18">next.js 16 · edge</text>
+        <text x="400" y="208" fontSize="13" fill="currentColor" opacity="0.75">react compiler · server actions</text>
+      </g>
+      <g>
+        <rect x="100" y="290" width="200" height="50" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="200" y="320">postgres / neon</text>
+      </g>
+      <g>
+        <rect x="300" y="290" width="200" height="50" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="400" y="320">better-auth</text>
+      </g>
+      <g>
+        <rect x="500" y="290" width="200" height="50" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="600" y="320">cloudinary · lexical</text>
+      </g>
+    </g>
+  </svg>
+</Diagram>
+
+## The hard parts
+
+### Per-tier pricing without per-tier fetches
+
+Each authenticated buyer sees their own price column on every product. The naive shape — fetch product, then fetch overrides — adds a round-trip on every catalogue page. I push the tier resolution into the Drizzle query at the edge with a single `LEFT JOIN ... ON pricing.tier_id = $session.tier`, so the listing page returns 60 products with the right number on each, in one query. The same hook covers cart totals, so the price the buyer sees is the price they're charged — there's no second source of truth.
+
+### Lexical alongside SKU data
+
+Treating product copy and policy pages as the same content primitive was the call that paid off most. Both render through a single set of Lexical nodes (paragraph, heading, image, callout, table). New page types are a database row, not a new template.
+
+<Pull cite="when reviewing the rewrite plan">
+The point of a B2B platform isn't to look like Shopify. It's to make the wholesaler feel like the catalogue was built for their account.
+</Pull>
+
+### The rewrite into a monorepo
+
+The current production site is a single Next.js app. The successor — `bikalpo-project` — splits it into a Turborepo with `apps/web` (Next.js storefront), `apps/native` (the buyer's mobile app), and `apps/server` (Hono API). Shared `packages/db`, `packages/auth`, `packages/ui` keep the schema and design tokens centralised. The rewrite is mid-flight; the production app is unaffected.
+
+## What's running today
+
+<StatRow>
+  <Stat value="v1" label="live in production" />
+  <Stat value="60" unit="+" label="vendor brands · placeholder" />
+  <Stat value="1" label="postgres · one source of truth" />
+  <Stat value="3" label="apps · web / native / server" />
+</StatRow>
+
+The production site at [bikalpo.com](https://bikalpo.com) ships the storefront, account portal, and admin tools. The monorepo rewrite is on track to replace it without downtime — same database, new shape.
+
+## What I'd do differently
+
+Lexical was the right call for content; it would have been the right call sooner. Earlier versions used a hand-rolled markdown layer that I had to keep patching. Once the rich-text model is treated as part of the schema, every other decision gets easier.

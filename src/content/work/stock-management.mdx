@@ -1,0 +1,109 @@
+## The brief
+
+A retail client was running their inventory in three spreadsheets and a Telegram group. Stock counts disagreed across them weekly. Customers got the wrong invoice. Receiving and selling were both manual data entry into the same file. They asked for &ldquo;a simple inventory app.&rdquo;
+
+What they actually needed was a tool that mirrored how stock physically moves through their shop — receiving, transferring, selling, returning, printing — without making someone type the same SKU twice.
+
+## The problem
+
+<Callout label="ground truth">
+Inventory software fails when it makes the user the integrator. If receiving and selling are two unrelated forms, stock counts will always drift.
+</Callout>
+
+The status quo:
+
+- **Two systems of record** — physical stock on the shelf and a spreadsheet that's always one delivery behind.
+- **Invoicing as an afterthought** — printed from a different tool, manually keyed in, often wrong.
+- **No transfer concept** — when stock moves between locations it just &ldquo;disappears&rdquo; and reappears.
+- **No audit trail** — when a count is wrong, no one can tell when it went wrong.
+
+## The approach
+
+I shipped this as two separate repos — a Vite + React 19 frontend and a TypeScript backend — both deployed on Vercel. That split was deliberate: the frontend is the high-iteration surface (the counter staff use it daily), and the backend is the slower-changing source of truth.
+
+The data model treats every stock change as an immutable movement event — receiving, sale, transfer, adjustment — and the current count is derived from the sum. Nothing &ldquo;updates&rdquo; a stock level directly. That single decision makes the audit trail free and the bugs visible.
+
+<Diagram caption="movements are the truth; current counts are derived">
+  <svg viewBox="0 0 900 360" className="h-auto w-full text-line">
+    <g fontFamily="var(--font-mono)" fontSize="14" fill="var(--fg-soft)">
+      {/* movements column */}
+      <g textAnchor="start">
+        <text x="50" y="40" fontSize="12" opacity="0.65" letterSpacing="2">MOVEMENT LOG</text>
+        {[
+          { y: 80, label: "+ 100   receiving   · 2026-05-22" },
+          { y: 115, label: "−   3   sale         · 2026-05-23" },
+          { y: 150, label: "−  10   transfer    · 2026-05-24" },
+          { y: 185, label: "−   1   sale         · 2026-05-25" },
+          { y: 220, label: "+   1   return       · 2026-05-25" },
+        ].map((m, i) => (
+          <g key={i}>
+            <rect x="40" y={m.y - 18} width="360" height="28" rx="3" fill="var(--bg-elev)" stroke="currentColor" opacity="0.85" />
+            <text x="60" y={m.y + 1}>{m.label}</text>
+          </g>
+        ))}
+      </g>
+
+      {/* arrow */}
+      <g stroke="var(--accent)" strokeWidth="1.8" fill="none">
+        <line x1="420" y1="150" x2="540" y2="150" />
+        <polyline points="528,142 542,150 528,158" />
+      </g>
+      <text x="480" y="138" fontFamily="var(--font-mono)" fontSize="13" fill="var(--accent)" textAnchor="middle">SUM()</text>
+
+      {/* derived count */}
+      <g textAnchor="middle">
+        <text x="730" y="40" fontSize="12" opacity="0.65" letterSpacing="2">DERIVED COUNT</text>
+        <rect x="580" y="90" width="300" height="120" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" strokeWidth="1.5" />
+        <text x="730" y="155" fontFamily="var(--font-serif)" fontSize="56" fill="var(--accent)">87</text>
+        <text x="730" y="185" fontSize="13" fill="currentColor" opacity="0.8">units on hand · SKU-1042</text>
+      </g>
+
+      {/* note */}
+      <text x="450" y="290" textAnchor="middle" fontSize="13" opacity="0.6" fontStyle="italic">no row in any table directly stores &quot;87&quot;</text>
+    </g>
+  </svg>
+</Diagram>
+
+## The hard parts
+
+### Printing invoices that look right
+
+Retail invoices are a layout problem disguised as a data problem. Headers, line items, totals, footer notes, signature block — and it has to print to whatever cheap thermal or A4 printer is on the counter. I render them in-browser with [`react-pdf`](https://react-pdf.org), preview them in a `react-to-print` flow, and let the user save or print. Layout lives in code, not in a template the client has to maintain.
+
+### Optimistic UI with a real audit trail
+
+The counter staff don't want to wait for a server round-trip every time they ring up a sale. TanStack Query's optimistic mutations let the UI update instantly while the movement event posts in the background. If the server rejects (price mismatch, out of stock), the optimistic state rolls back and a toast explains why. The movement log records both attempts, so an audit shows what happened.
+
+<Pull cite="counter staff, two weeks in">
+The old way was &ldquo;type, type, hope.&rdquo; Now I scan, I see the number drop, I move on.
+</Pull>
+
+### State that survives a refresh
+
+Carts, draft transfers, draft returns — anything mid-flight — lives in [Zustand](https://github.com/pmndrs/zustand) with localStorage persistence. A staff member can start a sale, get pulled away to help a customer, come back twenty minutes later, and find the cart exactly as they left it. Small, but it's the kind of detail that determines whether software gets used.
+
+<Stack
+  items={[
+    { name: "Vite + React 19", note: "Fast HMR, fast page load on the counter PC.", group: "shell" },
+    { name: "TanStack Query", note: "Server state + optimistic mutations.", group: "data" },
+    { name: "TanStack Table", note: "Dense, sortable tables for stock + sales lists.", group: "ui" },
+    { name: "Zustand", note: "Persisted local state for in-flight carts and drafts.", group: "state" },
+    { name: "react-pdf + react-to-print", note: "Layout-driven invoices, no templates to maintain.", group: "print" },
+    { name: "Better-Auth", note: "Role-scoped sessions: cashier vs admin.", group: "auth" },
+  ]}
+/>
+
+## What's running today
+
+<StatRow>
+  <Stat value="2" label="repos · frontend + backend" />
+  <Stat value="∞" label="audit history · derived from events" />
+  <Stat value="0" label="manual stock reconciliations · placeholder" />
+  <Stat value="A4 / 80mm" label="invoice formats supported" />
+</StatRow>
+
+Both the [frontend](https://stock-management-ochre.vercel.app) and the backend are deployed and in daily use at the client's counter.
+
+## What I'd do differently
+
+The two-repo split was right for this team, but it added enough deploy-coordination friction that next time I'd reach for a monorepo from day one — Turbo's pipelines handle the &ldquo;don't ship the frontend if the backend types changed&rdquo; case more elegantly than a careful git habit.

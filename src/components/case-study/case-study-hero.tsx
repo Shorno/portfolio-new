@@ -73,6 +73,19 @@ export function CaseStudyHero({ project }: { project: Project }) {
                   Visit live → {prettyHost(project.url)}
                 </Link>
               ) : null}
+              {project.playstore ? (
+                <Link
+                  href={project.playstore}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-1.5 rounded-full border border-line bg-bg-elev/40 px-4 py-2 text-fg-soft transition-colors hover:border-accent hover:text-accent"
+                >
+                  Play Store
+                  <span aria-hidden className="text-faint transition-colors group-hover:text-accent">
+                    ↗
+                  </span>
+                </Link>
+              ) : null}
               {project.github ? (
                 <Link
                   href={project.github}

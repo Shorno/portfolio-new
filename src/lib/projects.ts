@@ -27,6 +27,8 @@ export type Project = {
   url?: string;
   /** GitHub repo URL, if public */
   github?: string;
+  /** Google Play Store listing URL, when the project has a publicly listed native app. */
+  playstore?: string;
   /** Tech stack pills, ordered by prominence */
   stack: string[];
   /** Short fact chips (label + value), e.g. { label: "scale", value: "multi-tenant" } */
@@ -42,8 +44,42 @@ export type Project = {
 
 export const featuredProjects: Project[] = [
   {
-    slug: "bikalpo",
+    slug: "selfshop",
     index: "01",
+    name: "SelfShop",
+    kind: "Reseller & Dropshipping Commerce",
+    year: "2025—present",
+    status: "live",
+    tagline:
+      "Two roles, four surfaces — reseller and supplier dashboards on the web, plus the matching React Native apps. One Laravel API I plugged into.",
+    description:
+      "Multi-role reseller marketplace. I built the reseller and supplier dashboards inside the Next.js Client app, plus the matching React Native + Tamagui apps for each role. Reseller app live on Google Play; supplier app internal. The Laravel/PHP backend was the team's — this case study is about the front of house.",
+    url: "https://REPLACE_ME",
+    playstore: "https://play.google.com/store/apps/details?id=REPLACE_ME",
+    github: undefined,
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Ant Design",
+      "Redux Toolkit",
+      "NextAuth",
+      "React Native · Expo",
+      "Tamagui",
+      "Pusher · Laravel Echo",
+      "Laravel API (consumed)",
+    ],
+    metrics: [
+      { label: "platform", value: "web + native" },
+      { label: "scope", value: "4 surfaces · 2 roles" },
+      { label: "stage", value: "live · Play Store" },
+    ],
+    seed: 91,
+    art: "wires",
+  },
+  {
+    slug: "bikalpo",
+    index: "02",
     name: "Bikalpo",
     kind: "B2B Commerce Platform",
     year: "2025—present",
@@ -74,7 +110,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "bright-tutor",
-    index: "02",
+    index: "03",
     name: "Bright Tutor",
     kind: "Multi-tenant Education SaaS",
     year: "2026",
@@ -104,7 +140,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "stock-management",
-    index: "03",
+    index: "04",
     name: "Stock Management",
     kind: "Inventory & POS System",
     year: "2025—2026",

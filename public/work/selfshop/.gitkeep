@@ -1,0 +1,11 @@
+# Drop the SelfShop case-study screenshots here. Until they land, the
+# `<Shot>` components fall back to a slim placeholder.
+#
+# Expected files (referenced from src/content/work/selfshop.mdx):
+#   hero.png                       Used by Project.image — WorkCard + CaseStudyHero
+#   web-reseller.png               Reseller dashboard (Client / web)
+#   web-supplier.png               Supplier dashboard (Client / web)
+#   app-reseller-orders.png        native/ — orders inbox
+#   app-reseller-catalog.png       native/ — catalog browsing
+#   app-reseller-notifications.png native/ — push notifications
+#   app-supplier-orders.png        supplier-native/ — orders queue

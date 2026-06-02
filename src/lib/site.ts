@@ -26,4 +26,10 @@ export const site = {
  * client-org repos with revealing names, etc.). Add a string here to
  * hide a repo without revoking the GitHub token.
  */
-export const excludeRepos: ReadonlyArray<string> = [];
+export const excludeRepos: ReadonlyArray<string> = [
+  // SelfShop fork — fresh artifact, no original commits. The case study
+  // in §01 already covers this work; hiding the fork keeps §03 honest
+  // about authored repos. The unrelated `IftakharRahat/selfshop` repo is
+  // a legitimate collaborator entry on a different project and stays.
+  "Shorno/selfshop",
+];

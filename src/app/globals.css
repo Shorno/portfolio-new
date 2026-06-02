@@ -32,6 +32,9 @@
   --radius-md: 6px;
   --radius-lg: 10px;
   --radius-xl: 16px;
+
+  /* layout */
+  --site-header-h: 56px;
 }
 
 .dark {

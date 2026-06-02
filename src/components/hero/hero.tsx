@@ -52,11 +52,9 @@ export async function Hero() {
             </div>
 
             <h1 className="font-display text-balance text-[clamp(2.75rem,7.8vw,7.5rem)] text-fg">
-              I build{" "}
-              <span className="font-display-italic text-accent">
-                operational
-              </span>{" "}
-              software for businesses that can&rsquo;t afford downtime.
+              Full-stack engineer for the{" "}
+              <span className="font-display-italic text-accent">boring</span>{" "}
+              systems your company actually runs on.
             </h1>
 
             <p className="mt-8 max-w-xl text-pretty text-base text-fg-soft md:text-lg">

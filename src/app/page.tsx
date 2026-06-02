@@ -4,7 +4,9 @@ import { SectionMark } from "@/components/primitives/section-mark";
 import { MonoMeta } from "@/components/primitives/mono-meta";
 import { Rule } from "@/components/primitives/rule";
 import { Hero } from "@/components/hero/hero";
+import { WorkStack } from "@/components/work/work-stack";
 import { site } from "@/lib/site";
+import { featuredProjects } from "@/lib/projects";
 
 export default function HomePage() {
   return (
@@ -12,14 +14,16 @@ export default function HomePage() {
       <Hero />
 
       {/* ---------------- §01 WORK ---------------- */}
-      <section id="work" className="relative py-16">
+      <section id="work" className="relative pt-16">
         <Container>
-          <SectionMark index={1} label="WORK" hint="3 case studies" />
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {placeholderProjects.map((p) => (
-              <PlaceholderTile key={p.slug} {...p} />
-            ))}
-          </div>
+          <SectionMark
+            index={1}
+            label="WORK"
+            hint={`${featuredProjects.length} case studies · scroll`}
+          />
+        </Container>
+        <Container className="mt-10">
+          <WorkStack projects={featuredProjects} />
         </Container>
       </section>
 
@@ -89,57 +93,3 @@ export default function HomePage() {
   );
 }
 
-/* ---------------- placeholders ---------------- */
-
-const placeholderProjects = [
-  {
-    slug: "bikalpo",
-    index: "01",
-    name: "Bikalpo",
-    kind: "B2B Commerce",
-    year: "2025—",
-    stack: "Next.js · Drizzle · Better-Auth",
-  },
-  {
-    slug: "bright-tutor",
-    index: "02",
-    name: "Bright Tutor",
-    kind: "Multi-tenant SaaS",
-    year: "2026",
-    stack: "Turborepo · Hono · oRPC · Expo",
-  },
-  {
-    slug: "stock-management",
-    index: "03",
-    name: "Stock Management",
-    kind: "Internal Tooling",
-    year: "2025—2026",
-    stack: "Vite · TanStack · Zustand",
-  },
-] as const;
-
-function PlaceholderTile({
-  index,
-  name,
-  kind,
-  year,
-  stack,
-}: (typeof placeholderProjects)[number]) {
-  return (
-    <article className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-line bg-bg-elev/40 p-6 transition-colors hover:border-line-strong">
-      <div className="flex items-start justify-between">
-        <span className="mono-label text-accent">№ {index}</span>
-        <span className="mono-label">{year}</span>
-      </div>
-      <div className="mt-16 flex flex-col gap-3">
-        <h3 className="font-display text-3xl text-fg">{name}</h3>
-        <p className="mono-label">{kind}</p>
-        <p className="font-mono text-[12px] text-fg-soft">{stack}</p>
-      </div>
-      <div className="absolute inset-x-6 bottom-6 flex items-center justify-between border-t border-line pt-4 opacity-60 transition-opacity group-hover:opacity-100">
-        <span className="mono-label">CASE STUDY</span>
-        <span className="font-mono text-[12px] text-fg-soft">soon ↗</span>
-      </div>
-    </article>
-  );
-}

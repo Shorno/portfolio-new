@@ -11,7 +11,7 @@ export const site = {
   company: "AppCube",
   status: "available" as "available" | "limited" | "booked",
   tagline:
-    "I build operational software for businesses that can't afford downtime.",
+    "Full-stack engineer for the boring systems your company actually runs on.",
   subline:
     "Multi-tenant SaaS, B2B commerce, internal tooling. End-to-end — from Postgres schemas to the last pixel.",
 } as const;

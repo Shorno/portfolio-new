@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 
 import BikalpoContent from "@/content/work/bikalpo.mdx";
 import BrightTutorContent from "@/content/work/bright-tutor.mdx";
+import PadmaServiceContent from "@/content/work/padma-service.mdx";
 import SelfShopContent from "@/content/work/selfshop.mdx";
 import StockManagementContent from "@/content/work/stock-management.mdx";
 
@@ -15,6 +16,7 @@ const contentMap: Record<string, React.ComponentType> = {
   bikalpo: BikalpoContent,
   "bright-tutor": BrightTutorContent,
   "stock-management": StockManagementContent,
+  "padma-service": PadmaServiceContent,
 };
 
 export function generateStaticParams() {

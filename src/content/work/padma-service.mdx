@@ -1,0 +1,116 @@
+## The brief
+
+Padma Service Company needed more than a brochure site. They run a wide catalog of professional services — security, home services, vehicle and property listings, and more — and the old flow was scattered across phone calls and ad-hoc updates.
+
+The brief: a public marketing site in Bengali and English, a member area where authenticated users can propose new service listings, and an admin CMS where staff approve, reorder, and publish without touching the database. One Postgres schema behind both surfaces.
+
+## My role
+
+<Callout label="scope">
+End-to-end on a two-repo layout: the Next.js 16 storefront (`padma-service`) and the Hono + Bun API (`padma-service-server`). Schema, oRPC contracts, auth, admin tools, and the public catalog.
+</Callout>
+
+## The problem
+
+<Callout label="constraint">
+A services marketplace is half CMS, half workflow. Categories, carousels, blogs, and banners change often — but letting anyone publish a listing without review would break trust on day one.
+</Callout>
+
+Three tensions showed up early:
+
+- **Catalog depth** — services nest under categories and subcategories, each with its own imagery, card labels, featured flags, and related posts. The admin UI has to edit that graph without losing order.
+- **Member-submitted listings** — logged-in users can request create, edit, or delete operations on services. Those requests sit in a queue (`pending` → `approved` / `rejected`) with admin notes and display order set at approval time.
+- **Auth that matches the market** — phone OTP via SMS (not email-first). Better-Auth on both apps, with the API enforcing role separation between public members and admin operators.
+
+## The approach
+
+<Pull cite="when sketching the split">
+One schema. Two apps. The contract is the seam.
+</Pull>
+
+The storefront is Next.js 16 with route groups for the public site (`(client)`) and the admin console (`(admin)`). Data flows through oRPC + TanStack Query — types are imported from the server package at compile time so a renamed field breaks the build, not production.
+
+The API is Hono on Bun with Drizzle against Postgres: services, categories, blogs, banners, homepage sections, media, and the user-service-request workflow. Cloudinary handles uploads; TipTap powers rich blog bodies in the admin.
+
+Public routes cover home, category browsing, individual service pages, blogs, about-us, and a member dashboard. Admin routes cover the full CMS: services, categories, blog types, blogs, banners, homepage sections, media library, and the service-request inbox.
+
+<Shot
+  src="/work/padma-service/web-home.png"
+  alt="Padma Service marketing homepage"
+  caption="public site — bilingual metadata, service catalog entry points"
+/>
+
+<Shot
+  src="/work/padma-service/web-admin-services.png"
+  alt="Admin services management"
+  caption="admin CMS — dense tables for the service catalog"
+/>
+
+<Diagram caption="two repos, one oRPC contract, shared Postgres">
+  <svg viewBox="0 0 900 360" className="h-auto w-full text-line">
+    <g fontFamily="var(--font-mono)" fontSize="13" fill="var(--fg-soft)" textAnchor="middle">
+      <g stroke="currentColor" strokeWidth="1.1" fill="none" opacity="0.55">
+        <line x1="220" y1="120" x2="450" y2="180" />
+        <line x1="680" y1="120" x2="450" y2="180" />
+        <line x1="450" y1="240" x2="450" y2="180" />
+      </g>
+      <g>
+        <rect x="80" y="70" width="280" height="70" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="220" y="100">padma-service</text>
+        <text x="220" y="122" fontSize="11" opacity="0.7">next.js 16 · (client) + (admin)</text>
+      </g>
+      <g>
+        <rect x="540" y="70" width="280" height="70" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="680" y="100">padma-service-server</text>
+        <text x="680" y="122" fontSize="11" opacity="0.7">hono · bun · orpc</text>
+      </g>
+      <g>
+        <rect x="330" y="240" width="240" height="70" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" strokeWidth="1.5" />
+        <text x="450" y="272" fill="var(--accent)" fontSize="15">postgres</text>
+        <text x="450" y="294" fontSize="11" fill="currentColor" opacity="0.75">drizzle · better-auth</text>
+      </g>
+    </g>
+  </svg>
+</Diagram>
+
+## The hard parts
+
+### User-submitted services without polluting the catalog
+
+Members submit create, edit, or delete requests as JSON blobs attached to a workflow row. Admins see a dedicated inbox, set `displayOrder` on approval, and can leave a note on rejection. Until approval, nothing hits the public `service` table — the live catalog stays clean.
+
+The tricky bit is edit and delete: the request carries a `serviceId` plus serialized payload so admins can diff what changed before approving. Create requests start with no `serviceId` and materialize a row only after approval.
+
+### Homepage as data, not hard-coded JSX
+
+Homepage sections, subcategory carousels, and banners are all database-driven with drag-and-drop ordering (`@dnd-kit` in the admin). Marketing can reshuffle the front page without a deploy. Related posts tie services and blogs together so detail pages cross-sell without manual linking in every entry.
+
+### Bilingual SEO without two codebases
+
+Root metadata targets `bn_BD` with Bengali titles and descriptions (`metadataBase` → padmaservice.com). Keywords span security and adjacent service lines the company lists. OG and Twitter images ship from the app directory so shares render correctly on Facebook and messaging apps common in Bangladesh.
+
+<Stack
+  items={[
+    { name: "Next.js 16 + React 19", note: "Route groups for public site vs admin; TipTap for blog bodies.", group: "storefront" },
+    { name: "Hono + Bun", note: "API process with hot reload in dev; Docker image for deploy.", group: "api" },
+    { name: "oRPC + TanStack Query", note: "Typed client imported from server types; no drift at the boundary.", group: "contract" },
+    { name: "Drizzle + Postgres", note: "Services, categories, blogs, banners, requests, media — one schema.", group: "data" },
+    { name: "Better-Auth + SMS OTP", note: "Phone verification for members; admin roles on the same auth tables.", group: "auth" },
+    { name: "Cloudinary", note: "Service imagery and media library uploads from the admin.", group: "media" },
+  ]}
+/>
+
+## What's running today
+
+<StatRow>
+  <Stat value="2" label="repos · web + api" />
+  <Stat value="live" label="padmaservice.com" />
+  <Stat value="CMS" label="admin · full catalog" />
+  <Stat value="OTP" label="phone auth · sms" />
+</StatRow>
+
+The public site and admin console are in production at [padmaservice.com](https://padmaservice.com). The API ships in a Docker container alongside the Next.js deploy. Service count and traffic numbers stay with the client — the architecture is built to scale the catalog without restructuring.
+
+## What I'd do differently
+
+I'd pull the two folders into a Turborepo workspace on day one. The compile-time import of `AppRouterClient` from the server package already enforces the contract; a monorepo would make shared Zod shapes and Drizzle types a package import instead of a relative path across repo roots. Same pattern I reached for on Bikalpo and Bright Tutor — this project got there through discipline, not tooling.

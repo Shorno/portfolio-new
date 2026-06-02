@@ -62,7 +62,13 @@ export const experience: ExperienceEntry[] = [
       "Better-Auth",
       "React Native · Expo",
     ],
-    projectSlugs: ["selfshop", "bikalpo", "bright-tutor", "stock-management"],
+    projectSlugs: [
+      "selfshop",
+      "bikalpo",
+      "bright-tutor",
+      "stock-management",
+      "padma-service",
+    ],
   },
   {
     company: "AppCube",

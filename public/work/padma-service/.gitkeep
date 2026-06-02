@@ -1,0 +1,7 @@
+# Drop Padma Service case-study screenshots here.
+#
+# Expected files (referenced from src/content/work/padma-service.mdx):
+#   hero.png              WorkCard + CaseStudyHero (optional — generative art fallback)
+#   web-home.png          Public marketing homepage
+#   web-admin-services.png Admin service catalog table
+#   web-service-request.png Admin approval inbox (optional extra)

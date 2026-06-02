@@ -169,6 +169,39 @@ export const featuredProjects: Project[] = [
     seed: 73,
     art: "blueprint",
   },
+  {
+    slug: "padma-service",
+    index: "05",
+    name: "Padma Service",
+    kind: "Services Marketplace & CMS",
+    year: "2026",
+    status: "live",
+    tagline:
+      "A bilingual services catalog where the marketing site, member dashboard, and admin CMS all run on one typed oRPC contract.",
+    description:
+      "Full-stack platform for Padma Service Company — public service catalog with categories and blogs, phone-OTP member accounts, and an admin console to manage banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.",
+    url: "https://padmaservice.com",
+    github: undefined,
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "Hono",
+      "oRPC",
+      "Drizzle ORM",
+      "Postgres",
+      "Better-Auth",
+      "TipTap",
+      "Cloudinary",
+      "shadcn/ui",
+    ],
+    metrics: [
+      { label: "platform", value: "web · admin CMS" },
+      { label: "shape", value: "two-repo full-stack" },
+      { label: "domain", value: "padmaservice.com" },
+    ],
+    seed: 58,
+    art: "grid",
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

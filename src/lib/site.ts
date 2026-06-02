@@ -32,4 +32,6 @@ export const excludeRepos: ReadonlyArray<string> = [
   // about authored repos. The unrelated `IftakharRahat/selfshop` repo is
   // a legitimate collaborator entry on a different project and stays.
   "Shorno/selfshop",
+  // Private client monorepo — featured in §01, no need to duplicate in §03 INDEX.
+  "Shorno/padma-service-project",
 ];

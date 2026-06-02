@@ -9,6 +9,7 @@ export type LatestPush = {
   isPrivate: boolean;
 };
 
+
 export type RepoSummary = {
   name: string;
   description: string | null;

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CaseStudyLayout } from "@/components/case-study/case-study-layout";
+import { JsonLd } from "@/components/seo/json-ld";
 import { featuredProjects, getProjectBySlug } from "@/lib/projects";
-import { site } from "@/lib/site";
+import { buildPageMetadata, caseStudyJsonLd } from "@/lib/seo";
 
 import BikalpoContent from "@/content/work/bikalpo.mdx";
 import BrightTutorContent from "@/content/work/bright-tutor.mdx";
@@ -31,22 +32,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+
   const title = `${project.name} — ${project.kind}`;
-  return {
+
+  return buildPageMetadata({
     title,
     description: project.description,
-    openGraph: {
-      title,
-      description: project.description,
-      url: `${site.url}/work/${project.slug}`,
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: project.description,
-    },
-  };
+    path: `/work/${project.slug}`,
+    ogType: "article",
+    ogImage: project.image
+      ? { url: project.image, alt: project.imageAlt ?? project.name }
+      : undefined,
+  });
 }
 
 export default async function CaseStudyPage({
@@ -60,8 +57,11 @@ export default async function CaseStudyPage({
   if (!project || !Content) notFound();
 
   return (
-    <CaseStudyLayout project={project}>
-      <Content />
-    </CaseStudyLayout>
+    <>
+      <JsonLd data={caseStudyJsonLd(project)} />
+      <CaseStudyLayout project={project}>
+        <Content />
+      </CaseStudyLayout>
+    </>
   );
 }

@@ -18,6 +18,9 @@ export const site = {
   status: "available" as "available" | "limited" | "booked",
   tagline:
     "Full-stack engineer for the boring systems your company actually runs on.",
+  /** Meta description — search + social previews (keep tagline for on-page voice). */
+  seoDescription:
+    "Full-stack engineer in Dhaka, Bangladesh. I build multi-party marketplaces, role-based platforms, and wholesale tooling with Next.js, TypeScript, Postgres, and React Native. Available for client work.",
   subline:
     "Multi-party marketplaces, role-based platforms, wholesale tooling. From planning through to the live product.",
 } as const;

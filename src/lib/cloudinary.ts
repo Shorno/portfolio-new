@@ -1,3 +1,27 @@
+/** Open Graph standard — 1.91:1 (Facebook, LinkedIn, X large card). */
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+/**
+ * Cloudinary URL cropped to OG dimensions. Strips prior transforms so
+ * desktop screenshots (often ~2:1) fill the card without wrong metadata.
+ */
+export function cloudinaryOgImageUrl(url: string): string {
+  if (!url.includes("res.cloudinary.com")) return url;
+
+  const marker = "/image/upload/";
+  const index = url.indexOf(marker);
+  if (index === -1) return url;
+
+  const prefix = url.slice(0, index + marker.length);
+  const afterUpload = url.slice(index + marker.length);
+  const versionMatch = afterUpload.match(/(v\d+\/.+)$/);
+  if (!versionMatch) return url;
+
+  const transform = `w_${OG_IMAGE_WIDTH},h_${OG_IMAGE_HEIGHT},c_fill,g_auto,f_auto,q_auto`;
+  return `${prefix}${transform}/${versionMatch[1]}`;
+}
+
 /**
  * Inject Cloudinary delivery transforms after `/image/upload/`.
  * Local paths (`/work/...`) and non-Cloudinary URLs pass through unchanged.

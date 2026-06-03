@@ -3,9 +3,17 @@ import { Fraunces } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
+import { JsonLd } from "@/components/seo/json-ld";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { cloudinaryOgImageUrl } from "@/lib/cloudinary";
+import {
+  defaultOgImage,
+  ogImageFromUrl,
+  personJsonLd,
+  webSiteJsonLd,
+} from "@/lib/seo";
 import { site } from "@/lib/site";
 
 import "./globals.css";
@@ -24,21 +32,22 @@ export const metadata: Metadata = {
     default: `${site.name} — ${site.role}`,
     template: `%s — ${site.name}`,
   },
-  description: site.tagline,
+  description: site.seoDescription,
   authors: [{ name: site.fullName, url: site.url }],
   creator: site.fullName,
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: site.url,
     siteName: site.name,
     title: `${site.name} — ${site.role}`,
-    description: site.tagline,
+    description: site.seoDescription,
+    images: ogImageFromUrl(defaultOgImage.url, defaultOgImage.alt),
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.role}`,
-    description: site.tagline,
+    description: site.seoDescription,
+    images: [cloudinaryOgImageUrl(defaultOgImage.url)],
   },
   robots: { index: true, follow: true },
 };
@@ -62,6 +71,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} ${fraunces.variable}`}
     >
       <body className="grain min-h-dvh bg-bg text-fg antialiased">
+        <JsonLd data={[personJsonLd(), webSiteJsonLd()]} />
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col">
             <SiteHeader />

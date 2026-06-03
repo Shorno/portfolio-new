@@ -1,4 +1,12 @@
+# Required for pnpm 9 (Coolify/Nixpacks). Without `packages`, install fails with
+# "packages field missing or empty". pnpm 10+ allows settings-only files locally.
+packages:
+  - "."
+
 verifyDepsBeforeRun: false
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
+allowBuilds:
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false

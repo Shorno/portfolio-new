@@ -1,5 +1,5 @@
 import { resolveRepoDescription } from "./repo-descriptions";
-import { excludeRepos, site } from "./site";
+import { excludeRepos, includeContributorRepos, site } from "./site";
 
 export type LatestPush = {
   name: string;
@@ -47,6 +47,76 @@ type GitHubRepo = {
   archived: boolean;
 };
 
+const GITHUB_API = "https://api.github.com";
+const FETCH_TIMEOUT_MS = 12_000;
+
+function getGithubToken(): string | undefined {
+  const raw = process.env.GITHUB_TOKEN?.trim();
+  return raw || undefined;
+}
+
+function githubHeaders(token?: string): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": `${site.github_handle}-portfolio`,
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+}
+
+function publicOwnerReposUrl(perPage: number): string {
+  return `${GITHUB_API}/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=${perPage}&type=owner`;
+}
+
+function authenticatedReposUrl(perPage: number): string {
+  return `${GITHUB_API}/user/repos?affiliation=owner,collaborator,organization_member&visibility=all&sort=pushed&direction=desc&per_page=${perPage}`;
+}
+
+function logGithubFailure(label: string, status: number, detail?: string) {
+  console.error(
+    `[github] ${label} failed (${status})${detail ? `: ${detail}` : ""}`,
+  );
+}
+
+/**
+ * Try one or more GitHub URLs. With a token, the first URL is authenticated;
+ * on 401/403 we retry without auth so a bad/expired Coolify secret does not
+ * break the public archive (invalid Bearer is worse than no token).
+ */
+async function fetchGithubRepos(
+  urls: string[],
+  revalidate: number,
+  tags: string[],
+): Promise<GitHubRepo[] | null> {
+  const token = getGithubToken();
+
+  for (let i = 0; i < urls.length; i++) {
+    const useToken = i === 0 ? token : undefined;
+    try {
+      const res = await fetch(urls[i], {
+        next: { revalidate, tags },
+        headers: githubHeaders(useToken),
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      });
+
+      if (res.ok) {
+        return (await res.json()) as GitHubRepo[];
+      }
+
+      const body = await res.text().catch(() => "");
+      logGithubFailure(urls[i], res.status, body.slice(0, 200));
+
+      if (i < urls.length - 1) continue;
+      return null;
+    } catch (err) {
+      console.error(`[github] ${urls[i]} error:`, err);
+    }
+  }
+
+  return null;
+}
+
 /**
  * Fetch the most recently pushed public repo for the configured user.
  * Cached at the edge for 10 minutes. Fails closed (returns a dev sample in
@@ -58,39 +128,26 @@ type GitHubRepo = {
  * fine-grained read-only token with public_repo scope).
  */
 export async function getLatestPush(): Promise<LatestPush | null> {
-  const headers: Record<string, string> = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "User-Agent": `${site.github_handle}-portfolio`,
+  const latestUrl = publicOwnerReposUrl(10);
+  const token = getGithubToken();
+  const repos = await fetchGithubRepos(
+    token ? [latestUrl, latestUrl] : [latestUrl],
+    600,
+    ["github"],
+  );
+  if (!repos) return devFallback();
+
+  const first = repos.find((r) => !r.fork && !r.archived);
+  if (!first) return devFallback();
+
+  return {
+    name: first.name,
+    description: resolveRepoDescription(first.full_name, first.description),
+    url: first.html_url,
+    pushedAt: first.pushed_at,
+    language: first.language,
+    isPrivate: first.private,
   };
-  const token = process.env.GITHUB_TOKEN;
-  if (token) headers.Authorization = `Bearer ${token}`;
-
-  try {
-    const url = `https://api.github.com/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=10`;
-    const res = await fetch(url, {
-      next: { revalidate: 600, tags: ["github"] },
-      headers,
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (!res.ok) return devFallback();
-
-    const repos = (await res.json()) as GitHubRepo[];
-    const first = repos.find((r) => !r.fork && !r.archived);
-    if (!first) return devFallback();
-
-    return {
-      name: first.name,
-      description: resolveRepoDescription(first.full_name, first.description),
-      url: first.html_url,
-      pushedAt: first.pushed_at,
-      language: first.language,
-      isPrivate: first.private,
-    };
-  } catch {
-    return devFallback();
-  }
 }
 
 /**
@@ -100,55 +157,46 @@ export async function getLatestPush(): Promise<LatestPush | null> {
  * authenticated `/user/repos` endpoint). Without a token, falls back to the
  * public `/users/{handle}/repos` endpoint (owner-only, public repos only).
  *
- * Forks are filtered. Repos listed in `excludeRepos` (see `src/lib/site.ts`)
- * are also filtered. Cached for 1 hour. Returns a dev fallback set when
- * rate-limited locally.
+ * Forks are filtered. Repos in `excludeRepos` are dropped. Contributor and
+ * org-owned repos are hidden unless listed in `includeContributorRepos`
+ * (see `src/lib/site.ts`). Cached for 1 hour.
  */
+function isIncludedInIndex(repo: GitHubRepo): boolean {
+  if (repo.fork) return false;
+  if (excludeRepos.includes(repo.full_name)) return false;
+  if (repo.owner.login === site.github_handle) return true;
+  return includeContributorRepos.includes(repo.full_name);
+}
+
 export async function getAllRepos(): Promise<RepoSummary[]> {
-  const headers: Record<string, string> = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "User-Agent": `${site.github_handle}-portfolio`,
-  };
-  const token = process.env.GITHUB_TOKEN;
-  if (token) headers.Authorization = `Bearer ${token}`;
+  const token = getGithubToken();
+  const urls = token
+    ? [authenticatedReposUrl(100), publicOwnerReposUrl(100)]
+    : [publicOwnerReposUrl(100)];
 
-  const url = token
-    ? `https://api.github.com/user/repos?affiliation=owner,collaborator,organization_member&visibility=all&sort=pushed&direction=desc&per_page=100`
-    : `https://api.github.com/users/${site.github_handle}/repos?sort=pushed&direction=desc&per_page=100&type=owner`;
+  const repos = await fetchGithubRepos(urls, 3600, [
+    "github",
+    "github-archive",
+  ]);
+  if (!repos) return devArchiveFallback();
 
-  try {
-    const res = await fetch(url, {
-      next: { revalidate: 3600, tags: ["github", "github-archive"] },
-      headers,
-      signal: AbortSignal.timeout(8000),
-    });
-
-    if (!res.ok) return devArchiveFallback();
-
-    const repos = (await res.json()) as GitHubRepo[];
-    return repos
-      .filter((r) => !r.fork)
-      .filter((r) => !excludeRepos.includes(r.full_name))
-      .map((r): RepoSummary => ({
-        name: r.name,
-        fullName: r.full_name,
-        ownerLogin: r.owner.login,
-        role:
-          r.owner.login === site.github_handle ? "owner" : "contributor",
-        description: resolveRepoDescription(r.full_name, r.description),
-        url: r.html_url,
-        pushedAt: r.pushed_at,
-        createdAt: r.created_at,
-        language: r.language,
-        stars: r.stargazers_count,
-        topics: r.topics ?? [],
-        isPrivate: r.private,
-        isArchived: r.archived,
-      }));
-  } catch {
-    return devArchiveFallback();
-  }
+  return repos
+    .filter(isIncludedInIndex)
+    .map((r): RepoSummary => ({
+      name: r.name,
+      fullName: r.full_name,
+      ownerLogin: r.owner.login,
+      role: r.owner.login === site.github_handle ? "owner" : "contributor",
+      description: resolveRepoDescription(r.full_name, r.description),
+      url: r.html_url,
+      pushedAt: r.pushed_at,
+      createdAt: r.created_at,
+      language: r.language,
+      stars: r.stargazers_count,
+      topics: r.topics ?? [],
+      isPrivate: r.private,
+      isArchived: r.archived,
+    }));
 }
 
 /**

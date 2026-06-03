@@ -224,11 +224,11 @@ Animation timing lives in `globals.css` (`::view-transition-group(*)`). 520ms mo
 Two server functions, both cached:
 
 - `getLatestPush()` — most recent push for the hero status strip. Uses public `/users/{handle}/repos`, owner-only, cache 10min.
-- `getAllRepos()` — full archive for §04 INDEX. **Auto-discovers contributor and org-member repos** when `GITHUB_TOKEN` is set (`/user/repos?affiliation=owner,collaborator,organization_member&visibility=all`). Falls back to public owner-only when no token. Cache 1h.
+- `getAllRepos()` — full archive for §04 INDEX. With `GITHUB_TOKEN`, fetches the full accessible set but **renders only `Shorno/*` owner repos** plus any names in `includeContributorRepos`. Without a token, public owner repos only. Cache 1h.
 
-Each repo carries a `role: "owner" | "contributor"` field; contributor repos render as `ownerLogin/repo` with a `co` chip.
+Each repo carries a `role: "owner" | "contributor"` field; allowlisted non-owner repos render as `ownerLogin/repo` with a `co` chip.
 
-`excludeRepos` in `src/lib/site.ts` is a manual mute list — full names like `"some-org/private-thing"` are filtered out before render. Use this for NDA / sensitive contributor repos rather than revoking the token.
+`excludeRepos` — hide specific repos (NDA forks, etc.). `includeContributorRepos` — opt-in allowlist for collaborator/org repos you want visible; everything else with a `co` chip stays out.
 
 Both functions have a `devFallback()` for when the API rate-limits in development. **Never return mock data in production** — the dev fallbacks check `NODE_ENV` and return `null` / `[]` in prod.
 
@@ -278,7 +278,7 @@ Edit `src/lib/experience.ts`. Most-recent first. `projectSlugs` references slugs
 1. **Don't import `<ViewTransition>` from `react`** — it doesn't exist in 19.2. Use CSS `view-transition-name` directly.
 2. **Don't use HTML entities like `&rsquo;` in TSX strings** — they need `dangerouslySetInnerHTML` to render. Use Unicode escapes (`\u2019`) directly.
 3. **Don't add `lg:` breakpoints when `md:` works** — the site is designed primarily mobile / desktop with `md` (768px) as the pivot. `lg:` causes layout dead zones in the 768–1023 range.
-4. **Don't surface "every collaborator repo" without a mute list.** Auto-discovery picks up forks, course follow-alongs, and abandoned PRs. Anything noisy goes in `excludeRepos`.
+4. **Don't surface every collaborator repo.** The INDEX defaults to owner repos only; opt in via `includeContributorRepos`. Use `excludeRepos` to hide specific `Shorno/*` repos.
 5. **Don't reduce em-dashes mechanically.** A few are fine. The point is to remove the rhetorical pattern that signals AI authorship (`A — but B — and C`), not to ban the character.
 6. **Don't add stock imagery, gradient cards, or SaaS-template hero illustrations.** The generative `ProjectArt` is the design. If you genuinely need a screenshot, store it under `public/work/` and reference it via `Project.image`.
 7. **Don't downgrade React, Next, or Tailwind to fix a problem.** Find the right way to use the current versions.

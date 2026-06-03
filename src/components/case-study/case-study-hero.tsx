@@ -127,7 +127,7 @@ export function CaseStudyHero({ project }: { project: Project }) {
 
         {/* Hero art */}
         <div
-          className="mt-12 aspect-[21/9] overflow-hidden rounded-lg border border-line md:mt-16"
+          className="mt-12 aspect-video overflow-hidden rounded-lg border border-line bg-bg-elev/50 md:mt-16"
           style={
             {
               viewTransitionName: `work-art-${project.slug}`,

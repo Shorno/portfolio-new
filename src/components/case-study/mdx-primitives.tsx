@@ -1,5 +1,10 @@
 import type { ComponentProps, ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
+import {
+  cloudinaryImageUrl,
+  cloudinaryShotSrcSet,
+} from "@/lib/cloudinary";
+import { ScrollShot } from "@/components/case-study/scroll-shot";
 import { cn } from "@/lib/utils";
 
 /* ─────────────────────────────────────────────────────────────────
@@ -8,6 +13,7 @@ import { cn } from "@/lib/utils";
    Use from inside .mdx files:
      <Callout>...</Callout>
      <Shot src="..." caption="..." />
+     <ScrollShot src="..." caption="..." />  // full-page capture, pans on view
      <Diagram caption="..."><svg>...</svg></Diagram>
      <Stack items={[{name: "Postgres", note: "..."}, ...]} />
      <Stat value="5" label="apps" />
@@ -70,18 +76,23 @@ export function Shot({
   src,
   alt,
   caption,
-  aspect = "16/10",
+  aspect = "16/9",
+  fit = "contain",
 }: {
   src?: string;
   alt?: string;
   caption?: string;
-  aspect?: "16/10" | "4/3" | "1/1" | "21/9";
+  /** 16/9 matches 1080p desktop captures; 4/3 for phone screenshots. */
+  aspect?: "16/9" | "16/10" | "4/3" | "1/1" | "21/9";
+  /** `contain` shows the full UI; `cover` crops to fill the frame. */
+  fit?: "contain" | "cover";
 }) {
   return (
     <figure className="my-10">
       <div
         className={cn(
-          "relative overflow-hidden rounded-md border border-line bg-bg-elev/40",
+          "relative overflow-hidden rounded-md border border-line bg-bg-elev/50",
+          aspect === "16/9" && "aspect-video",
           aspect === "16/10" && "aspect-[16/10]",
           aspect === "4/3" && "aspect-[4/3]",
           aspect === "1/1" && "aspect-square",
@@ -91,9 +102,18 @@ export function Shot({
         {src ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={src}
+            src={cloudinaryImageUrl(src, { width: 1920 })}
+            srcSet={cloudinaryShotSrcSet(src)}
+            sizes="(min-width: 768px) min(720px, 100vw), 100vw"
             alt={alt ?? ""}
-            className="h-full w-full object-cover"
+            className={cn(
+              "h-full w-full",
+              fit === "contain"
+                ? "object-contain object-top"
+                : "object-cover object-top",
+            )}
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <ShotPlaceholder label={alt ?? "screenshot pending"} />
@@ -352,6 +372,7 @@ export const mdxPrimitives: MDXComponents = {
   Callout,
   Pull,
   Shot,
+  ScrollShot,
   Diagram,
   Stack,
   Stat,

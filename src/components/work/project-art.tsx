@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cloudinaryImageUrl } from "@/lib/cloudinary";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
 
@@ -18,21 +19,30 @@ export function ProjectArt({
   project,
   className,
   priority = false,
+  /** `cover` fills the card slot (homepage work stack). `contain` shows the full frame (case study hero). */
+  imageFit = "contain",
 }: {
   project: Project;
   className?: string;
   priority?: boolean;
+  imageFit?: "cover" | "contain";
 }) {
   if (project.image) {
+    const src = cloudinaryImageUrl(project.image, { width: 1920 });
     return (
       <div className={cn("relative h-full w-full overflow-hidden", className)}>
         <Image
-          src={project.image}
+          src={src}
           alt={project.imageAlt ?? `${project.name} — product screenshot`}
           fill
           priority={priority}
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover"
+          className={cn(
+            "bg-bg-elev/60",
+            imageFit === "cover"
+              ? "object-cover object-top"
+              : "object-contain object-top",
+          )}
         />
       </div>
     );

@@ -75,6 +75,8 @@ export const repoDescriptions: Readonly<Record<string, string>> = {
   // —— Contributor / external ——
   "IftakharRahat/selfshop":
     "Collaborator repo — separate lineage from the SelfShop client monorepo.",
+  "IftakharRahat/DIMS":
+    "Collaborator repo — DIMS (department / institute management).",
   "shahriarshafin/buddy-deals-admin":
     "Contributor — admin UI for Buddy Deals.",
   "adrianhajdin/stack_overflow_nextjs14":

@@ -46,17 +46,17 @@ export function WorkCard({
       </div>
 
       {/* Body grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12">
-        {/* Art slot */}
+      <div className="grid grid-cols-1 md:grid-cols-12 md:items-stretch">
+        {/* Art slot — stretches to match content height on desktop; cover fills it */}
         <div
-          className="relative aspect-[16/10] border-b border-line md:col-span-7 md:aspect-auto md:border-b-0 md:border-r"
+          className="relative aspect-[5/4] min-h-[260px] border-b border-line sm:aspect-[4/3] md:col-span-7 md:aspect-auto md:min-h-[320px] md:border-b-0 md:border-r"
           style={
             vt
               ? ({ viewTransitionName: `work-art-${project.slug}` } as React.CSSProperties)
               : undefined
           }
         >
-          <ProjectArt project={project} />
+          <ProjectArt project={project} imageFit="cover" priority={project.index === "01"} />
         </div>
 
         {/* Content slot */}

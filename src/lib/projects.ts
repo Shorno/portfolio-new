@@ -54,8 +54,12 @@ export const featuredProjects: Project[] = [
       "Two roles, four surfaces — reseller and supplier dashboards on the web, plus the matching React Native apps. One Laravel API I plugged into.",
     description:
       "Multi-role reseller marketplace. I built the reseller and supplier dashboards inside the Next.js Client app, plus the matching React Native + Tamagui apps for each role. Reseller app live on Google Play; supplier app internal. The Laravel/PHP backend was the team's — this case study is about the front of house.",
-    url: "https://REPLACE_ME",
-    playstore: "https://play.google.com/store/apps/details?id=REPLACE_ME",
+    url: "https://selfshop.com.bd/",
+    playstore:
+      "https://play.google.com/store/apps/details?id=com.selfshop.reseller&hl=en",
+    image:
+      "https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png",
+    imageAlt: "SelfShop — reseller product and dashboard view",
     github: undefined,
     stack: [
       "Next.js 16",
@@ -88,7 +92,10 @@ export const featuredProjects: Project[] = [
       "A B2B storefront where catalog, RFQ, and fulfilment behave like one product, not three.",
     description:
       "End-to-end B2B commerce platform for a Bangladeshi distributor — product catalog, role-based pricing, and a checkout flow that respects how real wholesale orders actually get placed. Currently in production on its own domain; mid-flight rewrite into a Turborepo monorepo with web, mobile, and a Hono backend.",
-    url: "https://bikalpo.com",
+    url: "https://b2b.bikalpo.com/",
+    image:
+      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456221/Create-Next-App_zngg7r.png",
+    imageAlt: "Bikalpo — B2B storefront on b2b.bikalpo.com",
     github: "https://github.com/Shorno/bikalpo-project",
     stack: [
       "Next.js 16",
@@ -102,7 +109,7 @@ export const featuredProjects: Project[] = [
     ],
     metrics: [
       { label: "platform", value: "web + native" },
-      { label: "domain", value: "bikalpo.com" },
+      { label: "domain", value: "b2b.bikalpo.com" },
       { label: "stack", value: "turborepo monorepo" },
     ],
     seed: 17,
@@ -119,6 +126,10 @@ export const featuredProjects: Project[] = [
       "Five apps, one schema. Subdomain-scoped dashboards for teachers, guardians, and admins.",
     description:
       "Multi-tenant tutoring platform with role-aware subdomains and a shared schema across five apps: a marketing site, an admin console, a teacher dashboard, a React Native app for guardians, and a Hono+oRPC API. The architectural piece I'm most proud of from 2026 — every app talks the same type-safe contract end to end.",
+    url: "https://brighteducations.com/",
+    image:
+      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456307/Bright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png",
+    imageAlt: "Bright Tutor — marketing site on brighteducations.com",
     github: undefined,
     stack: [
       "Turborepo",
@@ -149,7 +160,10 @@ export const featuredProjects: Project[] = [
       "A warehouse-floor tool, not a dashboard. Built around how stock actually moves.",
     description:
       "Full inventory and point-of-sale system for a retail client — receiving, transfers, sales, returns, and printed invoices with a workflow shaped around what actually happens at the counter. Separate frontend (Vite + React 19) and backend repos, both deployed.",
-    url: "https://stock-management-ochre.vercel.app",
+    url: "https://mstamimenterprise.shop/",
+    image:
+      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png",
+    imageAlt: "Stock Management — inventory and POS dashboard",
     github: "https://github.com/Shorno/stock-management",
     stack: [
       "Vite",
@@ -181,6 +195,9 @@ export const featuredProjects: Project[] = [
     description:
       "Full-stack platform for Padma Service Company — public service catalog with categories and blogs, phone-OTP member accounts, and an admin console to manage banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.",
     url: "https://padmaservice.com",
+    image:
+      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png",
+    imageAlt: "Padma Service — public homepage (Bengali)",
     github: undefined,
     stack: [
       "Next.js 16",

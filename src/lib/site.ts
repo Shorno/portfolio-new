@@ -34,7 +34,18 @@ export const site = {
 export const excludeRepos: ReadonlyArray<string> = [
   // SelfShop fork — fresh artifact, no original commits. The case study
   // in §01 already covers this work; hiding the fork keeps §03 honest
-  // about authored repos. The unrelated `IftakharRahat/selfshop` repo is
-  // a legitimate collaborator entry on a different project and stays.
+  // about authored repos.
   "Shorno/selfshop",
+];
+
+/**
+ * Contributor / org-owned repos to show in §03 INDEX with a `co` chip.
+ *
+ * With a `GITHUB_TOKEN`, GitHub returns every repo you can access (collabs,
+ * org membership, course forks, etc.). By default only `Shorno/*` owner repos
+ * are shown. Add a full name here to surface a specific collaborator repo.
+ */
+export const includeContributorRepos: ReadonlyArray<string> = [
+  "adrasel404-bot/selfshop",
+  "IftakharRahat/DIMS",
 ];

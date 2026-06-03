@@ -9,8 +9,6 @@ export type SystemGroup = {
   items: Array<{
     name: string;
     role: string;
-    /** Year I started using it for real work. */
-    since?: string;
   }>;
 };
 
@@ -22,22 +20,18 @@ export const systemStack: SystemGroup[] = [
       {
         name: "TypeScript",
         role: "Lingua franca for everything I ship. No JS, ever.",
-        since: "2020",
       },
       {
         name: "Next.js",
         role: "Default for full-stack web. App Router, RSC, server actions.",
-        since: "2021",
       },
       {
         name: "Hono",
         role: "When the API deserves its own process. Edge or Node.",
-        since: "2024",
       },
       {
         name: "React Native · Expo",
         role: "Native apps when web isn't enough. EAS for delivery.",
-        since: "2024",
       },
     ],
   },
@@ -48,27 +42,22 @@ export const systemStack: SystemGroup[] = [
       {
         name: "PostgreSQL",
         role: "Source of truth. Always.",
-        since: "2020",
       },
       {
         name: "Drizzle ORM",
         role: "TypeScript schema, generated migrations, no magic.",
-        since: "2024",
       },
       {
         name: "Neon",
         role: "Managed Postgres. Branching for previews.",
-        since: "2024",
       },
       {
         name: "Better-Auth",
         role: "Sessions, OAuth, role gating. The auth library I trust.",
-        since: "2024",
       },
       {
         name: "oRPC",
         role: "End-to-end typed contracts between server and every client.",
-        since: "2025",
       },
     ],
   },
@@ -79,32 +68,26 @@ export const systemStack: SystemGroup[] = [
       {
         name: "React 19",
         role: "Server + client components. Compiler when it earns its keep.",
-        since: "2024",
       },
       {
         name: "Tailwind CSS v4",
         role: "Design tokens via @theme. No config file, no excuses.",
-        since: "2022",
       },
       {
         name: "shadcn/ui",
         role: "Owned components, not a dependency. Tailored each time.",
-        since: "2023",
       },
       {
         name: "Ant Design",
         role: "Reach for it on dashboard-heavy projects with dense tables and forms.",
-        since: "2024",
       },
       {
         name: "Motion (Framer)",
         role: "Scroll-linked animation, layout transitions, presence.",
-        since: "2023",
       },
       {
         name: "Lexical",
         role: "Rich text content stored as JSON alongside everything else.",
-        since: "2025",
       },
     ],
   },
@@ -115,27 +98,22 @@ export const systemStack: SystemGroup[] = [
       {
         name: "Turborepo",
         role: "Monorepo pipelines for shared packages across web + native + server.",
-        since: "2024",
       },
       {
         name: "pnpm",
         role: "Disk-efficient package manager. Workspaces, not lifecycle theatre.",
-        since: "2022",
       },
       {
         name: "Vite",
         role: "When the app doesn't need server-rendering, this is the shell.",
-        since: "2023",
       },
       {
         name: "Hostinger VPS",
         role: "Where projects live. Owned hardware, predictable cost, no per-deploy lock-in.",
-        since: "2024",
       },
       {
         name: "Coolify",
         role: "Self-hosted control panel for the VPS — deploys, builds, and CI/CD in one place.",
-        since: "2024",
       },
     ],
   },

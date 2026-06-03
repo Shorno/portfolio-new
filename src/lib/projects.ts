@@ -7,7 +7,11 @@
  * placeholder art until real screenshots are dropped into `image`.
  */
 
-export type ProjectStatus = "live" | "private-client" | "in-development";
+export type ProjectStatus =
+  | "live"
+  | "partial-live"
+  | "private-client"
+  | "in-development";
 
 export type Project = {
   slug: string;
@@ -16,7 +20,7 @@ export type Project = {
   name: string;
   /** Short category descriptor, e.g. "B2B Commerce" */
   kind: string;
-  /** Year range, e.g. "2025—present" */
+  /** Display year on the work card, e.g. "2026—present" or "2025—2026" */
   year: string;
   status: ProjectStatus;
   /** One-line editorial pitch for the card */
@@ -31,7 +35,7 @@ export type Project = {
   playstore?: string;
   /** Tech stack pills, ordered by prominence */
   stack: string[];
-  /** Short fact chips (label + value), e.g. { label: "scale", value: "multi-tenant" } */
+  /** Short fact chips for the work card — plain labels + values a non-dev can scan. */
   metrics: Array<{ label: string; value: string }>;
   /** Hero image path. Falls back to generative art when absent. */
   image?: string;
@@ -48,12 +52,12 @@ export const featuredProjects: Project[] = [
     index: "01",
     name: "SelfShop",
     kind: "Reseller & Dropshipping Commerce",
-    year: "2025—present",
+    year: "2026—present",
     status: "live",
     tagline:
-      "Two roles, four surfaces — reseller and supplier dashboards on the web, plus the matching React Native apps. One Laravel API I plugged into.",
+      "Three roles, three surfaces. Admin, reseller, and supplier dashboards on the web, plus the reseller app on Play Store. I plugged into the team's Laravel API.",
     description:
-      "Multi-role reseller marketplace. I built the reseller and supplier dashboards inside the Next.js Client app, plus the matching React Native + Tamagui apps for each role. Reseller app live on Google Play; supplier app internal. The Laravel/PHP backend was the team's — this case study is about the front of house.",
+      "Multi-role reseller marketplace. I built the admin, reseller, and supplier dashboards in the Next.js client app, plus the React Native + Tamagui reseller app on Google Play. The Laravel backend was the team's. This case study covers the front of house.",
     url: "https://selfshop.com.bd/",
     playstore:
       "https://play.google.com/store/apps/details?id=com.selfshop.reseller&hl=en",
@@ -74,9 +78,9 @@ export const featuredProjects: Project[] = [
       "Laravel API (consumed)",
     ],
     metrics: [
-      { label: "platform", value: "web + native" },
-      { label: "scope", value: "4 surfaces · 2 roles" },
-      { label: "stage", value: "live · Play Store" },
+      { label: "builds", value: "web + mobile · 3 surfaces" },
+      { label: "roles", value: "admin · reseller · supplier" },
+      { label: "status", value: "live · Play Store" },
     ],
     seed: 91,
     art: "wires",
@@ -85,13 +89,13 @@ export const featuredProjects: Project[] = [
     slug: "bikalpo",
     index: "02",
     name: "Bikalpo",
-    kind: "B2B Commerce Platform",
+    kind: "Multi-Party Commerce Marketplace",
     year: "2025—present",
-    status: "live",
+    status: "partial-live",
     tagline:
-      "A B2B storefront where catalog, RFQ, and fulfilment behave like one product, not three.",
+      "Four participant tiers, one catalog. Partial surfaces live on b2b.bikalpo.com. The full platform is still under build.",
     description:
-      "End-to-end B2B commerce platform for a Bangladeshi distributor — product catalog, role-based pricing, and a checkout flow that respects how real wholesale orders actually get placed. Currently in production on its own domain; mid-flight rewrite into a Turborepo monorepo with web, mobile, and a Hono backend.",
+      "Multi-party commerce for a Bangladeshi distributor: platform admin, warehouse/wholesaler, two retailer tiers (resell-and-buy and buy-only), and a consumer storefront on one catalog with tier-aware pricing. Partial work is live on b2b.bikalpo.com. The full platform and Turborepo rewrite (web, mobile, Hono API) are in active development.",
     url: "https://b2b.bikalpo.com/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456221/Create-Next-App_zngg7r.png",
@@ -101,16 +105,16 @@ export const featuredProjects: Project[] = [
       "Next.js 16",
       "React 19",
       "Drizzle ORM",
-      "Neon Postgres",
+      "Postgres",
       "Better-Auth",
       "TanStack Query",
       "Lexical",
       "Cloudinary",
     ],
     metrics: [
-      { label: "platform", value: "web + native" },
-      { label: "domain", value: "b2b.bikalpo.com" },
-      { label: "stack", value: "turborepo monorepo" },
+      { label: "status", value: "part live · in dev" },
+      { label: "live at", value: "b2b.bikalpo.com" },
+      { label: "target", value: "web + mobile + API" },
     ],
     seed: 17,
     art: "grid",
@@ -119,13 +123,13 @@ export const featuredProjects: Project[] = [
     slug: "bright-tutor",
     index: "03",
     name: "Bright Tutor",
-    kind: "Multi-tenant Education SaaS",
+    kind: "Multi-Role Education Platform",
     year: "2026",
-    status: "private-client",
+    status: "live",
     tagline:
-      "Five apps, one schema. Subdomain-scoped dashboards for teachers, guardians, and admins.",
+      "Six surfaces, one schema. Teachers, guardians, and admins each get web and native, off the spreadsheet.",
     description:
-      "Multi-tenant tutoring platform with role-aware subdomains and a shared schema across five apps: a marketing site, an admin console, a teacher dashboard, a React Native app for guardians, and a Hono+oRPC API. The architectural piece I'm most proud of from 2026 — every app talks the same type-safe contract end to end.",
+      "Tuition media platform for a tutoring business: public marketplace, admin console, and role-aware web + native surfaces for teachers and guardians, all on one Hono+oRPC API with a shared Drizzle schema.",
     url: "https://brighteducations.com/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456307/Bright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png",
@@ -142,9 +146,9 @@ export const featuredProjects: Project[] = [
       "Better-Auth",
     ],
     metrics: [
-      { label: "apps", value: "5 in monorepo" },
-      { label: "tenancy", value: "subdomain-scoped" },
-      { label: "channels", value: "web · native · sms" },
+      { label: "builds", value: "web + mobile · 6 apps" },
+      { label: "roles", value: "teacher · guardian · admin" },
+      { label: "status", value: "live" },
     ],
     seed: 41,
     art: "wires",
@@ -153,17 +157,17 @@ export const featuredProjects: Project[] = [
     slug: "stock-management",
     index: "04",
     name: "Stock Management",
-    kind: "Inventory & POS System",
+    kind: "Distributor Operations SPA",
     year: "2025—2026",
     status: "live",
     tagline:
-      "A warehouse-floor tool, not a dashboard. Built around how stock actually moves.",
+      "Procurement to retailer fulfillment in one React SPA. Stock in, stock out, invoices. The full daily flow.",
     description:
-      "Full inventory and point-of-sale system for a retail client — receiving, transfers, sales, returns, and printed invoices with a workflow shaped around what actually happens at the counter. Separate frontend (Vite + React 19) and backend repos, both deployed.",
+      "Distributor operational tool for receiving stock from suppliers, selling to retailers and proprietors, transfers, returns, and printed invoices. Built around how wholesale actually moves. Separate Vite + React 19 SPA and backend repos, both deployed.",
     url: "https://mstamimenterprise.shop/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png",
-    imageAlt: "Stock Management — inventory and POS dashboard",
+    imageAlt: "Stock Management — distributor operations dashboard",
     github: "https://github.com/Shorno/stock-management",
     stack: [
       "Vite",
@@ -176,9 +180,9 @@ export const featuredProjects: Project[] = [
       "Better-Auth",
     ],
     metrics: [
-      { label: "shape", value: "two-repo full-stack" },
-      { label: "ops", value: "invoicing + pdf" },
-      { label: "scope", value: "retail floor tool" },
+      { label: "builds", value: "wholesale web app" },
+      { label: "flow", value: "stock in → invoice out" },
+      { label: "status", value: "live" },
     ],
     seed: 73,
     art: "blueprint",
@@ -188,12 +192,12 @@ export const featuredProjects: Project[] = [
     index: "05",
     name: "Padma Service",
     kind: "Services Marketplace & CMS",
-    year: "2026",
+    year: "2025—2026",
     status: "live",
     tagline:
       "A bilingual services catalog where the marketing site, member dashboard, and admin CMS all run on one typed oRPC contract.",
     description:
-      "Full-stack platform for Padma Service Company — public service catalog with categories and blogs, phone-OTP member accounts, and an admin console to manage banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.",
+      "Full-stack platform for Padma Service Company: public service catalog with categories and blogs, phone-OTP member accounts, and an admin console for banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.",
     url: "https://padmaservice.com",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png",
@@ -212,9 +216,9 @@ export const featuredProjects: Project[] = [
       "shadcn/ui",
     ],
     metrics: [
-      { label: "platform", value: "web · admin CMS" },
-      { label: "shape", value: "two-repo full-stack" },
-      { label: "domain", value: "padmaservice.com" },
+      { label: "builds", value: "site + admin CMS" },
+      { label: "perf", value: "SSG + RSC · Next.js 16" },
+      { label: "status", value: "live" },
     ],
     seed: 58,
     art: "grid",

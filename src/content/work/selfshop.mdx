@@ -1,35 +1,31 @@
 ## The brief
 
-SelfShop is a multi-role reseller marketplace. Suppliers list wholesale stock; resellers pick products to sell on their own social channels and through the platform; end customers buy through whichever surface fits. The work I owned was the front of house — the surfaces resellers and suppliers actually live in — across web and native.
+SelfShop is a multi-role reseller marketplace. Suppliers list wholesale stock; resellers pick products to sell on their own social channels and through the platform; end customers buy through whichever surface fits. I owned the front of house: the surfaces admin, resellers, and suppliers actually live in, across web and native.
 
-Two roles. Four surfaces. One Laravel API I didn't write.
+Three roles. Three surfaces. One Laravel API I didn't write.
 
 ## My role
 
 <Callout label="scope">
-I built the reseller and supplier dashboards inside the Next.js Client app, plus the matching React Native + Tamagui apps for each role. The Laravel/PHP backend was the team's; this case study is about the front of house.
+I built the admin, reseller, and supplier dashboards inside the Next.js Client app, plus the React Native + Tamagui reseller app. The Laravel/PHP backend was the team's; this case study is about the front of house.
 </Callout>
 
-The reseller app is live on Google Play. The supplier app is internal — same Tamagui + Expo foundation, narrower feature surface, used by a few power-user suppliers in the field.
+The reseller app is live on Google Play.
 
 ## The problem
 
 Reseller commerce isn't B2C with a skin on. The reseller is the vendor of record but doesn't hold stock. The supplier never sees the end customer. The platform sits in the middle of three relationships at once and has to keep them coherent in real time.
 
 - **Two roles, two mental models.** Resellers care about social-friendly product pages, commission, and cash flow. Suppliers care about purchase orders, stock-on-hand, and dispatch. The same order touches both, and they need different views of it.
-- **Four surfaces in lockstep.** Two web dashboards, two native apps. When a customer places an order it has to surface on the reseller's phone within seconds and on the supplier's web dashboard at the same time, without divergence.
+- **Three surfaces in lockstep.** Two web dashboards and one native app. When a customer places an order it has to surface on the reseller's phone within seconds and on the supplier's web dashboard at the same time, without divergence.
 - **Non-technical primary users.** Resellers aren't ops people; suppliers manage their inventory between other things. Forms have to be forgiving, errors have to be readable, and the mobile flows have to work one-handed on bad networks.
-- **A backend I didn't write.** The Laravel API was the team's. I had to plug into it cleanly, catch breakage at type-check rather than runtime, and keep the four surfaces consistent without a shared codebase to enforce it.
+- **A backend I didn't write.** The Laravel API was the team's. I had to plug into it cleanly, catch breakage at type-check rather than runtime, and keep the three surfaces consistent without a shared codebase to enforce it.
 
 ## The approach
 
-<Pull cite="when reviewing the surface map">
-Same Laravel API on every surface. Different state shape on each.
-</Pull>
+The web dashboards are Next.js 16 + React 19, with Redux Toolkit and Ant Design. Forms-and-tables work (vendor onboarding, order management, payout reconciliation, discount rules) leans on Ant's data primitives. Redux keeps state predictable across the role-scoped surfaces.
 
-The web dashboards are Next.js 16 + React 19, with Redux Toolkit and Ant Design. Forms-and-tables work — vendor onboarding, order management, payout reconciliation, discount rules — leans on Ant's data primitives and benefits from Redux's predictable shape across the two role-scoped surfaces.
-
-The native apps are Expo + Tamagui + TanStack Query. Different state library on purpose: mobile is read-mostly with mutations, so a fetch-cache covers most of it without the boilerplate Redux brings to a small surface. Tamagui gave me consistent typography and spacing across both apps without re-implementing the design system twice.
+The reseller app is Expo + Tamagui + TanStack Query. Different state library on purpose: mobile is read-mostly with mutations, so a fetch-cache covers most of it without the boilerplate Redux brings to a small surface.
 
 Real-time runs on Pusher channels with Laravel Echo on the client. New-order events fan out to whichever surfaces care: a push notification on the reseller's phone (Firebase + `expo-notifications`), a banner on the supplier's web dashboard, a row appearing in the operator's inbox. The same channel, different consumers, no polling.
 
@@ -42,12 +38,14 @@ Real-time runs on Pusher channels with Laravel Echo on the client. New-order eve
 />
 
 <Shot
-  src="/work/selfshop/web-supplier.png"
+  src="https://res.cloudinary.com/def3zwztt/image/upload/v1780496067/SelfShop-Limited-Bangladesh-s-Leading-B2B-Wholesale-Dropshipping-Marketplace_1_rafh0e.png"
   alt="Supplier dashboard — vendor catalog, stock, dispatch"
+  aspect="16/9"
+  fit="contain"
   caption="Client / web · the supplier dashboard, same app, role-scoped"
 />
 
-<Diagram caption="four surfaces, one API, real-time fan-out">
+<Diagram caption="three surfaces, one API, real-time fan-out">
   <svg viewBox="0 0 900 380" className="h-auto w-full text-line">
     <g fontFamily="var(--font-mono)" fontSize="13" fill="var(--fg-soft)" textAnchor="middle">
       {/* backend */}
@@ -60,10 +58,8 @@ Real-time runs on Pusher channels with Laravel Echo on the client. New-order eve
       {/* edges */}
       <g stroke="currentColor" strokeWidth="1.1" fill="none" opacity="0.55">
         <line x1="450" y1="160" x2="180" y2="80" />
-        <line x1="450" y1="160" x2="450" y2="80" />
         <line x1="450" y1="160" x2="720" y2="80" />
-        <line x1="450" y1="220" x2="270" y2="320" />
-        <line x1="450" y1="220" x2="630" y2="320" />
+        <line x1="450" y1="220" x2="180" y2="320" />
       </g>
 
       {/* role-row labels */}
@@ -86,16 +82,9 @@ Real-time runs on Pusher channels with Laravel Echo on the client. New-order eve
 
       {/* native — reseller */}
       <g>
-        <rect x="170" y="290" width="200" height="60" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
-        <text x="270" y="316">native / reseller</text>
-        <text x="270" y="334" fontSize="10" opacity="0.65" fill="var(--accent)">expo · tamagui · play store</text>
-      </g>
-
-      {/* native — supplier */}
-      <g>
-        <rect x="530" y="290" width="200" height="60" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
-        <text x="630" y="316">supplier-native</text>
-        <text x="630" y="334" fontSize="10" opacity="0.65">expo · tamagui · internal</text>
+        <rect x="80" y="290" width="200" height="60" rx="4" fill="var(--bg-elev)" stroke="currentColor" />
+        <text x="180" y="316">native / reseller</text>
+        <text x="180" y="334" fontSize="10" opacity="0.65" fill="var(--accent)">expo · tamagui · play store</text>
       </g>
     </g>
   </svg>
@@ -103,20 +92,20 @@ Real-time runs on Pusher channels with Laravel Echo on the client. New-order eve
 
 ## The hard parts
 
-### Two roles, four surfaces, no shared codebase
+### Three surfaces, no shared codebase
 
-The honest answer is: I didn't share much code between the surfaces. The Next.js dashboards live in one app; the two native apps are siblings in `native/` and `supplier-native/`; the Laravel backend is upstream of all of it. There's no monorepo joining them.
+The honest answer is: I didn't share much code between the surfaces. The Next.js dashboards live in one app; the reseller native app lives in `native/`; the Laravel backend is upstream of all of it. There's no monorepo joining them.
 
 What I did share was the parts that drift fastest if they aren't shared:
 
-- **Typed contracts** — every API endpoint has a hand-mirrored TypeScript schema that lives in each client. When the backend changes a field, type-check fails at compile time on the surface that consumes it, not on the customer's phone.
-- **Pusher channel names + event shapes** — copied verbatim across the four surfaces, with a comment pointing at the canonical list. A misnamed channel is a silent bug; making it grep-able was worth the duplication.
+- **Typed contracts:** every API endpoint has a hand-mirrored TypeScript schema that lives in each client. When the backend changes a field, type-check fails at compile time on the surface that consumes it, not on the customer's phone.
+- **Pusher channel names + event shapes:** copied verbatim across the three surfaces, with a comment pointing at the canonical list. A misnamed channel is a silent bug; making it grep-able was worth the duplication.
 
 What I duplicated on purpose: UI components, navigation, theme tokens. Web and native have different idioms and trying to abstract over them costs more than it saves.
 
 ### Real-time orders without dropping events
 
-A single new-order event has to surface in three places at once: the reseller's phone (push notification), the reseller's web dashboard (banner), and the supplier's web dashboard (queue row). The naive approach — listen on Pusher in each client — drops events when the app is backgrounded on mobile.
+A single new-order event has to surface in three places at once: the reseller's phone (push notification), the reseller's web dashboard (banner), and the supplier's web dashboard (queue row). The naive approach, listening on Pusher in each client, drops events when the app is backgrounded on mobile.
 
 The fix:
 
@@ -128,72 +117,58 @@ The dedupe key is the order id. The same order arriving via REST poll, websocket
 
 ### Plugging into a Laravel API I didn't write
 
-The backend was a moving target — the team shipped vendor features, discount rules, and admin tooling on its own cadence. I needed those changes to break loudly on my surfaces, not silently.
+The backend was a moving target. The team shipped vendor features, discount rules, and admin tooling on its own cadence. I needed those changes to break loudly on my surfaces, not silently.
 
 I wrote a thin client per surface with strict response schemas. Every request has a typed return shape; every list endpoint has a typed pagination envelope; auth tokens flow through one place. When the backend renamed `is_active` to `status` mid-flight, type-check failed in seventeen call sites within a minute, and the fix was a one-line schema update once the rename was understood.
 
-It's not as clean as OpenAPI codegen would be — that's the lesson at the bottom of the page — but it's the level of discipline that's possible without changing how the backend ships.
+It's not as clean as OpenAPI codegen would be. That's the lesson at the bottom of the page. But it's the level of discipline that's possible without changing how the backend ships.
 
 ## The Reseller App
 
 <Shot
-  src="/work/selfshop/app-reseller-orders.png"
-  alt="Reseller app — orders inbox"
-  aspect="4/3"
-  caption="orders inbox — the top-of-app view for an active reseller"
+  src="https://res.cloudinary.com/def3zwztt/image/upload/v1780496136/Screenshot_2026-06-03_201520_yw4d4y.png"
+  alt="SelfShop Reseller on Google Play — listing, ratings, and app previews"
+  aspect="16/9"
+  fit="contain"
+  caption="Play Store · live reseller app listing and preview frames"
 />
 
 Live on Google Play. The surface a reseller spends the most time inside.
 
-- **Order management** — incoming orders, status updates, status timeline. Pull-to-refresh + Pusher means the list is rarely stale.
-- **Product catalog** — browse the supplier-listed catalog, save items to a personal storefront, share listings outbound.
-- **Push notifications** — Firebase + `expo-notifications`. New orders, low stock on saved items, payout-ready alerts.
-- **Image upload for listings** — `expo-image-picker` + `expo-file-system` with a retry queue for bad networks.
-- **Token storage** — `expo-secure-store` for auth, scoped per build channel (dev / preview / production).
-- **Telemetry** — Sentry for crashes; the app is in real users' hands and silent failures get surfaced fast.
+- **Order management:** incoming orders, status updates, status timeline. Pull-to-refresh + Pusher means the list is rarely stale.
+- **Product catalog:** browse the supplier-listed catalog, save items to a personal storefront, share listings outbound.
+- **Push notifications:** Firebase + `expo-notifications`. New orders, low stock on saved items, payout-ready alerts.
+- **Image upload for listings:** `expo-image-picker` + `expo-file-system` with a retry queue for bad networks.
+- **Token storage:** `expo-secure-store` for auth, scoped per build channel (dev / preview / production).
+- **Telemetry:** Sentry for crashes; the app is in real users' hands and silent failures get surfaced fast.
 
 <Shot
-  src="/work/selfshop/app-reseller-catalog.png"
-  alt="Reseller app — catalog browsing"
+  src="https://res.cloudinary.com/def3zwztt/image/upload/v1780496237/unnamed_hee50y.webp"
+  alt="Reseller app — category catalog with promotional framing"
   aspect="4/3"
-  caption="catalog — supplier-listed items the reseller can pull into their personal storefront"
+  fit="contain"
+  caption="native / catalog — category tree and supplier-listed products"
 />
 
 <Shot
-  src="/work/selfshop/app-reseller-notifications.png"
-  alt="Reseller app — push notifications"
+  src="https://res.cloudinary.com/def3zwztt/image/upload/v1780496277/unnamed_1_xvuzzc.webp"
+  alt="Reseller app — dashboard with sales, profit, and wallet balance"
   aspect="4/3"
-  caption="notifications — new-order alerts arrive whether the app is foreground or backgrounded"
-/>
-
-## The Supplier App
-
-Same Tamagui + Expo foundation as the reseller app. Narrower feature surface — orders and catalog only, no push, no media handling, no Sentry. Internal: not on Google Play.
-
-Why the slimmer build: most suppliers in this market manage inventory from the web dashboard. The native app is for the few power users who travel between warehouses and want a phone surface for incoming orders. Keeping it lean means the role has a phone-first option day one if the team chooses to ship it later, without the maintenance overhead of a feature-parity build that nobody asked for yet.
-
-<Shot
-  src="/work/selfshop/app-supplier-orders.png"
-  alt="Supplier app — orders queue (internal build)"
-  aspect="4/3"
-  caption="supplier app — orders queue, internal-only build"
+  fit="contain"
+  caption="native / dashboard — sales, profit, balance, and referral in one view"
 />
 
 ## What's running today
 
 <StatRow>
-  <Stat value="4" label="surfaces · 2 web + 2 native" />
-  <Stat value="2" label="roles · reseller + supplier" />
+  <Stat value="3" label="surfaces · 2 web + 1 native" />
+  <Stat value="3" label="roles · admin + reseller + supplier" />
   <Stat value="1" label="reseller app · live on play store" />
   <Stat value="0" label="backend code · the api was the team's" />
 </StatRow>
 
-The Next.js Client serves both the reseller and supplier dashboards. The reseller native app is live on Google Play. The supplier native app is internal-only. Real users on the live surfaces; numbers from the team will replace these placeholders when I have them.
+The Next.js Client serves the admin, reseller, and supplier dashboards. The reseller native app is live on Google Play. Real users on the live surfaces; numbers from the team will replace these placeholders when I have them.
 
 ## What I'd do differently
 
-Two things, both about discipline I'd push for earlier in the next reseller-marketplace build.
-
-**Shared TS contracts via OpenAPI codegen.** Hand-mirroring schemas worked but it's a tax I paid every backend change. An OpenAPI spec generated off the Laravel routes — even a partial one — turns four hand-maintained client schemas into one source of truth.
-
-**A workspace package between the two native apps.** `native/` and `supplier-native/` already share the Tamagui theme, navigation primitives, and the Pusher client setup. Right now they share them by copy. Pulling them into a workspace package would let the supplier app inherit Sentry and push notifications for free if and when it ships externally, without re-writing the integration.
+**Shared TS contracts via OpenAPI codegen.** Hand-mirroring schemas worked but it's a tax I paid every backend change. An OpenAPI spec generated off the Laravel routes, even a partial one, turns three hand-maintained client schemas into one source of truth.

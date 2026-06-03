@@ -92,7 +92,7 @@ export function ContactSection() {
             <div className="mt-4 max-w-xs text-[14px] leading-relaxed text-fg-soft">
               Currently{" "}
               <LiveClock className="font-mono text-fg" />, working hours
-              roughly 10:00–19:00 UTC+6. Calls outside that — happy to.
+              roughly 10:00–19:00 UTC+6. Calls outside that are fine too.
             </div>
           </div>
 
@@ -105,10 +105,18 @@ export function ContactSection() {
                     <SocialLink href={site.github}>github</SocialLink>
                   </li>
                   <li>
+                    <SocialLink href={site.linkedin}>linkedin</SocialLink>
+                  </li>
+                  <li>
+                    <SocialLink href={site.facebook}>facebook</SocialLink>
+                  </li>
+                  <li>
                     <SocialLink href={`mailto:${site.email}`}>email</SocialLink>
                   </li>
                   <li>
-                    <span className="text-faint">linkedin · soon</span>
+                    <SocialLink href={`tel:${site.phone}`}>
+                      {site.phone.replace(/(\+880)(\d{4})(\d+)/, "$1 $2 $3")}
+                    </SocialLink>
                   </li>
                 </ul>
               }

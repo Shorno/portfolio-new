@@ -30,9 +30,9 @@ $owner = "Shorno"
 
 $descriptions = @{
   "portfolio-new" = "Editorial portfolio — Next.js 16, Tailwind v4, GitHub API archive."
-  "bikalpo-project" = "B2B commerce monorepo — Next.js storefront, Hono API, Drizzle, Neon."
-  "bright-tutor" = "Multi-tenant tutoring SaaS — Turborepo, oRPC, Expo, subdomain roles."
-  "stock-management" = "Inventory & POS frontend — Vite, React 19, TanStack, react-pdf invoices."
+  "bikalpo-project" = "Multi-party commerce marketplace — Next.js storefront, Hono API, Drizzle, Postgres."
+  "bright-tutor" = "Multi-role education platform — Turborepo, oRPC, Expo, subdomain roles."
+  "stock-management" = "Distributor operations SPA — Vite, React 19, TanStack, react-pdf invoices."
   "stock-management-backend" = "Stock Management API — Hono on Bun, Drizzle, Better-Auth, PDF receipts."
   "stock-management-server" = "Alternate backend tree for stock-management (Hono + Drizzle)."
   "padma-service-project" = "Padma Service — Next.js CMS + Hono/Bun API, service catalog & approvals."

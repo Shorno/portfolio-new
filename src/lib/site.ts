@@ -5,17 +5,21 @@ export const site = {
   location: "Dhaka, Bangladesh",
   timezone: "Asia/Dhaka",
   email: "fb.shorno@gmail.com",
+  phone: "+8801841151827",
+  linkedin: "https://www.linkedin.com/in/shorno/",
+  facebook: "https://www.facebook.com/MrShorno911/",
   url: "https://www.shorno.me",
   github: "https://github.com/Shorno",
   github_handle: "Shorno",
   /** Public CV link — opens in a new tab from the hero CTA and the header. */
-  cvUrl: "https://drive.google.com/file/d/REPLACE_ME/view",
+  cvUrl:
+    "https://drive.google.com/file/d/14hbpyAh-xJkCNMS-3hGcLWydYXj8Idbm/view?usp=sharing",
   company: "AppCube",
   status: "available" as "available" | "limited" | "booked",
   tagline:
     "Full-stack engineer for the boring systems your company actually runs on.",
   subline:
-    "Multi-tenant SaaS, B2B commerce, internal tooling. End-to-end — from Postgres schemas to the last pixel.",
+    "Multi-party marketplaces, role-based platforms, wholesale tooling. From planning through to the live product.",
 } as const;
 
 /**

@@ -121,6 +121,11 @@
     color: var(--accent-fg);
   }
 
+  /* anchor targets sit below sticky header */
+  section[id] {
+    scroll-margin-top: calc(var(--site-header-h) + 0.75rem);
+  }
+
   /* serif display with optical sizing — Fraunces shines */
   .font-display {
     font-family: var(--font-serif);

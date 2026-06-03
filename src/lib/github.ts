@@ -208,7 +208,7 @@ function devFallback(): LatestPush | null {
   if (process.env.NODE_ENV !== "development") return null;
   return {
     name: "bikalpo-project",
-    description: "B2B commerce platform (monorepo rewrite)",
+    description: "Multi-party commerce platform (monorepo rewrite)",
     url: `https://github.com/${site.github_handle}/bikalpo-project`,
     pushedAt: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(),
     language: "TypeScript",
@@ -223,8 +223,8 @@ function devArchiveFallback(): RepoSummary[] {
     Omit<RepoSummary, "url" | "isPrivate" | "isArchived" | "fullName" | "ownerLogin" | "role">
   > = [
     { name: "portfolio-new", description: "This site. Hand-built editorial portfolio in Next.js 16.", pushedAt: new Date(now - 1000 * 60 * 60).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 7).toISOString(), language: "TypeScript", stars: 0, topics: ["nextjs", "tailwind"] },
-    { name: "bikalpo-project", description: "B2B commerce platform — Turborepo rewrite.", pushedAt: new Date(now - 1000 * 60 * 60 * 6).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 30).toISOString(), language: "TypeScript", stars: 0, topics: ["turborepo"] },
-    { name: "bright-tutor", description: "Multi-tenant SaaS for a tutoring business.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 3).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 90).toISOString(), language: "TypeScript", stars: 0, topics: ["monorepo", "expo"] },
+    { name: "bikalpo-project", description: "Multi-party commerce marketplace — Turborepo rewrite.", pushedAt: new Date(now - 1000 * 60 * 60 * 6).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 30).toISOString(), language: "TypeScript", stars: 0, topics: ["turborepo"] },
+    { name: "bright-tutor", description: "Multi-role education platform — Turborepo, oRPC, Expo.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 3).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 90).toISOString(), language: "TypeScript", stars: 0, topics: ["monorepo", "expo"] },
     { name: "stock-management-frontend", description: "Inventory + POS frontend (Vite + React).", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 0, topics: ["vite"] },
     { name: "stock-management-server", description: "Backend for stock-management.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 0, topics: ["api"] },
     { name: "auth-experiments", description: "Better-Auth integration sandboxes.", pushedAt: new Date(now - 1000 * 60 * 60 * 24 * 45).toISOString(), createdAt: new Date(now - 1000 * 60 * 60 * 24 * 180).toISOString(), language: "TypeScript", stars: 1, topics: [] },

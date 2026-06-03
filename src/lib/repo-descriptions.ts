@@ -12,11 +12,11 @@ export const repoDescriptions: Readonly<Record<string, string>> = {
   "Shorno/portfolio-new":
     "Editorial portfolio — Next.js 16, Tailwind v4, GitHub API archive.",
   "Shorno/bikalpo-project":
-    "B2B commerce monorepo — Next.js storefront, Hono API, Drizzle, Neon.",
+    "Multi-party commerce marketplace — Next.js storefront, Hono API, Drizzle, Postgres.",
   "Shorno/bright-tutor":
-    "Multi-tenant tutoring SaaS — Turborepo, oRPC, Expo, subdomain roles.",
+    "Multi-role education platform — Turborepo, oRPC, Expo, subdomain roles.",
   "Shorno/stock-management":
-    "Inventory & POS frontend — Vite, React 19, TanStack, react-pdf invoices.",
+    "Distributor operations SPA — Vite, React 19, TanStack, react-pdf invoices.",
   "Shorno/stock-management-backend":
     "Stock Management API — Hono on Bun, Drizzle, Better-Auth, PDF receipts.",
   "Shorno/stock-management-server":

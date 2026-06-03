@@ -153,7 +153,7 @@ Higher-level primitives outside `primitives/` you should also reuse:
 Copy is half the design. The voice is:
 
 - **Direct, terse, observational.** "Where it shipped." not "Professional Experience".
-- **Specific over generic.** "Multi-tenant SaaS, B2B commerce, internal tooling" beats "modern web applications".
+- **Specific over generic.** "Multi-party marketplaces, role-based platforms, wholesale tooling" beats "modern web applications".
 - **Confident, not boastful.** "I pick boring, fast tools" not "I'm proficient in modern technologies".
 - **Light on em-dashes.** A couple in long copy is fine. More than that and it starts to read like ChatGPT. If you find yourself reaching for `—`, try a period or comma first.
 - **Unicode characters, not HTML entities.** Use `\u2019` (`'`), `\u2013` (`–`), `\u2014` (`—`) directly in TS/MDX strings. Never `&rsquo;` or `dangerouslySetInnerHTML` for typography.

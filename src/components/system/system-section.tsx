@@ -56,19 +56,11 @@ function SystemGroup({ group }: { group: (typeof systemStack)[number] }) {
       </div>
       <ul className="flex flex-col gap-4">
         {group.items.map((it) => (
-          <li
-            key={it.name}
-            className="grid grid-cols-[1fr_auto] items-baseline gap-x-3"
-          >
-            <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[13.5px] text-fg">{it.name}</span>
-              <span className="text-[13px] leading-relaxed text-fg-soft">
-                {it.role}
-              </span>
-            </div>
-            {it.since ? (
-              <span className="mono-label text-faint">since {it.since}</span>
-            ) : null}
+          <li key={it.name} className="flex flex-col gap-1.5">
+            <span className="font-mono text-[13.5px] text-fg">{it.name}</span>
+            <span className="text-[13px] leading-relaxed text-fg-soft">
+              {it.role}
+            </span>
           </li>
         ))}
       </ul>

@@ -44,11 +44,11 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "End-to-end builds for B2B commerce, multi-tenant SaaS, and internal tooling. Most of the case studies in §01 were shipped from here — schema-first, monorepo-shaped, deployed to production.",
+      "End-to-end builds for multi-party marketplaces, role-based platforms, and wholesale tooling. Most of the case studies in §01 were shipped from here: schema-first, monorepo-shaped, deployed to production.",
     highlights: [
       "Designed and shipped a Turborepo-based commerce platform with web + native + Hono backend.",
-      "Owned a multi-tenant Education SaaS: subdomain-scoped roles, shared schema, oRPC contracts.",
-      "Built a warehouse-floor inventory tool with print-grade invoices for a retail client.",
+      "Owned a multi-role education platform with subdomain-scoped roles, shared Drizzle schema, and oRPC-backed web + native surfaces.",
+      "Built a distributor operations SPA for procurement through retailer fulfillment, with print-grade invoices.",
       "Default stack: TypeScript everywhere, Postgres, Drizzle, Better-Auth, oRPC.",
     ],
     stack: [
@@ -80,9 +80,9 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "Built the merchant dashboard for Ubaky — a multi-role restaurant management system with separate interfaces for clients, merchants, and admins. Frontend-focused, working closely with the backend team on API integration.",
+      "Built the merchant dashboard for Ubaky, a multi-role restaurant management system with separate interfaces for clients, merchants, and admins. Frontend-focused, working closely with the backend team on API integration.",
     highlights: [
-      "Owned the merchant interface in React — the surface restaurant operators use day-to-day.",
+      "Owned the merchant interface in React, the surface restaurant operators use day-to-day.",
       "Mobile-first responsive design across all three role-specific apps.",
       "Collaborated with the backend team to integrate APIs and tighten the data flow.",
       "Held the front-of-house bar for visual polish and consistency across the system.",

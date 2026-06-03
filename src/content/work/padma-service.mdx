@@ -1,6 +1,6 @@
 ## The brief
 
-Padma Service Company needed more than a brochure site. They run a wide catalog of professional services — security, home services, vehicle and property listings, and more — and the old flow was scattered across phone calls and ad-hoc updates.
+Padma Service Company needed more than a brochure site. They run a wide catalog of professional services (security, home services, vehicle and property listings, and more). The old flow was scattered across phone calls and ad-hoc updates.
 
 The brief: a public marketing site in Bengali and English, a member area where authenticated users can propose new service listings, and an admin CMS where staff approve, reorder, and publish without touching the database. One Postgres schema behind both surfaces.
 
@@ -13,22 +13,18 @@ End-to-end on a two-repo layout: the Next.js 16 storefront (`padma-service`) and
 ## The problem
 
 <Callout label="constraint">
-A services marketplace is half CMS, half workflow. Categories, carousels, blogs, and banners change often — but letting anyone publish a listing without review would break trust on day one.
+A services marketplace is half CMS, half workflow. Categories, carousels, blogs, and banners change often. Letting anyone publish a listing without review would break trust on day one.
 </Callout>
 
 Three tensions showed up early:
 
-- **Catalog depth** — services nest under categories and subcategories, each with its own imagery, card labels, featured flags, and related posts. The admin UI has to edit that graph without losing order.
-- **Member-submitted listings** — logged-in users can request create, edit, or delete operations on services. Those requests sit in a queue (`pending` → `approved` / `rejected`) with admin notes and display order set at approval time.
-- **Auth that matches the market** — phone OTP via SMS (not email-first). Better-Auth on both apps, with the API enforcing role separation between public members and admin operators.
+- **Catalog depth:** services nest under categories and subcategories, each with its own imagery, card labels, featured flags, and related posts. The admin UI has to edit that graph without losing order.
+- **Member-submitted listings:** logged-in users can request create, edit, or delete operations on services. Those requests sit in a queue (`pending` → `approved` / `rejected`) with admin notes and display order set at approval time.
+- **Auth that matches the market:** phone OTP via SMS (not email-first). Better-Auth on both apps, with the API enforcing role separation between public members and admin operators.
 
 ## The approach
 
-<Pull cite="when sketching the split">
-One schema. Two apps. The contract is the seam.
-</Pull>
-
-The storefront is Next.js 16 with route groups for the public site (`(client)`) and the admin console (`(admin)`). Data flows through oRPC + TanStack Query — types are imported from the server package at compile time so a renamed field breaks the build, not production.
+The storefront is Next.js 16 with route groups for the public site (`(client)`) and the admin console (`(admin)`). Data flows through oRPC + TanStack Query. Types are imported from the server package at compile time, so a renamed field breaks the build, not production.
 
 The API is Hono on Bun with Drizzle against Postgres: services, categories, blogs, banners, homepage sections, media, and the user-service-request workflow. Cloudinary handles uploads; TipTap powers rich blog bodies in the admin.
 
@@ -77,7 +73,7 @@ Public routes cover home, category browsing, individual service pages, blogs, ab
 
 ### User-submitted services without polluting the catalog
 
-Members submit create, edit, or delete requests as JSON blobs attached to a workflow row. Admins see a dedicated inbox, set `displayOrder` on approval, and can leave a note on rejection. Until approval, nothing hits the public `service` table — the live catalog stays clean.
+Members submit create, edit, or delete requests as JSON blobs attached to a workflow row. Admins see a dedicated inbox, set `displayOrder` on approval, and can leave a note on rejection. Until approval, nothing hits the public `service` table. The live catalog stays clean.
 
 The tricky bit is edit and delete: the request carries a `serviceId` plus serialized payload so admins can diff what changed before approving. Create requests start with no `serviceId` and materialize a row only after approval.
 
@@ -109,8 +105,8 @@ Root metadata targets `bn_BD` with Bengali titles and descriptions (`metadataBas
   <Stat value="OTP" label="phone auth · sms" />
 </StatRow>
 
-The public site and admin console are in production at [padmaservice.com](https://padmaservice.com). The API ships in a Docker container alongside the Next.js deploy. Service count and traffic numbers stay with the client — the architecture is built to scale the catalog without restructuring.
+The public site and admin console are in production at [padmaservice.com](https://padmaservice.com). The API ships in a Docker container alongside the Next.js deploy. Traffic numbers stay with the client. The architecture is built to scale the catalog without restructuring.
 
 ## What I'd do differently
 
-I'd pull the two folders into a Turborepo workspace on day one. The compile-time import of `AppRouterClient` from the server package already enforces the contract; a monorepo would make shared Zod shapes and Drizzle types a package import instead of a relative path across repo roots. Same pattern I reached for on Bikalpo and Bright Tutor — this project got there through discipline, not tooling.
+I'd pull the two folders into a Turborepo workspace on day one. The compile-time import of `AppRouterClient` from the server package already enforces the contract; a monorepo would make shared Zod shapes and Drizzle types a package import instead of a relative path across repo roots. Same pattern I used on Bikalpo and Bright Tutor. This project got there through discipline, not tooling.

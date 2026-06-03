@@ -23,6 +23,7 @@ export function WorkCard({
 }) {
   const statusLabel: Record<Project["status"], { label: string; tone: "ok" | "default" | "warn" }> = {
     live: { label: "live in production", tone: "ok" },
+    "partial-live": { label: "partial · live surfaces", tone: "warn" },
     "private-client": { label: "private client work", tone: "default" },
     "in-development": { label: "in development", tone: "warn" },
   };

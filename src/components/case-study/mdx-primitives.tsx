@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import { Children, type ComponentProps, type ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
 import {
   cloudinaryImageUrl,
@@ -213,7 +213,7 @@ export function Stat({
   const isLongString =
     typeof value === "string" && (value as string).length > 6;
   return (
-    <div className="flex min-w-0 flex-col gap-1.5 border-t border-line pt-3">
+    <div className="flex min-w-0 flex-col items-center gap-1.5 border-t border-line pt-3 text-center">
       <span
         className={cn(
           "font-display block truncate text-fg",
@@ -232,10 +232,16 @@ export function Stat({
   );
 }
 
-/** Horizontal row of Stats. */
+/** Horizontal row of Stats. Column count follows child count so partial rows stay centered. */
 export function StatRow({ children }: { children: ReactNode }) {
+  const count = Children.count(children);
   return (
-    <div className="my-12 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 lg:-mx-24 xl:-mx-40">
+    <div
+      className={cn(
+        "my-12 grid justify-items-center gap-x-6 gap-y-8 lg:-mx-24 xl:-mx-40",
+        count === 3 ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2 md:grid-cols-4",
+      )}
+    >
       {children}
     </div>
   );
@@ -292,7 +298,7 @@ function UL({ className, children, ...props }: ComponentProps<"ul">) {
     <ul
       {...props}
       className={cn(
-        "my-5 flex flex-col gap-2 pl-0 text-[16px] leading-relaxed text-fg-soft md:text-[17px]",
+        "my-5 flex flex-col gap-4 pl-0 text-[16px] leading-relaxed text-fg-soft md:text-[17px]",
         className,
       )}
     >
@@ -306,7 +312,7 @@ function LI({ className, children, ...props }: ComponentProps<"li">) {
     <li
       {...props}
       className={cn(
-        "relative pl-6 before:absolute before:top-3 before:left-0 before:h-px before:w-3 before:bg-accent",
+        "relative pl-6 before:absolute before:top-[0.65em] before:left-0 before:h-px before:w-3 before:bg-accent [&>p]:my-0",
         className,
       )}
     >

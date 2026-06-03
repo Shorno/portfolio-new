@@ -9,12 +9,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full backdrop-blur-md">
       <div className="absolute inset-0 -z-10 bg-bg/70" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-line/60" />
-      <Container className="flex h-14 items-center justify-between">
-        <div className="flex items-center gap-6">
+      <Container className="flex h-14 items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-3 sm:gap-6">
           <Link
             href="/"
             aria-label={`${site.name} — home`}
-            className="group flex items-center gap-2"
+            className="group flex shrink-0 items-center gap-2"
           >
             <span className="grid h-6 w-6 place-items-center rounded-sm bg-accent text-accent-fg">
               <span className="font-mono text-[11px] font-bold leading-none">
@@ -32,7 +32,7 @@ export function SiteHeader() {
           </MonoTag>
         </div>
 
-        <nav className="flex items-center gap-1">
+        <nav className="flex shrink-0 items-center gap-0 sm:gap-1">
           <NavItem href="/#work" label="Work" idx="01" />
           <NavItem href="/#experience" label="Experience" idx="02" />
           <NavItem href="/#system" label="System" idx="03" />
@@ -72,9 +72,9 @@ function NavItem({
   return (
     <Link
       href={href}
-      className="group relative inline-flex items-baseline gap-1.5 rounded-sm px-2.5 py-1.5 text-sm text-fg-soft transition-colors hover:text-fg"
+      className="group relative inline-flex items-baseline gap-1 rounded-sm px-1.5 py-1.5 text-[12.5px] text-fg-soft transition-colors hover:text-fg sm:gap-1.5 sm:px-2.5 sm:text-sm"
     >
-      <span className="mono-label text-[10px] text-faint group-hover:text-accent">
+      <span className="mono-label hidden text-[10px] text-faint group-hover:text-accent sm:inline">
         {idx}
       </span>
       {label}

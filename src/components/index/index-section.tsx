@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/primitives/container";
 import { SectionMark } from "@/components/primitives/section-mark";
-import { Rule } from "@/components/primitives/rule";
 import { getAllRepos, timeAgo, type RepoSummary } from "@/lib/github";
 import { languageColor } from "@/lib/system";
 
@@ -84,34 +83,44 @@ function RepoRow({ repo, index }: { repo: RepoSummary; index: number }) {
         href={repo.url}
         target="_blank"
         rel="noreferrer"
-        className="group/row grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-baseline gap-x-4 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_minmax(14rem,20rem)_minmax(0,1fr)_auto] md:gap-x-6"
+        className="group/row grid grid-cols-[2.25rem_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1.5 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_minmax(14rem,20rem)_minmax(0,1fr)_auto] md:items-baseline md:gap-x-6 md:gap-y-0"
       >
         <span className="mono-label text-faint">
           {String(index).padStart(2, "0")}
         </span>
 
-        <span className="min-w-0 truncate font-mono text-[13.5px] text-fg group-hover/row:text-accent">
+        <span className="flex min-w-0 items-baseline gap-2 font-mono text-[13.5px] text-fg group-hover/row:text-accent">
+          <span className="min-w-0 truncate">
+            {repo.role === "contributor" ? (
+              <>
+                <span className="text-faint">{repo.ownerLogin}/</span>
+                {repo.name}
+              </>
+            ) : (
+              repo.name
+            )}
+          </span>
           {repo.role === "contributor" ? (
-            <>
-              <span className="text-faint">{repo.ownerLogin}/</span>
-              {repo.name}
-              <span className="mono-label ml-2 text-accent">co</span>
-            </>
-          ) : (
-            repo.name
-          )}
-          {repo.isArchived ? (
-            <span className="mono-label ml-2 text-faint">[archived]</span>
+            <span className="mono-label shrink-0 text-accent">co</span>
           ) : null}
+          {repo.isArchived ? (
+            <span className="mono-label shrink-0 text-faint">[archived]</span>
+          ) : null}
+          <span
+            aria-hidden
+            className="ml-auto shrink-0 text-faint transition-transform group-hover/row:translate-x-0.5 md:hidden"
+          >
+            ↗
+          </span>
         </span>
 
-        <span className="col-span-3 truncate text-[13px] text-fg-soft md:col-span-1 md:col-start-3">
+        <span className="col-start-2 min-w-0 text-[12.5px] leading-snug text-fg-soft md:col-start-3 md:truncate md:text-[13px] md:leading-normal">
           {repo.description ?? (
             <span className="text-faint italic">no description</span>
           )}
         </span>
 
-        <span className="col-start-3 hidden items-center gap-4 font-mono text-[11.5px] text-muted md:col-start-4 md:flex">
+        <span className="col-start-2 flex items-center gap-x-3 gap-y-0 font-mono text-[11px] text-muted md:col-start-4 md:gap-4 md:text-[11.5px]">
           {repo.stars > 0 ? <span>★ {repo.stars}</span> : null}
           {repo.language ? (
             <span className="inline-flex items-center gap-1.5">
@@ -126,12 +135,13 @@ function RepoRow({ repo, index }: { repo: RepoSummary; index: number }) {
               {repo.language}
             </span>
           ) : null}
-          <span className="w-16 text-right text-faint">
+          <span aria-hidden className="text-faint md:hidden">·</span>
+          <span className="text-faint md:w-16 md:text-right">
             {timeAgo(repo.pushedAt)}
           </span>
           <span
             aria-hidden
-            className="text-faint transition-transform group-hover/row:translate-x-0.5"
+            className="hidden text-faint transition-transform group-hover/row:translate-x-0.5 md:inline"
           >
             ↗
           </span>

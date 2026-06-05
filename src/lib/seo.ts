@@ -90,6 +90,18 @@ export function buildPageMetadata({
 
 const personId = `${absoluteUrl("/")}#person`;
 
+const knowsAbout = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "PostgreSQL",
+  "Node.js",
+  "React Native",
+  "Full-stack web development",
+  "MongoDB",
+  "Tailwind CSS",
+] as const;
+
 export function personJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -108,6 +120,15 @@ export function personJsonLd() {
       addressCountry: "BD",
     },
     sameAs: [site.github, site.linkedin, site.facebook],
+    knowsAbout: [...knowsAbout],
+    ...(site.seeking.open
+      ? {
+          seeks: site.seeking.roles.map((name) => ({
+            "@type": "Demand",
+            name,
+          })),
+        }
+      : {}),
   };
 }
 

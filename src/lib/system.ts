@@ -19,7 +19,7 @@ export const systemStack: SystemGroup[] = [
     items: [
       {
         name: "TypeScript",
-        role: "Lingua franca for everything I ship. No JS, ever.",
+        role: "TypeScript-first; comfortable in JavaScript codebases when needed.",
       },
       {
         name: "Next.js",

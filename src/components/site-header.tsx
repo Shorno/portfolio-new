@@ -28,7 +28,7 @@ export function SiteHeader() {
           </Link>
           <span className="hidden h-3 w-px bg-line sm:block" />
           <MonoTag tone="ok" className="hidden sm:inline-flex">
-            available · {site.location.split(",")[0]}
+            open to roles · {site.location.split(",")[0]}
           </MonoTag>
         </div>
 

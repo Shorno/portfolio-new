@@ -52,14 +52,22 @@ export async function Hero() {
             </div>
 
             <h1 className="font-display text-balance text-[clamp(2.75rem,7.8vw,7.5rem)] text-fg">
-              Full-stack engineer for the{" "}
-              <span className="font-display-italic text-accent">boring</span>{" "}
-              systems your company actually runs on.
+              {site.tagline.lead}
+              <span className="font-display-italic text-accent">
+                {site.tagline.accent}
+              </span>
+              {site.tagline.tail}
             </h1>
 
             <p className="mt-8 max-w-xl text-pretty text-base text-fg-soft md:text-lg">
               {site.subline}
             </p>
+
+            {site.seeking.open ? (
+              <p className="mt-5 max-w-xl font-mono text-[12px] leading-relaxed tracking-tight text-fg-soft">
+                {site.seeking.strip}
+              </p>
+            ) : null}
 
             <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3">
               <Link
@@ -74,6 +82,20 @@ export async function Hero() {
                   ↘
                 </span>
               </Link>
+              {site.seeking.open ? (
+                <Link
+                  href={`mailto:${site.email}?subject=${encodeURIComponent(site.hireEmailSubject)}`}
+                  className="group inline-flex items-center gap-2 rounded-full border border-line bg-bg-elev/40 px-5 py-2.5 font-mono text-[12px] tracking-wide text-fg transition-colors hover:border-accent hover:text-accent"
+                >
+                  Discuss a role
+                  <span
+                    aria-hidden
+                    className="text-faint transition-colors group-hover:text-accent"
+                  >
+                    ↗
+                  </span>
+                </Link>
+              ) : null}
               <Link
                 href={site.cvUrl}
                 target="_blank"

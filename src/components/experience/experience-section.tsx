@@ -28,8 +28,9 @@ export function ExperienceSection() {
               <span className="font-display-italic text-accent">shipped.</span>
             </h2>
             <p className="mt-6 max-w-md text-pretty text-fg-soft md:text-lg md:leading-relaxed">
-              Two part-time roles, run alongside a CSE degree. Most of the
-              case studies above lived inside the most recent one.
+              ~{months} months shipping production systems across two engineering
+              roles. Most of the case studies above came from the most recent
+              one, alongside a CSE degree (graduating 2026).
             </p>
           </div>
           <div className="col-span-4 md:col-span-5">

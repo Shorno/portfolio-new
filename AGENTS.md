@@ -6,7 +6,7 @@ Context and conventions for any AI agent working on this repo. Read this first.
 
 ## What this is
 
-Personal portfolio for **Shorno Kamal Roy** — a full-stack engineer in Dhaka. Aimed at clients buying engineering work, with a side surface for recruiters. Live at [shorno.me](https://www.shorno.me).
+Personal portfolio for **Shorno Kamal Roy** — a full-stack engineer in Dhaka. Primary surfaces: recruiters/hiring managers and clients buying engineering work. Job-seeking copy lives in `src/lib/site.ts` (`seeking`, `hireEmailSubject`). Live at [shorno.me](https://www.shorno.me).
 
 The site is intentionally **not** a generic dev template. The visual concept is an **"Operator's Manual"** — an editorial spec-sheet aesthetic borrowed from technical drawings and analog paperwork. Mono labels and § section marks, hairline rules, big serif headlines, one warm signal-orange accent, dense terminal-style data lists. Every section earns its place; nothing is filler.
 

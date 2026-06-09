@@ -12,8 +12,11 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true,
   },
-  secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-key-shorno-portfolio",
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL: process.env.BETTER_AUTH_URL,
+  advanced: {
+    useSecureCookies: process.env.NODE_ENV === "production",
+  },
   hooks: {
     before: createAuthMiddleware(async (ctx) => {
       // Restrict signup email to only the configured site email

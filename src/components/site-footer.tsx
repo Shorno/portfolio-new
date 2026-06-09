@@ -53,6 +53,8 @@ export function SiteFooter() {
               </FooterLink>
               <FooterLink href={`mailto:${site.email}`}>email↗</FooterLink>
               <FooterLink href={`tel:${site.phone}`}>phone↗</FooterLink>
+              <span className="text-faint">•</span>
+              <FooterLink href="/operator">operator console</FooterLink>
             </div>
           </div>
         </div>

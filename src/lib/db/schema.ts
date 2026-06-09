@@ -58,8 +58,8 @@ export const jobApplications = pgTable("job_application", {
   id: uuid("id").defaultRandom().primaryKey(),
   company: text("company").notNull(),
   role: text("role").notNull(),
-  status: text("status", { enum: ["applied", "interviewing", "offered", "rejected", "ghosted"] })
-    .default("applied")
+  status: text("status", { enum: ["wishlist", "applied", "interviewing", "offered", "rejected", "ghosted"] })
+    .default("wishlist")
     .notNull(),
   notes: text("notes"),
   url: text("url"),

@@ -21,7 +21,7 @@ export async function createJobApplication(data: {
   company: string;
   role: string;
   url?: string;
-  status: "applied" | "interviewing" | "offered" | "rejected" | "ghosted";
+  status: "wishlist" | "applied" | "interviewing" | "offered" | "rejected" | "ghosted";
   notes?: string;
 }) {
   await requireAuth();
@@ -43,7 +43,7 @@ export async function createJobApplication(data: {
 
 export async function updateJobApplicationStatus(
   id: string,
-  status: "applied" | "interviewing" | "offered" | "rejected" | "ghosted"
+  status: "wishlist" | "applied" | "interviewing" | "offered" | "rejected" | "ghosted"
 ) {
   await requireAuth();
 

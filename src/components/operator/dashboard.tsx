@@ -23,7 +23,7 @@ type JobApplication = {
   id: string;
   company: string;
   role: string;
-  status: "applied" | "interviewing" | "offered" | "rejected" | "ghosted";
+  status: "wishlist" | "applied" | "interviewing" | "offered" | "rejected" | "ghosted";
   notes: string | null;
   url: string | null;
   appliedAt: Date;
@@ -44,7 +44,7 @@ export function Dashboard({ initialApplications }: DashboardProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [url, setUrl] = useState("");
-  const [status, setStatus] = useState<JobApplication["status"]>("applied");
+  const [status, setStatus] = useState<JobApplication["status"]>("wishlist");
   const [notes, setNotes] = useState("");
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -86,7 +86,7 @@ export function Dashboard({ initialApplications }: DashboardProps) {
       setCompany("");
       setRole("");
       setUrl("");
-      setStatus("applied");
+      setStatus("wishlist");
       setNotes("");
       setIsAdding(false);
     } catch (err: any) {
@@ -165,6 +165,7 @@ export function Dashboard({ initialApplications }: DashboardProps) {
   // Metrics Calculation
   const stats = {
     total: applications.length,
+    wishlist: applications.filter((a) => a.status === "wishlist").length,
     applied: applications.filter((a) => a.status === "applied").length,
     interviewing: applications.filter((a) => a.status === "interviewing").length,
     offered: applications.filter((a) => a.status === "offered").length,
@@ -183,6 +184,8 @@ export function Dashboard({ initialApplications }: DashboardProps) {
 
   const getStatusStyle = (status: JobApplication["status"]) => {
     switch (status) {
+      case "wishlist":
+        return "border-accent/40 text-accent bg-accent-soft";
       case "applied":
         return "border-line text-fg-soft bg-surface/30";
       case "interviewing":
@@ -208,10 +211,14 @@ export function Dashboard({ initialApplications }: DashboardProps) {
       </div>
 
       {/* Metrics Spec Sheet */}
-      <div className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-6">
+      <div className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-7">
         <div className="bg-bg p-4 text-center">
           <span className="mono-label block text-[10px]">TOTAL SCHED</span>
           <span className="font-mono text-2xl font-semibold text-fg">{stats.total}</span>
+        </div>
+        <div className="bg-bg p-4 text-center">
+          <span className="mono-label block text-[10px] text-accent">WISHLIST</span>
+          <span className="font-mono text-2xl font-semibold text-accent">{stats.wishlist}</span>
         </div>
         <div className="bg-bg p-4 text-center">
           <span className="mono-label block text-[10px] text-fg-soft">APPLIED</span>
@@ -252,103 +259,132 @@ export function Dashboard({ initialApplications }: DashboardProps) {
         {/* Add Record Toggle */}
         <button
           onClick={() => {
-            setIsAdding(!isAdding);
+            setIsAdding(true);
             setFormError(null);
           }}
           className="flex items-center justify-center gap-1.5 border border-line bg-bg-elev px-4 py-2 font-mono text-xs tracking-mono-wide text-fg uppercase hover:border-accent hover:text-accent transition-colors cursor-pointer"
         >
-          {isAdding ? <X className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-          {isAdding ? "CLOSE SHEETS" : "ADD SPEC RECORD"}
+          <Plus className="h-3.5 w-3.5" />
+          ADD SPEC RECORD
         </button>
       </div>
 
-      {/* Collapsible Application Form */}
+      {/* Modal Application Form */}
       {isAdding && (
-        <div className="border border-line bg-bg-elev p-6 transition-all duration-300">
-          <div className="mb-4">
-            <span className="mono-label text-accent">DATA ENTRY ENTRY // JOB RECORD</span>
-            <Rule variant="ticked" className="mt-2" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div
+            onClick={() => setIsAdding(false)}
+            className="absolute inset-0 bg-bg/85 backdrop-blur-[2px] transition-opacity"
+          />
+
+          {/* Modal Container */}
+          <div className="relative w-full max-w-lg border border-line bg-bg p-6 md:p-8 shadow-2xl z-10 animate-in fade-in-50 zoom-in-95 duration-200">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsAdding(false)}
+              className="absolute top-4 right-4 text-muted hover:text-accent font-mono text-[10px] uppercase cursor-pointer"
+            >
+              [ Close ]
+            </button>
+
+            <div className="mb-6">
+              <span className="mono-label text-accent">DATA ENTRY // NEW RECORD</span>
+              <h3 className="mt-2 font-display text-3xl text-fg">
+                New Application{" "}
+                <span className="font-display-italic text-accent">spec</span>
+              </h3>
+              <Rule variant="ticked" className="mt-4" />
+            </div>
+
+            {formError && (
+              <div className="mb-4 border border-accent/20 bg-accent-soft px-4 py-3 text-xs text-accent font-mono">
+                [ERROR] {formError}
+              </div>
+            )}
+
+            <form onSubmit={handleAddSubmit} className="space-y-4">
+              <div>
+                <label className="mono-label block mb-1.5">Company Name *</label>
+                <input
+                  type="text"
+                  required
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="e.g. Stripe"
+                  className="w-full border border-line bg-bg-elev px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent transition-colors"
+                />
+              </div>
+              <div>
+                <label className="mono-label block mb-1.5">Role / Position *</label>
+                <input
+                  type="text"
+                  required
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  placeholder="e.g. Junior Frontend Developer"
+                  className="w-full border border-line bg-bg-elev px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent transition-colors"
+                />
+              </div>
+              <div>
+                <label className="mono-label block mb-1.5">Job Board / Spec URL</label>
+                <input
+                  type="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://company.com/careers/..."
+                  className="w-full border border-line bg-bg-elev px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent transition-colors"
+                />
+              </div>
+              <div>
+                <label className="mono-label block mb-1.5">Application Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value as JobApplication["status"])}
+                  className="w-full border border-line bg-bg-elev px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent transition-colors cursor-pointer"
+                >
+                  <option value="wishlist" className="bg-bg text-fg">WISHLIST / TODO</option>
+                  <option value="applied" className="bg-bg text-fg">APPLIED</option>
+                  <option value="interviewing" className="bg-bg text-fg">INTERVIEWING</option>
+                  <option value="offered" className="bg-bg text-fg">OFFERED</option>
+                  <option value="rejected" className="bg-bg text-fg">REJECTED</option>
+                  <option value="ghosted" className="bg-bg text-fg">GHOSTED</option>
+                </select>
+              </div>
+              <div>
+                <label className="mono-label block mb-1.5">Brief Notes / Context</label>
+                <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Met hiring manager at meetup, using cold email referral..."
+                  rows={3}
+                  className="w-full border border-line bg-bg-elev px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent resize-y transition-colors"
+                />
+              </div>
+              <div className="flex gap-3 justify-end pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsAdding(false)}
+                  className="px-4 py-2 border border-line font-mono text-xs text-muted hover:text-fg hover:border-fg uppercase transition-colors cursor-pointer"
+                >
+                  CANCEL
+                </button>
+                <button
+                  type="submit"
+                  disabled={formLoading}
+                  className="bg-accent text-accent-fg px-6 py-2.5 font-mono text-xs tracking-mono-wide uppercase hover:bg-accent/90 disabled:opacity-50 transition-colors cursor-pointer"
+                >
+                  {formLoading ? "SAVING..." : "SAVE"}
+                </button>
+              </div>
+            </form>
           </div>
-
-          {formError && (
-            <div className="mb-4 border border-accent/20 bg-accent-soft px-4 py-3 text-xs text-accent font-mono">
-              [ERROR] {formError}
-            </div>
-          )}
-
-          <form onSubmit={handleAddSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div>
-              <label className="mono-label block mb-1.5">Company Name *</label>
-              <input
-                type="text"
-                required
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                placeholder="e.g. Stripe"
-                className="w-full border border-line bg-bg px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent"
-              />
-            </div>
-            <div>
-              <label className="mono-label block mb-1.5">Role / Position *</label>
-              <input
-                type="text"
-                required
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                placeholder="e.g. Junior Frontend Developer"
-                className="w-full border border-line bg-bg px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent"
-              />
-            </div>
-            <div>
-              <label className="mono-label block mb-1.5">Job Board / Spec URL</label>
-              <input
-                type="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://company.com/careers/..."
-                className="w-full border border-line bg-bg px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent"
-              />
-            </div>
-            <div>
-              <label className="mono-label block mb-1.5">Application Status</label>
-              <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value as JobApplication["status"])}
-                className="w-full border border-line bg-bg px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent"
-              >
-                <option value="applied">APPLIED</option>
-                <option value="interviewing">INTERVIEWING</option>
-                <option value="offered">OFFERED</option>
-                <option value="rejected">REJECTED</option>
-                <option value="ghosted">GHOSTED</option>
-              </select>
-            </div>
-            <div className="md:col-span-2">
-              <label className="mono-label block mb-1.5">Brief Notes / Context</label>
-              <textarea
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="Met hiring manager at meetup, using cold email referral..."
-                rows={3}
-                className="w-full border border-line bg-bg px-3 py-2 font-mono text-xs text-fg outline-none focus:border-accent resize-y"
-              />
-            </div>
-            <div className="md:col-span-2 flex justify-end">
-              <button
-                type="submit"
-                disabled={formLoading}
-                className="w-full sm:w-auto bg-accent text-accent-fg px-6 py-2.5 font-mono text-xs tracking-mono-wide uppercase hover:bg-accent/90 disabled:opacity-50 cursor-pointer"
-              >
-                {formLoading ? "COMMITTING..." : "COMMIT TO DATABASE"}
-              </button>
-            </div>
-          </form>
         </div>
       )}
 
       {/* Filter Tabs */}
       <div className="border-b border-line flex flex-wrap gap-1 sm:gap-2">
-        {["all", "applied", "interviewing", "offered", "rejected", "ghosted"].map((s) => (
+        {["all", "wishlist", "applied", "interviewing", "offered", "rejected", "ghosted"].map((s) => (
           <button
             key={s}
             onClick={() => setFilterStatus(s)}
@@ -358,7 +394,7 @@ export function Dashboard({ initialApplications }: DashboardProps) {
                 : "border-transparent bg-transparent text-muted hover:text-fg"
             }`}
           >
-            {s}
+            {s === "wishlist" ? "wishlist / todo" : s}
           </button>
         ))}
       </div>
@@ -424,11 +460,12 @@ export function Dashboard({ initialApplications }: DashboardProps) {
                           app.status
                         )}`}
                       >
-                        <option value="applied">APPLIED</option>
-                        <option value="interviewing">INTERVIEWING</option>
-                        <option value="offered">OFFERED</option>
-                        <option value="rejected">REJECTED</option>
-                        <option value="ghosted">GHOSTED</option>
+                        <option value="wishlist" className="bg-bg text-fg">WISHLIST</option>
+                        <option value="applied" className="bg-bg text-fg">APPLIED</option>
+                        <option value="interviewing" className="bg-bg text-fg">INTERVIEWING</option>
+                        <option value="offered" className="bg-bg text-fg">OFFERED</option>
+                        <option value="rejected" className="bg-bg text-fg">REJECTED</option>
+                        <option value="ghosted" className="bg-bg text-fg">GHOSTED</option>
                       </select>
                     )}
                   </div>

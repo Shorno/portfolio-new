@@ -1,0 +1,1 @@
+ALTER TABLE "job_application" ALTER COLUMN "status" SET DEFAULT 'wishlist';

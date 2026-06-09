@@ -11,6 +11,7 @@ import {
 } from "@/lib/nav-sections";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
 /** Tracks which homepage section is in view for header nav highlighting. */
 function useActiveSection(): NavSectionId | null {
@@ -71,36 +72,72 @@ function useActiveSection(): NavSectionId | null {
 
 export function SiteHeaderNav() {
   const active = useActiveSection();
+  const pathname = usePathname();
+  const isOperator = pathname?.startsWith("/operator");
+  const { data: session } = authClient.useSession();
 
   return (
     <nav
       aria-label="Primary"
       className="flex min-w-0 shrink-0 items-center justify-end gap-0 sm:gap-1"
     >
-      {navSections.map((section) => (
-        <NavItem
-          key={section.id}
-          href={section.href}
-          label={section.label}
-          idx={section.idx}
-          isActive={active === section.id}
-        />
-      ))}
-      <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
-      <Link
-        href={site.cvUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent sm:inline-flex"
-      >
-        CV
-        <span
-          aria-hidden
-          className="text-faint transition-colors group-hover:text-accent"
-        >
-          ↗
-        </span>
-      </Link>
+      {isOperator ? (
+        <>
+          <Link
+            href="/"
+            className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-fg"
+          >
+            <span className="mono-label text-faint group-hover:text-accent">←</span>
+            Back to Site
+          </Link>
+          {session && (
+            <>
+              <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
+              <button
+                onClick={async () => {
+                  await authClient.signOut({
+                    fetchOptions: {
+                      onSuccess: () => {
+                        window.location.href = "/operator/login";
+                      },
+                    },
+                  });
+                }}
+                className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-accent cursor-pointer"
+              >
+                Sign Out
+              </button>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {navSections.map((section) => (
+            <NavItem
+              key={section.id}
+              href={section.href}
+              label={section.label}
+              idx={section.idx}
+              isActive={active === section.id}
+            />
+          ))}
+          <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
+          <Link
+            href={site.cvUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+          >
+            CV
+            <span
+              aria-hidden
+              className="text-faint transition-colors group-hover:text-accent"
+            >
+              ↗
+            </span>
+          </Link>
+        </>
+      )}
       <ThemeToggle className="hidden sm:inline-flex" />
     </nav>
   );

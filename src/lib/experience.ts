@@ -92,7 +92,7 @@ export const experience: ExperienceEntry[] = [
       "TypeScript",
       "Tailwind CSS",
       "Ant Design",
-      "TanStack Query",
+      "Redux Toolkit Query",
     ],
   },
 ];

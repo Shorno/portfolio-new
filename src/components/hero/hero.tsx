@@ -128,7 +128,7 @@ export async function Hero() {
               <MonoMeta
                 label="LOCAL TIME"
                 value={
-                  <span className="inline-flex items-baseline gap-1.5">
+                  <span className="inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
                     <LiveClock />
                     <span className="text-faint">UTC+6</span>
                   </span>

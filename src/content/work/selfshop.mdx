@@ -45,7 +45,15 @@ Real-time runs on Pusher channels with Laravel Echo on the client. New-order eve
   caption="Client / web · the supplier dashboard, same app, role-scoped"
 />
 
-<Diagram caption="three surfaces, one API, real-time fan-out">
+<Diagram
+  caption="three surfaces, one API, real-time fan-out"
+  items={[
+    { label: "Web · reseller", detail: "The Next.js client uses Redux Toolkit and Ant Design for the reseller dashboard." },
+    { label: "Web · supplier", detail: "The same Next.js app provides the supplier dashboard, scoped to its role." },
+    { label: "Native · reseller", detail: "The Expo and Tamagui reseller app is available on Google Play." },
+    { label: "Shared API", detail: "All three surfaces consume the Laravel REST API. Pusher channels carry updates to the clients that need them." },
+  ]}
+>
   <svg viewBox="0 0 900 380" className="h-auto w-full text-line">
     <g fontFamily="var(--font-mono)" fontSize="13" fill="var(--fg-soft)" textAnchor="middle">
       {/* backend */}
@@ -167,7 +175,7 @@ Live on Google Play. The surface a reseller spends the most time inside.
   <Stat value="0" label="backend code · the api was the team's" />
 </StatRow>
 
-The Next.js Client serves the admin, reseller, and supplier dashboards. The reseller native app is live on Google Play. Real users on the live surfaces; numbers from the team will replace these placeholders when I have them.
+The Next.js Client serves the admin, reseller, and supplier dashboards. The reseller native app is live on Google Play.
 
 ## What I'd do differently
 

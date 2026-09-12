@@ -5,14 +5,14 @@ import { getAllRepos, timeAgo, type RepoSummary } from "@/lib/github";
 import { languageColor } from "@/lib/system";
 
 /**
- * §03 INDEX — every public repo, year-grouped, dense-terminal styling.
+ * §04 INDEX — every public repo, year-grouped, dense-terminal styling.
  * Server component; fetches at the edge and caches for 1 hour.
  */
 export async function IndexSection() {
   const repos = await getAllRepos();
   const grouped = groupByYear(repos);
   const total = repos.length;
-  const liveLangs = countLanguages(repos);
+  const stats = summarizeRepos(repos);
 
   return (
     <section id="index" className="relative py-20 md:py-28">
@@ -33,8 +33,8 @@ export async function IndexSection() {
           <div className="md:col-span-5">
             <div className="flex flex-wrap items-baseline justify-end gap-x-8 gap-y-3">
               <Stat label="REPOS" value={total} />
-              <Stat label="LANGUAGES" value={Object.keys(liveLangs).length} />
-              <Stat label="SYNCED" value={liveLangs._syncedLabel} mono />
+              <Stat label="LANGUAGES" value={stats.languageCount} />
+              <Stat label="LAST PUSH" value={stats.lastPush} mono />
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ function RepoRow({ repo, index }: { repo: RepoSummary; index: number }) {
         href={repo.url}
         target="_blank"
         rel="noreferrer"
-        className="group/row grid grid-cols-[2.25rem_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1.5 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_minmax(14rem,20rem)_minmax(0,1fr)_auto] md:items-baseline md:gap-x-6 md:gap-y-0"
+        className="group/row grid grid-cols-[2.25rem_minmax(0,1fr)] items-baseline gap-x-3 gap-y-1.5 border-b border-line/50 py-3.5 transition-colors hover:bg-bg-elev/30 md:grid-cols-[2.5rem_minmax(0,1fr)_auto] md:gap-x-6 xl:grid-cols-[2.5rem_minmax(14rem,20rem)_minmax(0,1fr)_auto] xl:gap-y-0"
       >
         <span className="mono-label text-faint">
           {String(index).padStart(2, "0")}
@@ -114,13 +114,13 @@ function RepoRow({ repo, index }: { repo: RepoSummary; index: number }) {
           </span>
         </span>
 
-        <span className="col-start-2 min-w-0 text-[12.5px] leading-snug text-fg-soft md:col-start-3 md:truncate md:text-[13px] md:leading-normal">
+        <span className="col-start-2 min-w-0 text-[12.5px] leading-snug text-fg-soft md:col-span-2 md:col-start-2 md:row-start-2 md:text-[13px] md:leading-normal xl:col-span-1 xl:col-start-3 xl:row-start-1 xl:truncate">
           {repo.description ?? (
             <span className="text-faint italic">no description</span>
           )}
         </span>
 
-        <span className="col-start-2 flex items-center gap-x-3 gap-y-0 font-mono text-[11px] text-muted md:col-start-4 md:gap-4 md:text-[11.5px]">
+        <span className="col-start-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] text-muted md:col-start-3 md:row-start-1 md:gap-4 md:text-[11.5px] xl:col-start-4">
           {repo.stars > 0 ? <span>★ {repo.stars}</span> : null}
           {repo.language ? (
             <span className="inline-flex items-center gap-1.5">
@@ -181,7 +181,7 @@ function EmptyState() {
     <div className="rounded-md border border-line bg-bg-elev/40 p-8 text-center">
       <p className="mono-label mb-2">github · unreachable</p>
       <p className="text-fg-soft">
-        Couldn&rsquo;t fetch the live archive right now. Try a refresh, or
+        Couldn’t fetch the live archive right now. Try a refresh, or
         head straight to{" "}
         <a
           href="https://github.com/Shorno?tab=repositories"
@@ -214,16 +214,16 @@ function groupByYear(repos: RepoSummary[]) {
     .map(([year, items]) => ({ year, items }));
 }
 
-function countLanguages(repos: RepoSummary[]) {
-  const counts: Record<string, number> = {};
+function summarizeRepos(repos: RepoSummary[]): { languageCount: number; lastPush: string } {
+  const languages = new Set<string>();
   let mostRecent = 0;
   for (const r of repos) {
-    if (r.language) counts[r.language] = (counts[r.language] ?? 0) + 1;
+    if (r.language) languages.add(r.language);
     const ts = new Date(r.pushedAt).getTime();
     if (ts > mostRecent) mostRecent = ts;
   }
   return {
-    ...counts,
-    _syncedLabel: mostRecent > 0 ? timeAgo(new Date(mostRecent).toISOString()) : "—",
+    languageCount: languages.size,
+    lastPush: mostRecent > 0 ? timeAgo(new Date(mostRecent).toISOString()) : "—",
   };
 }

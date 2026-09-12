@@ -31,18 +31,19 @@ The API is Hono on Bun with Drizzle against Postgres: services, categories, blog
 Public routes cover home, category browsing, individual service pages, blogs, about-us, and a member dashboard. Admin routes cover the full CMS: services, categories, blog types, blogs, banners, homepage sections, media library, and the service-request inbox.
 
 <Shot
-  src="/work/padma-service/web-home.png"
+  src="https://res.cloudinary.com/def3zwztt/image/upload/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png"
   alt="Padma Service marketing homepage"
   caption="public site — bilingual metadata, service catalog entry points"
 />
 
-<Shot
-  src="/work/padma-service/web-admin-services.png"
-  alt="Admin services management"
-  caption="admin CMS — dense tables for the service catalog"
-/>
-
-<Diagram caption="two repos, one oRPC contract, shared Postgres">
+<Diagram
+  caption="two repos, one oRPC contract, shared Postgres"
+  items={[
+    { label: "Web · public and admin", detail: "Next.js 16 serves the public catalog and admin CMS in separate route groups." },
+    { label: "API · Hono on Bun", detail: "The storefront and CMS use one typed oRPC contract for services, content, and listing approvals." },
+    { label: "Shared data", detail: "Postgres stores the catalog and workflow. Drizzle defines the schema; Better-Auth handles sessions." },
+  ]}
+>
   <svg viewBox="0 0 900 360" className="h-auto w-full text-line">
     <g fontFamily="var(--font-mono)" fontSize="13" fill="var(--fg-soft)" textAnchor="middle">
       <g stroke="currentColor" strokeWidth="1.1" fill="none" opacity="0.55">

@@ -31,6 +31,7 @@ export function WorkCard({
 
   return (
     <article
+      data-work-card
       className={cn(
         "group relative overflow-hidden rounded-xl border border-line bg-bg-elev/95 shadow-[0_24px_60px_-30px_rgb(0_0_0_/_0.6)] backdrop-blur-sm",
         className,
@@ -65,7 +66,7 @@ export function WorkCard({
           <header className="flex flex-col gap-2">
             <span className="mono-label">{project.kind}</span>
             <h3
-              className="font-display text-balance text-5xl text-fg md:text-[clamp(2.75rem,4.7vw,3.75rem)]"
+              className="font-display text-balance text-[clamp(2.5rem,12vw,3rem)] text-fg md:text-[clamp(2.75rem,4.7vw,3.75rem)]"
               style={
                 vt
                   ? ({ viewTransitionName: `work-name-${project.slug}` } as React.CSSProperties)

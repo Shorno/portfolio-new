@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -21,43 +21,65 @@ import { cn } from "@/lib/utils";
  * scales down + fades + softly blurs while the next slot's card slides into
  * position on top of it. The last card stays put (nothing comes after).
  *
- * On reduced-motion or small viewports, the stack degrades to a clean
- * vertical list — no sticky, no transforms — so the experience stays calm.
+ * A single card tree stays in normal flow until every card fits the viewport.
+ * Recheck after resizing or font changes; reduced motion always uses the list.
  */
 export function WorkStack({ projects }: { projects: Project[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [cardsFit, setCardsFit] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return (
-      <div className="flex flex-col gap-12 md:gap-16">
-        {projects.map((p) => (
-          <WorkCard key={p.slug} project={p} />
-        ))}
-      </div>
-    );
-  }
+  useEffect(() => {
+    const root = ref.current;
+    if (!root || typeof ResizeObserver === "undefined") return;
+
+    const cards = [...root.querySelectorAll<HTMLElement>("[data-work-card]")];
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    const desktop = window.matchMedia("(min-width: 768px)");
+    let frame: number | null = null;
+
+    const measure = () => {
+      frame = null;
+      const available = window.innerHeight - (header?.offsetHeight ?? 56) - 48;
+      // offsetHeight excludes the outgoing card's scale transform.
+      const tallest = Math.max(...cards.map((card) => card.offsetHeight));
+      setCardsFit(desktop.matches && tallest > 0 && tallest <= available);
+    };
+
+    const scheduleMeasure = () => {
+      if (frame === null) frame = window.requestAnimationFrame(measure);
+    };
+
+    const observer = new ResizeObserver(scheduleMeasure);
+    cards.forEach((card) => observer.observe(card));
+    if (header) observer.observe(header);
+    window.addEventListener("resize", scheduleMeasure);
+    measure();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", scheduleMeasure);
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
+  }, [projects]);
+
+  const enabled = cardsFit && prefersReducedMotion === false;
 
   return (
-    <div className="relative">
-      {/* Mobile fallback — stacked list, no sticky */}
-      <div className="flex flex-col gap-10 md:hidden">
-        {projects.map((p) => (
-          <WorkCard key={p.slug} project={p} />
-        ))}
-      </div>
-
-      {/* Desktop — scroll-stacked. View-transition opt-in lives here so only
-          one WorkCard per slug claims each view-transition-name. */}
-      <div className="hidden md:block">
-        {projects.map((p, i) => (
-          <StackSlot
-            key={p.slug}
-            project={p}
-            index={i}
-            total={projects.length}
-          />
-        ))}
-      </div>
+    <div
+      ref={ref}
+      data-work-layout={enabled ? "stack" : "list"}
+      className={cn("relative", !enabled && "flex flex-col gap-10 md:gap-16")}
+    >
+      {projects.map((project, index) => (
+        <StackSlot
+          key={project.slug}
+          project={project}
+          index={index}
+          total={projects.length}
+          enabled={enabled}
+        />
+      ))}
     </div>
   );
 }
@@ -66,10 +88,12 @@ function StackSlot({
   project,
   index,
   total,
+  enabled,
 }: {
   project: Project;
   index: number;
   total: number;
+  enabled: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isLast = index === total - 1;
@@ -92,22 +116,23 @@ function StackSlot({
       className={cn(
         // Slot height — generous enough to let the next card slide in
         // smoothly, tight enough that the section doesn't feel endless.
-        "relative h-[105vh]",
+        "relative",
+        enabled && "h-[105vh]",
         // Last slot doesn't need extra room (nothing scrolls in after it).
-        isLast && "h-[88vh]",
+        enabled && isLast && "h-[88vh]",
       )}
     >
       <div
-        className="sticky flex items-center justify-center"
+        className={cn(enabled && "sticky flex items-center justify-center")}
         style={{
-          top: "calc(var(--site-header-h, 56px) + 24px)",
-          height: "calc(100vh - var(--site-header-h, 56px) - 48px)",
+          top: enabled ? "calc(var(--site-header-h) + 24px)" : undefined,
+          height: enabled ? "calc(100vh - var(--site-header-h) - 48px)" : undefined,
         }}
       >
         <motion.div
           style={
-            isLast
-              ? undefined
+            !enabled || isLast
+              ? { scale: 1, opacity: 1, y: 0 }
               : ({
                   scale,
                   opacity,
@@ -116,7 +141,7 @@ function StackSlot({
           }
           className="w-full origin-top"
         >
-          <WorkCard project={project} vt />
+          <WorkCard project={project} vt={enabled} />
         </motion.div>
       </div>
     </div>

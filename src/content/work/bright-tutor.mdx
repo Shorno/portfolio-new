@@ -22,7 +22,15 @@ A single dashboard with role-conditional fields would have been faster to ship a
 
 The system is a [Turborepo](https://turbo.build) monorepo with six client surfaces and shared packages. Every app talks to the same Hono server through an [oRPC](https://orpc.unnoq.com) contract, so types flow end-to-end from the Drizzle schema to the React Native screen.
 
-<Diagram caption="six surfaces, one schema. subdomain-scoped roles, shared contract, single Postgres">
+<Diagram
+  caption="six surfaces, one schema. subdomain-scoped roles, shared contract, single Postgres"
+  items={[
+    { label: "Web · public and admin", detail: "A marketing site and an admin console have separate web surfaces." },
+    { label: "Web · teacher and guardian", detail: "Teachers and guardians each use a role-specific web portal." },
+    { label: "Native · teacher and guardian", detail: "Two Expo apps connect to the same API as the web portals." },
+    { label: "Shared API and schema", detail: "Hono and oRPC connect every surface to Postgres. Shared packages hold the Drizzle schema, authentication, and contracts." },
+  ]}
+>
   <svg viewBox="0 0 980 480" className="h-auto w-full text-line">
     <g fontFamily="var(--font-mono)" fontSize="14" fill="var(--fg-soft)" textAnchor="middle">
       {/* connecting edges (drawn first so nodes overlay them) */}
@@ -119,5 +127,4 @@ The marketing site is live at [brighteducations.com](https://brighteducations.co
 
 ## What I'd do differently
 
-I'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them &ldquo;no, this is the shape&rdquo;. With the contract in place first, every app gets the same answer the same way.
-
+I'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them &ldquo;no, this is the shape&rdquo;. With the contract in place first, every app gets the same answer the same way.

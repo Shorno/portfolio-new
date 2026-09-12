@@ -1,0 +1,50 @@
+[
+  {
+    "label": "01Work",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "02Experience",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "03System",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "04Index",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "05Contact",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "CV↗",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  },
+  {
+    "label": "Switch to paper theme",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "BUTTON"
+  },
+  {
+    "label": "§01 / WORK",
+    "outline": "auto",
+    "outlineWidth": "1px",
+    "tag": "A"
+  }
+]

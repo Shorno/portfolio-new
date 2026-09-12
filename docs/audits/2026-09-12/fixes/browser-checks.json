@@ -1,0 +1,3130 @@
+[
+  {
+    "label": "desktop-dark",
+    "cards": [
+      {
+        "bottom": 1775.1875,
+        "height": 553,
+        "title": "Ecube Tournament",
+        "top": 1222.3125,
+        "transform": "none"
+      },
+      {
+        "bottom": 2736.0625,
+        "height": 585,
+        "title": "SelfShop",
+        "top": 2151.4375,
+        "transform": "none"
+      },
+      {
+        "bottom": 3653,
+        "height": 529,
+        "title": "Bikalpo",
+        "top": 3124.5,
+        "transform": "none"
+      },
+      {
+        "bottom": 4598,
+        "height": 529,
+        "title": "Bright Tutor",
+        "top": 4069.5,
+        "transform": "none"
+      },
+      {
+        "bottom": 5543,
+        "height": 529,
+        "title": "Stock Management",
+        "top": 5014.5,
+        "transform": "none"
+      },
+      {
+        "bottom": 6488,
+        "height": 529,
+        "title": "Padma Service",
+        "top": 5959.5,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 2061,
+        "text": "Balance360 is a robust, all-in-one fitness management platform offering tailored dashboard",
+        "width": 711
+      },
+      {
+        "scrollWidth": 1079,
+        "text": "The Antique Chronicles is a web application that allows users to explore, add, and manage ",
+        "width": 711
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 48,
+        "right": 147.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 735.796875,
+        "right": 811.828125,
+        "width": 76.03125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 815.828125,
+        "right": 928.890625,
+        "width": 113.0625
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 932.890625,
+        "right": 1023.25,
+        "width": 90.359375
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 1027.25,
+        "right": 1104.953125,
+        "width": 77.703125
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 1108.953125,
+        "right": 1202.171875,
+        "width": 93.21875
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 1227.171875,
+        "right": 1279.796875,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to paper theme",
+        "left": 1291.796875,
+        "right": 1377,
+        "width": 85.203125
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 1425,
+    "theme": "dark",
+    "url": "http://localhost:3100/",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "workLayout": "stack"
+  },
+  {
+    "label": "short-desktop-dark",
+    "cards": [
+      {
+        "bottom": 391.75,
+        "height": 645,
+        "title": "Ecube Tournament",
+        "top": -253.5,
+        "transform": "none"
+      },
+      {
+        "bottom": 1084.625,
+        "height": 629,
+        "title": "SelfShop",
+        "top": 455.75,
+        "transform": "none"
+      },
+      {
+        "bottom": 1750.625,
+        "height": 602,
+        "title": "Bikalpo",
+        "top": 1148.625,
+        "transform": "none"
+      },
+      {
+        "bottom": 2416.625,
+        "height": 602,
+        "title": "Bright Tutor",
+        "top": 1814.625,
+        "transform": "none"
+      },
+      {
+        "bottom": 3130.75,
+        "height": 650,
+        "title": "Stock Management",
+        "top": 2480.625,
+        "transform": "none"
+      },
+      {
+        "bottom": 3791.875,
+        "height": 597,
+        "title": "Padma Service",
+        "top": 3194.75,
+        "transform": "none"
+      }
+    ],
+    "clipped": [],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 48,
+        "right": 147.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 431.4375,
+        "right": 485.140625,
+        "width": 53.703125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 489.140625,
+        "right": 579.875,
+        "width": 90.734375
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 583.875,
+        "right": 651.90625,
+        "width": 68.03125
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 655.90625,
+        "right": 711.28125,
+        "width": 55.375
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 715.28125,
+        "right": 786.171875,
+        "width": 70.890625
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 811.171875,
+        "right": 863.796875,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to paper theme",
+        "left": 875.796875,
+        "right": 961,
+        "width": 85.203125
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 593,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 593,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": true,
+        "naturalWidth": 593,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 1009,
+    "theme": "dark",
+    "url": "http://localhost:3100/#work",
+    "viewport": {
+      "height": 600,
+      "width": 1024
+    },
+    "workLayout": "list"
+  },
+  {
+    "label": "tablet-paper",
+    "cards": [
+      {
+        "bottom": -9586.322265625,
+        "height": 828,
+        "title": "Ecube Tournament",
+        "top": -10348.3125,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -8517.4345703125,
+        "height": 813,
+        "title": "SelfShop",
+        "top": -9265.625,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -7504.5126953125,
+        "height": 665,
+        "title": "Bikalpo",
+        "top": -8116.3125,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -6418.8251953125,
+        "height": 690,
+        "title": "Bright Tutor",
+        "top": -7053.625,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -5327.99267578125,
+        "height": 727,
+        "title": "Stock Management",
+        "top": -5997.0625,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -4322.25,
+        "height": 722,
+        "title": "Padma Service",
+        "top": -5044.625,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 103,
+        "text": "12:20:46UTC+6",
+        "width": 95
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 32,
+        "right": 131.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 183.640625,
+        "right": 237.34375,
+        "width": 53.703125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 241.34375,
+        "right": 332.078125,
+        "width": 90.734375
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 336.078125,
+        "right": 404.109375,
+        "width": 68.03125
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 408.109375,
+        "right": 463.484375,
+        "width": 55.375
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 467.484375,
+        "right": 538.375,
+        "width": 70.890625
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 563.375,
+        "right": 616,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to dark theme",
+        "left": 628,
+        "right": 721,
+        "width": 93
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 753,
+    "theme": "paper",
+    "url": "http://localhost:3100/#index",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "workLayout": "stack"
+  },
+  {
+    "label": "mobile-paper-390",
+    "cards": [
+      {
+        "bottom": 2163.703125,
+        "height": 955,
+        "title": "Ecube Tournament",
+        "top": 1209.1875,
+        "transform": "none"
+      },
+      {
+        "bottom": 3146.84375,
+        "height": 943,
+        "title": "SelfShop",
+        "top": 2203.703125,
+        "transform": "none"
+      },
+      {
+        "bottom": 4042.109375,
+        "height": 855,
+        "title": "Bikalpo",
+        "top": 3186.84375,
+        "transform": "none"
+      },
+      {
+        "bottom": 4918.375,
+        "height": 836,
+        "title": "Bright Tutor",
+        "top": 4082.109375,
+        "transform": "none"
+      },
+      {
+        "bottom": 5842.640625,
+        "height": 884,
+        "title": "Stock Management",
+        "top": 4958.375,
+        "transform": "none"
+      },
+      {
+        "bottom": 6743.28125,
+        "height": 861,
+        "title": "Padma Service",
+        "top": 5882.640625,
+        "transform": "none"
+      }
+    ],
+    "clipped": [],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "workLayout": "list"
+  },
+  {
+    "label": "mobile-paper-320",
+    "cards": [
+      {
+        "bottom": 2487.484375,
+        "height": 1094,
+        "title": "Ecube Tournament",
+        "top": 1393.234375,
+        "transform": "none"
+      },
+      {
+        "bottom": 3591.734375,
+        "height": 1064,
+        "title": "SelfShop",
+        "top": 2527.484375,
+        "transform": "none"
+      },
+      {
+        "bottom": 4547.734375,
+        "height": 916,
+        "title": "Bikalpo",
+        "top": 3631.734375,
+        "transform": "none"
+      },
+      {
+        "bottom": 5539.734375,
+        "height": 952,
+        "title": "Bright Tutor",
+        "top": 4587.734375,
+        "transform": "none"
+      },
+      {
+        "bottom": 6611.734375,
+        "height": 1032,
+        "title": "Stock Management",
+        "top": 5579.734375,
+        "transform": "none"
+      },
+      {
+        "bottom": 7678.859375,
+        "height": 1027,
+        "title": "Padma Service",
+        "top": 6651.734375,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 220,
+        "text": "Stock Management",
+        "width": 215
+      },
+      {
+        "scrollWidth": 211,
+        "text": "antique-chronicles-backend",
+        "width": 201
+      },
+      {
+        "scrollWidth": 211,
+        "text": "new-year-offer_PH_Practice",
+        "width": 201
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 60.125,
+        "right": 133.8125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 134.640625,
+        "right": 187.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 188.0625,
+        "right": 228.90625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 229.734375,
+        "right": 285,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 192,
+        "right": 285,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 305,
+    "theme": "paper",
+    "url": "http://localhost:3100/",
+    "viewport": {
+      "height": 740,
+      "width": 320
+    },
+    "workLayout": "list"
+  },
+  {
+    "label": "ecube-tournament-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "Three views of the same tournament"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "A draw that can be checked again"
+      },
+      {
+        "level": "H3",
+        "text": "Seven rounds without seven separate systems"
+      },
+      {
+        "level": "H3",
+        "text": "Results with a publication boundary"
+      },
+      {
+        "level": "H3",
+        "text": "Live changes with durable records"
+      },
+      {
+        "level": "H2",
+        "text": "What’s running"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/ecube-tournament",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "selfshop-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Web · reseller\nThe Next.js client uses Redux Toolkit and Ant Design for the reseller dashboard.\nWeb · supplier\nThe same Next.js app provides the supplier dashboard, scoped to its role.\nNative · reseller\nThe Expo and Tamagui reseller app is available on Google Play.\nShared API\nAll three surfaces consume the Laravel REST API. Pusher channels carry updates to the clients that need them.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Three surfaces, no shared codebase"
+      },
+      {
+        "level": "H3",
+        "text": "Real-time orders without dropping events"
+      },
+      {
+        "level": "H3",
+        "text": "Plugging into a Laravel API I didn't write"
+      },
+      {
+        "level": "H2",
+        "text": "The Reseller App"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Reseller dashboard — orders, products, payouts",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780454851/Screenshot_2026-06-03_084706_oonpsg.png"
+      },
+      {
+        "alt": "Supplier dashboard — vendor catalog, stock, dispatch",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780496067/SelfShop-Limited-Bangladesh-s-Leading-B2B-Wholesale-Dropshipping-Marketplace_1_rafh0e.png"
+      },
+      {
+        "alt": "SelfShop Reseller on Google Play — listing, ratings, and app previews",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780496136/Screenshot_2026-06-03_201520_yw4d4y.png"
+      },
+      {
+        "alt": "Reseller app — category catalog with promotional framing",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780496237/unnamed_hee50y.webp"
+      },
+      {
+        "alt": "Reseller app — dashboard with sales, profit, and wallet balance",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780496277/unnamed_1_xvuzzc.webp"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/selfshop",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "bikalpo-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Web · tiered storefront\nNext.js 16 provides the web storefront for the platform’s participant tiers.\nNative · buyer app\nThe Expo buyer app is part of the platform under development.\nShared API\nBoth clients use the documented Hono and oRPC API through a shared typed client.\nShared data\nPostgres stores catalog and content data, with Drizzle, Better-Auth, and Lexical.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Per-tier pricing without per-tier fetches"
+      },
+      {
+        "level": "H3",
+        "text": "Lexical alongside SKU data"
+      },
+      {
+        "level": "H3",
+        "text": "Shared packages"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/bikalpo",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "bright-tutor-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Web · public and admin\nA marketing site and an admin console have separate web surfaces.\nWeb · teacher and guardian\nTeachers and guardians each use a role-specific web portal.\nNative · teacher and guardian\nTwo Expo apps connect to the same API as the web portals.\nShared API and schema\nHono and oRPC connect every surface to Postgres. Shared packages hold the Drizzle schema, authentication, and contracts.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Subdomain-routed roles"
+      },
+      {
+        "level": "H3",
+        "text": "End-to-end types across six surfaces"
+      },
+      {
+        "level": "H3",
+        "text": "One schema, three roles"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/bright-tutor",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "stock-management-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Movement log\nReceiving, sales, transfers, and returns each record a stock movement.\nSum the movements\nIn this example: 100 received, 3 sold, 10 transferred, 1 sold, and 1 returned.\nDerived count · 87 units\nSKU-1042 has 87 units on hand. The count is calculated from the log rather than stored as a separate stock total.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Printing invoices that look right"
+      },
+      {
+        "level": "H3",
+        "text": "Optimistic UI with a real audit trail"
+      },
+      {
+        "level": "H3",
+        "text": "State that survives a refresh"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/stock-management",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "padma-service-mobile-paper",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Web · public and admin\nNext.js 16 serves the public catalog and admin CMS in separate route groups.\nAPI · Hono on Bun\nThe storefront and CMS use one typed oRPC contract for services, content, and listing approvals.\nShared data\nPostgres stores the catalog and workflow. Drizzle defines the schema; Better-Auth handles sessions.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 262,
+        "right": 355,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "User-submitted services without polluting the catalog"
+      },
+      {
+        "level": "H3",
+        "text": "Homepage as data, not hard-coded JSX"
+      },
+      {
+        "level": "H3",
+        "text": "Bilingual SEO without two codebases"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service marketing homepage",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "paper",
+    "url": "http://localhost:3100/work/padma-service",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "padma-mobile-dark-theme-keyboard",
+    "cards": [],
+    "clipped": [],
+    "diagrams": [
+      {
+        "bodyFont": "16px",
+        "text": "Web · public and admin\nNext.js 16 serves the public catalog and admin CMS in separate route groups.\nAPI · Hono on Bun\nThe storefront and CMS use one typed oRPC contract for services, content, and listing approvals.\nShared data\nPostgres stores the catalog and workflow. Drizzle defines the schema; Better-Auth handles sessions.",
+        "width": 285
+      }
+    ],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 77.625,
+        "right": 151.3125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 169.640625,
+        "right": 222.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 240.5625,
+        "right": 281.40625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 299.734375,
+        "right": 355,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to paper theme",
+        "left": 269.796875,
+        "right": 355,
+        "width": 85.203125
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "User-submitted services without polluting the catalog"
+      },
+      {
+        "level": "H3",
+        "text": "Homepage as data, not hard-coded JSX"
+      },
+      {
+        "level": "H3",
+        "text": "Bilingual SEO without two codebases"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 390,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service marketing homepage",
+        "complete": true,
+        "naturalWidth": 389,
+        "src": "https://res.cloudinary.com/def3zwztt/image/upload/w_1920,c_limit,f_auto,q_auto/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png"
+      }
+    ],
+    "pageWidth": 375,
+    "theme": "dark",
+    "url": "http://localhost:3100/work/padma-service",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "desktop-paper",
+    "cards": [],
+    "clipped": [
+      {
+        "scrollWidth": 2061,
+        "text": "Balance360 is a robust, all-in-one fitness management platform offering tailored dashboard",
+        "width": 711
+      },
+      {
+        "scrollWidth": 1079,
+        "text": "The Antique Chronicles is a web application that allows users to explore, add, and manage ",
+        "width": 711
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 48,
+        "right": 147.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 728,
+        "right": 804.03125,
+        "width": 76.03125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 808.03125,
+        "right": 921.09375,
+        "width": 113.0625
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 925.09375,
+        "right": 1015.453125,
+        "width": 90.359375
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 1019.453125,
+        "right": 1097.15625,
+        "width": 77.703125
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 1101.15625,
+        "right": 1194.375,
+        "width": 93.21875
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 1219.375,
+        "right": 1272,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to dark theme",
+        "left": 1284,
+        "right": 1377,
+        "width": 93
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 1425,
+    "theme": "paper",
+    "url": "http://localhost:3100/",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-desktop-paper",
+    "cards": [
+      {
+        "bottom": 1773.6875,
+        "height": 550,
+        "title": "Ecube Tournament",
+        "top": 1223.8125,
+        "transform": "none"
+      },
+      {
+        "bottom": 2734.5625,
+        "height": 582,
+        "title": "SelfShop",
+        "top": 2152.9375,
+        "transform": "none"
+      },
+      {
+        "bottom": 3651.5,
+        "height": 526,
+        "title": "Bikalpo",
+        "top": 3126,
+        "transform": "none"
+      },
+      {
+        "bottom": 4596.5,
+        "height": 526,
+        "title": "Bright Tutor",
+        "top": 4071,
+        "transform": "none"
+      },
+      {
+        "bottom": 5541.5,
+        "height": 526,
+        "title": "Stock Management",
+        "top": 5016,
+        "transform": "none"
+      },
+      {
+        "bottom": 6486.5,
+        "height": 526,
+        "title": "Padma Service",
+        "top": 5961,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 2061,
+        "text": "Balance360 is a robust, all-in-one fitness management platform offering tailored dashboard",
+        "width": 711
+      },
+      {
+        "scrollWidth": 1079,
+        "text": "The Antique Chronicles is a web application that allows users to explore, add, and manage ",
+        "width": 711
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 48,
+        "right": 147.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 728,
+        "right": 804.03125,
+        "width": 76.03125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 808.03125,
+        "right": 921.09375,
+        "width": 113.0625
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 925.09375,
+        "right": 1015.453125,
+        "width": 90.359375
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 1019.453125,
+        "right": 1097.15625,
+        "width": 77.703125
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 1101.15625,
+        "right": 1194.375,
+        "width": 93.21875
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 1219.375,
+        "right": 1272,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to dark theme",
+        "left": 1284,
+        "right": 1377,
+        "width": 93
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 835,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 1425,
+    "theme": "paper",
+    "url": "http://localhost:3100/",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "workLayout": "stack"
+  },
+  {
+    "label": "final-tablet-paper",
+    "cards": [
+      {
+        "bottom": -9588.1728515625,
+        "height": 824,
+        "title": "Ecube Tournament",
+        "top": -10346.109375,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -8518.3681640625,
+        "height": 811,
+        "title": "SelfShop",
+        "top": -9264.53125,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -7505.44580078125,
+        "height": 663,
+        "title": "Bikalpo",
+        "top": -8115.21875,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -6419.75830078125,
+        "height": 688,
+        "title": "Bright Tutor",
+        "top": -7052.53125,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -5329.84326171875,
+        "height": 723,
+        "title": "Stock Management",
+        "top": -5994.859375,
+        "transform": "matrix(0.92, 0, 0, 0.92, 0, -30)"
+      },
+      {
+        "bottom": -4324.453125,
+        "height": 718,
+        "title": "Padma Service",
+        "top": -5042.421875,
+        "transform": "none"
+      }
+    ],
+    "clipped": [],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 32,
+        "right": 131.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 36,
+        "label": "01Work",
+        "left": 183.640625,
+        "right": 237.34375,
+        "width": 53.703125
+      },
+      {
+        "height": 36,
+        "label": "02Experience",
+        "left": 241.34375,
+        "right": 332.078125,
+        "width": 90.734375
+      },
+      {
+        "height": 36,
+        "label": "03System",
+        "left": 336.078125,
+        "right": 404.109375,
+        "width": 68.03125
+      },
+      {
+        "height": 36,
+        "label": "04Index",
+        "left": 408.109375,
+        "right": 463.484375,
+        "width": 55.375
+      },
+      {
+        "height": 36,
+        "label": "05Contact",
+        "left": 467.484375,
+        "right": 538.375,
+        "width": 70.890625
+      },
+      {
+        "height": 30.5,
+        "label": "CV↗",
+        "left": 563.375,
+        "right": 616,
+        "width": 52.625
+      },
+      {
+        "height": 32,
+        "label": "Switch to dark theme",
+        "left": 628,
+        "right": 721,
+        "width": 93
+      }
+    ],
+    "headerHeight": 56,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 445,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 753,
+    "theme": "paper",
+    "url": "http://localhost:3100/#index",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "workLayout": "stack"
+  },
+  {
+    "label": "final-mobile-320-paper",
+    "cards": [
+      {
+        "bottom": -10673.515625,
+        "height": 1074,
+        "title": "Ecube Tournament",
+        "top": -11747.765625,
+        "transform": "none"
+      },
+      {
+        "bottom": -9579.265625,
+        "height": 1054,
+        "title": "SelfShop",
+        "top": -10633.515625,
+        "transform": "none"
+      },
+      {
+        "bottom": -8633.265625,
+        "height": 906,
+        "title": "Bikalpo",
+        "top": -9539.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -7651.265625,
+        "height": 942,
+        "title": "Bright Tutor",
+        "top": -8593.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -6599.265625,
+        "height": 1012,
+        "title": "Stock Management",
+        "top": -7611.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -5590.140625,
+        "height": 969,
+        "title": "Padma Service",
+        "top": -6559.265625,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 211,
+        "text": "antique-chronicles-backend",
+        "width": 201
+      },
+      {
+        "scrollWidth": 211,
+        "text": "new-year-offer_PH_Practice",
+        "width": 201
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 60.125,
+        "right": 133.8125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 134.640625,
+        "right": 187.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 188.0625,
+        "right": 228.90625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 229.734375,
+        "right": 285,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to dark theme",
+        "left": 192,
+        "right": 285,
+        "width": 93
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 305,
+    "theme": "paper",
+    "url": "http://localhost:3100/#index",
+    "viewport": {
+      "height": 740,
+      "width": 320
+    },
+    "workLayout": "list"
+  },
+  {
+    "label": "final-mobile-320-dark",
+    "cards": [
+      {
+        "bottom": -10331.515625,
+        "height": 1074,
+        "title": "Ecube Tournament",
+        "top": -11405.765625,
+        "transform": "none"
+      },
+      {
+        "bottom": -9237.265625,
+        "height": 1054,
+        "title": "SelfShop",
+        "top": -10291.515625,
+        "transform": "none"
+      },
+      {
+        "bottom": -8291.265625,
+        "height": 906,
+        "title": "Bikalpo",
+        "top": -9197.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -7309.265625,
+        "height": 942,
+        "title": "Bright Tutor",
+        "top": -8251.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -6257.265625,
+        "height": 1012,
+        "title": "Stock Management",
+        "top": -7269.265625,
+        "transform": "none"
+      },
+      {
+        "bottom": -5248.140625,
+        "height": 969,
+        "title": "Padma Service",
+        "top": -6217.265625,
+        "transform": "none"
+      }
+    ],
+    "clipped": [
+      {
+        "scrollWidth": 211,
+        "text": "antique-chronicles-backend",
+        "width": 201
+      },
+      {
+        "scrollWidth": 211,
+        "text": "new-year-offer_PH_Practice",
+        "width": 201
+      }
+    ],
+    "diagrams": [],
+    "headerControls": [
+      {
+        "height": 44,
+        "label": "Shorno — home",
+        "left": 20,
+        "right": 119.296875,
+        "width": 99.296875
+      },
+      {
+        "height": 44,
+        "label": "01Work",
+        "left": 20,
+        "right": 59.296875,
+        "width": 39.296875
+      },
+      {
+        "height": 44,
+        "label": "02Experience",
+        "left": 60.125,
+        "right": 133.8125,
+        "width": 73.6875
+      },
+      {
+        "height": 44,
+        "label": "03System",
+        "left": 134.640625,
+        "right": 187.234375,
+        "width": 52.59375
+      },
+      {
+        "height": 44,
+        "label": "04Index",
+        "left": 188.0625,
+        "right": 228.90625,
+        "width": 40.84375
+      },
+      {
+        "height": 44,
+        "label": "05Contact",
+        "left": 229.734375,
+        "right": 285,
+        "width": 55.265625
+      },
+      {
+        "height": 44,
+        "label": "Switch to paper theme",
+        "left": 199.796875,
+        "right": 285,
+        "width": 85.203125
+      }
+    ],
+    "headerHeight": 100,
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Full-stack engineer for the boring systems your company actually runs on."
+      },
+      {
+        "level": "H2",
+        "text": "Selected work"
+      },
+      {
+        "level": "H3",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H3",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H3",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H3",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H3",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H3",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "Where it shipped."
+      },
+      {
+        "level": "H3",
+        "text": "Ecube↗"
+      },
+      {
+        "level": "H3",
+        "text": "AlgoVerse"
+      },
+      {
+        "level": "H3",
+        "text": "AppCube"
+      },
+      {
+        "level": "H2",
+        "text": "A small, sharp toolkit."
+      },
+      {
+        "level": "H2",
+        "text": "Every repo,in chronological order."
+      },
+      {
+        "level": "H2",
+        "text": "Hiring, or got something serious to build?"
+      }
+    ],
+    "images": [
+      {
+        "alt": "Ecube Tournament — public homepage for Return of King: Free Fire",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=%2Fwork%2Fecube-tournament%2Fweb-home.jpg&w=3840&q=75"
+      },
+      {
+        "alt": "SelfShop — reseller product and dashboard view",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780454810%2FScreenshot_2026-06-03_084636_adaai5.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bikalpo — B2B storefront on b2b.bikalpo.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456221%2FCreate-Next-App_zngg7r.png&w=3840&q=75"
+      },
+      {
+        "alt": "Bright Tutor — marketing site on brighteducations.com",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456307%2FBright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png&w=3840&q=75"
+      },
+      {
+        "alt": "Stock Management — distributor operations dashboard",
+        "complete": false,
+        "naturalWidth": 0,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456379%2Fstock-management_tbbhr6.png&w=3840&q=75"
+      },
+      {
+        "alt": "Padma Service — public homepage (Bengali)",
+        "complete": true,
+        "naturalWidth": 320,
+        "src": "/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdef3zwztt%2Fimage%2Fupload%2Fw_1920%2Cc_limit%2Cf_auto%2Cq_auto%2Fv1780456472%2F%25E0%25A6%25AA%25E0%25A6%25A6%25E0%25A7%258D%25E0%25A6%25AE%25E0%25A6%25BE-%25E0%25A6%25B8%25E0%25A6%25BE%25E0%25A6%25B0%25E0%25A7%258D%25E0%25A6%25AD%25E0%25A6%25BF%25E0%25A6%25B8-%25E0%25A6%2595%25E0%25A7%258B%25E0%25A6%25AE%25E0%25A7%258D%25E0%25A6%25AA%25E0%25A6%25BE%25E0%25A6%25A8%25E0%25A6%25BF_sntyg5.png&w=3840&q=75"
+      }
+    ],
+    "pageWidth": 305,
+    "theme": "dark",
+    "url": "http://localhost:3100/#index",
+    "viewport": {
+      "height": 740,
+      "width": 320
+    },
+    "workLayout": "list"
+  }
+]

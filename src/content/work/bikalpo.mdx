@@ -48,7 +48,15 @@ Postgres holds catalogue rows and Lexical JSON for product copy and policy pages
 
 
 
-<Diagram caption="web + native through Hono · oRPC — documented API, shared Postgres">
+<Diagram
+  caption="web + native through Hono · oRPC — documented API, shared Postgres"
+  items={[
+    { label: "Web · tiered storefront", detail: "Next.js 16 provides the web storefront for the platform’s participant tiers." },
+    { label: "Native · buyer app", detail: "The Expo buyer app is part of the platform under development." },
+    { label: "Shared API", detail: "Both clients use the documented Hono and oRPC API through a shared typed client." },
+    { label: "Shared data", detail: "Postgres stores catalog and content data, with Drizzle, Better-Auth, and Lexical." },
+  ]}
+>
 
   <svg viewBox="0 0 900 380" className="h-auto w-full text-line">
 

@@ -1,0 +1,117 @@
+{
+  "method": "OKLCH to linear sRGB; clipped to gamut, WCAG relative-luminance formula. Ratios approximate browser gamut mapping.",
+  "results": [
+    {
+      "theme": "paper",
+      "foreground": "fg",
+      "background": "bg",
+      "ratio": 16.8,
+      "fgOklch": "0.165 0.012 70",
+      "bgOklch": "0.953 0.018 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "fg-soft",
+      "background": "bg",
+      "ratio": 9.67,
+      "fgOklch": "0.355 0.012 70",
+      "bgOklch": "0.953 0.018 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "muted",
+      "background": "bg",
+      "ratio": 5.35,
+      "fgOklch": "0.495 0.012 70",
+      "bgOklch": "0.953 0.018 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "faint",
+      "background": "bg",
+      "ratio": 2.82,
+      "fgOklch": "0.650 0.010 70",
+      "bgOklch": "0.953 0.018 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "faint",
+      "background": "bg-elev",
+      "ratio": 2.54,
+      "fgOklch": "0.650 0.010 70",
+      "bgOklch": "0.918 0.022 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "accent",
+      "background": "bg",
+      "ratio": 2.73,
+      "fgOklch": "0.685 0.215 38",
+      "bgOklch": "0.953 0.018 80"
+    },
+    {
+      "theme": "paper",
+      "foreground": "accent-fg",
+      "background": "accent",
+      "ratio": 3,
+      "fgOklch": "0.985 0.008 60",
+      "bgOklch": "0.685 0.215 38"
+    },
+    {
+      "theme": "dark",
+      "foreground": "fg",
+      "background": "bg",
+      "ratio": 17.4,
+      "fgOklch": "0.952 0.012 80",
+      "bgOklch": "0.135 0.005 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "fg-soft",
+      "background": "bg",
+      "ratio": 11.65,
+      "fgOklch": "0.825 0.012 75",
+      "bgOklch": "0.135 0.005 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "bg",
+      "ratio": 5.94,
+      "fgOklch": "0.640 0.010 70",
+      "bgOklch": "0.135 0.005 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "faint",
+      "background": "bg",
+      "ratio": 2.81,
+      "fgOklch": "0.460 0.008 70",
+      "bgOklch": "0.135 0.005 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "faint",
+      "background": "bg-elev",
+      "ratio": 2.66,
+      "fgOklch": "0.460 0.008 70",
+      "bgOklch": "0.175 0.006 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "accent",
+      "background": "bg",
+      "ratio": 6.66,
+      "fgOklch": "0.715 0.220 38",
+      "bgOklch": "0.135 0.005 60"
+    },
+    {
+      "theme": "dark",
+      "foreground": "accent-fg",
+      "background": "accent",
+      "ratio": 6.66,
+      "fgOklch": "0.135 0.005 60",
+      "bgOklch": "0.715 0.220 38"
+    }
+  ]
+}

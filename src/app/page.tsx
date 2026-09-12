@@ -27,6 +27,7 @@ export default function HomePage() {
 
       {/* ---------------- §01 WORK ---------------- */}
       <section id="work" className="relative pt-16">
+        <h2 className="sr-only">Selected work</h2>
         <Container>
           <SectionMark
             index={1}

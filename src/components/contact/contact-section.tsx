@@ -44,11 +44,11 @@ export function ContactSection() {
 
         {/* Headline */}
         <div className="mt-12 max-w-4xl">
-          <p className="font-display text-balance text-[clamp(2.25rem,6vw,6rem)] text-fg">
+          <h2 className="font-display text-balance text-[clamp(2.25rem,6vw,6rem)] text-fg">
             Hiring, or got something{" "}
             <span className="font-display-italic text-accent">serious</span>{" "}
             to build?
-          </p>
+          </h2>
           <p className="mt-6 max-w-xl text-pretty text-fg-soft md:text-lg md:leading-relaxed">
             One line about the role or the problem is enough. I&rsquo;ll reply
             within 24h on a working day, usually same-day from Dhaka hours.

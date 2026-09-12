@@ -208,7 +208,7 @@ export function caseStudyJsonLd(project: Project) {
     creativeWorkJsonLd(project),
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
-      { name: "Work", path: "/#work" },
+      { name: "Projects", path: "/#work" },
       { name: project.name, path: `/work/${project.slug}` },
     ]),
   ];

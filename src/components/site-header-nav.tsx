@@ -142,7 +142,7 @@ export function SiteHeaderNav() {
               href={site.cvUrl}
               target="_blank"
               rel="noreferrer"
-              className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent md:inline-flex"
+              className="group hidden min-h-11 items-center gap-1.5 px-3 text-sm font-medium text-fg transition-colors hover:text-accent md:inline-flex"
             >
               CV
               <span

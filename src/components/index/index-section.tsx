@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { Container } from "@/components/primitives/container";
-import { SectionMark } from "@/components/primitives/section-mark";
 import { getAllRepos, timeAgo, type RepoSummary } from "@/lib/github";
 import { languageColor } from "@/lib/system";
 
 /**
- * §04 INDEX — every public repo, year-grouped, dense-terminal styling.
+ * Optional code archive — repositories grouped by year, outside the hiring overview.
  * Server component; fetches at the edge and caches for 1 hour.
  */
 export async function IndexSection() {
@@ -17,18 +16,13 @@ export async function IndexSection() {
   return (
     <section id="index" className="relative py-20 md:py-28">
       <Container>
-        <SectionMark index={4} label="INDEX" hint="full archive" />
+        <Link href="/#work" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft hover:text-accent">← Selected projects</Link>
 
         {/* Header row */}
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <h2 className="font-display text-balance text-4xl text-fg md:text-6xl">
-              Every repo,
-              <br />
-              <span className="font-display-italic text-accent">
-                in chronological order.
-              </span>
-            </h2>
+            <h1 className="font-display text-4xl text-fg md:text-6xl">Code archive</h1>
+            <p className="mt-4 text-base text-fg-soft">Repositories, grouped by year.</p>
           </div>
           <div className="md:col-span-5">
             <div className="flex flex-wrap items-baseline justify-end gap-x-8 gap-y-3">
@@ -47,7 +41,7 @@ export async function IndexSection() {
         </div>
 
         <p className="mono-label mt-16 text-faint">
-          ↓ live from github · cached at the edge for 1 hour
+          Repository data from GitHub
         </p>
       </Container>
     </section>

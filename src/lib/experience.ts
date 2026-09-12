@@ -1,9 +1,9 @@
 /**
  * Work experience data model.
  *
- * Surfaced in §02 EXPERIENCE as an editorial spec-sheet timeline. Roles are
+ * Surfaced in §01 EXPERIENCE as a compact timeline. Roles are
  * ordered most-recent-first. Entries with `projectSlugs` reference the
- * featured projects in src/lib/projects.ts so the case studies in §01 can be
+ * featured projects in src/lib/projects.ts so the case studies in §02 can be
  * linked from the role they were shipped under.
  */
 
@@ -49,7 +49,7 @@ export const experience: ExperienceEntry[] = [
     location: "Bangladesh",
     type: "full-time",
     summary:
-      "Built Ecube’s tournament platform end to end: participant registration, admin and operator workspaces, scheduling, match results, and qualification. The Free Fire tournament platform is live at tour.ecube.gg.",
+      "Built Ecube’s tournament platform end to end, from the participant site and staff dashboards to the API, database, and deployment. Work includes registration, scheduling, results, and live chat.",
     highlights: [
       "Built the Next.js frontend, Hono API, shared oRPC contracts, Postgres schema, and authentication in a Turborepo.",
       "Implemented seeded group allocation and shared tournament operations across seven configured rounds, including league and knockout stages.",
@@ -77,7 +77,7 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "End-to-end builds for multi-party marketplaces, role-based platforms, and wholesale tooling. Most of the case studies in §01 were shipped from here: schema-first, monorepo-shaped, deployed to production.",
+      "Develop web and mobile applications for commerce, education, and wholesale operations. Full-stack work on shared APIs and databases, plus frontend integration with the team’s Laravel API for SelfShop.",
     highlights: [
       "Designed and shipped a Turborepo-based commerce platform with web + native + Hono backend.",
       "Owned a multi-role education platform with subdomain-scoped roles, shared Drizzle schema, and oRPC-backed web + native surfaces.",
@@ -113,7 +113,7 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "Built the merchant dashboard for Ubaky, a multi-role restaurant management system with separate interfaces for clients, merchants, and admins. Frontend-focused, working closely with the backend team on API integration.",
+      "Built Ubaky’s restaurant merchant dashboard in React. Worked with the backend team on API integration, responsive layouts, and the interface used by restaurant operators.",
     highlights: [
       "Owned the merchant interface in React, the surface restaurant operators use day-to-day.",
       "Mobile-first responsive design across all three role-specific apps.",
@@ -144,6 +144,7 @@ export const education = {
   school: "Daffodil International University",
   start: "2022",
   end: "2026",
+  graduationMonth: "May",
   cgpa: "3.30 / 4.00",
 } as const;
 

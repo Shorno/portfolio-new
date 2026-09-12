@@ -1,8 +1,8 @@
 /**
  * Project / case study data model.
  *
- * Featured projects are surfaced in §01 WORK with the scroll-stacked
- * interaction and a full /work/[slug] case study page. `seed` and `art`
+ * Featured projects are surfaced in §02 PROJECTS as readable records
+ * with a full /work/[slug] case study page. `seed` and `art`
  * provide a stable generative fallback when a project has no screenshot.
  */
 
@@ -22,6 +22,10 @@ export type Project = {
   /** Display year on the work card, e.g. "2026—present" or "2025—2026" */
   year: string;
   status: ProjectStatus;
+  /** Authored scope, distinguished from what the complete product does. */
+  contribution: string;
+  /** Main technologies for the overview; the case study keeps the full stack. */
+  coreStack: string[];
   /** One-line editorial pitch for the card */
   tagline: string;
   /** 2–3 sentence summary used on the case study page hero */
@@ -50,13 +54,15 @@ export const featuredProjects: Project[] = [
     slug: "ecube-tournament",
     index: "01",
     name: "Ecube Tournament",
+    contribution: "Full-stack development",
+    coreStack: ["Next.js", "TypeScript", "Hono", "PostgreSQL"],
     kind: "Esports Tournament Operations",
     year: "2026—present",
     status: "live",
     tagline:
-      "Registration to qualification. Players, operators, and admins run a Free Fire tournament through one platform, with schedules, match results, and live group chat.",
+      "Built the participant site, staff dashboards, API, and database for Ecube’s Free Fire tournament. Registration, scheduling, results, qualification, and live chat.",
     description:
-      "Full-stack tournament platform for Ecube. I built the participant site, admin console, operator workspace, and backend: team registration, seeded group allocation, scheduling, match results, and qualification across seven configured rounds. Live group chat and queued email updates keep teams informed.",
+      "I built Ecube’s Free Fire tournament platform: the participant site, staff dashboards, API, and database. It supports registration, scheduling, match results, qualification, live chat, and email updates.",
     url: "https://tour.ecube.gg/",
     image: "/work/ecube-tournament/web-home.jpg",
     imageAlt:
@@ -84,13 +90,15 @@ export const featuredProjects: Project[] = [
     slug: "selfshop",
     index: "02",
     name: "SelfShop",
+    contribution: "Web & mobile frontend",
+    coreStack: ["Next.js", "React Native", "TypeScript", "Redux Toolkit"],
     kind: "Reseller & Dropshipping Commerce",
     year: "2026—present",
     status: "live",
     tagline:
-      "Three roles, three surfaces. Admin, reseller, and supplier dashboards on the web, plus the reseller app on Play Store. I plugged into the team's Laravel API.",
+      "Built admin, reseller, and supplier dashboards, plus the reseller app on Google Play. Integrated the team’s Laravel API.",
     description:
-      "Multi-role reseller marketplace. I built the admin, reseller, and supplier dashboards in the Next.js client app, plus the React Native + Tamagui reseller app on Google Play. The Laravel backend was the team's. This case study covers the front of house.",
+      "Reseller marketplace with web dashboards for admins, resellers, and suppliers. I built the Next.js frontend and the React Native reseller app on Google Play, integrating the team’s Laravel backend.",
     url: "https://selfshop.com.bd/",
     playstore:
       "https://play.google.com/store/apps/details?id=com.selfshop.reseller&hl=en",
@@ -122,13 +130,15 @@ export const featuredProjects: Project[] = [
     slug: "bikalpo",
     index: "03",
     name: "Bikalpo",
+    contribution: "Full-stack development",
+    coreStack: ["Next.js", "TypeScript", "Drizzle", "PostgreSQL"],
     kind: "Multi-Party Commerce Marketplace",
     year: "2025—present",
     status: "partial-live",
     tagline:
-      "Four participant tiers, one catalog. Partial surfaces live on b2b.bikalpo.com. The full platform is still under build.",
+      "Building a wholesale marketplace with separate pricing and ordering for warehouses, retailers, and consumers. The B2B storefront is live; the wider platform is in development.",
     description:
-      "Multi-party commerce for a Bangladeshi distributor: platform admin, warehouse/wholesaler, two retailer tiers (resell-and-buy and buy-only), and a consumer storefront on one catalog with tier-aware pricing. Partial work is live on b2b.bikalpo.com. The full platform and Turborepo rewrite (web, mobile, Hono API) are in active development.",
+      "Wholesale marketplace with customer-specific pricing and role-based ordering. I’m building the storefront, mobile app, and API. The B2B storefront is live; the wider platform remains in development.",
     url: "https://b2b.bikalpo.com/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456221/Create-Next-App_zngg7r.png",
@@ -156,11 +166,13 @@ export const featuredProjects: Project[] = [
     slug: "bright-tutor",
     index: "04",
     name: "Bright Tutor",
+    contribution: "Full-stack & mobile development",
+    coreStack: ["Next.js", "Expo", "Hono", "PostgreSQL"],
     kind: "Multi-Role Education Platform",
     year: "2026",
     status: "live",
     tagline:
-      "Six surfaces, one schema. Teachers, guardians, and admins each get web and native, off the spreadsheet.",
+      "Built web portals and mobile apps for a tutoring business, with separate tools for teachers, guardians, and admins. Connected six applications to one API and database.",
     description:
       "Tuition media platform for a tutoring business: public marketplace, admin console, and role-aware web + native surfaces for teachers and guardians, all on one Hono+oRPC API with a shared Drizzle schema.",
     url: "https://brighteducations.com/",
@@ -190,13 +202,15 @@ export const featuredProjects: Project[] = [
     slug: "stock-management",
     index: "05",
     name: "Stock Management",
+    contribution: "Full-stack development",
+    coreStack: ["React", "TypeScript", "TanStack Query", "Vite"],
     kind: "Distributor Operations SPA",
     year: "2025—2026",
     status: "live",
     tagline:
-      "Procurement to retailer fulfillment in one React SPA. Stock in, stock out, invoices. The full daily flow.",
+      "Built a distributor’s stock and sales application: supplier purchases, retailer orders, transfers, returns, and printed invoices.",
     description:
-      "Distributor operational tool for receiving stock from suppliers, selling to retailers and proprietors, transfers, returns, and printed invoices. Built around how wholesale actually moves. Separate Vite + React 19 SPA and backend repos, both deployed.",
+      "Stock and sales software for a distributor, covering supplier purchases, retailer orders, transfers, returns, and printed invoices. I built and deployed the React application and its backend.",
     url: "https://mstamimenterprise.shop/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png",
@@ -224,13 +238,15 @@ export const featuredProjects: Project[] = [
     slug: "padma-service",
     index: "06",
     name: "Padma Service",
+    contribution: "Full-stack development",
+    coreStack: ["Next.js", "Hono", "oRPC", "PostgreSQL"],
     kind: "Services Marketplace & CMS",
     year: "2025—2026",
     status: "live",
     tagline:
-      "A bilingual services catalog where the marketing site, member dashboard, and admin CMS all run on one typed oRPC contract.",
+      "Built a bilingual service catalog, member accounts, and an admin CMS. Staff manage content and review submitted listings through the same application.",
     description:
-      "Full-stack platform for Padma Service Company: public service catalog with categories and blogs, phone-OTP member accounts, and an admin console for banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.",
+      "I built the public service catalog, member accounts, and admin CMS, with phone-OTP authentication and approval of submitted listings. The platform supports Bengali and English.",
     url: "https://padmaservice.com",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456472/%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AD%E0%A6%BF%E0%A6%B8-%E0%A6%95%E0%A7%8B%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%A8%E0%A6%BF_sntyg5.png",

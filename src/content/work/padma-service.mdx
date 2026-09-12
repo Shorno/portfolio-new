@@ -106,8 +106,8 @@ Root metadata targets `bn_BD` with Bengali titles and descriptions (`metadataBas
   <Stat value="OTP" label="phone auth · sms" />
 </StatRow>
 
-The public site and admin console are in production at [padmaservice.com](https://padmaservice.com). The API ships in a Docker container alongside the Next.js deploy. Traffic numbers stay with the client. The architecture is built to scale the catalog without restructuring.
+The public site and admin console are in production at [padmaservice.com](https://padmaservice.com). The API runs in a Docker container alongside the Next.js application.
 
 ## What I'd do differently
 
-I'd pull the two folders into a Turborepo workspace on day one. The compile-time import of `AppRouterClient` from the server package already enforces the contract; a monorepo would make shared Zod shapes and Drizzle types a package import instead of a relative path across repo roots. Same pattern I used on Bikalpo and Bright Tutor. This project got there through discipline, not tooling.
+I’d use a Turborepo workspace from the start. The client already imports `AppRouterClient` from the server; a workspace would make shared schemas and database types easier to maintain across both applications.

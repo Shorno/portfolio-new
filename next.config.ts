@@ -7,14 +7,13 @@ const nextConfig: NextConfig = {
     viewTransition: true,
   },
   async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "shorno.me" }],
-        destination: "https://www.shorno.me/:path*",
-        permanent: true,
-      },
-    ];
+    // Preserve paths from the previous domain and consolidate the www alias.
+    return ["www.shorno.dev", "shorno.me", "www.shorno.me"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host.replaceAll(".", "\\.") }],
+      destination: "https://shorno.dev/:path*",
+      permanent: true,
+    }));
   },
   images: {
     remotePatterns: [

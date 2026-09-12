@@ -70,7 +70,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} ${fraunces.variable}`}
     >
-      <body className="grain min-h-dvh bg-bg text-fg antialiased">
+      <body className="min-h-dvh bg-bg text-fg antialiased">
         <JsonLd data={[personJsonLd(), webSiteJsonLd()]} />
         <ThemeProvider>
           <div className="relative flex min-h-dvh flex-col">

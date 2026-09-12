@@ -1,69 +1,31 @@
+/** Skills are grouped by work performed, with an example instead of proficiency scores. */
+import Link from "next/link";
 import { Container } from "@/components/primitives/container";
-import { Grid } from "@/components/primitives/grid";
 import { SectionMark } from "@/components/primitives/section-mark";
-import { Rule } from "@/components/primitives/rule";
-import { systemStack } from "@/lib/system";
+import { getProjectBySlug } from "@/lib/projects";
+import { skillGroups } from "@/lib/system";
 
-/**
- * §02 SYSTEM — the actual toolkit, grouped editorial-spec-sheet style.
- * Four groups (A/B/C/D), each with named items and a short "role" line.
- */
 export function SystemSection() {
   return (
-    <section id="system" className="relative py-20 md:py-28">
+    <section id="system" className="pb-16 md:pb-20">
       <Container>
-        <SectionMark index={3} label="SYSTEM" hint="tools of trade" />
-
-        <Grid className="mt-14">
-          <div className="col-span-4 md:col-span-5">
-            <h2 className="font-display text-balance text-4xl text-fg md:text-6xl">
-              A small,{" "}
-              <span className="font-display-italic text-accent">sharp</span>{" "}
-              toolkit.
-            </h2>
-            <p className="mt-6 max-w-md text-pretty text-fg-soft md:text-lg md:leading-relaxed">
-              I pick boring, fast tools and obsess over the parts users
-              actually touch. Each one earns its place by being either
-              irreplaceable or invisible.
-            </p>
-            <p className="mt-6 max-w-md font-mono text-[12.5px] text-faint">
-              The full spec, not the curated highlight reel.
-            </p>
-          </div>
-
-          <div className="col-span-4 md:col-span-7 md:col-start-6">
-            <Rule variant="ticked" />
-            <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2">
-              {systemStack.map((group) => (
-                <SystemGroup key={group.label} group={group} />
-              ))}
-            </div>
-          </div>
-        </Grid>
+        <SectionMark index={3} label="Skills" heading hint="Used in the projects above" />
+        <div className="mt-8 divide-y divide-line">
+          {skillGroups.map((group) => {
+            const project = getProjectBySlug(group.projectSlug);
+            return (
+              <div key={group.label} className="grid gap-3 py-6 md:grid-cols-12 md:gap-8">
+                <h3 className="text-lg font-medium text-fg md:col-span-3">{group.label}</h3>
+                <div className="md:col-span-6">
+                  <p className="text-base font-medium leading-relaxed text-fg">{group.tools.join(" · ")}</p>
+                  <p className="mt-2 text-base leading-relaxed text-fg-soft">{group.description}</p>
+                </div>
+                {project ? <div className="md:col-span-3 md:text-right"><Link href={`/work/${project.slug}`} className="inline-flex min-h-11 items-center gap-2 text-sm text-fg underline decoration-line underline-offset-4 transition-colors hover:text-accent">{project.name} <span aria-hidden>↗</span></Link></div> : null}
+              </div>
+            );
+          })}
+        </div>
       </Container>
     </section>
-  );
-}
-
-function SystemGroup({ group }: { group: (typeof systemStack)[number] }) {
-  return (
-    <div className="group flex flex-col gap-5">
-      <div className="flex items-baseline gap-3 border-b border-line pb-2">
-        <span className="font-mono text-[11px] tracking-[0.18em] text-accent">
-          {group.index}
-        </span>
-        <span className="mono-label text-fg-soft">{group.label}</span>
-      </div>
-      <ul className="flex flex-col gap-4">
-        {group.items.map((it) => (
-          <li key={it.name} className="flex flex-col gap-1.5">
-            <span className="font-mono text-[13.5px] text-fg">{it.name}</span>
-            <span className="text-[13px] leading-relaxed text-fg-soft">
-              {it.role}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

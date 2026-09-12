@@ -1,158 +1,43 @@
+/** Project records expose contribution and live evidence without scroll choreography. */
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { MonoTag } from "@/components/primitives/mono-meta";
-import type { Project } from "@/lib/projects";
 import { ProjectArt } from "./project-art";
+import type { Project } from "@/lib/projects";
 
-/**
- * Editorial case-study card. Two-column on desktop (art + content),
- * stacks on mobile. Used inside the scroll-stack so each card behaves
- * like a self-contained spec sheet.
- *
- * Pass `vt` to opt this card into View Transitions — only one card per
- * slug should opt in to avoid duplicate view-transition-name collisions.
- */
-export function WorkCard({
-  project,
-  className,
-  vt = false,
-}: {
-  project: Project;
-  className?: string;
-  vt?: boolean;
-}) {
-  const statusLabel: Record<Project["status"], { label: string; tone: "ok" | "default" | "warn" }> = {
-    live: { label: "live in production", tone: "ok" },
-    "partial-live": { label: "partial · live surfaces", tone: "warn" },
-    "private-client": { label: "private client work", tone: "default" },
-    "in-development": { label: "in development", tone: "warn" },
-  };
-  const s = statusLabel[project.status];
+const statusLabels: Record<Project["status"], string> = {
+  live: "Live",
+  "partial-live": "Partly live · in development",
+  "private-client": "Private project",
+  "in-development": "In development",
+};
 
+export function WorkCard({ project }: { project: Project }) {
   return (
-    <article
-      className={cn(
-        "group relative overflow-hidden rounded-xl border border-line bg-bg-elev/95 shadow-[0_24px_60px_-30px_rgb(0_0_0_/_0.6)] backdrop-blur-sm",
-        className,
-      )}
-    >
-      {/* Top metadata strip */}
-      <div className="flex items-center justify-between border-b border-line/80 px-6 py-3 md:px-8">
-        <MonoTag tone={s.tone}>{s.label}</MonoTag>
-        <span className="mono-label">
-          <span className="text-accent">№{project.index}</span>
-          <span className="mx-2 text-faint">/</span>
-          {project.year}
-        </span>
-      </div>
-
-      {/* Body grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 md:items-stretch">
-        {/* Art slot — stretches to match content height on desktop; cover fills it */}
-        <div
-          className="relative aspect-[5/4] min-h-[260px] border-b border-line sm:aspect-[4/3] md:col-span-7 md:aspect-auto md:min-h-[320px] md:border-b-0 md:border-r"
-          style={
-            vt
-              ? ({ viewTransitionName: `work-art-${project.slug}` } as React.CSSProperties)
-              : undefined
-          }
-        >
-          <ProjectArt project={project} imageFit="cover" priority={project.index === "01"} />
+    <article data-work-card className="grid gap-6 border-b border-line py-8 md:grid-cols-12 md:gap-8 md:py-10">
+      <div className="md:col-span-4">
+        <div className="relative aspect-video overflow-hidden border border-line bg-bg-elev" style={{ viewTransitionName: `work-art-${project.slug}` }}>
+          <ProjectArt project={project} imageFit="cover" sizes="(min-width: 1480px) 450px, (min-width: 768px) 33vw, 100vw" />
         </div>
-
-        {/* Content slot */}
-        <div className="flex flex-col gap-5 p-6 md:col-span-5 md:gap-6 md:p-8">
-          <header className="flex flex-col gap-2">
-            <span className="mono-label">{project.kind}</span>
-            <h3
-              className="font-display text-balance text-5xl text-fg md:text-6xl"
-              style={
-                vt
-                  ? ({ viewTransitionName: `work-name-${project.slug}` } as React.CSSProperties)
-                  : undefined
-              }
-            >
-              {project.name}
-            </h3>
-          </header>
-
-          <p className="text-pretty text-[15px] leading-relaxed text-fg-soft">
-            {project.tagline}
-          </p>
-
-          {/* Metrics row — spec-sheet bullets */}
-          <ul className="flex flex-col gap-2 border-t border-line/80 pt-5">
-            {project.metrics.map((m) => (
-              <li
-                key={m.label}
-                className="flex items-baseline justify-between gap-4 font-mono text-[12px]"
-              >
-                <span className="mono-label">{m.label}</span>
-                <span className="flex-1 border-b border-dashed border-line/80 translate-y-[-3px]" />
-                <span className="text-fg-soft">{m.value}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Stack chips */}
-          <div className="flex flex-wrap gap-1.5">
-            {project.stack.map((s) => (
-              <span
-                key={s}
-                className="rounded-full border border-line bg-bg/40 px-2.5 py-1 font-mono text-[10.5px] tracking-tight text-fg-soft"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
-
-          {/* Footer actions */}
-          <footer className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line/80 pt-5">
-            <Link
-              href={`/work/${project.slug}`}
-              className="group/cta inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 font-mono text-[11.5px] text-bg transition-transform hover:-translate-y-0.5"
-            >
-              Read case study
-              <span
-                aria-hidden
-                className="transition-transform group-hover/cta:translate-x-0.5"
-              >
-                →
-              </span>
-            </Link>
-
-            {project.url ? (
-              <Link
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="font-mono text-[11.5px] text-fg-soft underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-              >
-                {prettyHost(project.url)} ↗
-              </Link>
-            ) : null}
-
-            {project.github ? (
-              <Link
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                className="font-mono text-[11.5px] text-fg-soft underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-              >
-                source ↗
-              </Link>
-            ) : null}
-          </footer>
+        <p className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 font-mono text-xs text-muted">
+          <span>{project.year}</span>
+          <span>{statusLabels[project.status]}</span>
+        </p>
+      </div>
+      <div className="md:col-span-8">
+        <h3 className="font-display text-3xl text-fg md:text-4xl" style={{ viewTransitionName: `work-name-${project.slug}` }}>
+          {project.name}
+        </h3>
+        <p className="mt-3 text-sm font-medium text-accent">{project.contribution}</p>
+        <p className="mt-3 max-w-3xl text-base leading-relaxed text-fg-soft">{project.tagline}</p>
+        <ul aria-label={`${project.name} main technologies`} className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-mono text-xs leading-relaxed text-muted">
+          {project.coreStack.map((item) => <li key={item}>{item}</li>)}
+        </ul>
+        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1">
+          <Link href={`/work/${project.slug}`} className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent">Case study <span aria-hidden>→</span></Link>
+          {project.url ? <Link href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit ${project.name} live site`} className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft transition-colors hover:text-accent">Live site <span aria-hidden>↗</span></Link> : null}
+          {project.playstore ? <Link href={project.playstore} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft transition-colors hover:text-accent">Google Play <span aria-hidden>↗</span></Link> : null}
+          {project.github ? <Link href={project.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft transition-colors hover:text-accent">Source <span aria-hidden>↗</span></Link> : null}
         </div>
       </div>
     </article>
   );
-}
-
-function prettyHost(url: string): string {
-  try {
-    return new URL(url).host.replace(/^www\./, "");
-  } catch {
-    return url;
-  }
 }

@@ -1,0 +1,73 @@
+## The brief
+
+Ecube needed a platform to run a Free Fire tournament from registration through qualification. Team captains need to submit a roster, find their group, and know when and where to play. Operators need to manage rooms and results. Admins need to review entries, allocate teams, and publish the next round.
+
+Those workflows meet at match time. A changed room password, a rescheduled match, or a corrected result has to reach the right people without losing the record of what happened.
+
+## My role
+
+<Callout label="scope">
+Full-stack development at Ecube, where I joined full-time in July 2026. I built the Next.js participant site, admin and operator workspaces, Hono API, database schema, authentication, live updates, and background email workflows.
+</Callout>
+
+## Three views of the same tournament
+
+- **Participants:** English and Bangla interfaces, team and player registration, saved drafts, submission status, group schedules, room credentials, results, and group chat.
+- **Operators:** assigned groups and match slots, room and Match ID controls, result review, rehost requests, and live coverage of the matches they run.
+- **Admins:** registration review, roster management, seeded team allocation, operator assignments, schedule publication, result adjudication, and qualification into later rounds.
+
+The public entry point is [tour.ecube.gg](https://tour.ecube.gg/). Tournament details and participant workflows require sign-in; staff tools are restricted by role and assignment.
+
+## The approach
+
+The project is a Turborepo with a Next.js 16 web app and a Hono API running on Bun. Shared packages hold the oRPC contract, Drizzle schema, Better-Auth setup, UI components, storage, and email templates. TanStack Query connects the web surfaces to the typed API.
+
+Postgres keeps registration, allocation, schedule, and result history together. Socket.IO carries group chat and refresh events. Inngest runs background email workflows, Resend delivers the messages, and Cloudflare R2 stores tournament artwork, team logos, and rulebooks.
+
+<Stack
+  items={[
+    { name: "Next.js 16 + next-intl", note: "Participant, operator, and admin routes, with English and Bangla interfaces.", group: "web" },
+    { name: "Hono + Bun + oRPC", note: "Typed API contracts shared with the web app through workspace packages.", group: "api" },
+    { name: "Drizzle + Postgres", note: "Registration, immutable allocation history, match operations, and result publication.", group: "data" },
+    { name: "Better-Auth", note: "Account sessions with server-side role, group, and operator-assignment checks.", group: "access" },
+    { name: "Socket.IO", note: "Group chat and scoped refresh events for rooms, results, and schedule changes.", group: "live" },
+    { name: "Inngest + Resend", note: "Queued confirmations, schedules, room credentials, and rehost notifications.", group: "delivery" },
+    { name: "Cloudflare R2", note: "Presigned media uploads for tournament artwork, team logos, and rulebooks.", group: "media" },
+  ]}
+/>
+
+## The hard parts
+
+### A draw that can be checked again
+
+Allocation starts from an entrant snapshot and a stored seed. The same inputs reproduce the same group assignments, with an algorithm version and assignment digest recorded alongside them. Approved additions fill the trailing group before creating new ones, preserving existing team positions.
+
+That distinction matters once a schedule has been shared. Adding an entrant should not silently redraw everyone else’s tournament.
+
+### Seven rounds without seven separate systems
+
+Round definitions hold the facts that change: group capacity, dates, operator slots, maps, match counts, and qualification rules. Later rounds reuse the shared operations modules and UI through registered configuration and storage adapters.
+
+The codebase configures seven rounds, including league and knockout stages. A new schedule or advancement cutoff can use the same room controls, result review, participant views, and notification flows.
+
+### Results with a publication boundary
+
+A provider result still needs to be matched to the registered roster. The result workflow separates captured match data, staff review, and published standings, including disqualification reasons and qualification decisions.
+
+Finalized standings supply the next round’s entrants. Corrected results and registration identities retain an audit trail so staff can trace a decision back to the roster and match evidence used.
+
+### Live changes with durable records
+
+Room details and results belong in storage before a live refresh tells clients to read them. Result updates use a durable outbox, and chat messages remain available after reconnecting. Authorization resolves the participant’s group or the operator’s assignment on the server.
+
+Email handles the updates people need away from the site: confirmations, schedules, room credentials, and rescheduled matches. Delivery is queued separately from the operator’s save action, with recipient scoping and retry handling.
+
+## What’s running
+
+<StatRow>
+  <Stat value="3" label="participant · operator · admin" />
+  <Stat value="7" label="configured tournament rounds" />
+  <Stat value="2" label="languages · English + Bangla" />
+</StatRow>
+
+The platform is live at [tour.ecube.gg](https://tour.ecube.gg/), with Return of King: Free Fire on the public homepage. The figures above describe the implemented product: its interfaces, round configuration, and language support.

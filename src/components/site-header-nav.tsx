@@ -46,25 +46,40 @@ function useActiveSection(): NavSectionId | null {
       setActive(bestRatio > 0 ? bestId : null);
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          ratios.set(entry.target.id, entry.intersectionRatio);
-        }
-        pickActive();
-      },
-      {
-        rootMargin: "-56px 0px -45% 0px",
-        threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.65, 0.8, 1],
-      },
-    );
+    let observer: IntersectionObserver | undefined;
+    let headerHeight = -1;
 
-    for (const id of navSectionIds) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
+    const observeSections = () => {
+      const height = document.querySelector<HTMLElement>("[data-site-header]")?.offsetHeight ?? 56;
+      if (observer && height === headerHeight) return;
+      headerHeight = height;
+      observer?.disconnect();
+      ratios.clear();
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            ratios.set(entry.target.id, entry.intersectionRatio);
+          }
+          pickActive();
+        },
+        {
+          rootMargin: `-${headerHeight}px 0px -45% 0px`,
+          threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.65, 0.8, 1],
+        },
+      );
 
-    return () => observer.disconnect();
+      for (const id of navSectionIds) {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      }
+    };
+
+    observeSections();
+    window.addEventListener("resize", observeSections);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", observeSections);
+    };
   }, [pathname]);
 
   return pathname === "/" ? active : null;
@@ -77,69 +92,71 @@ export function SiteHeaderNav() {
   const { data: session } = authClient.useSession();
 
   return (
-    <nav
-      aria-label="Primary"
-      className="flex min-w-0 shrink-0 items-center justify-end gap-0 sm:gap-1"
-    >
-      {isOperator ? (
-        <>
-          <Link
-            href="/"
-            className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-fg"
-          >
-            <span className="mono-label text-faint group-hover:text-accent">←</span>
-            Back to Site
-          </Link>
-          {session && (
-            <>
-              <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
-              <button
-                onClick={async () => {
-                  await authClient.signOut({
-                    fetchOptions: {
-                      onSuccess: () => {
-                        window.location.href = "/operator/login";
-                      },
-                    },
-                  });
-                }}
-                className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-accent cursor-pointer"
-              >
-                Sign Out
-              </button>
-            </>
-          )}
-        </>
-      ) : (
-        <>
-          {navSections.map((section) => (
-            <NavItem
-              key={section.id}
-              href={section.href}
-              label={section.label}
-              idx={section.idx}
-              isActive={active === section.id}
-            />
-          ))}
-          <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
-          <Link
-            href={site.cvUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent sm:inline-flex"
-          >
-            CV
-            <span
-              aria-hidden
-              className="text-faint transition-colors group-hover:text-accent"
+    <>
+      <nav
+        aria-label="Primary"
+        className="col-span-2 row-start-2 flex min-w-0 items-center justify-between gap-0 md:col-span-1 md:col-start-2 md:row-start-1 md:justify-end md:gap-1"
+      >
+        {isOperator ? (
+          <>
+            <Link
+              href="/"
+              className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-fg"
             >
-              ↗
-            </span>
-          </Link>
-        </>
-      )}
-      <ThemeToggle className="hidden sm:inline-flex" />
-    </nav>
+              <span className="mono-label text-faint group-hover:text-accent">←</span>
+              Back to Site
+            </Link>
+            {session && (
+              <>
+                <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
+                <button
+                  onClick={async () => {
+                    await authClient.signOut({
+                      fetchOptions: {
+                        onSuccess: () => {
+                          window.location.href = "/operator/login";
+                        },
+                      },
+                    });
+                  }}
+                  className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-accent cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {navSections.map((section) => (
+              <NavItem
+                key={section.id}
+                href={section.href}
+                label={section.label}
+                idx={section.idx}
+                isActive={active === section.id}
+              />
+            ))}
+            <div className="mx-2 hidden h-4 w-px bg-line md:block" />
+            <Link
+              href={site.cvUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group hidden min-h-11 items-center gap-1.5 px-3 text-sm font-medium text-fg transition-colors hover:text-accent md:inline-flex"
+            >
+              CV
+              <span
+                aria-hidden
+                className="text-faint transition-colors group-hover:text-accent"
+              >
+                ↗
+              </span>
+            </Link>
+          </>
+        )}
+      </nav>
+      <ThemeToggle className="col-start-2 row-start-1 justify-self-end md:col-start-3" />
+    </>
   );
 }
 
@@ -159,7 +176,7 @@ function NavItem({
       href={href}
       aria-current={isActive ? "location" : undefined}
       className={cn(
-        "group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm",
+        "group relative inline-flex min-h-11 items-center gap-1 rounded-sm px-1 py-1.5 text-[13px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm md:min-h-9",
         isActive
           ? "text-fg underline decoration-accent decoration-1 underline-offset-[5px]"
           : "text-fg-soft hover:text-fg",
@@ -167,7 +184,7 @@ function NavItem({
     >
       <span
         className={cn(
-          "mono-label hidden text-[11px] sm:inline sm:text-[12px]",
+          "mono-label hidden text-[12px] xl:inline",
           isActive
             ? "text-accent"
             : "text-faint group-hover:text-accent",

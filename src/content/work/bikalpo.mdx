@@ -2,7 +2,7 @@
 
 
 
-A Dhaka-based distributor needed commerce across wholesale, retail, and consumer. Not a downsized B2C shop with a wholesale login bolted on. Their warehouse sells in tiers, two kinds of retail shops buy under different rules, and consumers order like a normal storefront. Off-the-shelf Shopify-style platforms collapse under all of it.
+A Dhaka-based distributor needed a commerce platform for warehouses, retailers, and consumers. Each audience has different pricing and ordering rules, while sharing the same product catalog.
 
 
 
@@ -40,7 +40,7 @@ The status quo had four pain points:
 
 
 
-The platform is a [Turborepo](https://turbo.build) monorepo: a Next.js web storefront, a React Native buyer app, and a Hono server that exposes catalogue, orders, and content through an [oRPC](https://orpc.unnoq.com) contract with full API documentation. Both clients import the same typed client, so the boundary stays honest.
+The platform is a [Turborepo](https://turbo.build) monorepo: a Next.js storefront, a React Native buyer app, and a Hono server. Both apps use a shared [oRPC](https://orpc.unnoq.com) client for catalogue, order, and content APIs.
 
 
 
@@ -48,7 +48,15 @@ Postgres holds catalogue rows and Lexical JSON for product copy and policy pages
 
 
 
-<Diagram caption="web + native through Hono · oRPC — documented API, shared Postgres">
+<Diagram
+  caption="web + native through Hono · oRPC — documented API, shared Postgres"
+  items={[
+    { label: "Web · tiered storefront", detail: "Next.js 16 provides the web storefront for the platform’s participant tiers." },
+    { label: "Native · buyer app", detail: "The Expo buyer app is part of the platform under development." },
+    { label: "Shared API", detail: "Both clients use the documented Hono and oRPC API through a shared typed client." },
+    { label: "Shared data", detail: "Postgres stores catalog and content data, with Drizzle, Better-Auth, and Lexical." },
+  ]}
+>
 
   <svg viewBox="0 0 900 380" className="h-auto w-full text-line">
 

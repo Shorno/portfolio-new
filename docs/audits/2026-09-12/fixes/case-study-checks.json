@@ -1,0 +1,123 @@
+[
+  {
+    "slug": "ecube-tournament",
+    "label": "ecube-tournament-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": null,
+    "localBrokenRefs": 0,
+    "placeholder": false
+  },
+  {
+    "slug": "selfshop",
+    "label": "selfshop-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": {
+      "bodyFont": "16px",
+      "text": "Web · reseller\nThe Next.js client uses Redux Toolkit and Ant Design for the reseller dashboard.\nWeb · supplier\nThe same Next.js app provides the supplier dashboard, scoped to its role.\nNative · reseller\nThe Expo and Tamagui reseller app is available on Google Play.\nShared API\nAll three surfaces consume the Laravel REST API. Pusher channels carry updates to the clients that need them.",
+      "width": 285,
+      "y": 4520.359375
+    },
+    "localBrokenRefs": 0,
+    "placeholder": false
+  },
+  {
+    "slug": "bikalpo",
+    "label": "bikalpo-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": {
+      "bodyFont": "16px",
+      "text": "Web · tiered storefront\nNext.js 16 provides the web storefront for the platform’s participant tiers.\nNative · buyer app\nThe Expo buyer app is part of the platform under development.\nShared API\nBoth clients use the documented Hono and oRPC API through a shared typed client.\nShared data\nPostgres stores catalog and content data, with Drizzle, Better-Auth, and Lexical.",
+      "width": 285,
+      "y": 3338.734375
+    },
+    "localBrokenRefs": 0,
+    "placeholder": false
+  },
+  {
+    "slug": "bright-tutor",
+    "label": "bright-tutor-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": {
+      "bodyFont": "16px",
+      "text": "Web · public and admin\nA marketing site and an admin console have separate web surfaces.\nWeb · teacher and guardian\nTeachers and guardians each use a role-specific web portal.\nNative · teacher and guardian\nTwo Expo apps connect to the same API as the web portals.\nShared API and schema\nHono and oRPC connect every surface to Postgres. Shared packages hold the Drizzle schema, authentication, and contracts.",
+      "width": 285,
+      "y": 2868.859375
+    },
+    "localBrokenRefs": 0,
+    "placeholder": false
+  },
+  {
+    "slug": "stock-management",
+    "label": "stock-management-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": {
+      "bodyFont": "16px",
+      "text": "Movement log\nReceiving, sales, transfers, and returns each record a stock movement.\nSum the movements\nIn this example: 100 received, 3 sold, 10 transferred, 1 sold, and 1 returned.\nDerived count · 87 units\nSKU-1042 has 87 units on hand. The count is calculated from the log rather than stored as a separate stock total.",
+      "width": 285,
+      "y": 3021.609375
+    },
+    "localBrokenRefs": 0,
+    "placeholder": false
+  },
+  {
+    "slug": "padma-service",
+    "label": "padma-service-mobile-paper",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "theme": "paper",
+    "width": 375,
+    "header": 100,
+    "cards": 0,
+    "clipped": [],
+    "diagram": {
+      "bodyFont": "16px",
+      "text": "Web · public and admin\nNext.js 16 serves the public catalog and admin CMS in separate route groups.\nAPI · Hono on Bun\nThe storefront and CMS use one typed oRPC contract for services, content, and listing approvals.\nShared data\nPostgres stores the catalog and workflow. Drizzle defines the schema; Better-Auth handles sessions.",
+      "width": 285,
+      "y": 3996.296875
+    },
+    "localBrokenRefs": 0,
+    "placeholder": false
+  }
+]

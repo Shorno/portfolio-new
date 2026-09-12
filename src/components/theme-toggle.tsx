@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
+/** Theme choice stays reachable by touch and keyboard at every viewport width. */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -18,7 +19,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={`Switch to ${isDark ? "paper" : "dark"} theme`}
       onClick={() => setTheme(isDark ? "paper" : "dark")}
       className={cn(
-        "group relative inline-flex h-7 items-center gap-2 rounded-full border border-line-strong/60 bg-bg-elev/40 px-1 backdrop-blur-sm transition-colors hover:border-line-strong",
+        "group relative inline-flex h-11 items-center gap-2 rounded-sm px-2 transition-colors hover:bg-bg-elev",
         className,
       )}
     >

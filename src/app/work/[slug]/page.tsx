@@ -1,3 +1,6 @@
+/**
+ * Featured case-study routes. Keep the explicit MDX map in sync with projects.
+ */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -8,11 +11,13 @@ import { buildPageMetadata, caseStudyJsonLd } from "@/lib/seo";
 
 import BikalpoContent from "@/content/work/bikalpo.mdx";
 import BrightTutorContent from "@/content/work/bright-tutor.mdx";
+import EcubeTournamentContent from "@/content/work/ecube-tournament.mdx";
 import PadmaServiceContent from "@/content/work/padma-service.mdx";
 import SelfShopContent from "@/content/work/selfshop.mdx";
 import StockManagementContent from "@/content/work/stock-management.mdx";
 
 const contentMap: Record<string, React.ComponentType> = {
+  "ecube-tournament": EcubeTournamentContent,
   selfshop: SelfShopContent,
   bikalpo: BikalpoContent,
   "bright-tutor": BrightTutorContent,

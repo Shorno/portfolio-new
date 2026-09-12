@@ -145,14 +145,16 @@ function ShotPlaceholder({ label }: { label: string }) {
   );
 }
 
-/** Figure wrapping inline SVG or any diagram children.
- *  Breaks out of the prose column on wider screens for breathing room. */
+/** Wide-screen architecture drawing with a readable, semantic compact layout.
+ *  The text also supplies the diagram's content to assistive technology. */
 export function Diagram({
   children,
+  items,
   caption,
   className,
 }: {
   children: ReactNode;
+  items: Array<{ label: string; detail: string }>;
   caption?: string;
   className?: string;
 }) {
@@ -164,7 +166,17 @@ export function Diagram({
           className,
         )}
       >
-        {children}
+        <div aria-hidden="true" className="hidden xl:block">
+          {children}
+        </div>
+        <dl className="divide-y divide-line xl:sr-only">
+          {items.map((item) => (
+            <div key={item.label} className="py-5 first:pt-0 last:pb-0">
+              <dt className="font-mono text-sm text-fg">{item.label}</dt>
+              <dd className="mt-2 text-base leading-relaxed text-fg-soft">{item.detail}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
       {caption ? (
         <figcaption className="mono-label mt-3 text-faint">

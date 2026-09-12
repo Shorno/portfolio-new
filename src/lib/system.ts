@@ -1,128 +1,42 @@
 /**
- * The actual toolkit. Grouped, with a role-sized note for each piece.
- * Order within a group matters — most-reached-for is first.
+ * Skills grouped by engineering responsibility. Each points to work that uses them.
+ * Repository language colors remain separate for the optional code archive.
  */
-
-export type SystemGroup = {
+export type SkillGroup = {
   label: string;
-  index: string;
-  items: Array<{
-    name: string;
-    role: string;
-  }>;
+  tools: string[];
+  description: string;
+  projectSlug: string;
 };
 
-export const systemStack: SystemGroup[] = [
+export const skillGroups: SkillGroup[] = [
   {
-    index: "A",
-    label: "Runtime & Frameworks",
-    items: [
-      {
-        name: "TypeScript",
-        role: "TypeScript-first; comfortable in JavaScript codebases when needed.",
-      },
-      {
-        name: "Next.js",
-        role: "Default for full-stack web. App Router, RSC, server actions.",
-      },
-      {
-        name: "Hono",
-        role: "When the API deserves its own process. Edge or Node.",
-      },
-      {
-        name: "React Native · Expo",
-        role: "Native apps when web isn't enough. EAS for delivery.",
-      },
-    ],
+    label: "Frontend",
+    tools: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
+    description: "Responsive interfaces, forms, data tables, and state management.",
+    projectSlug: "stock-management",
   },
   {
-    index: "B",
-    label: "Data & Auth",
-    items: [
-      {
-        name: "PostgreSQL",
-        role: "Source of truth. Always.",
-      },
-      {
-        name: "Drizzle ORM",
-        role: "TypeScript schema, generated migrations, no magic.",
-      },
-      {
-        name: "Neon",
-        role: "Managed Postgres. Branching for previews.",
-      },
-      {
-        name: "Better-Auth",
-        role: "Sessions, OAuth, role gating. The auth library I trust.",
-      },
-      {
-        name: "oRPC",
-        role: "End-to-end typed contracts between server and every client.",
-      },
-    ],
+    label: "Backend & data",
+    tools: ["Hono", "oRPC", "PostgreSQL", "Drizzle", "Better-Auth"],
+    description: "API design, database schemas, authentication, and role-based access.",
+    projectSlug: "ecube-tournament",
   },
   {
-    index: "C",
-    label: "Interface",
-    items: [
-      {
-        name: "React 19",
-        role: "Server + client components. Compiler when it earns its keep.",
-      },
-      {
-        name: "Tailwind CSS v4",
-        role: "Design tokens via @theme. No config file, no excuses.",
-      },
-      {
-        name: "shadcn/ui",
-        role: "Owned components, not a dependency. Tailored each time.",
-      },
-      {
-        name: "Ant Design",
-        role: "Reach for it on dashboard-heavy projects with dense tables and forms.",
-      },
-      {
-        name: "Motion (Framer)",
-        role: "Scroll-linked animation, layout transitions, presence.",
-      },
-      {
-        name: "Lexical",
-        role: "Rich text content stored as JSON alongside everything else.",
-      },
-    ],
+    label: "Mobile",
+    tools: ["React Native", "Expo", "Tamagui"],
+    description: "Mobile applications that share APIs with the web product.",
+    projectSlug: "selfshop",
   },
   {
-    index: "D",
-    label: "Build & Ship",
-    items: [
-      {
-        name: "Turborepo",
-        role: "Monorepo pipelines for shared packages across web + native + server.",
-      },
-      {
-        name: "pnpm",
-        role: "Disk-efficient package manager. Workspaces, not lifecycle theatre.",
-      },
-      {
-        name: "Vite",
-        role: "When the app doesn't need server-rendering, this is the shell.",
-      },
-      {
-        name: "Hostinger VPS",
-        role: "Where projects live. Owned hardware, predictable cost, no per-deploy lock-in.",
-      },
-      {
-        name: "Coolify",
-        role: "Self-hosted control panel for the VPS — deploys, builds, and CI/CD in one place.",
-      },
-    ],
+    label: "Deployment",
+    tools: ["Coolify", "VPS hosting"],
+    description: "Deploying web applications and APIs to a VPS.",
+    projectSlug: "padma-service",
   },
 ];
 
-/**
- * GitHub's language colors (subset of the ones I actually use).
- * Used for the colored dot next to repos in §03 INDEX.
- */
+/** GitHub language colors are metadata in the code archive, not interface tokens. */
 export const languageColor: Record<string, string> = {
   TypeScript: "#3178c6",
   JavaScript: "#f1e05a",

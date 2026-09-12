@@ -23,7 +23,14 @@ I shipped this as two separate repos: a Vite + React 19 SPA and a TypeScript bac
 
 The data model treats every stock change as an immutable movement event (receiving, sale, transfer, adjustment). The current count is derived from the sum. Nothing &ldquo;updates&rdquo; a stock level directly. That single decision makes the audit trail free and the bugs visible.
 
-<Diagram caption="movements are the truth; current counts are derived">
+<Diagram
+  caption="movements are the truth; current counts are derived"
+  items={[
+    { label: "Movement log", detail: "Receiving, sales, transfers, and returns each record a stock movement." },
+    { label: "Sum the movements", detail: "In this example: 100 received, 3 sold, 10 transferred, 1 sold, and 1 returned." },
+    { label: "Derived count · 87 units", detail: "SKU-1042 has 87 units on hand. The count is calculated from the log rather than stored as a separate stock total." },
+  ]}
+>
   <svg viewBox="0 0 900 360" className="h-auto w-full text-line">
     <g fontFamily="var(--font-mono)" fontSize="14" fill="var(--fg-soft)">
       {/* movements column */}
@@ -93,8 +100,7 @@ Carts, draft transfers, draft returns. Anything mid-flight lives in [Zustand](ht
 
 <StatRow>
   <Stat value="2" label="repos · frontend + backend" />
-  <Stat value="∞" label="audit history · derived from events" />
-  <Stat value="0" label="manual stock reconciliations · placeholder" />
+  <Stat value="Events" label="audit trail · stock movements" />
   <Stat value="A4 / 80mm" label="invoice formats supported" />
 </StatRow>
 

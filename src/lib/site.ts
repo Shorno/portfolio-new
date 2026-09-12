@@ -8,44 +8,25 @@ export const site = {
   phone: "+8801841151827",
   linkedin: "https://www.linkedin.com/in/shorno/",
   facebook: "https://www.facebook.com/MrShorno911/",
-  url: "https://www.shorno.me",
+  url: "https://shorno.dev",
   github: "https://github.com/Shorno",
   github_handle: "Shorno",
   /** Public CV link — opens in a new tab from the hero CTA and the header. */
-  cvUrl:
-    "https://drive.google.com/file/d/14hbpyAh-xJkCNMS-3hGcLWydYXj8Idbm/view?usp=sharing",
-  status: "available" as "available" | "limited" | "booked",
-  /** Hero H1 — accent word renders in Fraunces italic. */
-  tagline: {
-    lead: "Full-stack engineer for the ",
-    accent: "boring",
-    tail: " systems your company actually runs on.",
-  },
-  /** Meta description — search + social previews (keep tagline for on-page voice). */
+  cvUrl: "/cv/shorno-kamal-roy-cv.pdf",
+  /** Public profile copy is written for hiring teams. */
   seoDescription:
-    "Full-stack developer in Dhaka building production web apps with Next.js, React, TypeScript, PostgreSQL, and React Native. ~2 years shipping client and team projects. Open to junior full-stack / frontend roles and selective client work.",
+    "Shorno Kamal Roy, full-stack engineer in Dhaka. Currently at Ecube and AlgoVerse, building web and mobile applications with React, Next.js, TypeScript, and PostgreSQL. Experience, project case studies, and CV.",
   subline:
-    "Multi-party marketplaces, role-based platforms, wholesale tooling. From planning through to the live product.",
+    "I build web applications for tournament, commerce, and education teams.",
+  focus: "Full-stack web development: user interfaces, APIs, and relational data.",
+  coreSkills: ["TypeScript", "React", "Next.js", "PostgreSQL"],
   hireEmailSubject: "Role inquiry",
-  projectEmailSubject: "Project inquiry",
   seeking: {
     open: true,
-    /** Mono strip below hero subline. */
-    strip:
-      "Open to junior full-stack / frontend roles \u00b7 full-time, part-time, or remote \u00b7 Dhaka",
-    headline: "Open to junior full-stack and frontend roles",
+    headline: "Open to full-stack engineering roles",
     roles: [
-      "Junior Full Stack Developer",
-      "Frontend Developer",
-      "React / Next.js Developer",
+      "Full Stack Developer",
     ],
-    employment: ["full-time", "part-time", "internship", "remote"],
-    note: "Especially roles where I can contribute to production work from day one.",
-    graduationNote: "BSc CSE, graduating 2026 \u2014 open to full-time now.",
-    /** Contact availability rail. */
-    hiringLabel: "OPEN TO ROLES",
-    hiringDetail:
-      "Junior full-stack / frontend. Full-time, part-time, internship, remote.",
   },
 } as const;
 

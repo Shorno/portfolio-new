@@ -1,0 +1,249 @@
+{
+  "home": [
+    {
+      "name": "desktop-dark",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 4831,
+      "pageWidth": 1425,
+      "scrollWidth": 1425,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable dark",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    },
+    {
+      "name": "phone-paper",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 7650,
+      "pageWidth": 375,
+      "scrollWidth": 375,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable paper",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    },
+    {
+      "name": "phone-320-paper",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 8411,
+      "pageWidth": 305,
+      "scrollWidth": 305,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable paper",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    },
+    {
+      "name": "tablet-paper",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 5019,
+      "pageWidth": 753,
+      "scrollWidth": 753,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable paper",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    },
+    {
+      "name": "short-desktop-dark",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 4791,
+      "pageWidth": 1009,
+      "scrollWidth": 1009,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable dark",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    },
+    {
+      "name": "final-desktop-paper",
+      "badCopy": false,
+      "cards": 6,
+      "clippedTitles": [],
+      "headings": [
+        "ShornoKamal Roy.",
+        "Experience",
+        "Selected projects",
+        "Skills",
+        "Contact"
+      ],
+      "pageHeight": 4831,
+      "pageWidth": 1425,
+      "scrollWidth": 1425,
+      "theme": "geistsans_d5a4f12f-module__Vho9XG__variable geistmono_157ca88a-module__kRrwMG__variable fraunces_5c77859d-module__j9x9hW__variable paper",
+      "viewNames": [
+        "work-art-ecube-tournament",
+        "work-name-ecube-tournament",
+        "work-art-selfshop",
+        "work-name-selfshop",
+        "work-art-bikalpo",
+        "work-name-bikalpo",
+        "work-art-bright-tutor",
+        "work-name-bright-tutor",
+        "work-art-stock-management",
+        "work-name-stock-management",
+        "work-art-padma-service",
+        "work-name-padma-service"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "slug": "ecube-tournament",
+      "clippedHeadings": [],
+      "contribution": "Full-stack development",
+      "liveLink": "https://tour.ecube.gg/",
+      "scrollWidth": 375,
+      "title": "Ecube Tournament",
+      "width": 375
+    },
+    {
+      "slug": "selfshop",
+      "clippedHeadings": [],
+      "contribution": "Web & mobile frontend",
+      "liveLink": "https://selfshop.com.bd/",
+      "scrollWidth": 375,
+      "title": "SelfShop",
+      "width": 375
+    },
+    {
+      "slug": "bikalpo",
+      "clippedHeadings": [],
+      "contribution": "Full-stack development",
+      "liveLink": "https://b2b.bikalpo.com/",
+      "scrollWidth": 375,
+      "title": "Bikalpo",
+      "width": 375
+    },
+    {
+      "slug": "bright-tutor",
+      "clippedHeadings": [],
+      "contribution": "Full-stack & mobile development",
+      "liveLink": "https://brighteducations.com/",
+      "scrollWidth": 375,
+      "title": "Bright Tutor",
+      "width": 375
+    },
+    {
+      "slug": "stock-management",
+      "clippedHeadings": [],
+      "contribution": "Full-stack development",
+      "liveLink": "https://mstamimenterprise.shop/",
+      "scrollWidth": 375,
+      "title": "Stock Management",
+      "width": 375
+    },
+    {
+      "slug": "padma-service",
+      "clippedHeadings": [],
+      "contribution": "Full-stack development",
+      "liveLink": "https://padmaservice.com",
+      "scrollWidth": 375,
+      "title": "Padma Service",
+      "width": 375
+    }
+  ],
+  "caseStudyNavigation": true,
+  "archiveNavigation": true,
+  "finalCopyConfirmed": true
+}

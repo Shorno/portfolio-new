@@ -1,0 +1,106 @@
+[
+  {
+    "bottom": 557.2827911376953,
+    "height": 634.5982666015625,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 492.12640380859375
+      },
+      {
+        "label": "tour.ecube.gg ↗",
+        "y": 499.994384765625
+      }
+    ],
+    "title": "Ecube Tournament",
+    "top": -77.31547546386719
+  },
+  {
+    "bottom": 1061.9375,
+    "height": 628.875,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 995.6875
+      },
+      {
+        "label": "selfshop.com.bd ↗",
+        "y": 1003.6875
+      }
+    ],
+    "title": "SelfShop",
+    "top": 433.0625
+  },
+  {
+    "bottom": 1678.5,
+    "height": 602,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 1583
+      },
+      {
+        "label": "b2b.bikalpo.com ↗",
+        "y": 1591
+      },
+      {
+        "label": "source ↗",
+        "y": 1628.25
+      }
+    ],
+    "title": "Bikalpo",
+    "top": 1076.5
+  },
+  {
+    "bottom": 2308.5,
+    "height": 602,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 2213
+      },
+      {
+        "label": "brighteducations.com ↗",
+        "y": 2258.25
+      }
+    ],
+    "title": "Bright Tutor",
+    "top": 1706.5
+  },
+  {
+    "bottom": 2962.5625,
+    "height": 650.125,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 2867.0625
+      },
+      {
+        "label": "mstamimenterprise.shop ↗",
+        "y": 2912.3125
+      },
+      {
+        "label": "source ↗",
+        "y": 2912.3125
+      }
+    ],
+    "title": "Stock Management",
+    "top": 2312.4375
+  },
+  {
+    "bottom": 3566.0625,
+    "height": 597.125,
+    "links": [
+      {
+        "label": "Read case study→",
+        "y": 3499.8125
+      },
+      {
+        "label": "padmaservice.com ↗",
+        "y": 3507.8125
+      }
+    ],
+    "title": "Padma Service",
+    "top": 2968.9375
+  }
+]

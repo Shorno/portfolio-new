@@ -21,11 +21,13 @@ export function ProjectArt({
   priority = false,
   /** `cover` fills the card slot (homepage work stack). `contain` shows the full frame (case study hero). */
   imageFit = "contain",
+  sizes,
 }: {
   project: Project;
   className?: string;
   priority?: boolean;
   imageFit?: "cover" | "contain";
+  sizes?: string;
 }) {
   if (project.image) {
     const src = cloudinaryImageUrl(project.image, { width: 1920 });
@@ -36,7 +38,11 @@ export function ProjectArt({
           alt={project.imageAlt ?? `${project.name} — product screenshot`}
           fill
           priority={priority}
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          sizes={
+            sizes ?? (imageFit === "cover"
+              ? "(min-width: 768px) 58vw, 100vw"
+              : "100vw")
+          }
           className={cn(
             "bg-bg-elev/60",
             imageFit === "cover"

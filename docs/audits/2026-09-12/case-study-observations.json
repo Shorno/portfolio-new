@@ -1,0 +1,656 @@
+[
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Padma Service"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "User-submitted services without polluting the catalog"
+      },
+      {
+        "level": "H3",
+        "text": "Homepage as data, not hard-coded JSX"
+      },
+      {
+        "level": "H3",
+        "text": "Bilingual SEO without two codebases"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№06 PADMA SERVICE\nLIVE IN PRODUCTION\nSERVICES MARKETPLACE & CMS\n· 2025—2026\nPadma Service\n\nFull-stack platform for Padma Service Company: public service catalog with categories and blogs, phone-OTP member accounts, and an admin console for banners, homepage sections, and user-submitted listings through an approval queue. Next.js 16 storefront plus a Hono API on Bun, Postgres via Drizzle.\n\nVisit live → padmaservice.com\nINDEX\n№06\nYEAR\n2025—2026\nDOMAIN\nServices Marketplace & CMS\nSTATUS\nlive in production\nBUILDS\nsite + admin CMS\nPERF\nSSG + RSC · Next.js 16\nNext.js 16\nReact 19\nHono\noRPC\nDrizzle ORM\nPostgres\nBetter-Auth\nTipTap\nCloudinary\nshadcn/ui\nThe brief\n\nPadma Service Company needed more than a brochure site. They run a wide catalog of professional services (security, home services, vehicle and property listings, and more). The old flow was scattered across phone calls and ad-hoc updates.\n\nThe brief: a public marketing site in Bengali and English, a member area where authenticated users can propose new service listings, and an admin CMS where staff approve, reorder, and publish without touching the database. One Postgres schema behind both surfaces.\n\nMy role\n/ SCOPE\n\nEnd-to-end on a two-repo layout: the Next.js 16 storefront (padma-service) and the Hono + Bun API (padma-service-server). Schema, oRPC contracts, auth, admin tools, and the public catalog.\n\nThe problem\n/ CONSTRAINT\n\nA services marketplace is half CMS, half workflow. Categories, carousels, blogs, and banners change often. Letting anyone publish a listing without review would break trust on day one.\n\nThree tensions showed up early:\n\nCatalog depth: services nest under categories and subcategories, each with its own imagery, card labels, featured flags, and related posts. The admin UI has to edit that graph without losing order.\nMember-submitted listings: logged-in users can request create, edit, or delete operations on services. Those requests sit in a queue (pending → approved / rejected) with admin notes and display order set at approval time.\nAuth that matches the market: phone OTP via SMS (not email-first). Better-Auth on both apps, with the API enforcing role separation between public members and admin operators.\nThe approach\n\nThe storefront is Next.js 16 with route groups for the public site ((client)) and the admin console ((admin)). Data flows through oRPC + TanStack Query. Types are imported from the server package at compile time, so a renamed field breaks the build, not production.\n\nThe API is Hono on Bun with Drizzle against Postgres: services, categories, blogs, banners, homepage sections, media, and the user-service-request workflow. Cloudinary handles uploads; TipTap powers rich blog bodies in the admin.\n\nPublic routes cover home, category browsing, individual service pages, blogs, about-us, and a member dashboard. Admin routes cover the full CMS: services, categories, blog types, blogs, banners, homepage sections, media library, and the service-request inbox.\n\nFIG. — PUBLIC SITE — BILINGUAL METADATA, SERVICE CATALOG ENTRY POINTS\nFIG. — ADMIN CMS — DENSE TABLES FOR THE SERVICE CATALOG\npadma-service\nnext.js 16 · (client) + (admin)\npadma-service-server\nhono · bun · orpc\npostgres\ndrizzle · better-auth\nFIG. — TWO REPOS, ONE ORPC CONTRACT, SHARED POSTGRES\nThe hard parts\nUSER-SUBMITTED SERVICES WITHOUT POLLUTING THE CATALOG\n\nMembers submit create, edit, or delete requests as JSON blobs attached to a workflow row. Admins see a dedicated inbox, set displayOrder on approval, and can leave a note on rejection. Until approval, nothing hits the public service table. The live catalog stays clean.\n\nThe tricky bit is edit and delete: the request carries a serviceId plus serialized payload so admins can diff what changed before approving. Create requests start with no serviceId and materialize a row only after approval.\n\nHOMEPAGE AS DATA, NOT HARD-CODED JSX\n\nHomepage sections, subcategory carousels, and banners are all database-driven with drag-and-drop ordering (@dnd-kit in the admin). Marketing can reshuffle the front page without a deploy. Related posts tie services and blogs together so detail pages cross-sell without manual linking in every entry.\n\nBILINGUAL SEO WITHOUT TWO CODEBASES\n\nRoot metadata targets bn_BD with Bengali titles and descriptions (metadataBase → padmaservice.com). Keywords span security and adjacent service lines the company lists. OG and Twitter images ship from the app directory so shares render correctly on Facebook and messaging apps common in Bangladesh.\n\nNext.js 16 + React 19\nSTOREFRONT\nRoute groups for public site vs admin; TipTap for blog bodies.\nHono + Bun\nAPI\nAPI process with hot reload in dev; Docker image for deploy.\noRPC + TanStack Query\nCONTRACT\nTyped client imported from server types; no drift at the boundary.\nDrizzle + Postgres\nDATA\nServices, categories, blogs, banners, requests, media — one schema.\nBetter-Auth + SMS OTP\nAUTH\nPhone verification for members; admin roles on the same auth tables.\nCloudinary\nMEDIA\nService imagery and media library uploads from the admin.\nWhat's running today\n2\nREPOS · WEB + API\nlive\nPADMASERVICE.COM\nCMS\nADMIN · FULL CATALOG\nOTP\nPHONE AUTH · SMS\n\nThe public site and admin console are in production at padmaservice.com ↗. The API ships in a Docker container alongside the Next.js deploy. Traffic numbers stay with the client. The architecture is built to scale the catalog without restructuring.\n\nWhat I'd do differently\n\nI'd pull the two folders into a Turborepo workspace on day one. The compile-time import of AppRouterClient from the server package already enforces the contract; a monorepo would make shared Zod shapes and Drizzle types a package import instead of a relative path across repo roots. Same pattern I used on Bikalpo and Bright Tutor. This project got there through discipline, not tooling.\n\n← PREVIOUS\n№05\nStock Management\nDISTRIBUTOR OPERATIONS SPA\n↑ ALL CASE STUDIES\nNEXT →\n№01\nEcube Tournament\nESPORTS TOURNAMENT OPERATIONS",
+    "pageWidth": 375,
+    "path": "/work/padma-service",
+    "placeholders": [],
+    "svgText": [
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "padma-service",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "next.js 16 · (client) + (admin)",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "padma-service-server",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "hono · bun · orpc",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "15px",
+        "svgWidth": 285,
+        "text": "postgres",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.75
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "drizzle · better-auth",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 3.4833333333333334
+      }
+    ],
+    "width": 390
+  },
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "SelfShop"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Three surfaces, no shared codebase"
+      },
+      {
+        "level": "H3",
+        "text": "Real-time orders without dropping events"
+      },
+      {
+        "level": "H3",
+        "text": "Plugging into a Laravel API I didn't write"
+      },
+      {
+        "level": "H2",
+        "text": "The Reseller App"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№02 SELFSHOP\nLIVE IN PRODUCTION\nRESELLER & DROPSHIPPING COMMERCE\n· 2026—PRESENT\nSelfShop\n\nMulti-role reseller marketplace. I built the admin, reseller, and supplier dashboards in the Next.js client app, plus the React Native + Tamagui reseller app on Google Play. The Laravel backend was the team's. This case study covers the front of house.\n\nVisit live → selfshop.com.bd\nPlay Store\n↗\nINDEX\n№02\nYEAR\n2026—present\nDOMAIN\nReseller & Dropshipping Commerce\nSTATUS\nlive in production\nBUILDS\nweb + mobile · 3 surfaces\nROLES\nadmin · reseller · supplier\nNext.js 16\nReact 19\nTypeScript\nAnt Design\nRedux Toolkit\nNextAuth\nReact Native · Expo\nTamagui\nPusher · Laravel Echo\nLaravel API (consumed)\nThe brief\n\nSelfShop is a multi-role reseller marketplace. Suppliers list wholesale stock; resellers pick products to sell on their own social channels and through the platform; end customers buy through whichever surface fits. I owned the front of house: the surfaces admin, resellers, and suppliers actually live in, across web and native.\n\nThree roles. Three surfaces. One Laravel API I didn't write.\n\nMy role\n/ SCOPE\n\nI built the admin, reseller, and supplier dashboards inside the Next.js Client app, plus the React Native + Tamagui reseller app. The Laravel/PHP backend was the team's; this case study is about the front of house.\n\nThe reseller app is live on Google Play.\n\nThe problem\n\nReseller commerce isn't B2C with a skin on. The reseller is the vendor of record but doesn't hold stock. The supplier never sees the end customer. The platform sits in the middle of three relationships at once and has to keep them coherent in real time.\n\nTwo roles, two mental models. Resellers care about social-friendly product pages, commission, and cash flow. Suppliers care about purchase orders, stock-on-hand, and dispatch. The same order touches both, and they need different views of it.\nThree surfaces in lockstep. Two web dashboards and one native app. When a customer places an order it has to surface on the reseller's phone within seconds and on the supplier's web dashboard at the same time, without divergence.\nNon-technical primary users. Resellers aren't ops people; suppliers manage their inventory between other things. Forms have to be forgiving, errors have to be readable, and the mobile flows have to work one-handed on bad networks.\nA backend I didn't write. The Laravel API was the team's. I had to plug into it cleanly, catch breakage at type-check rather than runtime, and keep the three surfaces consistent without a shared codebase to enforce it.\nThe approach\n\nThe web dashboards are Next.js 16 + React 19, with Redux Toolkit and Ant Design. Forms-and-tables work (vendor onboarding, order management, payout reconciliation, discount rules) leans on Ant's data primitives. Redux keeps state predictable across the role-scoped surfaces.\n\nThe reseller app is Expo + Tamagui + TanStack Query. Different state library on purpose: mobile is read-mostly with mutations, so a fetch-cache covers most of it without the boilerplate Redux brings to a small surface.\n\nReal-time runs on Pusher channels with Laravel Echo on the client. New-order events fan out to whichever surfaces care: a push notification on the reseller's phone (Firebase + expo-notifications), a banner on the supplier's web dashboard, a row appearing in the operator's inbox. The same channel, different consumers, no polling.\n\nFIG. — CLIENT / WEB · THE RESELLER DASHBOARD INSIDE THE NEXT.JS APP\nFIG. — CLIENT / WEB · THE SUPPLIER DASHBOARD, SAME APP, ROLE-SCOPED\nlaravel api\nREST + pusher channels\nRESELLER\nSUPPLIER\nClient / web · reseller\nnext.js 16 · redux · antd\nClient / web · supplier\nnext.js 16 · redux · antd\nnative / reseller\nexpo · tamagui · play store\nFIG. — THREE SURFACES, ONE API, REAL-TIME FAN-OUT\nThe hard parts\nTHREE SURFACES, NO SHARED CODEBASE\n\nThe honest answer is: I didn't share much code between the surfaces. The Next.js dashboards live in one app; the reseller native app lives in native/; the Laravel backend is upstream of all of it. There's no monorepo joining them.\n\nWhat I did share was the parts that drift fastest if they aren't shared:\n\nTyped contracts: every API endpoint has a hand-mirrored TypeScript schema that lives in each client. When the backend changes a field, type-check fails at compile time on the surface that consumes it, not on the customer's phone.\nPusher channel names + event shapes: copied verbatim across the three surfaces, with a comment pointing at the canonical list. A misnamed channel is a silent bug; making it grep-able was worth the duplication.\n\nWhat I duplicated on purpose: UI components, navigation, theme tokens. Web and native have different idioms and trying to abstract over them costs more than it saves.\n\nREAL-TIME ORDERS WITHOUT DROPPING EVENTS\n\nA single new-order event has to surface in three places at once: the reseller's phone (push notification), the reseller's web dashboard (banner), and the supplier's web dashboard (queue row). The naive approach, listening on Pusher in each client, drops events when the app is backgrounded on mobile.\n\nThe fix:\n\nPusher for foreground real-time (reseller and supplier dashboards on the web, reseller app while open).\nFirebase Cloud Messaging via expo-notifications for backgrounded mobile state.\nA reconcile-on-foreground TanStack Query refetch on the reseller app, so anything missed during the backgrounded window catches up the moment the app returns.\n\nThe dedupe key is the order id. The same order arriving via REST poll, websocket, and push notification all collapse to one row, one badge, one notification.\n\nPLUGGING INTO A LARAVEL API I DIDN'T WRITE\n\nThe backend was a moving target. The team shipped vendor features, discount rules, and admin tooling on its own cadence. I needed those changes to break loudly on my surfaces, not silently.\n\nI wrote a thin client per surface with strict response schemas. Every request has a typed return shape; every list endpoint has a typed pagination envelope; auth tokens flow through one place. When the backend renamed is_active to status mid-flight, type-check failed in seventeen call sites within a minute, and the fix was a one-line schema update once the rename was understood.\n\nIt's not as clean as OpenAPI codegen would be. That's the lesson at the bottom of the page. But it's the level of discipline that's possible without changing how the backend ships.\n\nThe Reseller App\nFIG. — PLAY STORE · LIVE RESELLER APP LISTING AND PREVIEW FRAMES\n\nLive on Google Play. The surface a reseller spends the most time inside.\n\nOrder management: incoming orders, status updates, status timeline. Pull-to-refresh + Pusher means the list is rarely stale.\nProduct catalog: browse the supplier-listed catalog, save items to a personal storefront, share listings outbound.\nPush notifications: Firebase + expo-notifications. New orders, low stock on saved items, payout-ready alerts.\nImage upload for listings: expo-image-picker + expo-file-system with a retry queue for bad networks.\nToken storage: expo-secure-store for auth, scoped per build channel (dev / preview / production).\nTelemetry: Sentry for crashes; the app is in real users' hands and silent failures get surfaced fast.\nFIG. — NATIVE / CATALOG — CATEGORY TREE AND SUPPLIER-LISTED PRODUCTS\nFIG. — NATIVE / DASHBOARD — SALES, PROFIT, BALANCE, AND REFERRAL IN ONE VIEW\nWhat's running today\n3\nSURFACES · 2 WEB + 1 NATIVE\n3\nROLES · ADMIN + RESELLER + SUPPLIER\n1\nRESELLER APP · LIVE ON PLAY STORE\n0\nBACKEND CODE · THE API WAS THE TEAM'S\n\nThe Next.js Client serves the admin, reseller, and supplier dashboards. The reseller native app is live on Google Play. Real users on the live surfaces; numbers from the team will replace these placeholders when I have them.\n\nWhat I'd do differently\n\nShared TS contracts via OpenAPI codegen. Hand-mirroring schemas worked but it's a tax I paid every backend change. An OpenAPI spec generated off the Laravel routes, even a partial one, turns three hand-maintained client schemas into one source of truth.\n\n← PREVIOUS\n№01\nEcube Tournament\nESPORTS TOURNAMENT OPERATIONS\n↑ ALL CASE STUDIES\nNEXT →\n№03\nBikalpo\nMULTI-PARTY COMMERCE MARKETPLACE",
+    "pageWidth": 375,
+    "path": "/work/selfshop",
+    "placeholders": [
+      "The Next.js Client serves the admin, reseller, and supplier dashboards. The reseller native app is live on Google Play. Real users on the live surfaces; numbers from the team will replace these placeholders when I have them."
+    ],
+    "svgText": [
+      {
+        "fontPx": "15px",
+        "svgWidth": 285,
+        "text": "laravel api",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.75
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "REST + pusher channels",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "RESELLER",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "SUPPLIER",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "Client / web · reseller",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "10px",
+        "svgWidth": 285,
+        "text": "next.js 16 · redux · antd",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.1666666666666665
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "Client / web · supplier",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "10px",
+        "svgWidth": 285,
+        "text": "next.js 16 · redux · antd",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.1666666666666665
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "native / reseller",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "10px",
+        "svgWidth": 285,
+        "text": "expo · tamagui · play store",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.1666666666666665
+      }
+    ],
+    "width": 390
+  },
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bikalpo"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Per-tier pricing without per-tier fetches"
+      },
+      {
+        "level": "H3",
+        "text": "Lexical alongside SKU data"
+      },
+      {
+        "level": "H3",
+        "text": "Shared packages"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№03 BIKALPO\nPARTIAL · LIVE SURFACES\nMULTI-PARTY COMMERCE MARKETPLACE\n· 2025—PRESENT\nBikalpo\n\nMulti-party commerce for a Bangladeshi distributor: platform admin, warehouse/wholesaler, two retailer tiers (resell-and-buy and buy-only), and a consumer storefront on one catalog with tier-aware pricing. Partial work is live on b2b.bikalpo.com. The full platform and Turborepo rewrite (web, mobile, Hono API) are in active development.\n\nVisit live → b2b.bikalpo.com\nsource repository ↗\nINDEX\n№03\nYEAR\n2025—present\nDOMAIN\nMulti-Party Commerce Marketplace\nSTATUS\npartial · live surfaces\nSTATUS\npart live · in dev\nLIVE AT\nb2b.bikalpo.com\nNext.js 16\nReact 19\nDrizzle ORM\nPostgres\nBetter-Auth\nTanStack Query\nLexical\nCloudinary\nThe brief\n\nA Dhaka-based distributor needed commerce across wholesale, retail, and consumer. Not a downsized B2C shop with a wholesale login bolted on. Their warehouse sells in tiers, two kinds of retail shops buy under different rules, and consumers order like a normal storefront. Off-the-shelf Shopify-style platforms collapse under all of it.\n\nI shipped partial surfaces at b2b.bikalpo.com ↗. The full platform lives in bikalpo-project: a Turborepo with Next.js web, Expo native, and a Hono · oRPC server (documented API) on Postgres, Better-Auth, Drizzle, and Lexical for product copy and policy pages. Part of the catalogue is live today; warehouse tiers, consumer checkout, and the mobile app are still under build.\n\nThe problem\n/ CONSTRAINT\n\nMulti-party commerce isn’t one checkout flow. Platform admin, warehouse, two retailer tiers, and consumers each place orders differently. Every step has its own audience.\n\nThe status quo had four pain points:\n\nPer-customer pricing: every wholesale account negotiates its own tiered price, and the storefront has to respect it without leaking other customers' tiers.\n\nCatalogue scale: thousands of SKUs across dozens of brands, each with its own copy, imagery, and inventory state.\n\nRich content alongside commerce: landing pages, brand stories, and policy pages live next to the catalogue and need first-class editing, not a CMS bolted on the side.\n\nBangladesh-specific payments: local payment rails, COD, and partial-payment flows that most platforms ignore.\n\nThe approach\n\nThe platform is a Turborepo ↗ monorepo: a Next.js web storefront, a React Native buyer app, and a Hono server that exposes catalogue, orders, and content through an oRPC ↗ contract with full API documentation. Both clients import the same typed client, so the boundary stays honest.\n\nPostgres holds catalogue rows and Lexical JSON for product copy and policy pages. Auth, sessions, and role gating run through Better-Auth, including per-customer pricing keyed off the authenticated identity.\n\napps/web\nnext.js 16 · tiered storefront\napps/native\nexpo · buyer mobile\napps/server\nhono · oRPC · API docs\npostgres\ndrizzle · better-auth · lexical\nFIG. — WEB + NATIVE THROUGH HONO · ORPC — DOCUMENTED API, SHARED POSTGRES\nThe hard parts\nPER-TIER PRICING WITHOUT PER-TIER FETCHES\n\nEach authenticated buyer sees their own price column on every product. The naive shape (fetch product, then fetch overrides) adds a round-trip on every catalogue page. I push tier resolution into the Drizzle query on the API with a single LEFT JOIN ... ON pricing.tier_id = $session.tier, so the listing page returns 60 products with the right number on each, in one query. The same hook covers cart totals, so the price the buyer sees is the price they're charged. No second source of truth.\n\nLEXICAL ALONGSIDE SKU DATA\n\nTreating product copy and policy pages as the same content primitive was the call that paid off most. Both render through a single set of Lexical nodes (paragraph, heading, image, callout, table). New page types are a database row, not a new template.\n\nSHARED PACKAGES\n\npackages/db, packages/auth, and packages/ui sit between the three apps so schema, auth rules, and design tokens stay in one place. The oRPC contract is the only front door: web and native both call the same documented API, not separate data paths.\n\nWhat's running today\n/ STAGE\n\nNot fully shipped yet. Partial storefront and admin work is live on b2b.bikalpo.com ↗. Warehouse, retailer tiers, consumer checkout, and the monorepo rewrite are still under development.\n\npartial\nLIVE ON B2B.BIKALPO.COM\ndev\nFULL PLATFORM · IN PROGRESS\n3\nTARGET APPS · WEB / NATIVE / SERVER\n\nThe live surfaces cover part of the catalogue and account tooling on b2b.bikalpo.com. The rest of the multi-party platform ships through the same Hono · oRPC stack described above.\n\nWhat I'd do differently\n\nLexical was the right call for content; it would have been the right call sooner. Earlier versions used a hand-rolled markdown layer that I had to keep patching. Once the rich-text model is treated as part of the schema, every other decision gets easier.\n\n← PREVIOUS\n№02\nSelfShop\nRESELLER & DROPSHIPPING COMMERCE\n↑ ALL CASE STUDIES\nNEXT →\n№04\nBright Tutor\nMULTI-ROLE EDUCATION PLATFORM",
+    "pageWidth": 375,
+    "path": "/work/bikalpo",
+    "placeholders": [],
+    "svgText": [
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "apps/web",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "next.js 16 · tiered storefront",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "apps/native",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "expo · buyer mobile",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      },
+      {
+        "fontPx": "16px",
+        "svgWidth": 285,
+        "text": "apps/server",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 5.066666666666666
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "hono · oRPC · API docs",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.8
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "postgres",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "11px",
+        "svgWidth": 285,
+        "text": "drizzle · better-auth · lexical",
+        "viewBox": "0 0 900 380",
+        "renderedPx": 3.4833333333333334
+      }
+    ],
+    "width": 390
+  },
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Bright Tutor"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Subdomain-routed roles"
+      },
+      {
+        "level": "H3",
+        "text": "End-to-end types across six surfaces"
+      },
+      {
+        "level": "H3",
+        "text": "One schema, three roles"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№04 BRIGHT TUTOR\nLIVE IN PRODUCTION\nMULTI-ROLE EDUCATION PLATFORM\n· 2026\nBright Tutor\n\nTuition media platform for a tutoring business: public marketplace, admin console, and role-aware web + native surfaces for teachers and guardians, all on one Hono+oRPC API with a shared Drizzle schema.\n\nVisit live → brighteducations.com\nINDEX\n№04\nYEAR\n2026\nDOMAIN\nMulti-Role Education Platform\nSTATUS\nlive in production\nBUILDS\nweb + mobile · 6 apps\nROLES\nteacher · guardian · admin\nTurborepo\nHono\noRPC\nNext.js\nExpo / React Native\nDrizzle ORM\nPostgres\nBetter-Auth\nThe brief\n\nA tutoring business was running on Excel. Enrolments, teacher schedules, guardian follow-ups, and fee status all lived in spreadsheets that drifted apart weekly. Teachers, guardians, and admins each had their own workaround. Nothing shared a source of truth.\n\nThe brief: replace the spreadsheet with one platform and give each role a surface that fits how they actually work, on web, native, or both.\n\nThe problem\n/ GROUND TRUTH\n\nExcel was the database and the CRM. Every enrolment, schedule change, and payment update meant someone editing a sheet by hand and hoping the other workbook matched.\n\nThe status quo:\n\nEverything in sheets: teacher assignments, guardian contacts, payment status, and attendance lived in separate workbooks.\n\nManual follow-ups: reminders and updates depended on someone remembering to check a row and act on it.\n\nThree audiences, zero shared workflow: admins, teachers, and guardians each needed different tools, but the business only had spreadsheets and a group chat.\n\nA single dashboard with role-conditional fields would have been faster to ship and miserable to use. So I built six surfaces around one API.\n\nThe approach\n\nThe system is a Turborepo ↗ monorepo with six client surfaces and shared packages. Every app talks to the same Hono server through an oRPC ↗ contract, so types flow end-to-end from the Drizzle schema to the React Native screen.\n\napi.brighttutor\nhono · oRPC\nbrighttutor.com\nmarketing · web\nadmin.brighttutor\nconsole · web\nteacher.brighttutor\nteacher · web\nexpo apps\nteacher + guardian · native\nguardian.brighttutor\nguardian · web\nFIG. — SIX SURFACES, ONE SCHEMA. SUBDOMAIN-SCOPED ROLES, SHARED CONTRACT, SINGLE POSTGRES\n/ SHARED\n\nEvery app imports a tiny set of internal packages: packages/db (Drizzle schema), packages/auth (Better-Auth client), packages/contracts (the oRPC router type). One change, every app stays in sync.\n\nThe hard parts\nSUBDOMAIN-ROUTED ROLES\n\nTeachers log in at teacher.brighttutor.*, guardians at the native app or guardian.brighttutor.*, admins at admin.brighttutor.*. Routing is at the subdomain, not at a /teacher path, so every screen, cookie, and error page belongs to the role. It's also a pleasant local DNS exercise; the README ships with the /etc/hosts lines for the dev loop.\n\n/ WHY SUBDOMAINS\n\nTwo reasons. First, the URL becomes part of the role's identity. Guardians never see /admin in their browser bar and wonder. Second, cookies, CSP, and rate limits scope cleanly per subdomain without conditional middleware.\n\nEND-TO-END TYPES ACROSS SIX SURFACES\n\nEvery endpoint, error code, and payload flows through one oRPC router. The React Native app, the admin console, and the teacher web app all import the same typed client. When the schema changes in packages/db, every app that uses the affected route fails its type check in CI. There's no “hopefully the mobile build picks it up”.\n\nTurborepo\nINFRA\nPipelines: shared db gens block app builds.\nHono + oRPC\nAPI\nOne router, typed clients in every app.\nDrizzle + Postgres\nDATA\nSingle schema, generated migrations checked in.\nBetter-Auth\nAUTH\nRole-scoped sessions across subdomains.\nExpo / React Native\nMOBILE\nTeacher + guardian apps, same oRPC client, native UI.\nONE SCHEMA, THREE ROLES\n\nEach audience gets a surface shaped for their job, not a shared dashboard with fields hidden:\n\nTeachers: schedule, attendance, and payouts on the web portal and the native app.\n\nGuardians: enrolment, progress, and tuition on the web portal and the native app.\n\nAdmins: onboarding, payroll, and support from the console.\n\nEnrolment, scheduling, and attendance write to the same Postgres tables regardless of which surface initiated the change. That replaces the spreadsheet: one source of truth, visible everywhere it needs to be.\n\nWhat's running today\n6+\nSURFACES IN THE MONOREPO\n3\nAUDIENCE ROLES · SUBDOMAIN-SCOPED\n1\nORPC CONTRACT END-TO-END\nts\n100% TYPESCRIPT\n\nThe marketing site is live at brighteducations.com ↗. Role surfaces are in active deployment across the monorepo.\n\nWhat I'd do differently\n\nI'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them “no, this is the shape”. With the contract in place first, every app gets the same answer the same way.\n\n← PREVIOUS\n№03\nBikalpo\nMULTI-PARTY COMMERCE MARKETPLACE\n↑ ALL CASE STUDIES\nNEXT →\n№05\nStock Management\nDISTRIBUTOR OPERATIONS SPA",
+    "pageWidth": 375,
+    "path": "/work/bright-tutor",
+    "placeholders": [],
+    "svgText": [
+      {
+        "fontPx": "16px",
+        "svgWidth": 285,
+        "text": "api.brighttutor",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.653061224489796
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "hono · oRPC",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.7806122448979593
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "brighttutor.com",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.071428571428571
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "marketing · web",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.489795918367347
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "admin.brighttutor",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.071428571428571
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "console · web",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.489795918367347
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "teacher.brighttutor",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.071428571428571
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "teacher · web",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.489795918367347
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "expo apps",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.071428571428571
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "teacher + guardian · native",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.489795918367347
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "guardian.brighttutor",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 4.071428571428571
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "guardian · web",
+        "viewBox": "0 0 980 480",
+        "renderedPx": 3.489795918367347
+      }
+    ],
+    "width": 390
+  },
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Stock Management"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "The problem"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "Printing invoices that look right"
+      },
+      {
+        "level": "H3",
+        "text": "Optimistic UI with a real audit trail"
+      },
+      {
+        "level": "H3",
+        "text": "State that survives a refresh"
+      },
+      {
+        "level": "H2",
+        "text": "What's running today"
+      },
+      {
+        "level": "H2",
+        "text": "What I'd do differently"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№05 STOCK MANAGEMENT\nLIVE IN PRODUCTION\nDISTRIBUTOR OPERATIONS SPA\n· 2025—2026\nStock Management\n\nDistributor operational tool for receiving stock from suppliers, selling to retailers and proprietors, transfers, returns, and printed invoices. Built around how wholesale actually moves. Separate Vite + React 19 SPA and backend repos, both deployed.\n\nVisit live → mstamimenterprise.shop\nsource repository ↗\nINDEX\n№05\nYEAR\n2025—2026\nDOMAIN\nDistributor Operations SPA\nSTATUS\nlive in production\nBUILDS\nwholesale web app\nFLOW\nstock in → invoice out\nVite\nReact 19\nTanStack Query\nTanStack Table\nZustand\nreact-pdf\nTailwind v4\nBetter-Auth\nThe brief\n\nA distributor was running wholesale inventory in three spreadsheets and a Telegram group. Stock counts disagreed across them weekly. Retailers got the wrong invoice. Receiving from suppliers and selling to shop owners were both manual data entry into the same file. They asked for “a simple inventory app.”\n\nWhat they actually needed was a tool that mirrored how stock physically moves through wholesale: procurement, transfers, sales to retailers, returns, printing. Without making someone type the same SKU twice.\n\nThe problem\n/ GROUND TRUTH\n\nInventory software fails when it makes the user the integrator. If receiving and selling are two unrelated forms, stock counts will always drift.\n\nThe status quo:\n\nTwo systems of record: physical stock on the shelf and a spreadsheet that's always one delivery behind.\nInvoicing as an afterthought: printed from a different tool, manually keyed in, often wrong.\nNo transfer concept: when stock moves between locations it just “disappears” and reappears.\nNo audit trail: when a count is wrong, no one can tell when it went wrong.\nThe approach\n\nI shipped this as two separate repos: a Vite + React 19 SPA and a TypeScript backend, both deployed on Vercel. That split was deliberate. The frontend is the high-iteration surface the operations team uses daily; the backend is the slower-changing source of truth.\n\nThe data model treats every stock change as an immutable movement event (receiving, sale, transfer, adjustment). The current count is derived from the sum. Nothing “updates” a stock level directly. That single decision makes the audit trail free and the bugs visible.\n\nMOVEMENT LOG\n+ 100 receiving · 2026-05-22\n− 3 sale · 2026-05-23\n− 10 transfer · 2026-05-24\n− 1 sale · 2026-05-25\n+ 1 return · 2026-05-25\nSUM()\nDERIVED COUNT\n87\nunits on hand · SKU-1042\nno row in any table directly stores \"87\"\nFIG. — MOVEMENTS ARE THE TRUTH; CURRENT COUNTS ARE DERIVED\nThe hard parts\nPRINTING INVOICES THAT LOOK RIGHT\n\nWholesale invoices are a layout problem disguised as a data problem. Headers, line items, totals, footer notes, signature block. It has to print to whatever cheap thermal or A4 printer is on the desk. I render them in-browser with react-pdf ↗, preview them in a react-to-print flow, and let the user save or print. Layout lives in code, not in a template the client has to maintain.\n\nOPTIMISTIC UI WITH A REAL AUDIT TRAIL\n\nThe operations staff don't want to wait for a server round-trip every time they record a sale to a retailer. TanStack Query's optimistic mutations let the UI update instantly while the movement event posts in the background. If the server rejects (price mismatch, out of stock), the optimistic state rolls back and a toast explains why. The movement log records both attempts, so an audit shows what happened.\n\nSTATE THAT SURVIVES A REFRESH\n\nCarts, draft transfers, draft returns. Anything mid-flight lives in Zustand ↗ with localStorage persistence. A staff member can start a sale, get pulled away, come back twenty minutes later, and find the cart exactly as they left it. Small detail, but it determines whether software gets used.\n\nVite + React 19\nSHELL\nFast HMR, fast page load on the operations PC.\nTanStack Query\nDATA\nServer state + optimistic mutations.\nTanStack Table\nUI\nDense, sortable tables for stock + sales lists.\nZustand\nSTATE\nPersisted local state for in-flight carts and drafts.\nreact-pdf + react-to-print\nPRINT\nLayout-driven invoices, no templates to maintain.\nBetter-Auth\nAUTH\nRole-scoped sessions: cashier vs admin.\nWhat's running today\n2\nREPOS · FRONTEND + BACKEND\n∞\nAUDIT HISTORY · DERIVED FROM EVENTS\n0\nMANUAL STOCK RECONCILIATIONS · PLACEHOLDER\nA4 / 80mm\nINVOICE FORMATS SUPPORTED\n\nBoth the frontend ↗ and the backend are deployed and in daily use for the distributor's wholesale operations.\n\nWhat I'd do differently\n\nThe two-repo split was right for this team, but it added deploy-coordination friction. Next time I'd reach for a monorepo from day one. Turbo's pipelines catch the “don't ship the frontend if the backend types changed” case more reliably than a careful git habit.\n\n← PREVIOUS\n№04\nBright Tutor\nMULTI-ROLE EDUCATION PLATFORM\n↑ ALL CASE STUDIES\nNEXT →\n№06\nPadma Service\nSERVICES MARKETPLACE & CMS",
+    "pageWidth": 375,
+    "path": "/work/stock-management",
+    "placeholders": [
+      "manual stock reconciliations · placeholder"
+    ],
+    "svgText": [
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "MOVEMENT LOG",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 3.8
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "+ 100   receiving   · 2026-05-22",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.433333333333334
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "−   3   sale         · 2026-05-23",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.433333333333334
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "−  10   transfer    · 2026-05-24",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.433333333333334
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "−   1   sale         · 2026-05-25",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.433333333333334
+      },
+      {
+        "fontPx": "14px",
+        "svgWidth": 285,
+        "text": "+   1   return       · 2026-05-25",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.433333333333334
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "SUM()",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "12px",
+        "svgWidth": 285,
+        "text": "DERIVED COUNT",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 3.8
+      },
+      {
+        "fontPx": "56px",
+        "svgWidth": 285,
+        "text": "87",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 17.733333333333334
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "units on hand · SKU-1042",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.116666666666666
+      },
+      {
+        "fontPx": "13px",
+        "svgWidth": 285,
+        "text": "no row in any table directly stores \"87\"",
+        "viewBox": "0 0 900 360",
+        "renderedPx": 4.116666666666666
+      }
+    ],
+    "width": 390
+  },
+  {
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Ecube Tournament"
+      },
+      {
+        "level": "H2",
+        "text": "The brief"
+      },
+      {
+        "level": "H2",
+        "text": "My role"
+      },
+      {
+        "level": "H2",
+        "text": "Three views of the same tournament"
+      },
+      {
+        "level": "H2",
+        "text": "The approach"
+      },
+      {
+        "level": "H2",
+        "text": "The hard parts"
+      },
+      {
+        "level": "H3",
+        "text": "A draw that can be checked again"
+      },
+      {
+        "level": "H3",
+        "text": "Seven rounds without seven separate systems"
+      },
+      {
+        "level": "H3",
+        "text": "Results with a publication boundary"
+      },
+      {
+        "level": "H3",
+        "text": "Live changes with durable records"
+      },
+      {
+        "level": "H2",
+        "text": "What’s running"
+      }
+    ],
+    "mainText": "§01 / WORK\n/\n№01 ECUBE TOURNAMENT\nLIVE IN PRODUCTION\nESPORTS TOURNAMENT OPERATIONS\n· 2026—PRESENT\nEcube Tournament\n\nFull-stack tournament platform for Ecube. I built the participant site, admin console, operator workspace, and backend: team registration, seeded group allocation, scheduling, match results, and qualification across seven configured rounds. Live group chat and queued email updates keep teams informed.\n\nVisit live → tour.ecube.gg\nINDEX\n№01\nYEAR\n2026—present\nDOMAIN\nEsports Tournament Operations\nSTATUS\nlive in production\nSURFACES\nplayer · operator · admin\nROUNDS\n7 configured\nNext.js 16\nTypeScript\nHono · Bun\noRPC\nDrizzle · Postgres\nBetter-Auth\nSocket.IO\nInngest · Resend\nCloudflare R2\nThe brief\n\nEcube needed a platform to run a Free Fire tournament from registration through qualification. Team captains need to submit a roster, find their group, and know when and where to play. Operators need to manage rooms and results. Admins need to review entries, allocate teams, and publish the next round.\n\nThose workflows meet at match time. A changed room password, a rescheduled match, or a corrected result has to reach the right people without losing the record of what happened.\n\nMy role\n/ SCOPE\n\nFull-stack development at Ecube, where I joined full-time in July 2026. I built the Next.js participant site, admin and operator workspaces, Hono API, database schema, authentication, live updates, and background email workflows.\n\nThree views of the same tournament\nParticipants: English and Bangla interfaces, team and player registration, saved drafts, submission status, group schedules, room credentials, results, and group chat.\nOperators: assigned groups and match slots, room and Match ID controls, result review, rehost requests, and live coverage of the matches they run.\nAdmins: registration review, roster management, seeded team allocation, operator assignments, schedule publication, result adjudication, and qualification into later rounds.\n\nThe public entry point is tour.ecube.gg ↗. Tournament details and participant workflows require sign-in; staff tools are restricted by role and assignment.\n\nThe approach\n\nThe project is a Turborepo with a Next.js 16 web app and a Hono API running on Bun. Shared packages hold the oRPC contract, Drizzle schema, Better-Auth setup, UI components, storage, and email templates. TanStack Query connects the web surfaces to the typed API.\n\nPostgres keeps registration, allocation, schedule, and result history together. Socket.IO carries group chat and refresh events. Inngest runs background email workflows, Resend delivers the messages, and Cloudflare R2 stores tournament artwork, team logos, and rulebooks.\n\nNext.js 16 + next-intl\nWEB\nParticipant, operator, and admin routes, with English and Bangla interfaces.\nHono + Bun + oRPC\nAPI\nTyped API contracts shared with the web app through workspace packages.\nDrizzle + Postgres\nDATA\nRegistration, immutable allocation history, match operations, and result publication.\nBetter-Auth\nACCESS\nAccount sessions with server-side role, group, and operator-assignment checks.\nSocket.IO\nLIVE\nGroup chat and scoped refresh events for rooms, results, and schedule changes.\nInngest + Resend\nDELIVERY\nQueued confirmations, schedules, room credentials, and rehost notifications.\nCloudflare R2\nMEDIA\nPresigned media uploads for tournament artwork, team logos, and rulebooks.\nThe hard parts\nA DRAW THAT CAN BE CHECKED AGAIN\n\nAllocation starts from an entrant snapshot and a stored seed. The same inputs reproduce the same group assignments, with an algorithm version and assignment digest recorded alongside them. Approved additions fill the trailing group before creating new ones, preserving existing team positions.\n\nThat distinction matters once a schedule has been shared. Adding an entrant should not silently redraw everyone else’s tournament.\n\nSEVEN ROUNDS WITHOUT SEVEN SEPARATE SYSTEMS\n\nRound definitions hold the facts that change: group capacity, dates, operator slots, maps, match counts, and qualification rules. Later rounds reuse the shared operations modules and UI through registered configuration and storage adapters.\n\nThe codebase configures seven rounds, including league and knockout stages. A new schedule or advancement cutoff can use the same room controls, result review, participant views, and notification flows.\n\nRESULTS WITH A PUBLICATION BOUNDARY\n\nA provider result still needs to be matched to the registered roster. The result workflow separates captured match data, staff review, and published standings, including disqualification reasons and qualification decisions.\n\nFinalized standings supply the next round’s entrants. Corrected results and registration identities retain an audit trail so staff can trace a decision back to the roster and match evidence used.\n\nLIVE CHANGES WITH DURABLE RECORDS\n\nRoom details and results belong in storage before a live refresh tells clients to read them. Result updates use a durable outbox, and chat messages remain available after reconnecting. Authorization resolves the participant’s group or the operator’s assignment on the server.\n\nEmail handles the updates people need away from the site: confirmations, schedules, room credentials, and rescheduled matches. Delivery is queued separately from the operator’s save action, with recipient scoping and retry handling.\n\nWhat’s running\n3\nPARTICIPANT · OPERATOR · ADMIN\n7\nCONFIGURED TOURNAMENT ROUNDS\n2\nLANGUAGES · ENGLISH + BANGLA\n\nThe platform is live at tour.ecube.gg ↗, with Return of King: Free Fire on the public homepage. The figures above describe the implemented product: its interfaces, round configuration, and language support.\n\n← PREVIOUS\n№06\nPadma Service\nSERVICES MARKETPLACE & CMS\n↑ ALL CASE STUDIES\nNEXT →\n№02\nSelfShop\nRESELLER & DROPSHIPPING COMMERCE",
+    "pageWidth": 375,
+    "path": "/work/ecube-tournament",
+    "placeholders": [],
+    "svgText": [],
+    "width": 390
+  }
+]

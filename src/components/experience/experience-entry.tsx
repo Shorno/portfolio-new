@@ -50,7 +50,21 @@ export function ExperienceEntry({
         {/* Company + role header */}
         <header className="flex flex-col gap-3">
           <h3 className="font-display text-balance text-[clamp(2.25rem,5vw,3.75rem)] text-fg">
-            {entry.company}
+            {entry.companyUrl ? (
+              <Link
+                href={entry.companyUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-baseline gap-3 transition-colors hover:text-accent"
+              >
+                {entry.company}
+                <span aria-hidden className="font-mono text-lg text-muted">
+                  ↗
+                </span>
+              </Link>
+            ) : (
+              entry.company
+            )}
           </h3>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[12.5px] text-fg-soft">
             <span>{entry.role}</span>
@@ -104,7 +118,7 @@ export function ExperienceEntry({
           ))}
         </div>
 
-        {/* Linked case studies (AlgoVerse only, by data shape) */}
+        {/* Case studies shipped under this role */}
         {linkedProjects.length > 0 ? (
           <div className="mt-8 flex flex-wrap items-baseline gap-x-2 gap-y-2 border-t border-line pt-5">
             <span className="mono-label text-faint">CASE STUDIES →</span>

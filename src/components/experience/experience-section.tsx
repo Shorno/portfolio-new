@@ -6,7 +6,7 @@ import { education, experience, totalMonths } from "@/lib/experience";
 import { ExperienceEntry } from "./experience-entry";
 
 /**
- * §02 EXPERIENCE — editorial spec-sheet timeline of part-time roles.
+ * §02 EXPERIENCE — editorial spec-sheet timeline of engineering roles.
  *
  * Each entry is rendered by <ExperienceEntry />: mono date rail on the left,
  * serif company name + role + summary + highlights + stack chips on the right.
@@ -28,9 +28,9 @@ export function ExperienceSection() {
               <span className="font-display-italic text-accent">shipped.</span>
             </h2>
             <p className="mt-6 max-w-md text-pretty text-fg-soft md:text-lg md:leading-relaxed">
-              ~{months} months shipping production systems across two engineering
-              roles. Most of the case studies above came from the most recent
-              one, alongside a CSE degree (graduating 2026).
+              Full-time at Ecube and part-time at AlgoVerse. Shipping tournament
+              operations, commerce, and education platforms while completing a
+              CSE degree (graduating 2026).
             </p>
           </div>
           <div className="col-span-4 md:col-span-5">

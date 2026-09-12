@@ -36,7 +36,11 @@ export function ProjectArt({
           alt={project.imageAlt ?? `${project.name} — product screenshot`}
           fill
           priority={priority}
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          sizes={
+            imageFit === "cover"
+              ? "(min-width: 768px) 58vw, 100vw"
+              : "100vw"
+          }
           className={cn(
             "bg-bg-elev/60",
             imageFit === "cover"

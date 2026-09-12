@@ -12,6 +12,8 @@ export type EmploymentType = "part-time" | "full-time" | "contract" | "freelance
 export type ExperienceEntry = {
   /** Display label for the employer, e.g. "AlgoVerse" */
   company: string;
+  /** Public company website or profile, when supplied. */
+  companyUrl?: string;
   /** Role / title, e.g. "Software Engineer" */
   role: string;
   /** Optional product / focus area within the role, e.g. "Ubaky" */
@@ -36,6 +38,37 @@ export type ExperienceEntry = {
 };
 
 export const experience: ExperienceEntry[] = [
+  {
+    company: "Ecube",
+    companyUrl: "https://www.facebook.com/ecube.gg",
+    role: "Full-stack Engineer",
+    product: "Ecube Tournament",
+    productNote: "esports operations",
+    start: "2026-07",
+    end: "present",
+    location: "Bangladesh",
+    type: "full-time",
+    summary:
+      "Built Ecube’s tournament platform end to end: participant registration, admin and operator workspaces, scheduling, match results, and qualification. The Free Fire tournament platform is live at tour.ecube.gg.",
+    highlights: [
+      "Built the Next.js frontend, Hono API, shared oRPC contracts, Postgres schema, and authentication in a Turborepo.",
+      "Implemented seeded group allocation and shared tournament operations across seven configured rounds, including league and knockout stages.",
+      "Added match-result review, roster checks, audited corrections, and qualification from finalized standings.",
+      "Connected live group chat and scoped updates with Socket.IO, plus queued schedule and room-credential emails through Inngest and Resend.",
+    ],
+    stack: [
+      "TypeScript",
+      "Next.js 16",
+      "Hono · Bun",
+      "oRPC",
+      "Drizzle · Postgres",
+      "Better-Auth",
+      "Socket.IO",
+      "Inngest · Resend",
+      "Cloudflare R2",
+    ],
+    projectSlugs: ["ecube-tournament"],
+  },
   {
     company: "AlgoVerse",
     role: "Software Engineer",
@@ -103,8 +136,7 @@ export const experience: ExperienceEntry[] = [
 
 /**
  * Education footnote rendered at the bottom of §02 EXPERIENCE.
- * Single line — anchors the "part-time" framing of the roles above
- * without earning its own section.
+ * Single line alongside the work timeline, without earning its own section.
  */
 export const education = {
   degree: "BSc",
@@ -200,12 +232,28 @@ export function formatDuration(
 }
 
 /**
- * Total months of experience across every entry.
- * Used for the section hint, e.g. `"2 roles · ~21 months"`.
+ * Distinct calendar months worked, inclusive of each role's start and end.
+ * Concurrent roles share months so the experience total does not inflate.
  */
 export function totalMonths(now: Date = new Date()): number {
-  return experience.reduce(
-    (acc, e) => acc + monthsBetween(e.start, e.end, now),
-    0,
-  );
+  const workedMonths = new Set<number>();
+  const currentMonth = now.getUTCFullYear() * 12 + now.getUTCMonth();
+
+  for (const entry of experience) {
+    const start = parseMonth(entry.start);
+    const end = entry.end === "present" ? now : parseMonth(entry.end);
+    if (!start || !end) continue;
+
+    const firstMonth = start.getUTCFullYear() * 12 + start.getUTCMonth();
+    const lastMonth = Math.min(
+      end.getUTCFullYear() * 12 + end.getUTCMonth(),
+      currentMonth,
+    );
+
+    for (let month = firstMonth; month <= lastMonth; month += 1) {
+      workedMonths.add(month);
+    }
+  }
+
+  return workedMonths.size;
 }

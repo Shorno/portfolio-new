@@ -37,9 +37,9 @@ export function WorkCard({
       )}
     >
       {/* Top metadata strip */}
-      <div className="flex items-center justify-between border-b border-line/80 px-6 py-3 md:px-8">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line/80 px-6 py-3 md:px-8">
         <MonoTag tone={s.tone}>{s.label}</MonoTag>
-        <span className="mono-label">
+        <span className="mono-label whitespace-nowrap">
           <span className="text-accent">№{project.index}</span>
           <span className="mx-2 text-faint">/</span>
           {project.year}
@@ -65,7 +65,7 @@ export function WorkCard({
           <header className="flex flex-col gap-2">
             <span className="mono-label">{project.kind}</span>
             <h3
-              className="font-display text-balance text-5xl text-fg md:text-6xl"
+              className="font-display text-balance text-5xl text-fg md:text-[clamp(2.75rem,4.7vw,3.75rem)]"
               style={
                 vt
                   ? ({ viewTransitionName: `work-name-${project.slug}` } as React.CSSProperties)

@@ -29,9 +29,10 @@ export function ogImageFromUrl(
 ): NonNullable<Metadata["openGraph"]>["images"] {
   return [
     {
-      url: cloudinaryOgImageUrl(url),
-      width: OG_IMAGE_WIDTH,
-      height: OG_IMAGE_HEIGHT,
+      url: new URL(cloudinaryOgImageUrl(url), site.url).toString(),
+      ...(url.includes("res.cloudinary.com")
+        ? { width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT }
+        : {}),
       alt,
     },
   ];
@@ -164,6 +165,9 @@ export function homeJsonLd() {
 
 export function creativeWorkJsonLd(project: Project) {
   const pageUrl = absoluteUrl(`/work/${project.slug}`);
+  const imageUrl = project.image
+    ? new URL(project.image, site.url).toString()
+    : undefined;
 
   return {
     "@context": "https://schema.org",
@@ -173,8 +177,8 @@ export function creativeWorkJsonLd(project: Project) {
     headline: `${project.name} — ${project.kind}`,
     description: project.description,
     url: pageUrl,
-    ...(project.image
-      ? { image: project.image, thumbnailUrl: project.image }
+    ...(imageUrl
+      ? { image: imageUrl, thumbnailUrl: imageUrl }
       : {}),
     author: { "@id": personId },
     creator: { "@id": personId },

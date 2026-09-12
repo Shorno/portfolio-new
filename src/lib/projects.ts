@@ -2,9 +2,8 @@
  * Project / case study data model.
  *
  * Featured projects are surfaced in §01 WORK with the scroll-stacked
- * interaction. Each one will also get a full /work/[slug] case study page
- * in Phase 3. `metrics`, `seed`, and `palette` feed the generative
- * placeholder art until real screenshots are dropped into `image`.
+ * interaction and a full /work/[slug] case study page. `seed` and `art`
+ * provide a stable generative fallback when a project has no screenshot.
  */
 
 export type ProjectStatus =
@@ -48,8 +47,42 @@ export type Project = {
 
 export const featuredProjects: Project[] = [
   {
-    slug: "selfshop",
+    slug: "ecube-tournament",
     index: "01",
+    name: "Ecube Tournament",
+    kind: "Esports Tournament Operations",
+    year: "2026—present",
+    status: "live",
+    tagline:
+      "Registration to qualification. Players, operators, and admins run a Free Fire tournament through one platform, with schedules, match results, and live group chat.",
+    description:
+      "Full-stack tournament platform for Ecube. I built the participant site, admin console, operator workspace, and backend: team registration, seeded group allocation, scheduling, match results, and qualification across seven configured rounds. Live group chat and queued email updates keep teams informed.",
+    url: "https://tour.ecube.gg/",
+    image: "/work/ecube-tournament/web-home.jpg",
+    imageAlt:
+      "Ecube Tournament — public homepage for Return of King: Free Fire",
+    stack: [
+      "Next.js 16",
+      "TypeScript",
+      "Hono · Bun",
+      "oRPC",
+      "Drizzle · Postgres",
+      "Better-Auth",
+      "Socket.IO",
+      "Inngest · Resend",
+      "Cloudflare R2",
+    ],
+    metrics: [
+      { label: "surfaces", value: "player · operator · admin" },
+      { label: "rounds", value: "7 configured" },
+      { label: "languages", value: "English · Bangla" },
+    ],
+    seed: 109,
+    art: "wires",
+  },
+  {
+    slug: "selfshop",
+    index: "02",
     name: "SelfShop",
     kind: "Reseller & Dropshipping Commerce",
     year: "2026—present",
@@ -87,7 +120,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "bikalpo",
-    index: "02",
+    index: "03",
     name: "Bikalpo",
     kind: "Multi-Party Commerce Marketplace",
     year: "2025—present",
@@ -121,7 +154,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "bright-tutor",
-    index: "03",
+    index: "04",
     name: "Bright Tutor",
     kind: "Multi-Role Education Platform",
     year: "2026",
@@ -155,7 +188,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "stock-management",
-    index: "04",
+    index: "05",
     name: "Stock Management",
     kind: "Distributor Operations SPA",
     year: "2025—2026",
@@ -189,7 +222,7 @@ export const featuredProjects: Project[] = [
   },
   {
     slug: "padma-service",
-    index: "05",
+    index: "06",
     name: "Padma Service",
     kind: "Services Marketplace & CMS",
     year: "2025—2026",

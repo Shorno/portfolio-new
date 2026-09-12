@@ -121,12 +121,12 @@ export function SiteHeaderNav() {
               isActive={active === section.id}
             />
           ))}
-          <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
+          <div className="mx-2 hidden h-4 w-px bg-line md:block" />
           <Link
             href={site.cvUrl}
             target="_blank"
             rel="noreferrer"
-            className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+            className="group hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] tracking-wide text-fg-soft transition-colors hover:border-accent hover:text-accent md:inline-flex"
           >
             CV
             <span
@@ -138,7 +138,7 @@ export function SiteHeaderNav() {
           </Link>
         </>
       )}
-      <ThemeToggle className="hidden sm:inline-flex" />
+      <ThemeToggle className="hidden md:inline-flex" />
     </nav>
   );
 }
@@ -159,7 +159,7 @@ function NavItem({
       href={href}
       aria-current={isActive ? "location" : undefined}
       className={cn(
-        "group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm",
+        "group relative inline-flex items-baseline gap-1 rounded-sm px-0.5 py-1.5 text-xs transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm",
         isActive
           ? "text-fg underline decoration-accent decoration-1 underline-offset-[5px]"
           : "text-fg-soft hover:text-fg",
@@ -167,7 +167,7 @@ function NavItem({
     >
       <span
         className={cn(
-          "mono-label hidden text-[11px] sm:inline sm:text-[12px]",
+          "mono-label hidden text-[12px] xl:inline",
           isActive
             ? "text-accent"
             : "text-faint group-hover:text-accent",

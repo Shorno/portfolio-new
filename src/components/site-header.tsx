@@ -9,7 +9,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full backdrop-blur-md">
       <div className="absolute inset-0 -z-10 bg-bg/70" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-line/60" />
-      <Container className="flex h-14 items-center justify-between gap-3">
+      <Container className="flex h-14 items-center justify-between gap-2 md:gap-3">
         <div className="flex min-w-0 shrink items-center gap-3 sm:gap-6">
           <Link
             href="/"
@@ -21,13 +21,13 @@ export function SiteHeader() {
                 S
               </span>
             </span>
-            <span className="hidden font-mono text-[13px] tracking-tight text-fg sm:inline">
+            <span className="hidden font-mono text-[13px] tracking-tight text-fg md:inline">
               shorno
               <span className="text-muted">.me</span>
             </span>
           </Link>
-          <span className="hidden h-3 w-px bg-line sm:block" />
-          <MonoTag tone="ok" className="hidden sm:inline-flex">
+          <span className="hidden h-3 w-px bg-line xl:block" />
+          <MonoTag tone="ok" className="hidden xl:inline-flex">
             open to roles · {site.location.split(",")[0]}
           </MonoTag>
         </div>

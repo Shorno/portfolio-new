@@ -25,7 +25,7 @@ export const site = {
   seoDescription:
     "Full-stack developer in Dhaka building production web apps with Next.js, React, TypeScript, PostgreSQL, and React Native. ~2 years shipping client and team projects. Open to junior full-stack / frontend roles and selective client work.",
   subline:
-    "Multi-party marketplaces, role-based platforms, wholesale tooling. From planning through to the live product.",
+    "Multi-party marketplaces, tournament operations, wholesale tooling. From planning through to the live product.",
   hireEmailSubject: "Role inquiry",
   projectEmailSubject: "Project inquiry",
   seeking: {

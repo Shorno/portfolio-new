@@ -23,9 +23,9 @@ export function Hero() {
             </ul>
             {site.seeking.open ? <p className="mt-5 text-sm text-muted">{site.seeking.headline}.</p> : null}
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href={site.cvUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-3 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-accent-fg transition-colors hover:bg-fg hover:text-bg">
+              <a href={site.cvUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-3 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-accent-fg transition-colors hover:bg-fg hover:text-bg">
                 View CV <span aria-hidden>↗</span>
-              </Link>
+              </a>
               <Link href={`mailto:${site.email}?subject=${encodeURIComponent(site.hireEmailSubject)}`} className="inline-flex min-h-11 items-center text-sm text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent">Email me</Link>
               <Link href={site.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft transition-colors hover:text-accent">LinkedIn <span aria-hidden>↗</span></Link>
             </div>

@@ -49,7 +49,7 @@ export const experience: ExperienceEntry[] = [
     location: "Bangladesh",
     type: "full-time",
     summary:
-      "Built Ecube’s tournament platform end to end, from the participant site and staff dashboards to the API, database, and deployment. Work includes registration, scheduling, results, and live chat.",
+      "Built and deployed Ecube’s Next.js application, Hono API, and PostgreSQL database. Implemented role-based dashboards, tournament scheduling, result verification, and real-time chat.",
     highlights: [
       "Built the Next.js frontend, Hono API, shared oRPC contracts, Postgres schema, and authentication in a Turborepo.",
       "Implemented seeded group allocation and shared tournament operations across seven configured rounds, including league and knockout stages.",
@@ -77,7 +77,7 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "Develop web and mobile applications for commerce, education, and wholesale operations. Full-stack work on shared APIs and databases, plus frontend integration with the team’s Laravel API for SelfShop.",
+      "Develop web and mobile applications with shared APIs, relational data models, and role-based access. Work spans full-stack product development and SelfShop’s Next.js and React Native frontends, integrated with the team’s Laravel API.",
     highlights: [
       "Designed and shipped a Turborepo-based commerce platform with web + native + Hono backend.",
       "Owned a multi-role education platform with subdomain-scoped roles, shared Drizzle schema, and oRPC-backed web + native surfaces.",
@@ -113,7 +113,7 @@ export const experience: ExperienceEntry[] = [
     location: "Dhaka, Bangladesh",
     type: "part-time",
     summary:
-      "Built Ubaky’s restaurant merchant dashboard in React. Worked with the backend team on API integration, responsive layouts, and the interface used by restaurant operators.",
+      "Built Ubaky’s merchant dashboard in React, translating restaurant workflows into responsive interfaces. Collaborated with the backend team on API integration and frontend data flow.",
     highlights: [
       "Owned the merchant interface in React, the surface restaurant operators use day-to-day.",
       "Mobile-first responsive design across all three role-specific apps.",

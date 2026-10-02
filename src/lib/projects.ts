@@ -60,9 +60,9 @@ export const featuredProjects: Project[] = [
     year: "2026—present",
     status: "live",
     tagline:
-      "Built the participant site, staff dashboards, API, and database for Ecube’s Free Fire tournament. Registration, scheduling, results, qualification, and live chat.",
+      "Built and deployed the web application, API, and database. Implemented role-based dashboards, scheduling, result verification, and real-time chat.",
     description:
-      "I built Ecube’s Free Fire tournament platform: the participant site, staff dashboards, API, and database. It supports registration, scheduling, match results, qualification, live chat, and email updates.",
+      "I built and deployed a Next.js application backed by a Hono API and PostgreSQL for Ecube’s tournament operations. The platform handles registration, staff permissions, scheduling, verified results, live chat, and queued email updates.",
     url: "https://tour.ecube.gg/",
     image: "/work/ecube-tournament/web-home.jpg",
     imageAlt:
@@ -96,7 +96,7 @@ export const featuredProjects: Project[] = [
     year: "2026—present",
     status: "live",
     tagline:
-      "Built admin, reseller, and supplier dashboards, plus the reseller app on Google Play. Integrated the team’s Laravel API.",
+      "Built Next.js dashboards for admins, resellers, and suppliers, plus a React Native app published on Google Play. Integrated the team’s Laravel API across web and mobile.",
     description:
       "Reseller marketplace with web dashboards for admins, resellers, and suppliers. I built the Next.js frontend and the React Native reseller app on Google Play, integrating the team’s Laravel backend.",
     url: "https://selfshop.com.bd/",
@@ -136,7 +136,7 @@ export const featuredProjects: Project[] = [
     year: "2025—present",
     status: "partial-live",
     tagline:
-      "Building a wholesale marketplace with separate pricing and ordering for warehouses, retailers, and consumers. The B2B storefront is live; the wider platform is in development.",
+      "Building the storefront, mobile app, and API for role-based pricing and ordering. The B2B storefront is live; the wider platform is in development.",
     description:
       "Wholesale marketplace with customer-specific pricing and role-based ordering. I’m building the storefront, mobile app, and API. The B2B storefront is live; the wider platform remains in development.",
     url: "https://b2b.bikalpo.com/",
@@ -172,9 +172,9 @@ export const featuredProjects: Project[] = [
     year: "2026",
     status: "live",
     tagline:
-      "Built web portals and mobile apps for a tutoring business, with separate tools for teachers, guardians, and admins. Connected six applications to one API and database.",
+      "Connected six web and mobile applications to a shared API and database. Implemented separate workflows and access permissions for teachers, guardians, and admins.",
     description:
-      "Tuition media platform for a tutoring business: public marketplace, admin console, and role-aware web + native surfaces for teachers and guardians, all on one Hono+oRPC API with a shared Drizzle schema.",
+      "I built a tutoring marketplace and its teacher, guardian, and admin applications in one monorepo. Six web and mobile apps share a Hono API, typed oRPC contracts, and a PostgreSQL data model, with access scoped to each role.",
     url: "https://brighteducations.com/",
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456307/Bright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png",
@@ -208,7 +208,7 @@ export const featuredProjects: Project[] = [
     year: "2025—2026",
     status: "live",
     tagline:
-      "Built a distributor’s stock and sales application: supplier purchases, retailer orders, transfers, returns, and printed invoices.",
+      "Built and deployed a React application and backend for inventory and sales. Implemented purchasing, order fulfillment, stock transfers, returns, and printable invoices.",
     description:
       "Stock and sales software for a distributor, covering supplier purchases, retailer orders, transfers, returns, and printed invoices. I built and deployed the React application and its backend.",
     url: "https://mstamimenterprise.shop/",
@@ -244,7 +244,7 @@ export const featuredProjects: Project[] = [
     year: "2025—2026",
     status: "live",
     tagline:
-      "Built a bilingual service catalog, member accounts, and an admin CMS. Staff manage content and review submitted listings through the same application.",
+      "Built a bilingual Next.js application with a service catalog and admin CMS. Implemented phone-OTP authentication, member accounts, and listing approvals.",
     description:
       "I built the public service catalog, member accounts, and admin CMS, with phone-OTP authentication and approval of submitted listings. The platform supports Bengali and English.",
     url: "https://padmaservice.com",

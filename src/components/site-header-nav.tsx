@@ -1,3 +1,4 @@
+/** Section navigation uses the router; the CV stays a native link to avoid PDF prefetching. */
 "use client";
 
 import Link from "next/link";
@@ -138,7 +139,7 @@ export function SiteHeaderNav() {
               />
             ))}
             <div className="mx-2 hidden h-4 w-px bg-line md:block" />
-            <Link
+            <a
               href={site.cvUrl}
               target="_blank"
               rel="noreferrer"
@@ -151,7 +152,7 @@ export function SiteHeaderNav() {
               >
                 ↗
               </span>
-            </Link>
+            </a>
           </>
         )}
       </nav>

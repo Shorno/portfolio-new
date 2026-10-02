@@ -19,7 +19,7 @@ export function ContactSection() {
             <p className="text-base text-fg-soft">{site.location} · UTC+6</p>
             <p className="mt-2 text-sm text-muted">Open to remote roles</p>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-              <Link href={site.cvUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg underline decoration-line-strong underline-offset-4 hover:text-accent">View CV <span aria-hidden>↗</span></Link>
+              <a href={site.cvUrl} download className="inline-flex min-h-11 items-center gap-2 text-sm text-fg underline decoration-line-strong underline-offset-4 hover:text-accent">Download CV <span aria-hidden>↓</span></a>
               <Link href={site.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg underline decoration-line-strong underline-offset-4 hover:text-accent">LinkedIn <span aria-hidden>↗</span></Link>
             </div>
           </div>

@@ -1,3 +1,4 @@
+/** Shared profile copy, metadata, and repository visibility settings. */
 export const site = {
   name: "Shorno",
   fullName: "Shorno Kamal Roy",
@@ -11,14 +12,14 @@ export const site = {
   url: "https://shorno.dev",
   github: "https://github.com/Shorno",
   github_handle: "Shorno",
-  /** Public CV link — opens in a new tab from the hero CTA and the header. */
+  /** Use native anchors for this file so the router never prefetches the PDF. */
   cvUrl: "/cv/shorno-kamal-roy-cv.pdf",
   /** Public profile copy is written for hiring teams. */
   seoDescription:
-    "Shorno Kamal Roy, full-stack engineer in Dhaka. Currently at Ecube and AlgoVerse, building web and mobile applications with React, Next.js, TypeScript, and PostgreSQL. Experience, project case studies, and CV.",
+    "Shorno Kamal Roy, full-stack software engineer in Dhaka. Building web and mobile applications, APIs, and databases with TypeScript, React, Next.js, and PostgreSQL. Explore project case studies, experience, and CV.",
   subline:
-    "I build web applications for tournament, commerce, and education teams.",
-  focus: "Full-stack web development: user interfaces, APIs, and relational data.",
+    "I build and ship full-stack applications, from the user interface to the API, database, and deployment.",
+  focus: "Type-safe APIs, relational data models, and role-based workflows across web and mobile.",
   coreSkills: ["TypeScript", "React", "Next.js", "PostgreSQL"],
   hireEmailSubject: "Role inquiry",
   seeking: {

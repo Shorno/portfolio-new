@@ -329,7 +329,7 @@ Secondary actions are underlined text, not buttons: 14px semibold ink with a hai
 The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of rows: a quiet label column (text-soft) and a value (ink), separated by 1px hairlines.
 - **Profile card:** 14px medium labels in a 6.5rem column, 15px medium values; rules are ink at 10% on the sand ground. Rows: Currently, Experience ("since Sep 2024", derived from the earliest role), Based in, Open to, Education.
 - **Work experience and education:** tabular date in a 9.5rem column; value is a semibold role with an accent-linked company, then a 15px soft line for type and scope. Education sits under its own title-small sub-heading, in the same row form.
-- **Skills:** group label in a 9.5rem column, then the tools as a comma-separated 15px medium list.
+- **Skills:** group label in a 9.5rem column, then the tools as a comma-separated 15px medium list. A group may add one 14px text-soft line under its tools explaining what they are for (Monitoring & analytics).
 - **Project fact table:** a 4.5rem column of 14px medium labels beside 15px values, framed top and bottom by hairlines. Rows in order: Team, Built, Result or Results (semibold, one line each), Stack. Results render only when owner-confirmed.
 - Below 640px the profile, experience and skills rows stack label over value; the project table keeps its two columns.
 

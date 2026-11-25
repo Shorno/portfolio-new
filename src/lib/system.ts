@@ -1,10 +1,12 @@
 /**
- * Skills grouped by what they are for, each tool backed by a project on the homepage.
+ * Skills grouped by what they are for, each tool one the owner uses in shipped work.
+ * `detail` is an optional plain-language line for tools a recruiter may not know.
  * Repository language colors remain separate for the code archive.
  */
 export type SkillGroup = {
   label: string;
   tools: string[];
+  detail?: string;
 };
 
 export const skillGroups: SkillGroup[] = [
@@ -13,6 +15,11 @@ export const skillGroups: SkillGroup[] = [
   { label: "Mobile", tools: ["React Native", "Expo"] },
   { label: "Real-time & background jobs", tools: ["Socket.IO", "Pusher", "Inngest"] },
   { label: "DevOps", tools: ["Coolify", "VPS hosting", "Cloudflare R2"] },
+  {
+    label: "Monitoring & analytics",
+    tools: ["PostHog", "SigNoz (self-hosted)"],
+    detail: "User analytics, session recordings and error tracking; logs and monitoring.",
+  },
 ];
 
 /** GitHub language colors are metadata in the code archive, not interface tokens. */

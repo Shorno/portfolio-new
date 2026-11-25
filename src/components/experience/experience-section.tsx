@@ -47,7 +47,10 @@ export function ExperienceSection() {
             {skillGroups.map((group) => (
               <div key={group.label} className="grid gap-1 border-t border-line py-3.5 first:border-t-0 first:pt-0 sm:grid-cols-[9.5rem_1fr] sm:gap-4">
                 <dt className="text-sm font-medium text-fg-soft">{group.label}</dt>
-                <dd className="text-[0.9375rem] font-medium text-fg">{group.tools.join(", ")}</dd>
+                <dd className="text-[0.9375rem] font-medium text-fg">
+                  {group.tools.join(", ")}
+                  {group.detail ? <span className="mt-0.5 block text-sm font-normal text-fg-soft">{group.detail}</span> : null}
+                </dd>
               </div>
             ))}
           </dl>

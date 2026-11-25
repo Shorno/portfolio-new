@@ -70,7 +70,7 @@ export const projects: Project[] = [
     name: "Ecube Tournament",
     featured: true,
     summary:
-      "Esports tournament platform for Free Fire events: registration, group draws, schedules, result checks and team chat, in English and Bangla.",
+      "Ecube’s esports tournament site: squads register, follow the schedule and play for the prize pool. Group draws, result checks and team chat, in English and Bangla.",
     client: "Ecube",
     team: "Solo",
     built: "Web app, API and database, with real-time team chat and live result updates",
@@ -128,7 +128,7 @@ export const projects: Project[] = [
     name: "Ecube Esports",
     featured: false,
     summary:
-      "PUBG Mobile esports results for Bangladesh: tournaments, standings, teams and player stats.",
+      "Tournaments, teams, players and rankings from Bangladesh’s PUBG Mobile scene.",
     client: "Ecube",
     team: "Solo",
     built: "Match replays on the map, live standings, and player pages with playstyle and hit maps",
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     name: "The Esports Times",
     featured: false,
     summary:
-      "Bangla esports news site with its own newsroom, from writing and review to publishing.",
+      "Bangla news site covering esports, tournaments, teams and players in Bangladesh and worldwide, run from its own newsroom.",
     client: "Ecube",
     team: "Solo",
     built:
@@ -178,7 +178,7 @@ export const projects: Project[] = [
     slug: "bikalpo",
     name: "Bikalpo",
     featured: false,
-    summary: "Wholesale ordering with customer-specific pricing.",
+    summary: "Online store for everyday products, with categories, brands, offers, seller shops and to-let listings.",
     team: "Lead developer, team of two",
     built: "Storefront, API and mobile app",
     year: "2025–now",

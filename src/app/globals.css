@@ -7,7 +7,7 @@
    Design tokens: "Soft Studio"
    Warm off-white page, white rounded cards with a soft shadow,
    one teal accent, and four pastel tints for project frames and
-   status pills. Two themes: paper (default, :root) and dark (.dark).
+   the hero Profile card. Two themes: paper (default, :root) and dark (.dark).
    --------------------------------------------------------------- */
 
 :root {

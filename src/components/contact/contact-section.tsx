@@ -1,4 +1,8 @@
-/** Closing call to action: an ink card with the email address and the two other ways to reach out. */
+/**
+ * Closing call to action: an ink card where the email address itself is
+ * the headline-sized link, with the resume and LinkedIn beside it.
+ */
+import { Arrow } from "@/components/primitives/arrow";
 import { ButtonLink } from "@/components/primitives/button-link";
 import { Container } from "@/components/primitives/container";
 import { site } from "@/lib/site";
@@ -9,19 +13,21 @@ export function ContactSection() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="pt-16 md:pt-20">
       <Container>
-        <div className="relative grid items-end gap-8 overflow-hidden rounded-[1.75rem] bg-ink px-6 py-9 text-ink-fg md:grid-cols-[1.3fr_1fr] md:gap-10 md:rounded-[2.25rem] md:p-16">
-          <span aria-hidden className="absolute -top-24 -right-16 size-64 rounded-[42%_58%_61%_39%/45%_39%_61%_55%] bg-accent opacity-55" />
-          <span aria-hidden className="absolute -top-16 right-36 size-36 rounded-full bg-tint-sand opacity-35" />
-          <div className="relative">
-            <h2 id="contact-title" className="font-display text-[clamp(2.2rem,4.2vw,3.6rem)]">Let{"’"}s work together.</h2>
-            <p className="mt-4 max-w-[46ch] opacity-75">
-              I{"’"}m open to full-stack developer roles: remote, on-site or hybrid. Send me a message and I{"’"}ll reply within one working day.
-            </p>
-          </div>
-          <div className="relative flex flex-wrap gap-2.5 md:justify-end">
-            <ButtonLink variant="inverse" arrow href={mailto}>{site.email}</ButtonLink>
-            <ButtonLink variant="ghost-inverse" href={site.cvUrl} target="_blank" rel="noreferrer">Resume</ButtonLink>
-            <ButtonLink variant="ghost-inverse" href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</ButtonLink>
+        <div className="rounded-[1.75rem] bg-ink px-6 py-9 text-ink-fg md:rounded-[2.25rem] md:px-14 md:py-14">
+          <h2 id="contact-title" className="font-display text-[1.875rem]">Get in touch</h2>
+          <p className="mt-2 max-w-[52ch] text-ink-fg/75">
+            I{"’"}m open to full-stack roles, remote, on-site or hybrid. Email is the quickest way to reach me.
+          </p>
+          <a
+            href={mailto}
+            className="group/mail mt-8 inline-flex max-w-full items-center gap-3 font-display text-[clamp(1.6rem,5.2vw,3.4rem)] break-all text-ink-fg underline decoration-ink-fg/25 decoration-2 underline-offset-[0.18em] transition-[text-decoration-color] duration-200 hover:decoration-ink-fg sm:break-normal"
+          >
+            {site.email}
+            <Arrow className="size-[0.45em] shrink-0 transition-transform duration-200 ease-out group-hover/mail:translate-x-1 group-hover/mail:-translate-y-1" />
+          </a>
+          <div className="mt-8 flex flex-wrap gap-2.5 border-t border-ink-fg/15 pt-6">
+            <ButtonLink variant="inverse" size="sm" href={site.cvUrl} target="_blank" rel="noreferrer">Resume (PDF)</ButtonLink>
+            <ButtonLink variant="ghost-inverse" size="sm" arrow href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</ButtonLink>
           </div>
         </div>
       </Container>

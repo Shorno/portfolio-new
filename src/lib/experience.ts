@@ -81,10 +81,8 @@ export function formatType(type: EmploymentType): string {
   return TYPE_LABELS[type];
 }
 
-/** Whole years since the earliest role started, e.g. 2 for "2+ years". */
-export function yearsOfExperience(now: Date = new Date()): number {
-  const starts = experience.map((e) => /^(\d{4})-(\d{2})$/.exec(e.start)).filter((m) => m !== null);
-  const first = Math.min(...starts.map((m) => Number(m[1]) * 12 + Number(m[2]) - 1));
-  const months = now.getUTCFullYear() * 12 + now.getUTCMonth() - first;
-  return Math.max(Math.floor(months / 12), 0);
+/** Month the earliest role started, e.g. "Sep 2024". A date the reader can check, not a rounded count. */
+export function careerStart(): string {
+  const earliest = [...experience].sort((a, b) => a.start.localeCompare(b.start))[0];
+  return earliest ? formatMonth(earliest.start) : "";
 }

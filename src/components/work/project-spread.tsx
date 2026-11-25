@@ -1,15 +1,17 @@
 /**
  * Featured project card: details on the left, screenshot in a tinted
- * frame on the right (on top on mobile). Team and results render only
- * when the data holds owner-confirmed values.
+ * frame on the right (on top on mobile). Details are a small fact table
+ * (Team, Built, Results, Stack) so a reader can scan the same row
+ * across projects. Results render only when the data holds
+ * owner-confirmed values. The live link shows its real address.
  */
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { Arrow } from "@/components/primitives/arrow";
 import { ButtonLink } from "@/components/primitives/button-link";
-import { Chip } from "@/components/primitives/chip";
 import { cloudinaryImageUrl } from "@/lib/cloudinary";
 import { type Project, type ProjectTint, statusLabels } from "@/lib/projects";
-import { cn } from "@/lib/utils";
+import { cn, hostname } from "@/lib/utils";
 import { PlateReveal } from "./plate-reveal";
 
 export const tintClass: Record<ProjectTint, string> = {
@@ -20,43 +22,39 @@ export const tintClass: Record<ProjectTint, string> = {
 };
 
 export function ProjectSpread({ project }: { project: Project }) {
+  const meta = [project.client, project.year, project.status === "live" ? null : statusLabels[project.status]].filter(Boolean);
+
   return (
     <PlateReveal className="mb-5">
-      <article
-        aria-labelledby={`project-${project.slug}`}
-        className="group card grid overflow-hidden transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lift md:grid-cols-[1fr_1.35fr]"
-      >
+      <article aria-labelledby={`project-${project.slug}`} className="group card grid overflow-hidden md:grid-cols-[1fr_1.35fr]">
         <div className="flex flex-col p-6 md:p-9">
-          <div className="flex flex-wrap gap-2">
-            <Chip tone={project.status === "live" ? "live" : "muted"}>{statusLabels[project.status]}</Chip>
-            <Chip tone="muted">{project.year}</Chip>
-            {project.client ? <Chip tone="muted">{project.client}</Chip> : null}
-          </div>
-          <h3 id={`project-${project.slug}`} className="mt-4 mb-2 font-display text-[1.875rem] text-fg">
+          <h3 id={`project-${project.slug}`} className="font-display text-[1.875rem] text-fg">
             {project.name}
           </h3>
-          <p className="mb-4 text-fg">{project.summary}</p>
-          <ul className="mb-5 grid gap-2 text-[0.9375rem] text-fg-soft">
-            <Point><b className="font-semibold text-fg">Role:</b> {project.role}</Point>
-            {project.team ? <Point><b className="font-semibold text-fg">Team:</b> {project.team}</Point> : null}
-            {project.highlights?.map((h) => <Point key={h}>{h}</Point>)}
-            {project.results?.map((r) => <Point key={r}><span className="font-semibold text-fg">{r}</span></Point>)}
-          </ul>
-          <ul aria-label={`${project.name} tech stack`} className="mb-6 flex flex-wrap gap-1.5">
-            {project.stack.map((t) => <li key={t}><Chip>{t}</Chip></li>)}
-          </ul>
-          <div className="mt-auto flex flex-wrap gap-2.5">
+          <p className="tabular mt-1 text-sm font-medium text-fg-soft">{meta.join(" · ")}</p>
+          <p className="mt-4 text-fg">{project.summary}</p>
+
+          <dl className="mt-5 mb-7 border-t border-line">
+            <Row term="Team">{project.team}</Row>
+            <Row term="Built">{project.built}</Row>
+            {project.results?.length ? (
+              <Row term={project.results.length > 1 ? "Results" : "Result"}>
+                <ul className="grid gap-1 font-semibold">
+                  {project.results.map((r) => <li key={r}>{r}</li>)}
+                </ul>
+              </Row>
+            ) : null}
+            <Row term="Stack">{project.stack.join(", ")}</Row>
+          </dl>
+
+          <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3">
             {project.url ? (
               <ButtonLink variant="ink" size="sm" arrow href={project.url} target="_blank" rel="noreferrer">
-                Visit site<span className="sr-only">: {project.name}</span>
+                <span className="sr-only">Visit {project.name} at </span>{hostname(project.url)}
               </ButtonLink>
             ) : null}
-            {project.playstore ? (
-              <ButtonLink size="sm" href={project.playstore} target="_blank" rel="noreferrer">Google Play</ButtonLink>
-            ) : null}
-            {project.github ? (
-              <ButtonLink size="sm" href={project.github} target="_blank" rel="noreferrer">Source code</ButtonLink>
-            ) : null}
+            {project.playstore ? <TextLink href={project.playstore}>Google Play</TextLink> : null}
+            {project.github ? <TextLink href={project.github}>Source code</TextLink> : null}
           </div>
         </div>
 
@@ -78,11 +76,20 @@ export function ProjectSpread({ project }: { project: Project }) {
   );
 }
 
-function Point({ children }: { children: ReactNode }) {
+function Row({ term, children }: { term: string; children: ReactNode }) {
   return (
-    <li className="relative pl-[1.375rem]">
-      <span aria-hidden className="absolute top-[0.5625rem] left-1 size-2 rotate-45 rounded-[3px] bg-accent" />
+    <div className="grid grid-cols-[4.75rem_1fr] gap-3 border-b border-line py-2.5 text-[0.9375rem]">
+      <dt className="pt-px text-sm font-medium text-fg-soft">{term}</dt>
+      <dd className="text-fg">{children}</dd>
+    </div>
+  );
+}
+
+function TextLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent hover:text-accent">
       {children}
-    </li>
+      <Arrow className="size-[0.6875rem]" />
+    </a>
   );
 }

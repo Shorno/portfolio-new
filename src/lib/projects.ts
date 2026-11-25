@@ -5,7 +5,7 @@
  * tinted frame right); the rest render as compact "More projects" cards.
  *
  * Invariant: `team` and `results` hold only values the owner has
- * confirmed. When absent, nothing is rendered, never a placeholder.
+ * confirmed. Results are omitted, never shown as a placeholder.
  */
 
 export type ProjectStatus = "live" | "partial-live";
@@ -18,14 +18,12 @@ export type Project = {
   featured: boolean;
   /** What the product is and who uses it, in plain words. */
   summary: string;
-  /** Who it was built for, shown as a chip, e.g. "Ecube". */
+  /** Who it was built for, shown in the meta line under the name, e.g. "Ecube". */
   client?: string;
-  /** Job title on the project plus what I built. */
-  role: string;
-  /** Extra things I built, one line each. */
-  highlights?: string[];
-  /** Team size or makeup, owner-confirmed only. */
-  team?: string;
+  /** Who built it, owner-confirmed, e.g. "Solo" or "Team of three". */
+  team: string;
+  /** What I built, or the core features, in one line. */
+  built: string;
   /** Display year(s), e.g. "2026" or "2025–2026". */
   year: string;
   status: ProjectStatus;
@@ -50,18 +48,35 @@ export const statusLabels: Record<ProjectStatus, string> = {
 
 export const projects: Project[] = [
   {
+    slug: "bright-educations",
+    name: "Bright Educations",
+    featured: true,
+    summary:
+      "Tutoring platform in Bangladesh that connects guardians with verified tutors. Web and mobile apps for guardians, tutors and admins.",
+    team: "Team of three",
+    built: "Web and mobile apps",
+    year: "2026",
+    status: "live",
+    stack: ["Next.js", "Expo", "Hono", "PostgreSQL"],
+    results: ["About 5,000 active users"],
+    url: "https://brighteducations.com/",
+    image: "/work/bright-educations/web-home.png",
+    imageAlt: "Bright Educations homepage: Find the right tutor for your child",
+    tint: "lilac",
+  },
+  {
     slug: "ecube-tournament",
     name: "Ecube Tournament",
     featured: true,
     summary:
       "Esports tournament platform for Free Fire events: registration, group draws, schedules, result checks and team chat, in English and Bangla.",
     client: "Ecube",
-    role: "Full-stack engineer. Built the web app, API and database.",
-    highlights: ["Real-time team chat and live result updates"],
+    team: "Solo",
+    built: "Web app, API and database, with real-time team chat and live result updates",
     year: "2026",
     status: "live",
     stack: ["Next.js", "TypeScript", "Hono", "PostgreSQL", "Socket.IO"],
-    results: ["Hosts tournaments with a BDT 10,00,000 prize pool"],
+    results: ["About 15,000 teams registered", "Hosts tournaments with a BDT 10,00,000 prize pool"],
     url: "https://tour.ecube.gg/",
     image: "/work/ecube-tournament/web-home.jpg",
     imageAlt: "Ecube Tournament homepage for Return of King: Free Fire",
@@ -74,11 +89,12 @@ export const projects: Project[] = [
     summary:
       "Reseller marketplace where suppliers list products and resellers sell them through their own channels, on the web and Android.",
     client: "AlgoVerse client",
-    role: "Frontend developer for the admin, reseller and supplier dashboards.",
-    highlights: ["Built and published the reseller Android app on Google Play"],
+    team: "Built in a team of three; I now maintain it alone",
+    built: "Admin, reseller and supplier dashboards, and the reseller Android app on Google Play",
     year: "2026",
     status: "live",
     stack: ["Next.js", "React Native", "TypeScript", "Redux Toolkit"],
+    results: ["15,000+ monthly active users"],
     url: "https://selfshop.com.bd/",
     playstore:
       "https://play.google.com/store/apps/details?id=com.selfshop.reseller&hl=en",
@@ -92,10 +108,11 @@ export const projects: Project[] = [
     name: "Stock Management",
     featured: true,
     summary:
-      "Inventory and invoicing system that replaced a distributor’s spreadsheets: purchases, retailer orders, transfers, returns and printed invoices.",
+      "Inventory and sales system that replaced a wholesale distributor’s spreadsheets.",
     client: "Wholesale distributor",
-    role: "Full-stack developer. Built the web app and backend.",
-    highlights: ["Printable invoices, stock transfers and returns"],
+    team: "Solo, end to end",
+    built:
+      "Sales and stock tracking, sales-rep (SR and DSR) tracking, customer dues, printed invoices and automated SMS",
     year: "2025–2026",
     status: "live",
     stack: ["React", "TypeScript", "TanStack Query", "Vite"],
@@ -106,26 +123,12 @@ export const projects: Project[] = [
     tint: "sky",
   },
   {
-    slug: "bright-tutor",
-    name: "Bright Tutor",
-    featured: false,
-    summary: "Tutoring platform for teachers, guardians and admins.",
-    role: "Six web and mobile apps on one shared API",
-    year: "2026",
-    status: "live",
-    stack: ["Next.js", "Expo", "Hono", "PostgreSQL"],
-    url: "https://brighteducations.com/",
-    image:
-      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456307/Bright-Tutor-Find-Verified-Tutors-in-Bangladesh_argy0s.png",
-    imageAlt: "Bright Tutor marketing site",
-    tint: "lilac",
-  },
-  {
     slug: "padma-service",
     name: "Padma Service",
     featured: false,
     summary: "Services marketplace in Bangla and English.",
-    role: "Public site, member accounts and admin panel",
+    team: "Solo",
+    built: "Public site, member accounts and admin panel",
     year: "2025–2026",
     status: "live",
     stack: ["Next.js", "Hono", "PostgreSQL"],
@@ -140,7 +143,8 @@ export const projects: Project[] = [
     name: "Bikalpo",
     featured: false,
     summary: "Wholesale ordering with customer-specific pricing.",
-    role: "Storefront, API and mobile app",
+    team: "Team of two",
+    built: "Storefront, API and mobile app",
     year: "2025–now",
     status: "partial-live",
     stack: ["Next.js", "Drizzle", "PostgreSQL"],

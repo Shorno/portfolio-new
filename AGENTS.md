@@ -8,7 +8,7 @@ Context and conventions for any AI agent working on this repo. Read this first.
 
 Personal portfolio for **Shorno Kamal Roy**, a full-stack engineer in Dhaka. The audience is **recruiters and hiring managers** (international, remote, on-site, and in Bangladesh). Product context lives in `PRODUCT.md`; the design system is recorded in `DESIGN.md`. Live at [shorno.dev](https://shorno.dev); `shorno.me` and `www.*` redirect there (`next.config.ts`).
 
-The visual concept is **"Soft Studio"**: a polished, friendly portfolio in conventional recruiter language. Warm off-white page, white rounded cards with a hairline border and soft shadow, a floating pill header, pill buttons with a round arrow badge, pastel tint frames behind project screenshots, chip tags, a timeline for experience, and an ink contact card. Bricolage Grotesque for headings, Hanken Grotesk for everything else, one teal accent.
+The visual concept is **"Soft Studio"**: a polished, friendly portfolio in conventional recruiter language. Warm off-white page, white rounded cards with a hairline border and soft shadow, a floating pill header, pill buttons with an inline arrow, pastel tint frames behind project screenshots, small fact tables (label column, value column, hairline rows) for profile, project details, experience and skills, and an ink contact card where the email is the headline. Bricolage Grotesque for headings, Hanken Grotesk for everything else, one teal accent.
 
 Copy uses standard section names (Featured projects, More projects, Work experience, Skills) and plain job titles. No invented framing.
 
@@ -45,15 +45,15 @@ src/
     api/auth/[...all]/   # Better-Auth route handler
     robots.ts, sitemap.ts, manifest.ts
   components/
-    primitives/          # Container, ButtonLink, Chip, Arrow, BlockHead, Grid, Rule
-    hero/                # intro card + fact tiles
+    primitives/          # Container, ButtonLink, Arrow, BlockHead, Grid, Rule
+    hero/                # intro card + Profile fact card
     work/                # featured project cards + "More projects" cards
-    experience/          # experience timeline + skill chips, side by side
+    experience/          # experience rows + skills rows, side by side
     contact/             # the close
     index/               # repo archive, rendered on /archive
     operator/            # operator dashboard + login form
     seo/                 # JSON-LD
-    site-header.tsx      # floating pill header: monogram, name + SiteHeaderNav
+    site-header.tsx      # floating pill header: name + SiteHeaderNav
     site-header-nav.tsx  # section links, theme toggle, Resume button
     site-footer.tsx      # copyright, archive + GitHub links
     theme-provider.tsx, theme-toggle.tsx
@@ -84,21 +84,21 @@ All tokens live in `src/app/globals.css`: paper on `:root`, dark on `.dark`. Tai
 | `bg-elev` | Cards (white) |
 | `surface` | Inset rows inside cards |
 | `fg`, `fg-soft`, `muted`, `faint` | Text, progressively quieter (all pass AA on `bg` and `bg-elev`) |
-| `line`, `line-strong` | Card borders, dividers, the timeline rail |
-| `accent`, `accent-hover`, `accent-fg`, `accent-soft` | Teal: primary button, highlighted headline words, links, timeline dots |
+| `line`, `line-strong` | Card borders and the hairlines between fact rows |
+| `accent`, `accent-hover`, `accent-fg`, `accent-soft` | Teal: primary button, links, project addresses |
 | `ink`, `ink-fg` | Dark buttons ("Resume", "Visit site") and the contact card; inverts in dark theme |
-| `tint-mint`, `tint-sand`, `tint-sky`, `tint-lilac`, `tint-mint-fg` | Screenshot frames, fact tiles, the Live/Current pills |
+| `tint-mint`, `tint-sand`, `tint-sky`, `tint-lilac`, `tint-mint-fg` | Screenshot frames and the hero Profile card (sand) |
 | `shadow-card`, `shadow-lift` | Card shadow and its hover lift |
 | `signal-ok`, `signal-warn` | Status dots (hero pill, operator console) |
 
-The `.card` utility (white, 28px radius, hairline border, soft shadow) is the base surface. Radii: `--radius-lg` 20px for tiles, `--radius-xl` 28px for cards, `rounded-full` for buttons and chips.
+The `.card` utility (white, 28px radius, hairline border, soft shadow) is the base surface. Radii: `--radius-lg` 20px for compact cards, `--radius-xl` 28px for cards, `rounded-full` for buttons and nav links.
 
 **Rule:** never introduce a raw hex in components. If a new role is genuinely needed, add it to **both** `:root` and `.dark` and expose it in `@theme inline`.
 
 ### Typography
 
 - **Bricolage Grotesque** (`font-display`, `.font-display`): headings and big figures.
-- **Hanken Grotesk** (`font-sans`, default): body, chips, buttons, UI.
+- **Hanken Grotesk** (`font-sans`, default): body, fact tables, buttons, UI.
 - **Geist Mono** (`font-mono`): code-like data only (repo names on `/archive`).
 - `.tabular` for dates and figures.
 
@@ -116,8 +116,7 @@ Headline sizes use `clamp()`: hero `clamp(2.4rem,4.6vw,3.9rem)`, section heads v
 ## Component primitives (use these, don't reinvent)
 
 - **`Container`**: page-width wrapper
-- **`ButtonLink`**: the only button. Pill shape; variants `accent`, `ink`, `outline`, plus `inverse` / `ghost-inverse` for the ink contact card. `arrow` adds the round arrow badge. Native `<a>`, so mailto and PDF links bypass the router.
-- **`Chip`**: small rounded label (`outline`, `muted`, `live`)
+- **`ButtonLink`**: the only button. Pill shape; variants `accent`, `ink`, `outline`, plus `inverse` / `ghost-inverse` for the ink contact card. `arrow` adds an inline arrow that nudges on hover. Native `<a>`, so mailto and PDF links bypass the router.
 - **`Arrow`**: the only icon, an inline SVG
 - **`BlockHead`**: section heading with an optional intro on the right
 - **`ProjectSpread`** (`work/`): featured project card; **`PlateReveal`**: one-shot fade-in wrapper
@@ -130,7 +129,7 @@ Headline sizes use `clamp()`: hero `clamp(2.4rem,4.6vw,3.9rem)`, section heads v
 Standard recruiter wording: plain, conventional, specific.
 
 - **Conventional labels.** "Featured projects", "Work experience", "Skills", "Get in touch", "Resume".
-- **Say what the product is, then your role.** Each project card has a summary and a "Role" line.
+- **Say what the product is, then who built it and what.** Each project card has a summary, a "Team" row (Solo, Team of three) and a "Built" row. No job-title "Role" row: it read the same on every project.
 - **Specific and checkable.** Dates, employer names, live URLs. No adjectives doing the work of evidence.
 - **Light on em-dashes.** Use a period or comma first.
 - **Unicode characters, not HTML entities.** ’, –, — directly in TS strings. Never `&rsquo;` or `dangerouslySetInnerHTML`.
@@ -153,7 +152,7 @@ Standard recruiter wording: plain, conventional, specific.
 
 ### Projects (`src/lib/projects.ts`)
 
-`featured: true` renders a split card (chips, summary, role, highlights, stack, screenshot in its `tint` frame); the rest render as compact "More projects" cards. `team` and `results` are optional and **owner-confirmed only**: when absent, the row isn't rendered. Only set `github` for public repos.
+`featured: true` renders a split card (name, client · year line, summary, a Team / Built / Results / Stack fact table, the live address as the button, screenshot in its `tint` frame); the rest render as compact "More projects" cards. `team` is required and `results` optional; both are **owner-confirmed only**. When `results` is absent, the row isn't rendered. Only set `github` for public repos.
 
 The hero figures (years of experience, projects shipped) are derived from `experience` and `projects`; don't hardcode them.
 
@@ -181,7 +180,7 @@ Env vars (see `.env.example`): `GITHUB_TOKEN`, `DATABSE_URL` (spelling kept for 
 
 ## Adding new things
 
-- **A project:** add it to `projects.ts`. Set `featured` only if it deserves a spread (keep it to about three). Store screenshots under `public/work/` or Cloudinary.
+- **A project:** add it to `projects.ts`. Set `featured` only if it deserves a spread (currently four; keep it to about four). Store screenshots under `public/work/` or Cloudinary.
 - **A skill:** edit `skillGroups` in `system.ts`. Only list tools used in a project on the page.
 - **A role:** edit `experience.ts`, most recent first.
 - **A section:** compose `Container` + `BlockHead`, give it an `id`, add it to `page.tsx` and (if it belongs in the header) `nav-sections.ts`.
@@ -194,7 +193,7 @@ Env vars (see `.env.example`): `GITHUB_TOKEN`, `DATABSE_URL` (spelling kept for 
 2. **Don't import `<ViewTransition>` from `react`**; it doesn't exist in 19.2.
 3. **Don't use HTML entities in TSX strings.**
 4. **Prefer `md:` over `lg:`**; `md` (768px) is the pivot. `max-md:` is fine for stacked tables.
-5. **Don't bring back** section numbers (§01), uppercase mono labels, generative project art, or the case-study pages. Keep the card language consistent: rounded `.card`, pill buttons, chips.
+5. **Don't bring back** section numbers (§01), uppercase mono labels, generative project art, the case-study pages, or the AI-template tells removed in the polish pass: status pills with glowing dots, two-colour highlighted headlines, decorative blobs, big-number stat tiles ("2+ years"), bullet markers, chip/badge rows, round arrow badges, timeline rings, a tilted monogram. Show facts as label/value rows and links by their real address.
 6. **Don't downgrade React, Next or Tailwind** to fix a problem.
 7. **Don't commit `.commit-msg.tmp`.** Remove it after `git commit -F`.
 8. **Use the Edit tool or perl for line-ending-sensitive files**, not `sed -i` on Git Bash.

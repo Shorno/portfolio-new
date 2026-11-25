@@ -16,7 +16,7 @@ A personal portfolio that lets an employer quickly judge whether Shorno can own 
 
 ## Positioning
 
-Software actually running for real businesses in Bangladesh, built end to end by one engineer: an esports tournament platform in production, a reseller app on Google Play, distributor stock and invoicing software, a tutoring platform, a services marketplace. The proof is live products and named employers, not a list of tools.
+Software actually running for real businesses in Bangladesh, most of it built end to end by one engineer: an esports tournament platform in production, a reseller app on Google Play, distributor stock and invoicing software, a tutoring platform, a services marketplace. The proof is live products and named employers, not a list of tools.
 
 ## Operating Context
 
@@ -36,7 +36,13 @@ Software actually running for real businesses in Bangladesh, built end to end by
 - Employment: Ecube (full-time, Jul 2026–present), AlgoVerse (part-time, Dec 2025–present), AppCube (part-time, Sep 2024–Dec 2025). BSc CSE, Daffodil International University, 2022–2026.
 - Six shipped or partly shipped projects with live URLs and screenshots (`public/work/`, Cloudinary).
 - Public repo `Shorno/bikalpo-project` with ~150 test files, CI workflows, and Dockerfiles.
-- **Pending from the owner (do not fabricate):** usage numbers for Ecube (e.g. teams, matches), SelfShop (e.g. installs, resellers, orders), Stock Management and other projects; team size and personal share for every project. Until supplied, these render as clearly marked blanks, never invented figures.
+- **Owner-confirmed (Nov 2026):**
+  - Ecube Tournament: solo; about 15,000 teams registered.
+  - SelfShop: built in a team of three, now maintained solo; 15,000+ monthly active users.
+  - Stock Management: solo, end to end. Core features: sales, SR/DSR and stock tracking, customer dues, SMS automation.
+  - Bright Educations (renamed from Bright Tutor): team of three; about 5,000 active users; the largest project, featured. Marketing launch expected soon, so update the user count then.
+  - Padma Service: solo. Bikalpo: team of two.
+- **Still pending (do not fabricate):** usage numbers for Stock Management, Padma Service and Bikalpo. Until supplied, no result row renders.
 
 ## Product Principles
 

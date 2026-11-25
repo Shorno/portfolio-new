@@ -4,37 +4,26 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
-/** Theme choice stays reachable by touch and keyboard at every viewport width. */
+/** Plain-text theme switch. The label names the theme it switches to. */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  const isDark = mounted ? theme === "dark" : true;
+  const isDark = mounted && theme === "dark";
 
   return (
     <button
       type="button"
-      aria-label={`Switch to ${isDark ? "paper" : "dark"} theme`}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       onClick={() => setTheme(isDark ? "paper" : "dark")}
       className={cn(
-        "group relative inline-flex h-11 items-center gap-2 rounded-sm px-2 transition-colors hover:bg-bg-elev",
+        "inline-flex min-h-10 cursor-pointer items-center rounded-full px-3 text-[0.9375rem] font-medium text-fg-soft transition-colors hover:bg-bg hover:text-fg",
         className,
       )}
     >
-      <span className="mono-label px-2 text-[10px] tracking-[0.18em] text-muted">
-        {isDark ? "DARK" : "PAPER"}
-      </span>
-      <span
-        className={cn(
-          "h-5 w-5 rounded-full border border-line-strong/80 transition-all duration-300",
-          isDark
-            ? "translate-x-0 bg-fg/10"
-            : "-translate-x-1 bg-accent/90",
-        )}
-        aria-hidden
-      />
+      {isDark ? "Light" : "Dark"}
     </button>
   );
 }

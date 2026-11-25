@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Arrow } from "@/components/primitives/arrow";
 import { Container } from "@/components/primitives/container";
 import { getAllRepos, timeAgo, type RepoSummary } from "@/lib/github";
 import { languageColor } from "@/lib/system";
@@ -16,7 +17,7 @@ export async function IndexSection() {
   return (
     <section id="index" className="relative py-20 md:py-28">
       <Container>
-        <Link href="/#work" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft hover:text-accent">← Selected projects</Link>
+        <Link href="/#projects" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft hover:text-accent"><Arrow className="size-[0.7em] shrink-0 -rotate-135" />Back to projects</Link>
 
         {/* Header row */}
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">

@@ -6,11 +6,13 @@ Context and conventions for any AI agent working on this repo. Read this first.
 
 ## What this is
 
-Personal portfolio for **Shorno Kamal Roy** — a full-stack engineer in Dhaka. The audience is **recruiters and hiring managers**; client-acquisition copy was removed in the recruiter redesign (see `docs/design/recruiter-distill.md`). Job-seeking copy lives in `src/lib/site.ts` (`seeking`, `hireEmailSubject`). Live at [shorno.dev](https://shorno.dev); `shorno.me` and `www.*` redirect there (`next.config.ts`), so the wordmark and all copy use `shorno.dev`.
+Personal portfolio for **Shorno Kamal Roy**, a full-stack engineer in Dhaka. The audience is **recruiters and hiring managers** (international, remote, on-site, and in Bangladesh). Product context lives in `PRODUCT.md`; the design system is recorded in `DESIGN.md`. Live at [shorno.dev](https://shorno.dev); `shorno.me` and `www.*` redirect there (`next.config.ts`).
 
-The site is intentionally **not** a generic dev template. The visual concept is an **"Operator's Manual"** — an editorial spec-sheet aesthetic borrowed from technical drawings and analog paperwork. Mono labels and § section marks, hairline rules, big serif headlines, one warm signal-orange accent, dense terminal-style data lists. Every section earns its place; nothing is filler.
+The visual concept is **"Soft Studio"**: a polished, friendly portfolio in conventional recruiter language. Warm off-white page, white rounded cards with a hairline border and soft shadow, a floating pill header, pill buttons with a round arrow badge, pastel tint frames behind project screenshots, chip tags, a timeline for experience, and an ink contact card. Bricolage Grotesque for headings, Hanken Grotesk for everything else, one teal accent.
 
-When making changes, default to **preserving that voice**. If a change drifts toward generic SaaS-template aesthetics (gradient cards, drop shadows, hero illustrations, soft pastel UI), pause and reconsider.
+Copy uses standard section names (Featured projects, More projects, Work experience, Skills) and plain job titles. No invented framing.
+
+**Trust is the point.** Every claim on the page must be checkable (a live link, a named employer, a date) or owner-confirmed. **Never invent numbers, team sizes or outcomes.** If a value isn't confirmed, omit the row; never ship a placeholder.
 
 ---
 
@@ -19,16 +21,14 @@ When making changes, default to **preserving that voice**. If a change drifts to
 | Tool | Version | Notes |
 | --- | --- | --- |
 | Next.js | **16.1** | App Router, RSC, `experimental.viewTransition: true` |
-| React | **19.2** | RSC + client components. **`<ViewTransition>` component is NOT exported** by this version — use CSS `view-transition-name` instead (see below). |
+| React | **19.2** | `<ViewTransition>` is **not exported** by this version |
 | TypeScript | 5.7 | Strict, `tsc --noEmit` must pass before any commit |
-| Tailwind CSS | **v4** | Uses `@theme inline { ... }` in `globals.css`; **no `tailwind.config.js`** |
-| Motion (Framer) | 12 | Only used by the case-study `ScrollShot` |
+| Tailwind CSS | **v4** | `@theme inline { ... }` in `globals.css`; **no `tailwind.config.js`** |
 | Better-Auth + Drizzle | 1.6 / 0.45 | Private `/operator` console only (Postgres via `DATABSE_URL`) |
-| MDX | `@next/mdx` 16 + `@mdx-js/*` 3 | Case studies in `src/content/work/*.mdx` |
-| `next-themes` | 0.4 | dark / paper themes; class-based (`.dark`) |
+| `next-themes` | 0.4 | `paper` (default, `:root`) and `dark` (`.dark`), class-based |
 | pnpm | required | `pnpm-workspace.yaml` sets `verifyDepsBeforeRun: false` |
 
-**Don't downgrade or swap any of these without strong reason.** The voice + interactions are coupled to current versions (Tailwind v4 `@theme`, View Transitions API, RSC).
+There is no MDX and no animation library. Case-study pages were removed; `/work/<slug>` redirects to `/#projects`.
 
 ---
 
@@ -37,297 +37,182 @@ When making changes, default to **preserving that voice**. If a change drifts to
 ```
 src/
   app/
-    layout.tsx           # fonts (Geist Sans, Geist Mono, Fraunces), theme provider
-    page.tsx             # homepage — hero + §01..§04 sections
-    globals.css          # design tokens + base typography + view transitions
-    work/[slug]/page.tsx # MDX case studies, dynamic route
+    layout.tsx           # fonts (Bricolage Grotesque, Hanken Grotesk, Geist Mono), theme provider
+    page.tsx             # homepage: hero, projects, experience + skills, contact
+    globals.css          # design tokens + base typography
     archive/page.tsx     # full GitHub repo archive (linked from the footer)
     operator/            # private job-application tracker (Better-Auth login)
     api/auth/[...all]/   # Better-Auth route handler
     robots.ts, sitemap.ts, manifest.ts
   components/
-    primitives/          # Container, Grid, Rule, SectionMark, MonoMeta
-    hero/                # profile hero (name, role, CV, current roles)
-    experience/          # §01 timeline (ExperienceSection + ExperienceEntry)
-    work/                # §02 project list (WorkSection + WorkCard + ProjectArt)
-    system/              # §03 skills
-    contact/             # §04 contact
+    primitives/          # Container, ButtonLink, Chip, Arrow, BlockHead, Grid, Rule
+    hero/                # intro card + fact tiles
+    work/                # featured project cards + "More projects" cards
+    experience/          # experience timeline + skill chips, side by side
+    contact/             # the close
     index/               # repo archive, rendered on /archive
-    case-study/          # /work/[slug] hero, layout, pager, ScrollShot, MDX primitives
     operator/            # operator dashboard + login form
     seo/                 # JSON-LD
-    site-header.tsx      # sticky header: wordmark + SiteHeaderNav
-    site-header-nav.tsx  # section nav, CV link, theme toggle
+    site-header.tsx      # floating pill header: monogram, name + SiteHeaderNav
+    site-header-nav.tsx  # section links, theme toggle, Resume button
     site-footer.tsx      # copyright, archive + GitHub links
-    theme-provider.tsx   # next-themes wrapper
-    theme-toggle.tsx     # client component
-  content/work/*.mdx     # case study long-form
+    theme-provider.tsx, theme-toggle.tsx
   lib/
-    site.ts              # site metadata + cvUrl + excludeRepos + includeContributorRepos
-    nav-sections.ts      # header nav items and their § indices
-    projects.ts          # featured projects (§02)
-    experience.ts        # roles + education + date formatters
+    site.ts              # profile, letter copy, cvUrl, excludeRepos, includeContributorRepos
+    nav-sections.ts      # header nav items (Projects, Experience, Skills, Contact)
+    projects.ts          # all projects; `featured` ones render as spreads
+    experience.ts        # roles + education + formatPeriod
     system.ts            # skill groups + GitHub language colors
     github.ts            # getAllRepos, getLatestPush, timeAgo, deriveStatus
     repo-descriptions.ts # archive blurbs for repos with no GitHub description
-    seo.ts, cloudinary.ts# metadata/JSON-LD helpers, OG image URLs
+    seo.ts, cloudinary.ts# metadata/JSON-LD helpers, image URLs
     auth.ts, db/         # Better-Auth + Drizzle schema for /operator
     utils.ts             # `cn()` (clsx + tailwind-merge)
-mdx-components.tsx       # global MDX component map
 ```
 
-**Section numbering convention:** every homepage section after the hero has a `SectionMark index={n}` (currently 01 Experience, 02 Projects, 03 Skills, 04 Contact). If you add or reorder a section, **renumber every downstream `SectionMark` and the matching `idx` in `src/lib/nav-sections.ts`** in the same commit.
+Homepage sections have no numbers. Anchors: `#projects`, `#experience`, `#skills`, `#contact`. If you add or rename a section, update `src/lib/nav-sections.ts` in the same commit.
 
 ---
 
 ## Design tokens (the source of truth)
 
-All tokens live in `src/app/globals.css`. Two themes (paper as `:root`, dark as `.dark`). Tailwind v4 exposes them via `@theme inline { ... }` so utilities like `bg-bg`, `text-fg`, `text-fg-soft`, `border-line` work directly.
-
-### Color roles
+All tokens live in `src/app/globals.css`: paper on `:root`, dark on `.dark`. Tailwind v4 exposes them via `@theme inline`, so `bg-bg`, `text-fg`, `text-accent`, `border-line` etc. work directly.
 
 | Token | Role |
 | --- | --- |
-| `bg`, `bg-elev`, `surface` | Page background, slightly raised, deeply raised |
-| `fg`, `fg-soft`, `muted`, `faint` | Primary text → progressively quieter |
-| `line`, `line-strong` | Hairline rules and borders |
-| `accent`, `accent-fg`, `accent-soft` | The signal orange. **Use sparingly** — section indices, italic emphasis, one CTA |
-| `signal-ok`, `signal-warn` | Status dots only (live status, availability) |
+| `bg` | Page (warm off-white; near-black in dark) |
+| `bg-elev` | Cards (white) |
+| `surface` | Inset rows inside cards |
+| `fg`, `fg-soft`, `muted`, `faint` | Text, progressively quieter (all pass AA on `bg` and `bg-elev`) |
+| `line`, `line-strong` | Card borders, dividers, the timeline rail |
+| `accent`, `accent-hover`, `accent-fg`, `accent-soft` | Teal: primary button, highlighted headline words, links, timeline dots |
+| `ink`, `ink-fg` | Dark buttons ("Resume", "Visit site") and the contact card; inverts in dark theme |
+| `tint-mint`, `tint-sand`, `tint-sky`, `tint-lilac`, `tint-mint-fg` | Screenshot frames, fact tiles, the Live/Current pills |
+| `shadow-card`, `shadow-lift` | Card shadow and its hover lift |
+| `signal-ok`, `signal-warn` | Status dots (hero pill, operator console) |
 
-**Rule:** never introduce a new hex color. Compose from tokens. If a new role is genuinely needed, add it to **both** `:root` and `.dark` in `globals.css` and surface it via `@theme inline`.
+The `.card` utility (white, 28px radius, hairline border, soft shadow) is the base surface. Radii: `--radius-lg` 20px for tiles, `--radius-xl` 28px for cards, `rounded-full` for buttons and chips.
+
+**Rule:** never introduce a raw hex in components. If a new role is genuinely needed, add it to **both** `:root` and `.dark` and expose it in `@theme inline`.
 
 ### Typography
 
-Three font families, all loaded in `src/app/layout.tsx`:
+- **Bricolage Grotesque** (`font-display`, `.font-display`): headings and big figures.
+- **Hanken Grotesk** (`font-sans`, default): body, chips, buttons, UI.
+- **Geist Mono** (`font-mono`): code-like data only (repo names on `/archive`).
+- `.tabular` for dates and figures.
 
-- **Geist Sans** (`var(--font-geist-sans)`) — body, default
-- **Geist Mono** (`var(--font-geist-mono)`) — labels, dates, codes, anything technical
-- **Fraunces** (`var(--font-serif)`) — display headlines. Italic axis included (`style: ["normal", "italic"]`) — needed for the orange italic accent words.
-
-Two utility classes for display type:
-
-```css
-.font-display          /* Fraunces, opsz 144, tightest letter-spacing */
-.font-display-italic   /* Fraunces italic, opsz 144, slight WONK */
-```
-
-`.mono-label` is the small uppercase mono caption (used for `§nn`, hints, stat labels).
-
-### Headlines pattern
-
-Big editorial headlines pair `.font-display` with one italic accent word in `text-accent`:
-
-```tsx
-<h2 className="font-display text-balance text-4xl text-fg md:text-6xl">
-  Where it{" "}
-  <span className="font-display-italic text-accent">shipped.</span>
-</h2>
-```
-
-Use `clamp()` for the largest hero/case-study headlines so they scale fluidly:
-
-```tsx
-className="font-display text-[clamp(2.75rem,7.8vw,7.5rem)] text-fg"
-```
+Headline sizes use `clamp()`: hero `clamp(2.4rem,4.6vw,3.9rem)`, section heads via `<BlockHead>`.
 
 ### Layout
 
-- `<Container>` — `max-w-[1480px]` with responsive gutter. Wrap every section.
-- `<Grid>` — 4-col mobile / 12-col desktop, baseline-aligned gaps.
-- `<Rule variant="ticked" />` — hairline with corner ticks, used to bookend sections.
-- `<SectionMark index={n} label="LABEL" hint="..." />` — section header.
-
-Spacing rhythm: the hero uses `py-16 md:py-20`; homepage sections use `pb-16 md:pb-20`; the `/archive` section uses `py-20 md:py-28`. Don't invent new spacing scales without reason.
+- `<Container>`: `max-w-[1200px]`, gutter `px-4 sm:px-7`.
+- Sections are spaced with `pt-16 md:pt-20`; cards sit together with `gap-5`.
+- The hero splits `1.35fr / 1fr`; featured project cards split `1fr / 1.35fr`; experience and skills split `1.2fr / 1fr`.
+- Rounded corners everywhere, soft shadows on cards only, no gradients. The only icon is the arrow.
 
 ---
 
 ## Component primitives (use these, don't reinvent)
 
-`src/components/primitives/`:
-
-- **`Container`** — page-level wrapper, max-width + gutter
-- **`Grid`** — 4-col mobile, 12-col desktop
-- **`Rule`** — `plain` or `ticked` hairline
-- **`SectionMark`** — `§nn / LABEL ... hint`
-- **`MonoMeta`** — stacked label/value pair, mono
-
-Higher-level primitives outside `primitives/` you should also reuse:
-
-- **`ProjectArt`** — renders `Project.image`, or a generative SVG placeholder when there is none (don't replace with stock images)
-- **`ScrollShot`** — tall screenshot that scrolls inside its frame in case studies
-
-The recruiter redesign removed `MonoTag`, `LiveClock`, `BlueprintGrid`, the push-status strip, and the animated work scroll-stack. Don't reintroduce them without a reason tied to the hiring audience.
+- **`Container`**: page-width wrapper
+- **`ButtonLink`**: the only button. Pill shape; variants `accent`, `ink`, `outline`, plus `inverse` / `ghost-inverse` for the ink contact card. `arrow` adds the round arrow badge. Native `<a>`, so mailto and PDF links bypass the router.
+- **`Chip`**: small rounded label (`outline`, `muted`, `live`)
+- **`Arrow`**: the only icon, an inline SVG
+- **`BlockHead`**: section heading with an optional intro on the right
+- **`ProjectSpread`** (`work/`): featured project card; **`PlateReveal`**: one-shot fade-in wrapper
+- **`Grid`**, **`Rule`**: still used by the operator console
 
 ---
 
 ## Editorial voice
 
-Copy is half the design. The voice is:
+Standard recruiter wording: plain, conventional, specific.
 
-- **Direct, terse, observational.** "Where it shipped." not "Professional Experience".
-- **Specific over generic.** "Multi-party marketplaces, role-based platforms, wholesale tooling" beats "modern web applications".
-- **Confident, not boastful.** "I pick boring, fast tools" not "I'm proficient in modern technologies".
-- **Light on em-dashes.** A couple in long copy is fine. More than that and it starts to read like ChatGPT. If you find yourself reaching for `—`, try a period or comma first.
-- **Unicode characters, not HTML entities.** Use `\u2019` (`'`), `\u2013` (`–`), `\u2014` (`—`) directly in TS/MDX strings. Never `&rsquo;` or `dangerouslySetInnerHTML` for typography.
+- **Conventional labels.** "Featured projects", "Work experience", "Skills", "Get in touch", "Resume".
+- **Say what the product is, then your role.** Each project card has a summary and a "Role" line.
+- **Specific and checkable.** Dates, employer names, live URLs. No adjectives doing the work of evidence.
+- **Light on em-dashes.** Use a period or comma first.
+- **Unicode characters, not HTML entities.** ’, –, — directly in TS strings. Never `&rsquo;` or `dangerouslySetInnerHTML`.
 
-**Banned phrases** (we explicitly removed these — don't bring them back):
-
-- "hand-built" (the site uses AI assistance — don't claim otherwise)
-- "no AI design" (false)
-- "honest answer changes my answer" / "better for both of us" (over-clever AI-slop rhetoric)
-
-When writing new copy, ask: would a real engineer-founder say this in a Slack DM, or does it sound like marketing? Aim for the former.
+**Banned:** "hand-built", "no AI design", "honest answer changes my answer", "better for both of us", invented metrics.
 
 ---
 
 ## Code conventions
 
-### Server vs client components
-
-- **Default to server.** Every section component is a server component unless it needs interactivity.
-- **Mark `"use client"`** only when needed: theme toggle, scroll-linked motion, live clock, anything with `useState`/`useEffect`.
-- Data fetching (`getLatestPush`, `getAllRepos`) lives in server components. They're cached via Next's `revalidate` + `tags`.
-
-### Styling
-
-- **Tailwind utility classes.** No CSS modules, no styled-components.
-- **Prefer tokens over arbitrary values.** `text-fg-soft` over `text-[#aaa]`.
-- **Use `cn()`** from `lib/utils` to merge conditional classes (clsx + tailwind-merge).
-- **Inline `style` prop is reserved** for dynamic values that can't be Tailwind utilities (e.g., `viewTransitionName`, computed CSS variables).
-- **No emojis** in UI unless the user explicitly asks. Same in code comments.
-
-### TypeScript
-
-- Strict mode is on. `tsc --noEmit` must be clean before every commit.
-- Public surfaces (data shapes, component props) are explicitly typed. Inner helpers can rely on inference.
-- Use `as const` for site-wide config objects (see `src/lib/site.ts`); separate exports for arrays you need to mutate at type level (see `excludeRepos`).
-
-### Comments
-
-- Top-of-file JSDoc-style block describing the component/module's role + key invariants.
-- **Don't narrate the code** ("// loop through items"). Comment only on intent or non-obvious constraints.
+- **Default to server components.** `"use client"` only for interactivity (theme toggle, header nav).
+- **Tailwind utilities + tokens.** `cn()` for conditional classes. Inline `style` only for genuinely dynamic values.
+- **No emojis** in UI or comments.
+- Strict TypeScript; public data shapes explicitly typed; `as const` for site-wide config.
+- Top-of-file comment describing the module's role and invariants. Don't narrate code.
 
 ---
 
 ## Specific systems
 
-### View Transitions
+### Projects (`src/lib/projects.ts`)
 
-Enabled via `experimental.viewTransition: true` in `next.config.ts`. The `<ViewTransition>` React component is **not exported** by `react@19.2.0`, so we use the **CSS `view-transition-name` property** directly via inline `style`:
+`featured: true` renders a split card (chips, summary, role, highlights, stack, screenshot in its `tint` frame); the rest render as compact "More projects" cards. `team` and `results` are optional and **owner-confirmed only**: when absent, the row isn't rendered. Only set `github` for public repos.
 
-```tsx
-// In WorkCard (homepage project list):
-<h3 style={{ viewTransitionName: `work-name-${project.slug}` }}>
-  {project.name}
-</h3>
+The hero figures (years of experience, projects shipped) are derived from `experience` and `projects`; don't hardcode them.
 
-// In CaseStudyHero (matches names):
-<h1 style={{ viewTransitionName: `work-name-${slug}` } as React.CSSProperties}>
-  {project.name}
-</h1>
-```
+### Motion
 
-`WorkCard` and `CaseStudyHero` also share `work-art-${slug}` on the image frame. Names must be **unique per element on screen**: never render the same project's `WorkCard` twice on one page.
-
-Animation timing lives in `globals.css` (`::view-transition-group(*)`). 520ms morphs, 320ms root crossfade, both with a custom cubic-bezier. `prefers-reduced-motion` disables them entirely.
+Cards and buttons lift slightly on hover, screenshots rise inside their frames, and project cards fade in once on first view (`PlateReveal`). Nothing loops. `prefers-reduced-motion` disables it.
 
 ### GitHub integration (`src/lib/github.ts`)
 
-Two cached server functions:
-
-- `getAllRepos()` — full archive for `/archive`. With `GITHUB_TOKEN`, fetches the full accessible set but **renders only `Shorno/*` owner repos** plus any names in `includeContributorRepos`. Without a token, public owner repos only. Cache 1h.
-
-Each repo carries a `role: "owner" | "contributor"` field; allowlisted non-owner repos render as `ownerLogin/repo` with a `co` chip.
-
-`excludeRepos` — hide specific repos (NDA forks, etc.). `includeContributorRepos` — opt-in allowlist for collaborator/org repos you want visible; everything else with a `co` chip stays out.
-
-- `getLatestPush()` — most recent owner push. Currently unused (the hero status strip was removed); keep it owner-only and cached if it comes back.
-
-Both functions have a `devFallback()` for when the API rate-limits in development. **Never return mock data in production** — the dev fallbacks check `NODE_ENV` and return `null` / `[]` in prod.
-
-### MDX case studies
-
-Files live in `src/content/work/<slug>.mdx`. Each is wired up explicitly in `src/app/work/[slug]/page.tsx` (no auto-discovery — adding a new case study means updating the slug map there too).
-
-Custom MDX primitives are in `src/components/case-study/mdx-primitives.tsx`: `Callout`, `Pull`, `Shot`, `Diagram`, `Stack`, `Stat`, `StatRow`. Use these instead of raw HTML in MDX.
-
-`mdx-components.tsx` at repo root maps `h1..h4`, `p`, `ul`, `li`, `code`, `pre`, etc. to styled versions. **Don't import these manually** — `useMDXComponents` does it automatically inside MDX files.
+- `getAllRepos()`: archive for `/archive`. With `GITHUB_TOKEN`, renders `Shorno/*` owner repos plus `includeContributorRepos`. Without a token, public owner repos only. Cache 1h.
+- `getLatestPush()`: currently unused; keep it owner-only and cached if it comes back.
+- Dev fallbacks never return mock data in production.
 
 ### Operator console (`/operator`)
 
-A private job-application tracker, not part of the public portfolio. Better-Auth (email/password) guards it; data lives in Postgres via Drizzle (`src/lib/db/schema.ts`, migrations in `src/lib/db/migrations`). It is deliberately **not linked** from the public header or footer, and `robots.ts` disallows `/operator` and `/api`. Go to `/operator/login` directly.
+Private job-application tracker. Better-Auth guards it; Postgres via Drizzle (`src/lib/db/schema.ts`). Not linked from the public header or footer; `robots.ts` disallows `/operator` and `/api`. Go to `/operator/login` directly.
 
 Env vars (see `.env.example`): `GITHUB_TOKEN`, `DATABSE_URL` (spelling kept for compatibility; `DATABASE_URL` also works in `drizzle.config.ts`), `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL`.
 
 ### Theme switching
 
-`next-themes` with `attribute="class"`, default `dark`. The `.dark` class on `<html>` flips token values. Theme toggle is a client component that reads/writes the cookie/localStorage. Both themes must be tested for any visual change — paper mode (`:root`) is the warm light side.
+`next-themes`, `attribute="class"`, default `paper`. The toggle is a text pill naming the theme it switches to. Check both themes for any visual change.
 
 ---
 
 ## Adding new things
 
-### A new homepage section
-
-1. Create `src/components/<name>/<name>-section.tsx`. Wrap with `<Container>`, give the `<section>` an `id`, and open with `<SectionMark index={n} label="..." heading hint="..." />`.
-2. **Renumber** every subsequent `SectionMark` index in their respective files.
-3. Add an entry to `src/lib/nav-sections.ts` and **renumber every `idx` after it** (currently `01 Experience / 02 Projects / 03 Skills / 04 Contact`).
-4. Add the section to `src/app/page.tsx` in the right position.
-5. Visually verify in **both themes**. Confirm the header anchor (`/#<id>`) scrolls correctly from a case-study page too.
-
-### A new case study
-
-1. Add the project to `src/lib/projects.ts` with an `index`, `slug`, `kind`, `metrics`, etc.
-2. Create `src/content/work/<slug>.mdx` using the existing case studies as templates.
-3. Wire the slug in `src/app/work/[slug]/page.tsx` (the slug → MDX import map).
-4. Make sure the slug appears in `featuredProjects` so it renders in §02 Projects.
-5. Only set `github` if the repo is **public**. A private repo link 404s for visitors.
-
-### A new skill
-
-Edit `skillGroups` in `src/lib/system.ts`. Each group has a `label`, `tools` (most-reached-for first), a one-sentence `description`, and a `projectSlug` pointing at the project that best shows that skill.
-
-### A new role / experience entry
-
-Edit `src/lib/experience.ts`. Most-recent first. `projectSlugs` references slugs in `projects.ts` — those auto-render as case-study links.
+- **A project:** add it to `projects.ts`. Set `featured` only if it deserves a spread (keep it to about three). Store screenshots under `public/work/` or Cloudinary.
+- **A skill:** edit `skillGroups` in `system.ts`. Only list tools used in a project on the page.
+- **A role:** edit `experience.ts`, most recent first.
+- **A section:** compose `Container` + `BlockHead`, give it an `id`, add it to `page.tsx` and (if it belongs in the header) `nav-sections.ts`.
 
 ---
 
-## Common pitfalls (lessons from earlier sessions)
+## Common pitfalls
 
-1. **Don't import `<ViewTransition>` from `react`** — it doesn't exist in 19.2. Use CSS `view-transition-name` directly.
-2. **Don't use HTML entities like `&rsquo;` in TSX strings** — they need `dangerouslySetInnerHTML` to render. Use Unicode escapes (`\u2019`) directly.
-3. **Don't add `lg:` breakpoints when `md:` works** — the site is designed primarily mobile / desktop with `md` (768px) as the pivot. `lg:` causes layout dead zones in the 768–1023 range.
-4. **Don't surface every collaborator repo.** The /archive page defaults to owner repos only; opt in via `includeContributorRepos`. Use `excludeRepos` to hide specific `Shorno/*` repos.
-5. **Don't reduce em-dashes mechanically.** A few are fine. The point is to remove the rhetorical pattern that signals AI authorship (`A — but B — and C`), not to ban the character.
-6. **Don't add stock imagery, gradient cards, or SaaS-template hero illustrations.** The generative `ProjectArt` is the design. If you genuinely need a screenshot, store it under `public/work/` and reference it via `Project.image`.
-7. **Don't downgrade React, Next, or Tailwind to fix a problem.** Find the right way to use the current versions.
-8. **Don't widen the design vocabulary.** New components should compose existing primitives. If you reach for a card library, a chart library, or a date-picker, ask whether the editorial language can do it instead.
-9. **Don't commit `.commit-msg.tmp`** — it's used as a heredoc workaround for PowerShell. Always `Remove-Item .commit-msg.tmp -Force` after `git commit -F`.
+1. **Don't fabricate.** No placeholder numbers, no guessed team sizes, no unverifiable outcomes.
+2. **Don't import `<ViewTransition>` from `react`**; it doesn't exist in 19.2.
+3. **Don't use HTML entities in TSX strings.**
+4. **Prefer `md:` over `lg:`**; `md` (768px) is the pivot. `max-md:` is fine for stacked tables.
+5. **Don't bring back** section numbers (§01), uppercase mono labels, generative project art, or the case-study pages. Keep the card language consistent: rounded `.card`, pill buttons, chips.
+6. **Don't downgrade React, Next or Tailwind** to fix a problem.
+7. **Don't commit `.commit-msg.tmp`.** Remove it after `git commit -F`.
+8. **Use the Edit tool or perl for line-ending-sensitive files**, not `sed -i` on Git Bash.
 
 ---
 
 ## Commit conventions
 
-Lowercase, terse, phase-numbered for major work. Examples from history:
-
-```
-phase 7: CV button + contributor repos in §03 INDEX
-phase 6: copy & toolkit corrections
-fix: correct full name to Shorno Kamal Roy
-phase 5: experience timeline as §02
-```
-
-Prefer `phase N: <thing>` for cohesive feature work. Use `fix:` / `chore:` / `docs:` prefixes for one-off changes. Body should explain the why for non-trivial changes.
+Lowercase, terse. `phase N: <thing>` for cohesive feature work; `fix:` / `chore:` / `docs:` for one-off changes. Body explains the why for non-trivial changes.
 
 ---
 
 ## Quick checklist before any commit
 
 - [ ] `pnpm exec tsc --noEmit` is clean
-- [ ] Visual check in **both** dark and paper themes
-- [ ] Section indices and header nav items still in sync
-- [ ] No `&rsquo;`, no `dangerouslySetInnerHTML`, no banned phrases
-- [ ] Tokens used (no raw hex / arbitrary spacing)
+- [ ] Visual check in **both** paper and dark themes, and at 375px
+- [ ] Header nav items match homepage section ids
+- [ ] No `&rsquo;`, no `dangerouslySetInnerHTML`, no banned phrases, no invented numbers
+- [ ] Tokens used (no raw hex in components)
 - [ ] Reused primitives where possible
 - [ ] Working tree clean of `.commit-msg.tmp`

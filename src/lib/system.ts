@@ -1,39 +1,18 @@
 /**
- * Skills grouped by engineering responsibility. Each points to work that uses them.
- * Repository language colors remain separate for the optional code archive.
+ * Skills grouped by what they are for, each tool backed by a project on the homepage.
+ * Repository language colors remain separate for the code archive.
  */
 export type SkillGroup = {
   label: string;
   tools: string[];
-  description: string;
-  projectSlug: string;
 };
 
 export const skillGroups: SkillGroup[] = [
-  {
-    label: "Frontend",
-    tools: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
-    description: "Responsive interfaces, forms, data tables, and state management.",
-    projectSlug: "stock-management",
-  },
-  {
-    label: "Backend & data",
-    tools: ["Hono", "oRPC", "PostgreSQL", "Drizzle", "Better-Auth"],
-    description: "API design, database schemas, authentication, and role-based access.",
-    projectSlug: "ecube-tournament",
-  },
-  {
-    label: "Mobile",
-    tools: ["React Native", "Expo", "Tamagui"],
-    description: "Mobile applications that share APIs with the web product.",
-    projectSlug: "selfshop",
-  },
-  {
-    label: "Deployment",
-    tools: ["Coolify", "VPS hosting"],
-    description: "Deploying web applications and APIs to a VPS.",
-    projectSlug: "padma-service",
-  },
+  { label: "Frontend", tools: ["TypeScript", "React", "Next.js", "Tailwind CSS"] },
+  { label: "Backend & databases", tools: ["Node.js", "Bun", "Hono", "PostgreSQL", "Drizzle ORM"] },
+  { label: "Mobile", tools: ["React Native", "Expo"] },
+  { label: "Real-time & background jobs", tools: ["Socket.IO", "Pusher", "Inngest"] },
+  { label: "DevOps", tools: ["Coolify", "VPS hosting", "Cloudflare R2"] },
 ];
 
 /** GitHub language colors are metadata in the code archive, not interface tokens. */

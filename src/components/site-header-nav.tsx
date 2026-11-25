@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ButtonLink } from "@/components/primitives/button-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   navSectionIds,
@@ -96,104 +97,59 @@ export function SiteHeaderNav() {
     <>
       <nav
         aria-label="Primary"
-        className="col-span-2 row-start-2 flex min-w-0 items-center justify-between gap-0 md:col-span-1 md:col-start-2 md:row-start-1 md:justify-end md:gap-1"
+        className={cn("items-center gap-1", isOperator ? "flex" : "hidden md:flex")}
       >
         {isOperator ? (
           <>
-            <Link
-              href="/"
-              className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-fg"
-            >
-              <span className="mono-label text-faint group-hover:text-accent">←</span>
-              Back to Site
+            <Link href="/" className={navLinkClass(false)}>
+              Back to site
             </Link>
-            {session && (
-              <>
-                <div className="mx-2 hidden h-4 w-px bg-line sm:block" />
-                <button
-                  onClick={async () => {
-                    await authClient.signOut({
-                      fetchOptions: {
-                        onSuccess: () => {
-                          window.location.href = "/operator/login";
-                        },
+            {session ? (
+              <button
+                type="button"
+                onClick={async () => {
+                  await authClient.signOut({
+                    fetchOptions: {
+                      onSuccess: () => {
+                        window.location.href = "/operator/login";
                       },
-                    });
-                  }}
-                  className="group relative inline-flex items-baseline gap-1 rounded-sm px-1 py-1.5 text-[12.5px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm text-fg-soft hover:text-accent cursor-pointer"
-                >
-                  Sign Out
-                </button>
-              </>
-            )}
+                    },
+                  });
+                }}
+                className={cn(navLinkClass(false), "cursor-pointer")}
+              >
+                Sign out
+              </button>
+            ) : null}
           </>
         ) : (
-          <>
-            {navSections.map((section) => (
-              <NavItem
-                key={section.id}
-                href={section.href}
-                label={section.label}
-                idx={section.idx}
-                isActive={active === section.id}
-              />
-            ))}
-            <div className="mx-2 hidden h-4 w-px bg-line md:block" />
-            <a
-              href={site.cvUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group hidden min-h-11 items-center gap-1.5 px-3 text-sm font-medium text-fg transition-colors hover:text-accent md:inline-flex"
+          navSections.map((section) => (
+            <Link
+              key={section.id}
+              href={section.href}
+              aria-current={active === section.id ? "location" : undefined}
+              className={navLinkClass(active === section.id)}
             >
-              CV
-              <span
-                aria-hidden
-                className="text-faint transition-colors group-hover:text-accent"
-              >
-                ↗
-              </span>
-            </a>
-          </>
+              {section.label}
+            </Link>
+          ))
         )}
       </nav>
-      <ThemeToggle className="col-start-2 row-start-1 justify-self-end md:col-start-3" />
+      <div className="flex items-center gap-1">
+        <ThemeToggle />
+        {isOperator ? null : (
+          <ButtonLink variant="ink" size="sm" arrow href={site.cvUrl} target="_blank" rel="noreferrer">
+            Resume
+          </ButtonLink>
+        )}
+      </div>
     </>
   );
 }
 
-function NavItem({
-  href,
-  label,
-  idx,
-  isActive,
-}: {
-  href: string;
-  label: string;
-  idx: string;
-  isActive: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-current={isActive ? "location" : undefined}
-      className={cn(
-        "group relative inline-flex min-h-11 items-center gap-1 rounded-sm px-1 py-1.5 text-[13px] transition-colors sm:gap-1.5 sm:px-2.5 sm:text-sm md:min-h-9",
-        isActive
-          ? "text-fg underline decoration-accent decoration-1 underline-offset-[5px]"
-          : "text-fg-soft hover:text-fg",
-      )}
-    >
-      <span
-        className={cn(
-          "mono-label hidden text-[12px] xl:inline",
-          isActive
-            ? "text-accent"
-            : "text-faint group-hover:text-accent",
-        )}
-      >
-        {idx}
-      </span>
-      {label}
-    </Link>
+function navLinkClass(isActive: boolean) {
+  return cn(
+    "inline-flex min-h-10 items-center rounded-full px-3.5 text-[0.9375rem] font-medium transition-colors",
+    isActive ? "bg-bg text-fg" : "text-fg-soft hover:bg-bg hover:text-fg",
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import type { Project } from "@/lib/projects";
 import {
   cloudinaryOgImageUrl,
   OG_IMAGE_HEIGHT,
@@ -46,7 +45,7 @@ type PageMetadataInput = {
   ogType?: "website" | "article";
 };
 
-/** Shared metadata shape for homepage and case studies. */
+/** Shared metadata shape for the homepage and archive. */
 export function buildPageMetadata({
   title,
   description,
@@ -161,55 +160,4 @@ export function profilePageJsonLd() {
 
 export function homeJsonLd() {
   return [personJsonLd(), webSiteJsonLd(), profilePageJsonLd()];
-}
-
-export function creativeWorkJsonLd(project: Project) {
-  const pageUrl = absoluteUrl(`/work/${project.slug}`);
-  const imageUrl = project.image
-    ? new URL(project.image, site.url).toString()
-    : undefined;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "@id": `${pageUrl}#work`,
-    name: project.name,
-    headline: `${project.name} — ${project.kind}`,
-    description: project.description,
-    url: pageUrl,
-    ...(imageUrl
-      ? { image: imageUrl, thumbnailUrl: imageUrl }
-      : {}),
-    author: { "@id": personId },
-    creator: { "@id": personId },
-    inLanguage: "en",
-    keywords: project.stack.join(", "),
-    ...(project.url ? { isBasedOn: project.url } : {}),
-  };
-}
-
-export function breadcrumbJsonLd(
-  items: Array<{ name: string; path: string }>,
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: absoluteUrl(item.path),
-    })),
-  };
-}
-
-export function caseStudyJsonLd(project: Project) {
-  return [
-    creativeWorkJsonLd(project),
-    breadcrumbJsonLd([
-      { name: "Home", path: "/" },
-      { name: "Projects", path: "/#work" },
-      { name: project.name, path: `/work/${project.slug}` },
-    ]),
-  ];
 }

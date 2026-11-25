@@ -1,0 +1,13 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "design-previews/f-playful-bento.html",
+      "design-previews/a-delivery-register.html",
+      "design-previews/b-statement-of-work.html",
+      "design-previews/c-departures-board.html",
+      "design-previews/d-category-standard.html"
+    ],
+    "ignoreValues": []
+  }
+}

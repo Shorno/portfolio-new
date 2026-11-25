@@ -16,15 +16,16 @@ export const site = {
   cvUrl: "/cv/shorno-kamal-roy-cv.pdf",
   /** Public profile copy is written for hiring teams. */
   seoDescription:
-    "Shorno Kamal Roy, full-stack software engineer in Dhaka. Building web and mobile applications, APIs, and databases with TypeScript, React, Next.js, and PostgreSQL. Explore project case studies, experience, and CV.",
-  subline:
-    "I build and ship full-stack applications, from the user interface to the API, database, and deployment.",
-  focus: "Type-safe APIs, relational data models, and role-based workflows across web and mobile.",
-  coreSkills: ["TypeScript", "React", "Next.js", "PostgreSQL"],
+    "Shorno Kamal Roy, full-stack engineer in Dhaka. Web and mobile apps, APIs and databases in production for businesses in Bangladesh. Selected work, experience and CV.",
+  /** Homepage introduction under the headline. */
+  intro:
+    "Hi, I’m Shorno, a software engineer based in Dhaka, Bangladesh. I build products end to end with TypeScript, React, Next.js, React Native and PostgreSQL, from the interface to the API, database and deployment.",
+  timezoneLabel: "UTC+6",
+  workTypes: ["Remote", "On-site", "Hybrid"],
   hireEmailSubject: "Role inquiry",
   seeking: {
     open: true,
-    headline: "Open to full-stack engineering roles",
+    headline: "Open to full-stack roles",
     roles: [
       "Full Stack Developer",
     ],
@@ -33,11 +34,11 @@ export const site = {
 
 /**
  * Repo blurbs when GitHub has no description — see `src/lib/repo-descriptions.ts`.
- * Edit that file to add or change INDEX copy without touching GitHub.
+ * Edit that file to add or change archive copy without touching GitHub.
  */
 
 /**
- * Repo full-names (`"owner/repo"`) to suppress from §03 INDEX.
+ * Repo full-names (`"owner/repo"`) to suppress from the /archive page.
  *
  * Useful when auto-discovery surfaces contributor / org-member repos
  * that shouldn't be on a public portfolio (NDA work, abandoned forks,
@@ -46,13 +47,13 @@ export const site = {
  */
 export const excludeRepos: ReadonlyArray<string> = [
   // SelfShop fork — fresh artifact, no original commits. The case study
-  // in §01 already covers this work; hiding the fork keeps §03 honest
-  // about authored repos.
+  // on the homepage already covers this work; hiding the fork keeps the
+  // archive honest about authored repos.
   "Shorno/selfshop",
 ];
 
 /**
- * Contributor / org-owned repos to show in §03 INDEX with a `co` chip.
+ * Contributor / org-owned repos to show on /archive with a `co` chip.
  *
  * With a `GITHUB_TOKEN`, GitHub returns every repo you can access (collabs,
  * org membership, course forks, etc.). By default only `Shorno/*` owner repos

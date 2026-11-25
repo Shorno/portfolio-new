@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delivery Register · Shorno Kamal Roy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sheet: #fbfbf9;
+    --desk: #eceeec;
+    --form: #1d2b4f;      /* pre-printed form ink */
+    --form-soft: #55607a;
+    --fill: #121417;      /* filled-in handwriting/typing */
+    --rule: #d7e3ec;      /* ledger rule */
+    --rule-strong: #9fb3c6;
+    --serial: #c8102e;    /* numbering-machine red: row numbers only */
+    --stamp: #3b3fb6;     /* rubber-stamp ink: status only */
+    --tbd: #8a5a00;
+    --tbd-bg: #fff4d6;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--desk); }
+  body {
+    margin: 0; color: var(--fill);
+    font-family: "Archivo", system-ui, sans-serif; font-variation-settings: "wdth" 100;
+    font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--stamp); color: #fff; }
+  a { color: var(--form); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--stamp); }
+  :focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  .sheet {
+    max-width: 1320px; margin: 24px auto; background: var(--sheet);
+    box-shadow: 0 1px 2px rgba(29,43,79,.08), 0 12px 40px -12px rgba(29,43,79,.18);
+    position: relative;
+  }
+  /* red margin line + date spine */
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 168px; width: 1px; background: rgba(200,16,46,.35); }
+  .row { display: grid; grid-template-columns: 168px 1fr; }
+  .spine { padding: 28px 20px 28px 32px; color: var(--form-soft); font-size: 12px; letter-spacing: .02em; }
+  .body { padding: 28px 48px 28px 32px; min-width: 0; }
+
+  /* form header */
+  header.form { border-bottom: 2px solid var(--form); }
+  .form-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: end; }
+  h1 {
+    margin: 0; color: var(--form); line-height: .9; letter-spacing: -0.02em;
+    font-size: clamp(3rem, 7.4vw, 6rem); font-weight: 820; font-variation-settings: "wdth" 72;
+    text-transform: uppercase;
+  }
+  .role { margin: 14px 0 0; font-size: 18px; color: var(--fill); }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--form); }
+  .field { padding: 10px 12px 12px; border-right: 1px solid var(--form); border-bottom: 1px solid var(--form); min-height: 66px; }
+  .field:nth-child(2n) { border-right: 0; }
+  .field.wide { grid-column: span 2; border-right: 0; }
+  .label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--form-soft); font-variation-settings: "wdth" 85; }
+  .value { display: block; margin-top: 4px; font-size: 16px; font-weight: 500; }
+  .actions { display: flex; gap: 0; border-top: 0; }
+  .btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 52px; padding: 0 16px; font: inherit; font-weight: 650; font-size: 15px; text-decoration: none;
+    border: 1.5px solid var(--form); border-top: 0; margin-left: -1.5px; color: var(--form); background: var(--sheet);
+    transition: background .18s ease-out, color .18s ease-out;
+  }
+  .btn:first-child { margin-left: 0; }
+  .btn.primary { background: var(--form); color: #fff; }
+  .btn:hover { background: var(--stamp); border-color: var(--stamp); color: #fff; }
+  .btn svg { width: 16px; height: 16px; }
+
+  .record { font-size: clamp(1.5rem, 2.6vw, 2.25rem); line-height: 1.22; font-weight: 450; letter-spacing: -0.01em; max-width: 30ch; margin: 0; text-wrap: balance; }
+  .record strong { font-weight: 700; color: var(--form); }
+
+  h2 { margin: 0 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--form); font-variation-settings: "wdth" 90; }
+  .section-note { margin: 0 0 20px; color: var(--form-soft); font-size: 15px; }
+
+  /* register table */
+  .register { width: 100%; border-collapse: collapse; }
+  .register th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--form-soft); font-weight: 600; padding: 8px 12px 8px 0; border-bottom: 1.5px solid var(--form); font-variation-settings: "wdth" 85; }
+  .register td { padding: 18px 12px 18px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .serial { color: var(--serial); font-size: 13px; white-space: nowrap; }
+  .client { font-size: 13px; color: var(--form-soft); }
+  .product { display: block; font-size: 22px; font-weight: 750; line-height: 1.15; color: var(--fill); font-variation-settings: "wdth" 88; }
+  .lead .product { font-size: clamp(1.6rem, 2.6vw, 2.2rem); }
+  .desc { margin: 8px 0 0; max-width: 62ch; }
+  .plate { margin-top: 16px; border: 1px solid var(--rule-strong); background: #fff; aspect-ratio: 16/9; overflow: hidden; max-width: 560px; }
+  .plate img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .results { margin: 14px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid var(--rule-strong); max-width: 560px; }
+  .results div { padding: 8px 10px; border-right: 1px solid var(--rule); }
+  .results div:last-child { border-right: 0; }
+  .tbd { display: inline-block; margin-top: 2px; padding: 1px 6px; border: 1px dashed var(--tbd); background: var(--tbd-bg); color: var(--tbd); font-size: 13px; font-weight: 600; }
+
+  .stamp {
+    display: inline-block; padding: 4px 10px 3px; border: 2px solid var(--stamp); color: var(--stamp);
+    font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+    transform: rotate(-4deg); mix-blend-mode: multiply; opacity: .92; font-variation-settings: "wdth" 80;
+  }
+  .stamp.partial { border-style: dashed; }
+  details.fold summary .stamp { justify-self: start; }
+  .check a { display: block; white-space: nowrap; font-weight: 600; }
+
+  /* folded minor rows */
+  details.fold { border-bottom: 1px solid var(--rule); }
+  details.fold summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 90px 1.2fr 1.6fr 110px 130px 24px; gap: 12px; align-items: baseline; padding: 14px 0; }
+  details.fold summary::-webkit-details-marker { display: none; }
+  details.fold summary:hover .name { color: var(--stamp); }
+  details.fold .name { font-weight: 700; font-size: 18px; font-variation-settings: "wdth" 88; }
+  details.fold .what { color: var(--form-soft); font-size: 15px; }
+  details.fold .chev { transition: transform .2s ease-out; color: var(--form-soft); }
+  details.fold[open] .chev { transform: rotate(90deg); }
+  details.fold .more { padding: 0 0 18px 102px; max-width: 760px; }
+
+  /* employment */
+  .emp { width: 100%; border-collapse: collapse; }
+  .emp td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .emp .org { font-weight: 700; font-size: 18px; }
+  .emp .type { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--form-soft); font-weight: 600; }
+
+  .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1.5px solid var(--form); }
+  .tools div { padding: 14px 14px 16px 0; border-bottom: 1px solid var(--rule); }
+  .tools p { margin: 4px 0 0; }
+
+  .signoff { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
+  .signoff p { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.3; max-width: 30ch; }
+  .sigbox { border: 1.5px solid var(--form); }
+  .sigline { height: 70px; border-bottom: 1px solid var(--form); margin: 0 14px; display: flex; align-items: end; padding-bottom: 6px; font-size: 26px; font-weight: 300; font-style: italic; color: var(--form); font-variation-settings: "wdth" 70; }
+  .sigmeta { display: flex; justify-content: space-between; padding: 8px 14px 12px; }
+
+  footer.foot { display: flex; justify-content: space-between; color: var(--form-soft); font-size: 13px; }
+
+  @media (max-width: 860px) {
+    .sheet { margin: 0; box-shadow: none; }
+    .sheet::before { display: none; }
+    .row { grid-template-columns: 1fr; }
+    .spine { padding: 20px 16px 0; }
+    .body { padding: 8px 16px 24px; }
+    .form-grid, .signoff { grid-template-columns: 1fr; gap: 24px; }
+    .register thead { display: none; }
+    .register tr { display: grid; grid-template-columns: 1fr auto; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+    .register td { border: 0; padding: 4px 0; }
+    .register td.main { grid-column: 1 / -1; }
+    details.fold summary { grid-template-columns: 1fr auto; }
+    details.fold summary .what, details.fold summary .since { display: none; }
+    details.fold .more { padding-left: 0; }
+    .results { grid-template-columns: 1fr; }
+    .results div { border-right: 0; border-bottom: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header class="form row">
+    <div class="spine mono">Record<br>2024 – 2026</div>
+    <div class="body">
+      <div class="form-grid">
+        <div>
+          <h1>Shorno<br>Kamal Roy</h1>
+          <p class="role">Full-stack engineer · Dhaka, Bangladesh (UTC+6)</p>
+        </div>
+        <div>
+          <div class="fields">
+            <div class="field"><span class="label">Status</span><span class="value">Open to full-stack roles</span></div>
+            <div class="field"><span class="label">Work</span><span class="value">Remote, on-site or hybrid</span></div>
+            <div class="field wide"><span class="label">Currently</span><span class="value">Ecube, full-time · AlgoVerse, part-time</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="mailto:fb.shorno@gmail.com">Email me</a>
+            <a class="btn" href="#cv">Download CV
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 2v9m0 0 3.5-3.5M8 11 4.5 7.5M3 14h10"/></svg></a>
+            <a class="btn" href="https://www.linkedin.com/in/shorno/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="row">
+    <div class="spine mono">Summary</div>
+    <div class="body">
+      <p class="record">Six products delivered to businesses in Bangladesh since 2024. <strong>Five are running in production today</strong>; one is partly live. Each line below links to the real thing.</p>
+    </div>
+  </section>
+
+  <section class="row" id="work">
+    <div class="spine mono">Jul 2026<br>↓<br>2025</div>
+    <div class="body">
+      <h2>Delivery register</h2>
+      <p class="section-note">What I built, for whom, with whom, and whether it still runs.</p>
+
+      <table class="register">
+        <thead><tr><th>No.</th><th>Delivered to · product</th><th>Team</th><th>Since</th><th>Status</th><th>Check it</th></tr></thead>
+        <tbody>
+          <tr class="lead">
+            <td class="serial mono">No. 0001</td>
+            <td class="main">
+              <span class="client">Ecube (employer)</span>
+              <span class="product">Ecube Tournament</span>
+              <p class="desc">The platform Ecube runs its Free Fire tournaments on: team registration, group draws, match schedules, result checks and team chat, in English and Bangla. I built the web app, API and database. The current event's prize pool is BDT 10,00,000.</p>
+              <div class="plate"><img src="../public/work/ecube-tournament/web-home.jpg" alt="Ecube Tournament homepage"></div>
+              <div class="results">
+                <div><span class="label">Teams registered</span><span class="tbd">add number</span></div>
+                <div><span class="label">Matches run</span><span class="tbd">add number</span></div>
+              </div>
+            </td>
+            <td><span class="tbd">add team size</span></td>
+            <td class="mono">Jul 2026</td>
+            <td><span class="stamp">Live</span></td>
+            <td class="check"><a href="https://tour.ecube.gg/">tour.ecube.gg ↗</a></td>
+          </tr>
+          <tr class="lead">
+            <td class="serial mono">No. 0002</td>
+            <td class="main">
+              <span class="client">SelfShop, via AlgoVerse</span>
+              <span class="product">SelfShop reseller marketplace</span>
+              <p class="desc">Suppliers list stock, resellers sell it on. I built the admin, reseller and supplier dashboards and the reseller Android app on Google Play. The team's Laravel backend runs underneath.</p>
+              <div class="plate"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png" alt="SelfShop reseller product view"></div>
+              <div class="results">
+                <div><span class="label">Play Store installs</span><span class="tbd">add number</span></div>
+                <div><span class="label">Active resellers</span><span class="tbd">add number</span></div>
+              </div>
+            </td>
+            <td><span class="tbd">add team size</span></td>
+            <td class="mono">2026</td>
+            <td><span class="stamp">Live</span></td>
+            <td class="check"><a href="https://selfshop.com.bd/">selfshop.com.bd ↗</a><a href="https://play.google.com/store/apps/details?id=com.selfshop.reseller">Google Play ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <details class="fold">
+        <summary><span class="serial mono">No. 0003</span><span class="name">Stock Management</span><span class="what">Stock and invoicing for a distributor</span><span class="since mono">2025</span><span class="stamp">Live</span><span class="chev">›</span></summary>
+        <div class="more"><p class="desc">The distributor ran inventory across three spreadsheets and a Telegram group. This replaced them: supplier purchases, retailer orders, transfers, returns and printed invoices. <span class="tbd">add invoices per month</span> <a href="https://mstamimenterprise.shop/">Live site ↗</a></p></div>
+      </details>
+      <details class="fold">
+        <summary><span class="serial mono">No. 0004</span><span class="name">Bright Tutor</span><span class="what">Tutoring platform, six web and mobile apps</span><span class="since mono">2026</span><span class="stamp">Live</span><span class="chev">›</span></summary>
+        <div class="more"><p class="desc">Separate apps for teachers, guardians and admins on one shared API and database. <span class="tbd">add tutors / bookings</span> <a href="https://brighteducations.com/">Live site ↗</a></p></div>
+      </details>
+      <details class="fold">
+        <summary><span class="serial mono">No. 0005</span><span class="name">Padma Service</span><span class="what">Bilingual services marketplace and admin</span><span class="since mono">2025</span><span class="stamp">Live</span><span class="chev">›</span></summary>
+        <div class="more"><p class="desc">Public service catalog in Bangla and English, member accounts with phone sign-in, and an admin that approves submitted listings. <a href="https://padmaservice.com">Live site ↗</a></p></div>
+      </details>
+      <details class="fold">
+        <summary><span class="serial mono">No. 0006</span><span class="name">Bikalpo</span><span class="what">Wholesale ordering with per-customer prices</span><span class="since mono">2025</span><span class="stamp partial">Partly live</span><span class="chev">›</span></summary>
+        <div class="more"><p class="desc">The B2B storefront is live; warehouse, retailer and mobile apps are still in development. Public code, with tests and CI. <a href="https://b2b.bikalpo.com/">Storefront ↗</a> · <a href="https://github.com/Shorno/bikalpo-project">Source ↗</a></p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="row" id="experience">
+    <div class="spine mono">2024<br>→<br>now</div>
+    <div class="body">
+      <h2>Employment</h2>
+      <p class="section-note">Most recent first.</p>
+      <table class="emp">
+        <tr><td class="mono">Jul 2026 – now</td><td><span class="org">Ecube</span><br>Full-stack engineer. Built and run the tournament platform.</td><td class="type">Full-time</td></tr>
+        <tr><td class="mono">Dec 2025 – now</td><td><span class="org">AlgoVerse</span><br>Software engineer. Client web and mobile apps: SelfShop, Bright Tutor, Stock Management, Padma Service, Bikalpo.</td><td class="type">Part-time</td></tr>
+        <tr><td class="mono">Sep 2024 – Dec 2025</td><td><span class="org">AppCube</span><br>Frontend developer. Ubaky's restaurant merchant dashboard in React.</td><td class="type">Part-time</td></tr>
+        <tr><td class="mono">2022 – 2026</td><td><span class="org">Daffodil International University</span><br>BSc, Computer Science &amp; Engineering. CGPA 3.30 / 4.00.</td><td class="type">Education</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="spine mono">Tools</div>
+    <div class="body">
+      <h2>What I work with</h2>
+      <p class="section-note">Grouped by the job, not the logo.</p>
+      <div class="tools">
+        <div><span class="label">Web apps</span><p>TypeScript, React, Next.js, Tailwind</p></div>
+        <div><span class="label">APIs and data</span><p>Node and Bun, Hono, PostgreSQL, Drizzle</p></div>
+        <div><span class="label">Mobile</span><p>React Native, Expo</p></div>
+        <div><span class="label">Realtime and jobs</span><p>Socket.IO, Pusher, Inngest</p></div>
+        <div><span class="label">Running it</span><p>Docker, GitHub Actions, VPS with Coolify, Sentry</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="contact">
+    <div class="spine mono">Sign-off</div>
+    <div class="body">
+      <div class="signoff">
+        <p>To talk about a role, email me with the team and the job. I reply within one working day.</p>
+        <div class="sigbox">
+          <div class="sigline">Shorno Kamal Roy</div>
+          <div class="sigmeta"><span class="label">Signature</span><span class="label mono">fb.shorno@gmail.com</span></div>
+          <div class="actions"><a class="btn primary" href="mailto:fb.shorno@gmail.com">Email me</a><a class="btn" href="#cv">Download CV</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="spine"></div>
+    <div class="body"><footer class="foot"><span>© 2026 Shorno Kamal Roy</span><span><a href="#">Code archive</a> · <a href="https://github.com/Shorno">GitHub ↗</a></span></footer></div>
+  </section>
+</main>
+</body>
+</html>

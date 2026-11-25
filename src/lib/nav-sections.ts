@@ -1,8 +1,9 @@
+/** Header navigation, in page order. Every `id` is a homepage section anchor. */
 export const navSections = [
-  { href: "/#experience", label: "Experience", idx: "01", id: "experience" },
-  { href: "/#work", label: "Projects", idx: "02", id: "work" },
-  { href: "/#system", label: "Skills", idx: "03", id: "system" },
-  { href: "/#contact", label: "Contact", idx: "04", id: "contact" },
+  { href: "/#projects", label: "Projects", id: "projects" },
+  { href: "/#experience", label: "Experience", id: "experience" },
+  { href: "/#skills", label: "Skills", id: "skills" },
+  { href: "/#contact", label: "Contact", id: "contact" },
 ] as const;
 
 export type NavSectionId = (typeof navSections)[number]["id"];

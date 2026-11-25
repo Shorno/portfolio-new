@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorno Kamal Roy · Full-stack engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --ink: #0f1115; --soft: #5c6370; --line: #e6e8eb; --wash: #f5f6f8; --link: #1f6feb;
+    --tbd: #8a5a00; --tbd-bg: #fff4d6;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Geist", system-ui, sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #dbe8ff; }
+  a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  nav.top { display: flex; justify-content: space-between; align-items: center; height: 72px; }
+  nav.top b { font-weight: 600; }
+  nav.top ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  nav.top ul a { color: var(--soft); text-decoration: none; }
+  nav.top ul a:hover { color: var(--ink); }
+
+  .hero { padding: 96px 0 88px; max-width: 760px; }
+  h1 { font-size: clamp(2.6rem, 5.6vw, 4.2rem); line-height: 1.05; letter-spacing: -0.035em; font-weight: 600; margin: 0 0 24px; text-wrap: balance; }
+  .hero p { font-size: 20px; color: var(--soft); margin: 0 0 12px; max-width: 58ch; }
+  .hero p strong { color: var(--ink); font-weight: 500; }
+  .avail { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--ink); margin: 20px 0 28px; }
+  .avail i { width: 8px; height: 8px; border-radius: 50%; background: #1a7f37; display: inline-block; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 999px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--bg); transition: background .18s ease-out, border-color .18s ease-out; }
+  .btn:hover { background: var(--wash); border-color: #d0d4d9; }
+  .btn.solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.solid:hover { background: #2a2e36; }
+
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 28px; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 8px; }
+  .sub { color: var(--soft); margin: 0 0 40px; }
+
+  .work { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding: 36px 0; }
+  .work + .work { border-top: 1px solid var(--line); }
+  .shot { border-radius: 12px; overflow: hidden; background: var(--wash); border: 1px solid var(--line); aspect-ratio: 16/10; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .work h3 { font-size: 26px; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 6px; }
+  .work .meta { color: var(--soft); font-size: 15px; margin: 0 0 14px; }
+  .work p { margin: 0 0 16px; }
+  .outcome { background: var(--wash); border-radius: 10px; padding: 12px 16px; font-size: 15px; margin: 0 0 16px; }
+  .tbd { display: inline-block; padding: 0 6px; border: 1px dashed var(--tbd); background: var(--tbd-bg); color: var(--tbd); font-size: 13px; font-weight: 600; border-radius: 4px; }
+  .links { display: flex; gap: 18px; font-weight: 500; font-size: 15px; }
+
+  .compact { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .compact li { display: grid; grid-template-columns: 200px 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .compact b { font-weight: 600; }
+  .compact span { color: var(--soft); }
+
+  .exp { list-style: none; margin: 0; padding: 0; }
+  .exp li { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
+  .exp .when { color: var(--soft); font-variant-numeric: tabular-nums; }
+  .exp b { font-weight: 600; }
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px 32px; }
+  .skills h3 { font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+  .skills p { margin: 0; color: var(--soft); }
+
+  .contact { padding: 96px 0; text-align: left; }
+  .contact h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; margin-bottom: 12px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; display: flex; justify-content: space-between; color: var(--soft); font-size: 14px; }
+
+  @media (max-width: 820px) {
+    .wrap { padding: 0 16px; }
+    nav.top ul { display: none; }
+    .hero { padding: 48px 0 56px; }
+    .work { grid-template-columns: 1fr; gap: 20px; }
+    .compact li, .exp li { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main"><b>Shorno Kamal Roy</b><ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+
+  <header class="hero">
+    <h1>Full-stack engineer building software businesses run on.</h1>
+    <p>I’m Shorno, based in Dhaka. I build web and mobile apps end to end: <strong>the interface, the API and database, and keeping it running in production.</strong></p>
+    <p>Right now I’m a full-stack engineer at Ecube and part-time at AlgoVerse.</p>
+    <span class="avail"><i aria-hidden="true"></i>Open to full-stack roles: remote, on-site or hybrid</span>
+    <div class="cta"><a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me</a><a class="btn" href="#cv">Download CV</a><a class="btn" href="https://www.linkedin.com/in/shorno/">LinkedIn</a></div>
+  </header>
+
+  <section id="work">
+    <h2>Selected work</h2>
+    <p class="sub">Live products, with what I built on each.</p>
+
+    <article class="work">
+      <div class="shot"><img src="../public/work/ecube-tournament/web-home.jpg" alt="Ecube Tournament homepage"></div>
+      <div>
+        <h3>Ecube Tournament</h3>
+        <p class="meta">Ecube · 2026 to now · <span class="tbd">team size</span></p>
+        <p>The platform Ecube runs its Free Fire tournaments on: registration, group draws, schedules, result checks and team chat, in English and Bangla. I built the web app, API and database.</p>
+        <p class="outcome">Prize pool BDT 10,00,000 · <span class="tbd">teams registered</span> · <span class="tbd">matches run</span></p>
+        <div class="links"><a href="https://tour.ecube.gg/">Visit tour.ecube.gg ↗</a></div>
+      </div>
+    </article>
+
+    <article class="work">
+      <div class="shot"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png" alt="SelfShop"></div>
+      <div>
+        <h3>SelfShop</h3>
+        <p class="meta">AlgoVerse client · 2026 to now · <span class="tbd">team size</span></p>
+        <p>A reseller marketplace. I built the admin, reseller and supplier dashboards and the reseller Android app; the team ran the Laravel backend.</p>
+        <p class="outcome"><span class="tbd">Play Store installs</span> · <span class="tbd">active resellers</span></p>
+        <div class="links"><a href="https://selfshop.com.bd/">Visit site ↗</a><a href="https://play.google.com/store/apps/details?id=com.selfshop.reseller">Google Play ↗</a></div>
+      </div>
+    </article>
+
+    <article class="work">
+      <div class="shot"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png" alt="Stock Management"></div>
+      <div>
+        <h3>Stock Management</h3>
+        <p class="meta">Distributor · 2025 to 2026 · <span class="tbd">team size</span></p>
+        <p>Stock and invoicing for a distributor that had been running on three spreadsheets and a Telegram group.</p>
+        <p class="outcome"><span class="tbd">invoices per month</span></p>
+        <div class="links"><a href="https://mstamimenterprise.shop/">Visit site ↗</a></div>
+      </div>
+    </article>
+
+    <ul class="compact">
+      <li><b>Bright Tutor</b><span>Tutoring platform: six web and mobile apps on one API</span><a href="https://brighteducations.com/">Visit ↗</a></li>
+      <li><b>Padma Service</b><span>Bilingual services marketplace with admin</span><a href="https://padmaservice.com">Visit ↗</a></li>
+      <li><b>Bikalpo</b><span>Wholesale ordering, partly live</span><a href="https://b2b.bikalpo.com/">Visit ↗</a></li>
+    </ul>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <p class="sub">Most recent first.</p>
+    <ul class="exp">
+      <li><span class="when">Jul 2026 – now</span><span><b>Ecube</b>, Full-stack engineer · Full-time</span></li>
+      <li><span class="when">Dec 2025 – now</span><span><b>AlgoVerse</b>, Software engineer · Part-time</span></li>
+      <li><span class="when">Sep 2024 – Dec 2025</span><span><b>AppCube</b>, Frontend developer · Part-time</span></li>
+      <li><span class="when">2022 – 2026</span><span><b>Daffodil International University</b>, BSc CSE · CGPA 3.30</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <p class="sub">Grouped by what they’re for.</p>
+    <div class="skills">
+      <div><h3>Web apps</h3><p>TypeScript, React, Next.js</p></div>
+      <div><h3>APIs and data</h3><p>Node, Bun, Hono, PostgreSQL, Drizzle</p></div>
+      <div><h3>Mobile</h3><p>React Native, Expo</p></div>
+      <div><h3>Realtime and jobs</h3><p>Socket.IO, Pusher, Inngest</p></div>
+      <div><h3>Production</h3><p>Docker, GitHub Actions, Coolify, Sentry</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Hiring for a full-stack role?</h2>
+    <p class="sub">Email me the job and a little about the team. I reply within one working day.</p>
+    <div class="cta"><a class="btn solid" href="mailto:fb.shorno@gmail.com">fb.shorno@gmail.com</a><a class="btn" href="#cv">Download CV</a></div>
+  </section>
+  <footer><span>© 2026 Shorno Kamal Roy</span><span><a href="#">Code archive</a> · <a href="https://github.com/Shorno">GitHub ↗</a></span></footer>
+</div>
+</body>
+</html>

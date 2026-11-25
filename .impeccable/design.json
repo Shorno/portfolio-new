@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T00:00:00Z",
+  "title": "Design System: Shorno Kamal Roy, portfolio",
+  "extensions": {
+    "themes": [
+      { "name": "paper", "selector": ":root", "default": true, "colorSuffix": "" },
+      { "name": "dark", "selector": ".dark", "default": false, "colorSuffix": "-dark" }
+    ],
+    "cssVariables": {
+      "page": "--bg", "card": "--bg-elev", "surface": "--surface", "ink-text": "--fg", "text-soft": "--fg-soft",
+      "text-muted": "--muted", "text-faint": "--faint", "hairline": "--line", "hairline-strong": "--line-strong",
+      "accent": "--accent", "accent-hover": "--accent-hover", "accent-fg": "--accent-fg", "accent-soft": "--accent-soft",
+      "ink": "--ink", "ink-fg": "--ink-fg", "tint-mint": "--tint-mint", "tint-sand": "--tint-sand", "tint-sky": "--tint-sky",
+      "tint-lilac": "--tint-lilac", "tint-mint-fg": "--tint-mint-fg", "signal-ok": "--signal-ok", "signal-warn": "--signal-warn"
+    },
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Deep Studio Teal", "darkPair": "accent-dark", "tonalRamp": ["oklch(18% 0.04 225)", "oklch(28% 0.06 225)", "oklch(40% 0.08 225)", "oklch(50% 0.08 225)", "oklch(62% 0.08 222)", "oklch(74% 0.07 220)", "oklch(86% 0.04 220)", "oklch(95% 0.015 220)"] },
+      "accent-hover": { "role": "primary", "displayName": "Teal Shadow", "darkPair": "accent-hover-dark" },
+      "accent-fg": { "role": "primary", "displayName": "On Teal", "darkPair": "accent-fg-dark" },
+      "accent-soft": { "role": "primary", "displayName": "Teal Wash", "darkPair": "accent-soft-dark" },
+      "ink": { "role": "secondary", "displayName": "Studio Ink", "darkPair": "ink-dark", "tonalRamp": ["oklch(15% 0.005 250)", "oklch(22% 0.006 250)", "oklch(32% 0.008 250)", "oklch(45% 0.01 250)", "oklch(58% 0.01 250)", "oklch(72% 0.008 250)", "oklch(85% 0.005 250)", "oklch(95% 0.003 250)"] },
+      "ink-fg": { "role": "secondary", "displayName": "On Ink", "darkPair": "ink-fg-dark" },
+      "tint-mint": { "role": "tertiary", "displayName": "Mint Frame", "darkPair": "tint-mint-dark", "tonalRamp": ["oklch(22% 0.03 165)", "oklch(32% 0.05 165)", "oklch(45% 0.07 165)", "oklch(58% 0.07 165)", "oklch(70% 0.06 165)", "oklch(82% 0.04 165)", "oklch(92% 0.025 165)", "oklch(96% 0.012 165)"] },
+      "tint-sand": { "role": "tertiary", "displayName": "Sand Frame", "darkPair": "tint-sand-dark", "tonalRamp": ["oklch(22% 0.02 75)", "oklch(32% 0.035 75)", "oklch(45% 0.05 75)", "oklch(58% 0.06 75)", "oklch(70% 0.06 75)", "oklch(82% 0.045 75)", "oklch(94% 0.025 75)", "oklch(97% 0.012 75)"] },
+      "tint-sky": { "role": "tertiary", "displayName": "Sky Frame", "darkPair": "tint-sky-dark", "tonalRamp": ["oklch(22% 0.025 255)", "oklch(32% 0.04 255)", "oklch(45% 0.06 255)", "oklch(58% 0.06 255)", "oklch(70% 0.05 255)", "oklch(82% 0.035 255)", "oklch(93% 0.02 255)", "oklch(97% 0.01 255)"] },
+      "tint-lilac": { "role": "tertiary", "displayName": "Lilac Frame", "darkPair": "tint-lilac-dark", "tonalRamp": ["oklch(22% 0.03 295)", "oklch(32% 0.045 295)", "oklch(45% 0.06 295)", "oklch(58% 0.06 295)", "oklch(70% 0.05 295)", "oklch(82% 0.035 295)", "oklch(93% 0.022 295)", "oklch(97% 0.01 295)"] },
+      "tint-mint-fg": { "role": "tertiary", "displayName": "Mint Status Text", "darkPair": "tint-mint-fg-dark" },
+      "page": { "role": "neutral", "displayName": "Warm Paper", "darkPair": "page-dark", "tonalRamp": ["oklch(18% 0.004 95)", "oklch(28% 0.005 95)", "oklch(40% 0.006 95)", "oklch(55% 0.007 95)", "oklch(70% 0.007 95)", "oklch(84% 0.006 95)", "oklch(93% 0.005 95)", "oklch(96.5% 0.004 95)"] },
+      "card": { "role": "neutral", "displayName": "Card White", "darkPair": "card-dark" },
+      "surface": { "role": "neutral", "displayName": "Stone", "darkPair": "surface-dark" },
+      "ink-text": { "role": "neutral", "displayName": "Graphite Ink", "darkPair": "ink-text-dark" },
+      "text-soft": { "role": "neutral", "displayName": "Slate Soft", "darkPair": "text-soft-dark" },
+      "text-muted": { "role": "neutral", "displayName": "Slate Muted", "darkPair": "text-muted-dark", "note": "Archive and operator only." },
+      "text-faint": { "role": "neutral", "displayName": "Slate Faint", "darkPair": "text-faint-dark", "note": "Archive and operator only." },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "darkPair": "hairline-dark" },
+      "hairline-strong": { "role": "neutral", "displayName": "Hairline Strong", "darkPair": "hairline-strong-dark" },
+      "signal-ok": { "role": "neutral", "displayName": "Signal OK", "darkPair": "signal-ok-dark", "note": "Status only." },
+      "signal-warn": { "role": "neutral", "displayName": "Signal Warn", "darkPair": "signal-warn-dark", "note": "Status only (operator)." }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only; contact headline at clamp(2.2rem, 4.2vw, 3.6rem)." },
+      "figure": { "displayName": "Figure", "purpose": "Hero fact-tile numbers, tabular." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads via BlockHead." },
+      "title": { "displayName": "Title", "purpose": "Featured project names, Work experience and Skills card heads." },
+      "title-small": { "displayName": "Title Small", "purpose": "Compact project card names." },
+      "lead": { "displayName": "Lead", "purpose": "Hero intro, max 54ch." },
+      "body": { "displayName": "Body", "purpose": "Default copy." },
+      "body-small": { "displayName": "Body Small", "purpose": "Bullets, summaries, nav links, medium buttons." },
+      "label": { "displayName": "Label", "purpose": "Field labels, dates, skill group heads." },
+      "chip": { "displayName": "Chip", "purpose": "Chips and status pills." },
+      "data-mono": { "displayName": "Data Mono", "purpose": "Code-like data only (archive repo names, operator)." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 1px 2px rgb(22 24 27 / 0.04), 0 8px 24px -12px rgb(22 24 27 / 0.12)", "darkValue": "0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5)", "cssVar": "--shadow-card", "purpose": "Every card at rest, the header pill, buttons on hover." },
+      { "name": "lift", "value": "0 1px 2px rgb(22 24 27 / 0.04), 0 20px 40px -20px rgb(22 24 27 / 0.25)", "darkValue": "0 1px 2px rgb(0 0 0 / 0.3), 0 20px 40px -20px rgb(0 0 0 / 0.7)", "cssVar": "--shadow-lift", "purpose": "Featured project cards on hover." },
+      { "name": "sleeve", "value": "0 -2px 30px -10px rgb(22 24 27 / 0.25)", "purpose": "Screenshot inside its tint frame, both themes. Currently inline, not a token." },
+      { "name": "halo", "value": "0 0 0 4px color-mix(in oklab, var(--signal-ok) 20%, transparent)", "purpose": "Live dot in the availability pill." }
+    ],
+    "motion": [
+      { "name": "button-lift", "value": "translateY(-1px) + shadow-card, 200ms ease-out", "purpose": "All buttons on hover." },
+      { "name": "compact-card-hover", "value": "translateY(-3px) rotate(-0.4deg), 250ms ease-out; arrow button rotate(45deg) to ink, 200ms", "purpose": "More projects cards." },
+      { "name": "featured-card-hover", "value": "translateY(-2px) + shadow-lift, 300ms ease-out", "purpose": "Featured project cards." },
+      { "name": "screenshot-rise", "value": "translateY(-6px), 400ms ease-out", "purpose": "Screenshot rises out of its frame on card hover." },
+      { "name": "plate-reveal", "value": "from opacity 0, translateY(16px) to rest, 400ms ease-out, once, IntersectionObserver rootMargin 0 0 -10% 0", "purpose": "One-shot entry for featured project cards below the fold; skipped for cards already on screen, under reduced motion, or without JS." },
+      { "name": "route-crossfade", "value": "320ms cubic-bezier(0.4, 0, 0.1, 1); groups 520ms", "purpose": "View Transitions between home, archive and operator." },
+      { "name": "reduced-motion", "value": "all animation and transition durations 0.001ms; view transitions off", "purpose": "prefers-reduced-motion: reduce." }
+    ],
+    "breakpoints": [
+      { "name": "name-hide", "value": "380px", "purpose": "Header name becomes screen-reader only at or below." },
+      { "name": "sm", "value": "640px", "purpose": "Container gutter 16px to 28px." },
+      { "name": "md", "value": "768px", "purpose": "The layout pivot: grids split, nav links appear." }
+    ],
+    "layout": {
+      "containerMax": "1200px",
+      "focusRing": "2px solid var(--accent), offset 3px",
+      "selection": "accent background, accent-fg text",
+      "headerOffset": "--site-header-h: 80px; anchors scroll-margin calc(80px + 1rem)"
+    }
+  },
+  "components": [
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "The one primary action in a group, with the round arrow badge.",
+      "html": "<a class=\"ds-btn ds-btn-accent\" href=\"#\">Get in touch<span class=\"ds-badge\"><svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.5 2.5h6v6M9.5 2.5l-7 7\"/></svg></span></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 10px 0 22px; border-radius: 9999px; border: 1px solid; font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: transform 200ms ease-out, box-shadow 200ms ease-out, background-color 200ms ease-out, border-color 200ms ease-out; } .ds-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); } .ds-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; } .ds-btn-accent { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); } .ds-btn-accent:hover { background: var(--accent-hover); border-color: var(--accent-hover); } .ds-badge { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 9999px; background: var(--accent-fg); color: var(--accent); } .ds-badge svg { width: 11px; height: 11px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Default secondary action on card or page.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">View resume</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 9999px; border: 1px solid var(--line); background: var(--bg-elev); color: var(--fg); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: transform 200ms ease-out, box-shadow 200ms ease-out; } .ds-btn-outline:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); } .ds-btn-outline:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ink Button (small)",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Compact solid action: header Resume, Visit site.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">Resume<span class=\"ds-badge-ink\"><svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.5 2.5h6v6M9.5 2.5l-7 7\"/></svg></span></a>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 6px 0 16px; border-radius: 9999px; border: 1px solid var(--ink); background: var(--ink); color: var(--ink-fg); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: transform 200ms ease-out, box-shadow 200ms ease-out; } .ds-btn-ink:hover { transform: translateY(-1px); box-shadow: var(--shadow-card); } .ds-btn-ink:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; } .ds-badge-ink { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 9999px; background: var(--ink-fg); color: var(--ink); } .ds-badge-ink svg { width: 11px; height: 11px; }"
+    },
+    {
+      "name": "Chips",
+      "kind": "chip",
+      "refersTo": "chip-outline",
+      "description": "Static pill labels: outline for stack and skills, muted for meta, live for status.",
+      "html": "<span class=\"ds-chip ds-chip-live\">Live</span> <span class=\"ds-chip ds-chip-muted\">2026</span> <span class=\"ds-chip ds-chip-outline\">Next.js</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 9999px; font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 600; line-height: 1; } .ds-chip-outline { border: 1px solid var(--line); background: var(--bg-elev); color: var(--fg); } .ds-chip-muted { background: var(--bg); color: var(--fg-soft); } .ds-chip-live { background: var(--tint-mint); color: var(--tint-mint-fg); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The base surface: white, 28px corners, hairline, soft shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Work experience</h3><p class=\"ds-card-body\">Full-stack engineer, Ecube</p></div>",
+      "css": ".ds-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow-card); padding: 32px; } .ds-card-title { margin: 0 0 12px; font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.875rem; line-height: 1.04; letter-spacing: -0.03em; color: var(--fg); } .ds-card-body { margin: 0; font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; color: var(--fg-soft); }"
+    },
+    {
+      "name": "Floating Pill Header",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Sticky translucent pill with monogram, section links, theme toggle, Resume.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-mono\">SR</span><span class=\"ds-name\">Shorno Kamal Roy</span><span class=\"ds-links\"><a class=\"ds-link ds-link-active\" href=\"#\">Projects</a><a class=\"ds-link\" href=\"#\">Experience</a><a class=\"ds-link\" href=\"#\">Contact</a><a class=\"ds-link\" href=\"#\">Dark</a></span></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 20px; border-radius: 9999px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg-elev) 85%, transparent); backdrop-filter: blur(12px); box-shadow: var(--shadow-card); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-mono { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--accent); color: var(--accent-fg); font-family: var(--font-bricolage), ui-sans-serif, sans-serif; font-weight: 600; font-size: 0.875rem; transform: rotate(-6deg); } .ds-name { font-weight: 700; color: var(--fg); margin-right: auto; } .ds-links { display: flex; gap: 4px; } .ds-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: var(--fg-soft); text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-link:hover, .ds-link-active { background: var(--bg); color: var(--fg); } .ds-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
+    },
+    {
+      "name": "Screenshot Frame",
+      "kind": "custom",
+      "refersTo": "screenshot-frame",
+      "description": "Pastel tint frame, top-rounded, with a 16:9 screenshot that rises on hover.",
+      "html": "<div class=\"ds-frame\"><div class=\"ds-shot\"></div></div>",
+      "css": ".ds-frame { display: flex; align-items: flex-end; height: 240px; padding: 22px 22px 0; border-radius: 18px 18px 0 0; background: var(--tint-sky); } .ds-shot { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px 12px 0 0; background: var(--bg-elev); box-shadow: 0 -2px 30px -10px rgb(22 24 27 / 0.25); transition: transform 400ms ease-out; } .ds-frame:hover .ds-shot { transform: translateY(-6px); }"
+    },
+    {
+      "name": "Experience Timeline",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Hairline spine with accent ring nodes; education last with a quiet ring.",
+      "html": "<ol class=\"ds-tl\"><li><span class=\"ds-node\"></span><p class=\"ds-when\">2025 – Present</p><p class=\"ds-role\">Full-stack engineer, <a href=\"#\">Ecube</a> <span class=\"ds-now\">Current</span></p></li><li class=\"ds-edu\"><span class=\"ds-node\"></span><p class=\"ds-when\">2021 – 2025</p><p class=\"ds-role\">BSc in Computer Science</p></li></ol>",
+      "css": ".ds-tl { position: relative; list-style: none; margin: 0; padding: 0; font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-tl::before { content: ''; position: absolute; top: 8px; bottom: 8px; left: 7px; width: 2px; border-radius: 9999px; background: var(--line); } .ds-tl li { position: relative; padding: 0 0 22px 34px; } .ds-tl li:last-child { padding-bottom: 0; } .ds-node { position: absolute; top: 5px; left: 0; width: 16px; height: 16px; box-sizing: border-box; border-radius: 9999px; border: 3px solid var(--accent); background: var(--bg-elev); } .ds-edu .ds-node { border-color: var(--line-strong); } .ds-when { margin: 0; font-size: 0.875rem; color: var(--fg-soft); font-variant-numeric: tabular-nums lining-nums; } .ds-role { margin: 0; font-weight: 700; color: var(--fg); } .ds-role a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; } .ds-role a:hover { color: var(--accent-hover); } .ds-now { margin-left: 8px; padding: 2px 8px; border-radius: 9999px; background: var(--tint-mint); color: var(--tint-mint-fg); font-size: 0.75rem; font-weight: 700; }"
+    },
+    {
+      "name": "Contact Card",
+      "kind": "card",
+      "refersTo": "contact-card",
+      "description": "Closing ink card with soft clipped shapes and inverse buttons.",
+      "html": "<div class=\"ds-contact\"><span class=\"ds-blob\"></span><h2>Let’s work together.</h2><a class=\"ds-inv\" href=\"#\">Email</a> <a class=\"ds-ghost\" href=\"#\">LinkedIn</a></div>",
+      "css": ".ds-contact { position: relative; overflow: hidden; padding: 64px; border-radius: 36px; background: var(--ink); color: var(--ink-fg); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-contact h2 { position: relative; margin: 0 0 24px; font-family: var(--font-bricolage), ui-sans-serif, sans-serif; font-weight: 600; font-size: clamp(2.2rem, 4.2vw, 3.6rem); line-height: 1.04; letter-spacing: -0.03em; } .ds-blob { position: absolute; top: -96px; right: -64px; width: 256px; height: 256px; border-radius: 42% 58% 61% 39% / 45% 39% 61% 55%; background: var(--accent); opacity: 0.55; } .ds-inv, .ds-ghost { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 9999px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; transition: transform 200ms ease-out, border-color 200ms ease-out; } .ds-inv { background: var(--ink-fg); color: var(--ink); border: 1px solid var(--ink-fg); } .ds-ghost { color: var(--ink-fg); border: 1px solid color-mix(in srgb, var(--ink-fg) 25%, transparent); } .ds-ghost:hover { border-color: color-mix(in srgb, var(--ink-fg) 60%, transparent); } .ds-inv:hover, .ds-ghost:hover { transform: translateY(-1px); } .ds-inv:focus-visible, .ds-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Soft Studio",
+    "overview": "A friendly, polished engineer's portfolio laid out like a tidy studio wall: white cards pinned to a warm off-white page, each one rounded, hairline-edged and resting on a soft ambient shadow. The proof is the product screenshots, so they get the colour: every featured project sits in its own pastel frame (mint, sand, sky, lilac) and rises slightly out of it. Everything else stays quiet so the screenshots and one teal accent carry the page.\n\nDensity is moderate and card-based. Information is grouped into self-contained cards (intro, fact tiles, project cards, experience timeline, skills, the ink contact card) separated by a consistent 20px gutter, with generous internal padding. Language is standard recruiter language; the visual system supports scanning rather than reading.\n\nTwo themes share one structure. `paper` (default, `:root`) is warm off-white with white cards; `dark` (`.dark`) inverts to near-black graphite with lifted charcoal cards, deepened tints and a lighter cyan accent. The ink contact card swaps with the theme, so in dark it becomes a light card on a dark page.",
+    "keyCharacteristics": [
+      "White rounded cards (28px) with a hairline border and soft two-layer shadow on a warm page.",
+      "Pill everything that is interactive: header, nav links, buttons, chips.",
+      "Pastel tint frames behind screenshots; one tint per project.",
+      "One teal accent for the primary action, links, highlights and timeline nodes.",
+      "Bricolage Grotesque headings in tight tracking; Hanken Grotesk for everything else.",
+      "Hover is a small lift; the only entry motion is a one-shot screenshot reveal."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Teal is the only saturated colour that carries action or emphasis. Tints are pastel fills, never a second accent.", "section": "colors" },
+      { "name": "The Tint Is a Frame Rule", "body": "Pastel tints sit behind content (screenshots, figures); text never takes a tint colour, and mint is the only tint that means something (live, current).", "section": "colors" },
+      { "name": "The Token-Only Rule", "body": "Components use the named tokens through Tailwind utilities (`bg-bg`, `text-fg-soft`, `bg-tint-sky`). No raw hex in components; a new role is added to both `:root` and `.dark` and exposed in `@theme inline`.", "section": "colors" },
+      { "name": "The Display-for-Heads Rule", "body": "Bricolage is for headings, figures and the monogram. Body, labels, chips and buttons are Hanken.", "section": "typography" },
+      { "name": "The Mono-Is-Data Rule", "body": "Geist Mono only for code-like data. Never as decoration, never uppercase-tracked labels.", "section": "typography" },
+      { "name": "The Tabular Figures Rule", "body": "Dates and figures use tabular lining numerals (`.tabular`).", "section": "typography" },
+      { "name": "The Soft Shadow Rule", "body": "Shadows are wide, low-opacity and negatively spread. No hard, offset or coloured shadows.", "section": "elevation" },
+      { "name": "The Lift-on-Hover Rule", "body": "Elevation changes only on hover: cards and buttons rise 1 to 3px; only a screenshot rises further (6px), and only inside its frame.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every content group in a card: card-white, 1px hairline, 28px (or 20px for compact) corners, card shadow.",
+      "Do give each featured project one pastel tint frame, and set `tint` on the project data rather than styling a frame by hand.",
+      "Do use one accent pill button per group; every other action is outline (or ink for compact solids, inverse on the ink card).",
+      "Do use the drawn arrow as the only icon: in button badges, round arrow buttons and outbound links.",
+      "Do derive every figure (years, project count, current roles) from the project and experience data.",
+      "Do render Team and Results only when the data holds owner-confirmed values; when absent, omit the row entirely.",
+      "Do check every visual change in both paper and dark themes and at 375px.",
+      "Do keep motion to hover lifts and the one-shot screenshot reveal, and keep it off under reduced motion."
+    ],
+    "donts": [
+      "Don't invent numbers, team sizes or outcomes, and never ship a placeholder value.",
+      "Don't introduce a raw hex in components; add a token to both themes instead.",
+      "Don't use any icon other than the drawn arrow: no icon libraries, no glyph icons, no emojis.",
+      "Don't use a tint as a text colour or as a second accent.",
+      "Don't use hard, offset or coloured shadows, or lift a card or button more than 3px.",
+      "Don't use Geist Mono or uppercase tracked labels as decoration.",
+      "Don't add continuous, looping or scroll-linked animation."
+    ]
+  }
+}

@@ -1,62 +1,75 @@
-/** The first screen answers who, what, and where before asking for a click. */
-import Link from "next/link";
+/**
+ * Hero: an intro card (status, headline, short bio, two actions) beside a
+ * small grid of fact tiles. Every figure is derived from the project and
+ * experience data, never typed in.
+ */
+import { ButtonLink } from "@/components/primitives/button-link";
 import { Container } from "@/components/primitives/container";
-import { Grid } from "@/components/primitives/grid";
-import { experience } from "@/lib/experience";
+import { experience, formatType, yearsOfExperience } from "@/lib/experience";
+import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   const currentRoles = experience.filter((entry) => entry.end === "present");
+  const years = yearsOfExperience();
 
   return (
-    <section aria-labelledby="profile-name" className="py-16 md:py-20">
-      <Container>
-        <Grid className="items-end gap-y-10">
-          <div className="col-span-4 md:col-span-8">
-            <h1 id="profile-name" className="font-display text-[clamp(3.25rem,7vw,6rem)] text-fg">
-              Shorno<br />Kamal Roy<span className="text-accent">.</span>
-            </h1>
-            <p className="mt-6 text-2xl font-medium tracking-tight text-fg md:text-3xl">{site.role}</p>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-soft md:text-lg">{site.subline}</p>
-            <ul aria-label="Primary skills" className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm text-fg">
-              {site.coreSkills.map((skill) => <li key={skill}>{skill}</li>)}
+    <section aria-labelledby="hero-title">
+      <Container className="grid gap-5 pt-6 md:grid-cols-[1.35fr_1fr] md:pt-12">
+        <div className="card relative overflow-hidden p-7 md:p-11">
+          <div aria-hidden className="pointer-events-none absolute -top-12 -right-12 size-48 rounded-full bg-tint-sky blur-2xl" />
+          <p className="relative inline-flex items-center gap-2 rounded-full bg-tint-mint py-1.5 pr-3.5 pl-2.5 text-sm font-semibold text-tint-mint-fg">
+            <span aria-hidden className="size-2 rounded-full bg-signal-ok shadow-[0_0_0_4px_color-mix(in_oklab,var(--signal-ok)_20%,transparent)]" />
+            {site.seeking.headline}
+          </p>
+          <h1 id="hero-title" className="relative mt-6 mb-5 font-display text-[clamp(2.4rem,4.6vw,3.9rem)] text-balance text-fg">
+            Full-stack developer building <span className="text-accent">web and mobile apps</span> people use every day.
+          </h1>
+          <p className="relative mb-7 max-w-[54ch] text-lg text-fg-soft">{site.intro}</p>
+          <div className="relative flex flex-wrap gap-2.5">
+            <ButtonLink variant="accent" arrow href="#contact">Get in touch</ButtonLink>
+            <ButtonLink href={site.cvUrl} target="_blank" rel="noreferrer">View resume</ButtonLink>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-5 md:grid-rows-[1fr_auto_auto]">
+          <FactTile label="Years of experience" value={`${years}+`} className="bg-tint-mint" />
+          <FactTile label="Projects shipped" value={String(projects.length)} className="bg-tint-sand" />
+
+          <div className="card col-span-2 rounded-[var(--radius-lg)] p-5">
+            <p className="text-sm font-medium text-fg-soft">Currently working at</p>
+            <ul className="mt-3 grid gap-2.5">
+              {currentRoles.map((entry) => (
+                <li key={entry.company} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 rounded-[var(--radius-md)] bg-bg px-3.5 py-2.5">
+                  <span className="font-bold text-fg">{entry.company}</span>
+                  <span className="text-sm text-fg-soft">{entry.role} · {formatType(entry.type)}</span>
+                </li>
+              ))}
             </ul>
-            {site.seeking.open ? <p className="mt-5 text-sm text-muted">{site.seeking.headline}.</p> : null}
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <a href={site.cvUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-3 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-accent-fg transition-colors hover:bg-fg hover:text-bg">
-                View CV <span aria-hidden>↗</span>
-              </a>
-              <Link href={`mailto:${site.email}?subject=${encodeURIComponent(site.hireEmailSubject)}`} className="inline-flex min-h-11 items-center text-sm text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent">Email me</Link>
-              <Link href={site.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-fg-soft transition-colors hover:text-accent">LinkedIn <span aria-hidden>↗</span></Link>
-            </div>
           </div>
 
-          <aside aria-label="Profile at a glance" className="col-span-4 md:col-span-4 md:border-l md:border-line md:pl-8">
-            <dl className="space-y-6">
-              <div>
-                <dt className="text-sm text-muted">Currently</dt>
-                <dd className="mt-3 space-y-3">
-                  {currentRoles.map((entry) => (
-                    <div key={entry.company}>
-                      <Link href={`#experience-${entry.company.toLowerCase()}`} className="text-base font-medium text-fg underline decoration-line underline-offset-4 transition-colors hover:text-accent">{entry.company}</Link>
-                      <span className="ml-2 text-sm text-muted">{entry.type}</span>
-                      <p className="mt-1 text-sm text-fg-soft">{entry.role}</p>
-                    </div>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm text-muted">Focus</dt>
-                <dd className="mt-2 max-w-sm text-base leading-relaxed text-fg">{site.focus}</dd>
-              </div>
-              <div>
-                <dt className="text-sm text-muted">Based in</dt>
-                <dd className="mt-2 text-base text-fg">{site.location}</dd>
-              </div>
-            </dl>
-          </aside>
-        </Grid>
+          <div className="card col-span-2 flex flex-wrap items-end justify-between gap-4 rounded-[var(--radius-lg)] p-5">
+            <div>
+              <p className="text-sm font-medium text-fg-soft">Location</p>
+              <p className="font-semibold text-fg">{site.location} ({site.timezoneLabel})</p>
+            </div>
+            <div className="sm:text-right">
+              <p className="text-sm font-medium text-fg-soft">Work type</p>
+              <p className="font-semibold text-fg">{site.workTypes.join(" · ")}</p>
+            </div>
+          </div>
+        </div>
       </Container>
     </section>
+  );
+}
+
+function FactTile({ label, value, className }: { label: string; value: string; className?: string }) {
+  return (
+    <div className={cn("flex flex-col justify-between gap-6 rounded-[var(--radius-lg)] p-5", className)}>
+      <p className="text-sm font-medium text-fg">{label}</p>
+      <p className="tabular font-display text-[clamp(2.75rem,5vw,4rem)] leading-none text-fg">{value}</p>
+    </div>
   );
 }

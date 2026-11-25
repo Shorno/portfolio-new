@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Departures · Shorno Kamal Roy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hall: #1b1c20;
+    --board: #0f1012;
+    --tile: #1d1f23;
+    --tile-line: #08090a;
+    --lit: #f2f2ef;
+    --lit-soft: #a9abb0;
+    --alert: #ffb000;    /* reserved: availability and in-development changes */
+    --pass: #f2f2ef;
+    --pass-ink: #16171a;
+    --pass-soft: #5d6068;
+    --tbd: #ffb000;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--hall); color: var(--lit); font-family: "Barlow", system-ui, sans-serif; font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--alert); color: #000; }
+  a { color: var(--lit); text-underline-offset: 3px; }
+  a:hover { color: var(--alert); }
+  :focus-visible { outline: 2px solid var(--alert); outline-offset: 3px; }
+  .cond { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+  .num { font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  nav.top { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  nav.top ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav.top a { text-decoration: none; color: var(--lit-soft); font-size: 15px; }
+  nav.top a:hover { color: var(--lit); }
+
+  /* boarding pass */
+  .pass { display: grid; grid-template-columns: 1fr 300px; background: var(--pass); color: var(--pass-ink); border-radius: 10px; margin: 24px 0 56px; position: relative; overflow: hidden; }
+  .pass .main { padding: 28px 32px 30px; }
+  .pass .stub { padding: 28px 28px 30px; border-left: 2px dashed #c9cac6; display: flex; flex-direction: column; gap: 12px; position: relative; }
+  .pass .stub::before, .pass .stub::after { content: ""; position: absolute; left: -13px; width: 24px; height: 24px; border-radius: 50%; background: var(--hall); }
+  .pass .stub::before { top: -12px; } .pass .stub::after { bottom: -12px; }
+  .lbl { display: block; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; color: var(--pass-soft); }
+  .pass h1 { margin: 2px 0 20px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase; font-size: clamp(2.8rem, 6.6vw, 5.6rem); line-height: .92; letter-spacing: .005em; }
+  .route { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; margin-bottom: 22px; }
+  .route .code { font-family: "Barlow Condensed", sans-serif; font-size: 44px; font-weight: 700; line-height: 1; }
+  .route .city { font-size: 14px; color: var(--pass-soft); }
+  .route .line { height: 1px; background: var(--pass-ink); position: relative; }
+  .route .line svg { position: absolute; left: 50%; top: -10px; width: 20px; height: 20px; transform: translateX(-50%); background: var(--pass); }
+  .segs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #d4d5d1; }
+  .segs div { padding: 12px 14px 0 0; }
+  .segs .v { display: block; font-weight: 600; font-size: 16px; }
+  .status-now { color: #8a5a00; }
+  .btn { display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 6px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--pass-ink); color: var(--pass-ink); transition: background .18s ease-out, color .18s ease-out; }
+  .btn.solid { background: var(--pass-ink); color: var(--pass); }
+  .btn:hover { background: var(--alert); border-color: var(--alert); color: #000; }
+  .barcode { height: 54px; margin-top: auto; background: repeating-linear-gradient(90deg, var(--pass-ink) 0 2px, transparent 2px 4px, var(--pass-ink) 4px 5px, transparent 5px 8px, var(--pass-ink) 8px 11px, transparent 11px 12px); }
+
+  /* board */
+  .board { background: var(--board); border-radius: 8px; padding: 22px 24px 8px; box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -20px rgba(0,0,0,.6); }
+  .board-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .board-head h2 { margin: 0; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .06em; font-size: 30px; font-weight: 700; }
+  .board-head span { color: var(--lit-soft); font-size: 14px; }
+  .cols, .flight summary { display: grid; grid-template-columns: 110px 1.4fr 1.1fr 1fr 150px; gap: 10px; align-items: center; }
+  .cols { padding: 0 0 8px; color: var(--lit-soft); font-size: 13px; border-bottom: 1px solid #2a2c31; }
+  .flight { border-bottom: 1px solid #22242a; }
+  .flight summary { list-style: none; cursor: pointer; padding: 10px 0; }
+  .flight summary::-webkit-details-marker { display: none; }
+  .tiles { display: inline-flex; gap: 2px; }
+  .tiles b { display: inline-block; min-width: 1ch; padding: 3px 3px 2px; background: linear-gradient(var(--tile) 0 49%, var(--tile-line) 49% 51%, var(--tile) 51%); border-radius: 2px; font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 22px; line-height: 1.1; text-align: center; color: var(--lit); }
+  .prod { font-family: "Barlow Condensed", sans-serif; font-size: 26px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+  .flight summary:hover .prod { color: var(--alert); }
+  .op { color: var(--lit-soft); }
+  .gate a { font-weight: 600; }
+  .st { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: .06em; }
+  .st.live { color: var(--lit); }
+  .st.dev { color: var(--alert); animation: blink 2.4s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: .55; } }
+  @media (prefers-reduced-motion: reduce) { .st.dev { animation: none; } }
+  .detail { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; padding: 6px 0 24px 120px; }
+  .detail p { margin: 0 0 12px; color: #d6d7d4; max-width: 60ch; }
+  .shot { border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; background: #000; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .tbd { display: inline-block; padding: 0 6px; border: 1px dashed var(--tbd); color: var(--tbd); font-size: 13px; font-weight: 600; }
+  .kv { display: grid; grid-template-columns: 140px 1fr; gap: 6px 12px; font-size: 15px; }
+  .kv dt { color: var(--lit-soft); }
+  .kv dd { margin: 0; }
+
+  section.more { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; margin: 56px 0; }
+  .panel { background: var(--board); border-radius: 8px; padding: 22px 24px; }
+  .panel h2 { margin: 0 0 14px; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .06em; font-size: 26px; font-weight: 700; }
+  .crew { width: 100%; border-collapse: collapse; }
+  .crew td { padding: 12px 10px 12px 0; border-top: 1px solid #22242a; vertical-align: top; }
+  .crew .when { color: var(--lit-soft); white-space: nowrap; font-size: 15px; }
+  .crew .org { font-weight: 600; }
+  .kit dt { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--lit-soft); font-size: 14px; margin-top: 12px; }
+  .kit dd { margin: 2px 0 0; }
+
+  .final { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 36px 0; border-top: 1px solid #2a2c31; }
+  .final p { margin: 0; font-size: 22px; max-width: 34ch; }
+  .final .btns { display: flex; gap: 12px; }
+  .final .btn { padding: 0 22px; border-color: var(--lit); color: var(--lit); }
+  .final .btn.solid { background: var(--lit); color: var(--hall); }
+  .final .btn:hover { background: var(--alert); border-color: var(--alert); color: #000; }
+  footer { padding: 0 0 40px; color: var(--lit-soft); font-size: 14px; display: flex; justify-content: space-between; }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 16px; }
+    nav.top ul { display: none; }
+    .pass { grid-template-columns: 1fr; }
+    .pass .stub { border-left: 0; border-top: 2px dashed #c9cac6; }
+    .pass .stub::before, .pass .stub::after { display: none; }
+    .segs { grid-template-columns: 1fr 1fr; }
+    .cols { display: none; }
+    .flight summary { grid-template-columns: 1fr auto; }
+    .flight summary .when, .flight summary .op, .flight summary .gate { display: none; }
+    .detail { grid-template-columns: 1fr; padding-left: 0; }
+    section.more { grid-template-columns: 1fr; }
+    .final { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <span class="cond" style="font-weight:700;font-size:20px">Shorno Kamal Roy</span>
+    <ul><li><a href="#board">Projects</a></li><li><a href="#crew">Experience</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+
+  <section class="pass" aria-label="Profile">
+    <div class="main">
+      <h1>Shorno Kamal Roy</h1>
+      <div class="route">
+        <div><span class="route code">DAC</span><span class="city">Dhaka, Bangladesh</span></div>
+        <div class="line"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 11.5 8 10 12.5 3h2l-2.5 7 5-.9 1.5-2h1.5l-1 3.4 1 3.5H17l-1.5-2-5-.9 2.5 7h-2L8 11 2 9.5z" transform="rotate(0 10 10)"/></svg></div>
+        <div style="text-align:right"><span class="route code">YOU</span><span class="city">Your team</span></div>
+      </div>
+      <p style="margin:0 0 20px;max-width:56ch">Full-stack engineer. I build web and mobile software that businesses in Bangladesh run every day, and keep it running after launch.</p>
+      <div class="segs">
+        <div><span class="lbl">Role</span><span class="v">Full-stack</span></div>
+        <div><span class="lbl">Format</span><span class="v">Remote · On-site · Hybrid</span></div>
+        <div><span class="lbl">Timezone</span><span class="v num">UTC+6</span></div>
+        <div><span class="lbl">Status</span><span class="v status-now">Open to roles</span></div>
+      </div>
+    </div>
+    <div class="stub">
+      <span class="lbl">Get in touch</span>
+      <a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me</a>
+      <a class="btn" href="#cv">Download CV</a>
+      <a class="btn" href="https://www.linkedin.com/in/shorno/">LinkedIn</a>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="board" id="board" aria-label="Projects">
+    <div class="board-head"><h2>Departures · shipped products</h2><span>Open a row for details</span></div>
+    <div class="cols cond" aria-hidden="true"><span>Since</span><span>Product</span><span>Operator</span><span>Gate</span><span>Status</span></div>
+
+    <details class="flight" open>
+      <summary><span class="when tiles num"><b>J</b><b>U</b><b>L</b><b>2</b><b>6</b></span><span class="prod">Ecube Tournament</span><span class="op">Ecube</span><span class="gate"><a href="https://tour.ecube.gg/">tour.ecube.gg</a></span><span class="st live">Live</span></summary>
+      <div class="detail">
+        <div>
+          <p>The platform Ecube runs its Free Fire tournaments on: registration, group draws, schedules, result checks and team chat, in English and Bangla. I built the web app, API and database. Current prize pool: BDT 10,00,000.</p>
+          <dl class="kv"><dt>Team</dt><dd><span class="tbd">add team size</span></dd><dt>Teams registered</dt><dd><span class="tbd">add number</span></dd><dt>Matches run</dt><dd><span class="tbd">add number</span></dd></dl>
+        </div>
+        <div class="shot"><img src="../public/work/ecube-tournament/web-home.jpg" alt="Ecube Tournament homepage"></div>
+      </div>
+    </details>
+
+    <details class="flight">
+      <summary><span class="when tiles num"><b>2</b><b>0</b><b>2</b><b>6</b></span><span class="prod">SelfShop</span><span class="op">SelfShop · AlgoVerse</span><span class="gate"><a href="https://selfshop.com.bd/">selfshop.com.bd</a></span><span class="st live">Live</span></summary>
+      <div class="detail">
+        <div>
+          <p>Reseller marketplace. I built the admin, reseller and supplier dashboards and the reseller Android app on Google Play; the team ran the Laravel backend.</p>
+          <dl class="kv"><dt>Team</dt><dd><span class="tbd">add team size</span></dd><dt>Installs</dt><dd><span class="tbd">add number</span></dd><dt>App</dt><dd><a href="https://play.google.com/store/apps/details?id=com.selfshop.reseller">Google Play ↗</a></dd></dl>
+        </div>
+        <div class="shot"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png" alt="SelfShop"></div>
+      </div>
+    </details>
+
+    <details class="flight">
+      <summary><span class="when tiles num"><b>2</b><b>0</b><b>2</b><b>6</b></span><span class="prod">Bright Tutor</span><span class="op">AlgoVerse client</span><span class="gate"><a href="https://brighteducations.com/">brighteducations.com</a></span><span class="st live">Live</span></summary>
+      <div class="detail"><div><p>Tutoring platform: six web and mobile apps for teachers, guardians and admins on one shared API.</p></div></div>
+    </details>
+    <details class="flight">
+      <summary><span class="when tiles num"><b>2</b><b>0</b><b>2</b><b>5</b></span><span class="prod">Stock Management</span><span class="op">Distributor</span><span class="gate"><a href="https://mstamimenterprise.shop/">mstamimenterprise.shop</a></span><span class="st live">Live</span></summary>
+      <div class="detail"><div><p>Replaced three spreadsheets and a Telegram group with purchasing, orders, transfers, returns and printed invoices. <span class="tbd">add invoices per month</span></p></div></div>
+    </details>
+    <details class="flight">
+      <summary><span class="when tiles num"><b>2</b><b>0</b><b>2</b><b>5</b></span><span class="prod">Padma Service</span><span class="op">AlgoVerse client</span><span class="gate"><a href="https://padmaservice.com">padmaservice.com</a></span><span class="st live">Live</span></summary>
+      <div class="detail"><div><p>Bilingual services marketplace with member accounts, phone sign-in and listing approval.</p></div></div>
+    </details>
+    <details class="flight">
+      <summary><span class="when tiles num"><b>2</b><b>0</b><b>2</b><b>5</b></span><span class="prod">Bikalpo</span><span class="op">Distributor</span><span class="gate"><a href="https://b2b.bikalpo.com/">b2b.bikalpo.com</a></span><span class="st dev">In development</span></summary>
+      <div class="detail"><div><p>Wholesale ordering with per-customer prices. Storefront live, the rest in development. <a href="https://github.com/Shorno/bikalpo-project">Public source ↗</a></p></div></div>
+    </details>
+  </section>
+
+  <section class="more">
+    <div class="panel" id="crew">
+      <h2>Crew record</h2>
+      <table class="crew">
+        <tr><td class="when num">Jul 2026 – now</td><td><span class="org">Ecube</span> · Full-time<br>Full-stack engineer</td></tr>
+        <tr><td class="when num">Dec 2025 – now</td><td><span class="org">AlgoVerse</span> · Part-time<br>Software engineer, client web and mobile apps</td></tr>
+        <tr><td class="when num">Sep 2024 – Dec 2025</td><td><span class="org">AppCube</span> · Part-time<br>Frontend developer, Ubaky dashboard</td></tr>
+        <tr><td class="when num">2022 – 2026</td><td><span class="org">Daffodil International University</span><br>BSc CSE, CGPA 3.30</td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <h2>Equipment</h2>
+      <dl class="kit">
+        <dt>Web apps</dt><dd>TypeScript, React, Next.js</dd>
+        <dt>APIs and data</dt><dd>Node and Bun, Hono, PostgreSQL, Drizzle</dd>
+        <dt>Mobile</dt><dd>React Native, Expo</dd>
+        <dt>Realtime and jobs</dt><dd>Socket.IO, Pusher, Inngest</dd>
+        <dt>Running it</dt><dd>Docker, GitHub Actions, Coolify, Sentry</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <p>Hiring for a full-stack role? Email me the job and the team. I reply within one working day.</p>
+    <div class="btns"><a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me</a><a class="btn" href="#cv">Download CV</a></div>
+  </section>
+  <footer><span>© 2026 Shorno Kamal Roy</span><span><a href="#">Code archive</a> · <a href="https://github.com/Shorno">GitHub ↗</a></span></footer>
+</div>
+</body>
+</html>

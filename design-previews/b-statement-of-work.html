@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statement of Work · Shorno Kamal Roy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #15181d;
+    --ink-soft: #4a515b;
+    --corp: #0d4f6b;      /* report colour: figures, links, rules that matter */
+    --panel: #eef2f4;
+    --rule: #d9dee2;
+    --tbd: #8a5a00; --tbd-bg: #fff4d6;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Hanken Grotesk", system-ui, sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--corp); color: #fff; }
+  a { color: var(--corp); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  :focus-visible { outline: 2px solid var(--corp); outline-offset: 3px; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  .serif { font-family: "Source Serif 4", Georgia, serif; }
+
+  nav.top { display: flex; justify-content: space-between; align-items: center; height: 72px; border-bottom: 1px solid var(--rule); }
+  nav.top .name { font-weight: 700; letter-spacing: -0.01em; }
+  nav.top ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; align-items: center; font-size: 15px; }
+  nav.top ul a:not(.btn) { color: var(--ink); text-decoration: none; }
+  nav.top ul a:not(.btn):hover { color: var(--corp); }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 2px; font: inherit; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--corp); color: var(--corp); background: transparent; transition: background .2s ease-out, color .2s ease-out; }
+  .btn.solid { background: var(--corp); color: #fff; }
+  .btn:hover { background: #093a50; border-color: #093a50; color: #fff; }
+
+  .opening { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; padding: 72px 0 80px; border-bottom: 1px solid var(--rule); }
+  h1 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 32px; text-wrap: balance; }
+  .letter p { font-family: "Source Serif 4", Georgia, serif; font-size: 20px; line-height: 1.6; margin: 0 0 18px; max-width: 60ch; }
+  .letter .sig { font-style: italic; color: var(--ink-soft); }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+  .glance { background: var(--panel); padding: 28px 28px 8px; align-self: start; }
+  .glance h2 { font-size: 15px; font-weight: 700; margin: 0 0 12px; }
+  .glance dl { margin: 0; }
+  .glance .line { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .glance dt { color: var(--ink-soft); font-size: 15px; }
+  .glance dd { margin: 0; text-align: right; font-weight: 600; }
+  .glance dd.fig { font-family: "Source Serif 4", Georgia, serif; font-size: 34px; line-height: 1; color: var(--corp); font-weight: 600; }
+
+  section.block { padding: 88px 0; border-bottom: 1px solid var(--rule); }
+  .block-head { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; margin-bottom: 48px; }
+  .block-head h2 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.1; margin: 0; letter-spacing: -0.015em; }
+  .block-head p { margin: 8px 0 0; color: var(--ink-soft); max-width: 46ch; }
+
+  .spread { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; padding: 40px 0; border-top: 1px solid var(--rule); }
+  .spread:first-of-type { border-top: 0; padding-top: 0; }
+  .plate { background: var(--panel); aspect-ratio: 16/10; overflow: hidden; }
+  .plate img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .spread h3 { font-family: "Source Serif 4", Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.15; margin: 0 0 10px; }
+  .spread .sum { margin: 0 0 20px; }
+  .facts { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .facts th { text-align: left; font-weight: 500; color: var(--ink-soft); padding: 10px 16px 10px 0; border-top: 1px solid var(--rule); width: 34%; vertical-align: top; }
+  .facts td { padding: 10px 0; border-top: 1px solid var(--rule); font-weight: 500; }
+  .facts tr.result td, .facts tr.result th { border-top: 1.5px solid var(--corp); }
+  .tbd { display: inline-block; padding: 0 6px; border: 1px dashed var(--tbd); background: var(--tbd-bg); color: var(--tbd); font-size: 13px; font-weight: 600; }
+  .links { display: flex; gap: 18px; margin-top: 16px; font-weight: 600; font-size: 15px; }
+
+  table.also { width: 100%; border-collapse: collapse; }
+  table.also th { text-align: left; font-size: 13px; font-weight: 600; color: var(--ink-soft); padding: 10px 16px 10px 0; border-bottom: 1.5px solid var(--ink); }
+  table.also td { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.also .p { font-weight: 700; }
+
+  .two { display: grid; grid-template-columns: 7fr 5fr; gap: 72px; }
+  .exp { width: 100%; border-collapse: collapse; }
+  .exp td { padding: 16px 16px 16px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+  .exp .org { font-weight: 700; }
+  .exp .when { color: var(--ink-soft); white-space: nowrap; }
+  .skills dt { font-weight: 700; margin-top: 16px; }
+  .skills dd { margin: 2px 0 0; color: var(--ink-soft); }
+
+  .close { padding: 96px 0 72px; display: grid; grid-template-columns: 7fr 5fr; gap: 72px; align-items: end; }
+  .close h2 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.1; margin: 0 0 16px; }
+  .close p { margin: 0; max-width: 52ch; color: var(--ink-soft); }
+  footer { border-top: 1px solid var(--rule); padding: 24px 0 40px; display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-soft); }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 16px; }
+    nav.top ul li:not(:last-child) { display: none; }
+    .opening, .block-head, .spread, .two, .close { grid-template-columns: 1fr; gap: 32px; }
+    .opening { padding: 40px 0 56px; }
+    section.block { padding: 56px 0; }
+    table.also thead { display: none; }
+    table.also tr { display: grid; grid-template-columns: 1fr; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+    table.also td { border: 0; padding: 2px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <span class="name">Shorno Kamal Roy</span>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="btn" href="#cv">Download CV</a></li>
+    </ul>
+  </nav>
+
+  <header class="opening">
+    <div class="letter">
+      <h1>Statement of work, 2024 to 2026</h1>
+      <p>To the hiring team. I’m a full-stack engineer in Dhaka. For the past two years I’ve built software that businesses in Bangladesh run every day: a tournament platform, a reseller app on Google Play, stock and invoicing for a distributor.</p>
+      <p>I own the whole thing: the screens people use, the API and database behind them, and keeping it running after launch. I’m looking for a full-stack role, remote, on-site or hybrid.</p>
+      <p class="sig">Shorno Kamal Roy</p>
+      <div class="cta"><a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me</a><a class="btn" href="#cv">Download CV</a></div>
+    </div>
+    <aside class="glance" aria-label="At a glance">
+      <h2>At a glance</h2>
+      <dl>
+        <div class="line"><dt>Products shipped</dt><dd class="fig num">6</dd></div>
+        <div class="line"><dt>Running in production</dt><dd class="fig num">5</dd></div>
+        <div class="line"><dt>Employers</dt><dd class="fig num">3</dd></div>
+        <div class="line"><dt>Platforms</dt><dd>Web, Android</dd></div>
+        <div class="line"><dt>Currently</dt><dd>Ecube, full-time<br>AlgoVerse, part-time</dd></div>
+        <div class="line"><dt>Based in</dt><dd>Dhaka (UTC+6)</dd></div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="block" id="work">
+    <div class="block-head">
+      <h2>Selected work</h2>
+      <p>Three projects in detail, three in brief. Every one links to the live product.</p>
+    </div>
+
+    <article class="spread">
+      <div class="plate"><img src="../public/work/ecube-tournament/web-home.jpg" alt="Ecube Tournament homepage"></div>
+      <div>
+        <h3>Ecube Tournament</h3>
+        <p class="sum">The platform Ecube runs its Free Fire tournaments on: registration, group draws, schedules, result checks and team chat, in English and Bangla.</p>
+        <table class="facts">
+          <tr><th>Client</th><td>Ecube (employer)</td></tr>
+          <tr><th>My role</th><td>Web app, API and database</td></tr>
+          <tr><th>Team</th><td><span class="tbd">add team size</span></td></tr>
+          <tr><th>Period</th><td class="num">Jul 2026 to now</td></tr>
+          <tr class="result"><th>Results</th><td>Prize pool BDT 10,00,000 · <span class="tbd">teams registered</span></td></tr>
+        </table>
+        <div class="links"><a href="https://tour.ecube.gg/">tour.ecube.gg ↗</a></div>
+      </div>
+    </article>
+
+    <article class="spread">
+      <div class="plate"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png" alt="SelfShop reseller product view"></div>
+      <div>
+        <h3>SelfShop</h3>
+        <p class="sum">A reseller marketplace. Suppliers list stock, resellers sell it through their own channels.</p>
+        <table class="facts">
+          <tr><th>Client</th><td>SelfShop, via AlgoVerse</td></tr>
+          <tr><th>My role</th><td>Admin, reseller and supplier dashboards; reseller Android app</td></tr>
+          <tr><th>Team</th><td><span class="tbd">add team size</span> · backend by the team</td></tr>
+          <tr><th>Period</th><td class="num">2026 to now</td></tr>
+          <tr class="result"><th>Results</th><td><span class="tbd">Play Store installs</span> <span class="tbd">active resellers</span></td></tr>
+        </table>
+        <div class="links"><a href="https://selfshop.com.bd/">selfshop.com.bd ↗</a><a href="https://play.google.com/store/apps/details?id=com.selfshop.reseller">Google Play ↗</a></div>
+      </div>
+    </article>
+
+    <article class="spread">
+      <div class="plate"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png" alt="Stock Management dashboard"></div>
+      <div>
+        <h3>Stock Management</h3>
+        <p class="sum">Stock and invoicing for a distributor that ran on three spreadsheets and a Telegram group.</p>
+        <table class="facts">
+          <tr><th>Client</th><td>Distributor, via AlgoVerse</td></tr>
+          <tr><th>My role</th><td>Web app and backend</td></tr>
+          <tr><th>Team</th><td><span class="tbd">add team size</span></td></tr>
+          <tr><th>Period</th><td class="num">2025 to 2026</td></tr>
+          <tr class="result"><th>Results</th><td><span class="tbd">invoices per month</span></td></tr>
+        </table>
+        <div class="links"><a href="https://mstamimenterprise.shop/">Live site ↗</a></div>
+      </div>
+    </article>
+
+    <h3 class="serif" style="font-size:24px;font-weight:600;margin:56px 0 12px">Also delivered</h3>
+    <table class="also">
+      <thead><tr><th>Project</th><th>What it is</th><th>My role</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="p">Bright Tutor</td><td>Tutoring platform for teachers, guardians and admins</td><td>Six web and mobile apps, shared API</td><td>Live</td><td><a href="https://brighteducations.com/">Visit ↗</a></td></tr>
+        <tr><td class="p">Padma Service</td><td>Bilingual services marketplace</td><td>Site, accounts, admin</td><td>Live</td><td><a href="https://padmaservice.com">Visit ↗</a></td></tr>
+        <tr><td class="p">Bikalpo</td><td>Wholesale ordering with per-customer prices</td><td>Storefront, API, mobile app</td><td>Partly live</td><td><a href="https://b2b.bikalpo.com/">Visit ↗</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="two">
+      <div>
+        <div class="block-head" style="grid-template-columns:1fr;margin-bottom:24px"><h2>Experience</h2></div>
+        <table class="exp">
+          <tr><td class="when num">Jul 2026 to now</td><td><span class="org">Ecube</span>, full-time<br>Full-stack engineer</td></tr>
+          <tr><td class="when num">Dec 2025 to now</td><td><span class="org">AlgoVerse</span>, part-time<br>Software engineer, client web and mobile apps</td></tr>
+          <tr><td class="when num">Sep 2024 to Dec 2025</td><td><span class="org">AppCube</span>, part-time<br>Frontend developer, Ubaky merchant dashboard</td></tr>
+          <tr><td class="when num">2022 to 2026</td><td><span class="org">Daffodil International University</span><br>BSc, Computer Science &amp; Engineering, CGPA 3.30</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="block-head" style="grid-template-columns:1fr;margin-bottom:24px"><h2>Skills</h2></div>
+        <dl class="skills">
+          <dt>Web apps</dt><dd>TypeScript, React, Next.js, Tailwind</dd>
+          <dt>APIs and data</dt><dd>Node and Bun, Hono, PostgreSQL, Drizzle</dd>
+          <dt>Mobile</dt><dd>React Native, Expo</dd>
+          <dt>Realtime and background jobs</dt><dd>Socket.IO, Pusher, Inngest</dd>
+          <dt>Running in production</dt><dd>Docker, GitHub Actions, Coolify on a VPS, Sentry</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="close" id="contact">
+    <div>
+      <h2>Let’s talk about the role.</h2>
+      <p>Send the job and a little about the team to fb.shorno@gmail.com. I reply within one working day.</p>
+    </div>
+    <div class="cta" style="justify-content:flex-end"><a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me</a><a class="btn" href="#cv">Download CV</a><a class="btn" href="https://www.linkedin.com/in/shorno/">LinkedIn</a></div>
+  </section>
+
+  <footer><span>© 2026 Shorno Kamal Roy</span><span><a href="#">Code archive</a> · <a href="https://github.com/Shorno">GitHub ↗</a></span></footer>
+</div>
+</body>
+</html>

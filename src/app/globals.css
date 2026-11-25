@@ -4,63 +4,82 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------
-   Design tokens — "Operator's Manual"
-   Two themes: dark (default) + paper (warm light). One accent.
+   Design tokens: "Soft Studio"
+   Warm off-white page, white rounded cards with a soft shadow,
+   one teal accent, and four pastel tints for project frames and
+   status pills. Two themes: paper (default, :root) and dark (.dark).
    --------------------------------------------------------------- */
 
 :root {
-  /* paper theme — warm editorial light */
-  --bg: oklch(0.953 0.018 80);
-  --bg-elev: oklch(0.918 0.022 80);
-  --surface: oklch(0.890 0.028 78);
-  --fg: oklch(0.165 0.012 70);
-  --fg-soft: oklch(0.355 0.012 70);
-  --muted: oklch(0.450 0.012 70);
-  --faint: oklch(0.475 0.010 70);
-  --line: oklch(0.825 0.022 75);
-  --line-strong: oklch(0.715 0.020 75);
+  --bg: #f4f3ef;
+  --bg-elev: #ffffff;
+  --surface: #eceae4;
+  --fg: #16181b;
+  --fg-soft: #545a63;
+  --muted: #5a6068;
+  --faint: #62686f;
+  --line: #e5e2da;
+  --line-strong: #cdc8bd;
 
-  --accent: oklch(0.500 0.160 38);
-  --accent-fg: oklch(0.985 0.008 60);
-  --accent-soft: oklch(0.500 0.160 38 / 0.10);
+  --accent: #0e5a70;
+  --accent-hover: #0a4757;
+  --accent-fg: #ffffff;
+  --accent-soft: rgb(14 90 112 / 0.08);
 
-  --signal-ok: oklch(0.625 0.155 145);
-  --signal-warn: oklch(0.745 0.180 75);
+  --ink: #16181b;
+  --ink-fg: #ffffff;
 
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-xl: 16px;
+  --tint-mint: #dff1ea;
+  --tint-sand: #f6ead8;
+  --tint-sky: #e2ecf8;
+  --tint-lilac: #ece6f7;
+  --tint-mint-fg: #145a3b;
 
-  /* layout */
-  --site-header-h: 100px;
+  --signal-ok: #1f8a4c;
+  --signal-warn: #9a6700;
+
+  --shadow-card: 0 1px 2px rgb(22 24 27 / 0.04), 0 8px 24px -12px rgb(22 24 27 / 0.12);
+  --shadow-lift: 0 1px 2px rgb(22 24 27 / 0.04), 0 20px 40px -20px rgb(22 24 27 / 0.25);
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --site-header-h: 80px;
 }
 
 .dark {
-  /* dark theme — warm off-black */
-  --bg: oklch(0.135 0.005 60);
-  --bg-elev: oklch(0.175 0.006 60);
-  --surface: oklch(0.205 0.007 60);
-  --fg: oklch(0.952 0.012 80);
-  --fg-soft: oklch(0.825 0.012 75);
-  --muted: oklch(0.670 0.010 70);
-  --faint: oklch(0.625 0.008 70);
-  --line: oklch(0.255 0.008 60);
-  --line-strong: oklch(0.345 0.010 60);
+  --bg: #111316;
+  --bg-elev: #1a1d21;
+  --surface: #23272c;
+  --fg: #eef0f2;
+  --fg-soft: #b9bfc7;
+  --muted: #a4aab2;
+  --faint: #9aa0a8;
+  --line: #2a2e34;
+  --line-strong: #3b4048;
 
-  --accent: oklch(0.715 0.220 38);
-  --accent-fg: oklch(0.135 0.005 60);
-  --accent-soft: oklch(0.715 0.220 38 / 0.12);
+  --accent: #6cc3da;
+  --accent-hover: #96d6e7;
+  --accent-fg: #08222b;
+  --accent-soft: rgb(108 195 218 / 0.12);
 
-  --signal-ok: oklch(0.745 0.165 145);
-  --signal-warn: oklch(0.815 0.175 75);
-}
+  --ink: #eef0f2;
+  --ink-fg: #111316;
 
-@media (min-width: 48rem) {
-  :root {
-    --site-header-h: 56px;
-  }
+  --tint-mint: #1a3129;
+  --tint-sand: #302a20;
+  --tint-sky: #1c2735;
+  --tint-lilac: #262036;
+  --tint-mint-fg: #8fdcb2;
+
+  --signal-ok: #57c27a;
+  --signal-warn: #e0b04f;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.3), 0 20px 40px -20px rgb(0 0 0 / 0.7);
 }
 
 /* Tailwind v4 inline theme — exposes tokens as utility classes */
@@ -75,14 +94,25 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
+  --color-ink: var(--ink);
+  --color-ink-fg: var(--ink-fg);
+  --color-tint-mint: var(--tint-mint);
+  --color-tint-sand: var(--tint-sand);
+  --color-tint-sky: var(--tint-sky);
+  --color-tint-lilac: var(--tint-lilac);
+  --color-tint-mint-fg: var(--tint-mint-fg);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
   --color-signal-ok: var(--signal-ok);
   --color-signal-warn: var(--signal-warn);
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
 
   --radius-xs: var(--radius-xs);
   --radius-sm: var(--radius-sm);
@@ -90,9 +120,8 @@
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
 
-  --tracking-tightest: -0.035em;
-  --tracking-tighter: -0.030em;
-  --tracking-mono-wide: 0.08em;
+  --tracking-tightest: -0.03em;
+  --tracking-tighter: -0.02em;
 }
 
 /* ---------------------------------------------------------------
@@ -111,80 +140,85 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "ss01", "cv11";
   }
 
   body {
     background: var(--bg);
     color: var(--fg);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-size: 1.0625rem;
+    line-height: 1.6;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 4px;
+    outline-offset: 3px;
   }
 
-  /* selection */
   ::selection {
     background: var(--accent);
     color: var(--accent-fg);
   }
 
-  /* anchor targets sit below sticky header */
-  section[id] {
-    scroll-margin-top: calc(var(--site-header-h) + 0.75rem);
+  /* anchor targets sit below the sticky header */
+  section[id],
+  [data-anchor] {
+    scroll-margin-top: calc(var(--site-header-h) + 1rem);
   }
 
-  /* serif display with optical sizing — Fraunces shines */
+  /* display grotesque for headings */
   .font-display {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-optical-sizing: auto;
-    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    font-weight: 600;
     letter-spacing: var(--tracking-tightest);
-    line-height: 0.95;
+    line-height: 1.04;
   }
 
+  /* kept for the operator console: accent word in the display face */
   .font-display-italic {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-optical-sizing: auto;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+    font-family: var(--font-display);
+    font-weight: 600;
     letter-spacing: var(--tracking-tighter);
   }
 
-  /* mono meta label — small caps-ish technical label */
+  /* small table / field label: plain sans, never uppercase costume */
   .mono-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    line-height: 1;
-    letter-spacing: var(--tracking-mono-wide);
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.3;
     color: var(--muted);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
   }
 }
 
 /* ---------------------------------------------------------------
-   Editorial decoration utilities
+   Utilities
    --------------------------------------------------------------- */
 
 @layer utilities {
-  /* hairline rules — the editorial "spec sheet" feel */
+  /* surface card: white, rounded, hairline border, soft shadow */
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* hairline rules */
   .rule-t { border-top: 1px solid var(--line); }
   .rule-b { border-bottom: 1px solid var(--line); }
   .rule-l { border-left: 1px solid var(--line); }
   .rule-r { border-right: 1px solid var(--line); }
-
-  /* text-scramble target marker (used by signature interaction later) */
-  .scramble-target { font-variant-numeric: tabular-nums; }
 }
 
 /* ---------------------------------------------------------------
-   View Transitions — slower, more intentional morphs.
-   Names live on WorkCard / CaseStudyHero ("work-name-<slug>",
-   "work-art-<slug>") so the project name and art tile morph from
-   the homepage card into the case study hero on navigate.
+   View Transitions: root crossfade between homepage, archive
+   and operator routes.
    --------------------------------------------------------------- */
 
 ::view-transition-old(root),

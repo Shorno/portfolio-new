@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorno Kamal Roy · Full-stack developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page: #fbfaf8;
+    --card: #ffffff;
+    --ink: #1a1820;
+    --soft: #5e5b66;
+    --line: #ebe8e3;
+    --accent: #5b45e0;
+    --lav: #ebe6ff;
+    --mint: #d9f5e6;
+    --peach: #ffe6d5;
+    --sky: #dcefff;
+    --lemon: #fff5c2;
+    --ok: #18a058;
+    --r: 26px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: "DM Sans", system-ui, sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+  h1, h2, h3 { font-family: "Outfit", system-ui, sans-serif; letter-spacing: -0.02em; margin: 0; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  nav.top { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .brand { font-family: "Outfit"; font-weight: 700; font-size: 20px; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .dot { width: 14px; height: 14px; border-radius: 5px; background: var(--accent); transform: rotate(12deg); }
+  nav.top ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
+  nav.top ul a { display: inline-flex; padding: 8px 16px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; color: var(--soft); }
+  nav.top ul a:hover { background: var(--lav); color: var(--accent); }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 600; font-size: 15px; text-decoration: none; border: 2px solid var(--ink); background: var(--card); color: var(--ink); box-shadow: 3px 3px 0 var(--ink); transition: transform .15s ease-out, box-shadow .15s ease-out; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  .btn.solid { background: var(--accent); color: #fff; }
+  .btn.sm { min-height: 42px; padding: 0 16px; border-radius: 13px; }
+  .btn svg { width: 12px; height: 12px; stroke: currentColor; }
+
+  /* bento hero */
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(150px, auto); gap: 16px; padding: 24px 0 8px; }
+  .t { border-radius: var(--r); padding: 26px; position: relative; overflow: hidden; }
+  .t .k { font-size: 14px; font-weight: 600; color: #3e3b48; }
+  .hello { grid-column: span 3; grid-row: span 2; background: var(--lav); padding: 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+  .hello .hi { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+  .wave { display: inline-block; transform-origin: 70% 70%; animation: wave 2.4s ease-in-out 1s 2; }
+  @keyframes wave { 0%,60%,100% { transform: rotate(0); } 10%,30% { transform: rotate(14deg); } 20%,40% { transform: rotate(-8deg); } }
+  .hello h1 { font-size: clamp(2.5rem, 5vw, 4.3rem); line-height: 1.02; font-weight: 600; max-width: 15ch; }
+  .hello h1 .hl { background: var(--card); border-radius: 14px; padding: 0 12px; box-shadow: 3px 3px 0 var(--ink); border: 2px solid var(--ink); display: inline-block; transform: rotate(-1.5deg); }
+  .hello p { margin: 0; color: #46425a; max-width: 52ch; font-size: 18px; }
+  .hello .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .open { background: var(--mint); display: flex; flex-direction: column; justify-content: space-between; }
+  .open .badge { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #0e6b3a; }
+  .open .badge i { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); animation: pulse 2s ease-out infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgb(24 160 88 / .45); } 100% { box-shadow: 0 0 0 10px rgb(24 160 88 / 0); } }
+  .open b { font-family: "Outfit"; font-size: 22px; line-height: 1.15; }
+  .stat { background: var(--peach); display: flex; flex-direction: column; justify-content: space-between; }
+  .stat .v { font-family: "Outfit"; font-size: 56px; font-weight: 600; line-height: 1; }
+  .stat .v small { font-size: 20px; font-weight: 600; color: #3e3b48; margin-left: 6px; }
+  .now { grid-column: span 2; background: var(--card); border: 1px solid var(--line); }
+  .now ul { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+  .now li { display: flex; align-items: center; gap: 12px; }
+  .logo { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-family: "Outfit"; font-weight: 700; color: #fff; flex: none; }
+  .now li b { display: block; line-height: 1.2; }
+  .now li span { color: var(--soft); font-size: 14px; }
+  .stack { grid-column: span 2; background: var(--sky); min-height: 170px; }
+  .floaty { position: absolute; inset: 52px 16px 16px; }
+  .floaty span { position: absolute; font-family: "Outfit"; font-weight: 600; font-size: 15px; padding: 8px 16px; border-radius: 999px; background: var(--card); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); white-space: nowrap; }
+
+  section { padding: 80px 0 0; }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px; }
+  .head h2 { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 600; line-height: 1.05; }
+  .head h2 .sq { display: inline-block; width: 18px; height: 18px; border-radius: 6px; background: var(--accent); margin-left: 6px; transform: rotate(12deg) translateY(-6px); }
+  .head p { margin: 0; color: var(--soft); max-width: 42ch; }
+
+  .feat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card { border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; position: relative; overflow: hidden; }
+  .card.big { grid-column: span 2; display: grid; grid-template-columns: 1fr 1.25fr; gap: 32px; align-items: center; padding: 36px; }
+  .card .shot { border-radius: 16px; overflow: hidden; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); background: #fff; transition: transform .3s ease-out; }
+  .card .shot img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; object-position: top; }
+  .card:hover .shot { transform: rotate(-1.2deg) translateY(-4px); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font-size: 13px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: rgb(255 255 255 / .75); }
+  .tags .live { background: var(--ink); color: #fff; }
+  .card h3 { font-size: 30px; font-weight: 600; line-height: 1.1; }
+  .card p { margin: 0; }
+  .card .role { font-size: 15px; color: #3e3b48; }
+  .card .role b { font-weight: 700; }
+  .card .links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .c-lav { background: var(--lav); } .c-peach { background: var(--peach); } .c-sky { background: var(--sky); } .c-mint { background: var(--mint); } .c-lemon { background: var(--lemon); }
+
+  .others { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+  .o { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px; text-decoration: none; display: flex; flex-direction: column; gap: 6px; transition: transform .2s ease-out, border-color .2s; }
+  .o:hover { transform: translateY(-3px); border-color: var(--ink); }
+  .o .row { display: flex; justify-content: space-between; align-items: center; }
+  .o h3 { font-size: 22px; font-weight: 600; }
+  .o p { margin: 0; color: var(--soft); font-size: 15px; }
+  .o .mark { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; font-family: "Outfit"; font-weight: 700; }
+
+  .twin { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 32px; }
+  .box h2 { font-size: 30px; font-weight: 600; margin-bottom: 18px; }
+  .job { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 14px 0; border-top: 1px dashed var(--line); }
+  .job:first-of-type { border-top: 0; padding-top: 0; }
+  .job b { display: block; line-height: 1.25; }
+  .job .when { font-size: 14px; color: var(--soft); }
+  .job .now-tag { font-size: 12px; font-weight: 700; background: var(--mint); color: #0e6b3a; padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+  .sk { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sk span { font-weight: 600; font-size: 14px; padding: 7px 14px; border-radius: 12px; }
+  .sk-g { margin-bottom: 16px; }
+  .sk-g h3 { font-family: "DM Sans"; letter-spacing: 0; font-size: 14px; color: var(--soft); font-weight: 600; margin-bottom: 8px; }
+
+  .cta-block { margin-top: 80px; background: var(--accent); color: #fff; border-radius: 32px; padding: 64px 56px; position: relative; overflow: hidden; }
+  .cta-block h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 600; line-height: 1; max-width: 13ch; }
+  .cta-block p { color: #e2ddff; max-width: 46ch; margin: 18px 0 30px; }
+  .cta-block .btn { box-shadow: 3px 3px 0 #1a1820; }
+  .cta-block .btn.solid { background: var(--lemon); color: var(--ink); }
+  .cta-block .cta { display: flex; flex-wrap: wrap; gap: 12px; position: relative; }
+  .shape { position: absolute; border-radius: 30px; border: 2px solid rgb(255 255 255 / .35); }
+  .s1 { width: 220px; height: 220px; right: -40px; top: -50px; transform: rotate(18deg); background: rgb(255 255 255 / .08); }
+  .s2 { width: 120px; height: 120px; right: 160px; bottom: -40px; transform: rotate(-12deg); border-radius: 50%; background: var(--lemon); border: 0; opacity: .9; }
+
+  footer { display: flex; justify-content: space-between; gap: 16px; padding: 28px 0 40px; color: var(--soft); font-size: 14px; }
+  footer a { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    nav.top ul { display: none; }
+    .bento { grid-template-columns: 1fr 1fr; }
+    .hello, .now, .stack { grid-column: span 2; }
+    .hello { grid-row: auto; padding: 28px; }
+    .feat, .others, .twin { grid-template-columns: 1fr; }
+    .card.big { grid-column: auto; grid-template-columns: 1fr; padding: 26px; }
+    .card.big .shot { order: -1; }
+    .cta-block { padding: 40px 26px; }
+    .head { flex-direction: column; align-items: start; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="ar" viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 2.5h6v6M9.5 2.5l-7 7"/></symbol></svg>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a class="brand" href="#"><span class="dot"></span>Shorno</a>
+    <ul><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li></ul>
+    <a class="btn sm" href="#cv">Resume <svg><use href="#ar"/></svg></a>
+  </nav>
+
+  <header class="bento">
+    <div class="t hello">
+      <span class="hi"><span class="dot" aria-hidden="true"></span> Hi, I’m Shorno Kamal Roy</span>
+      <h1>Full-stack developer who builds <span class="hl">apps people use</span></h1>
+      <p>I build web and mobile products end to end with TypeScript, React, Next.js, React Native and PostgreSQL. Based in Dhaka, working with teams anywhere.</p>
+      <div class="cta"><a class="btn solid" href="#contact">Get in touch <svg><use href="#ar"/></svg></a><a class="btn" href="#cv">Download resume</a></div>
+    </div>
+    <div class="t open"><span class="badge"><i aria-hidden="true"></i>Available</span><b>Open to full-stack roles</b><span class="k">Remote · On-site · Hybrid</span></div>
+    <div class="t stat"><span class="k">Projects shipped</span><div class="v">6<small>/ 5 live</small></div></div>
+    <div class="t now">
+      <span class="k">Currently</span>
+      <ul>
+        <li><span class="logo" style="background:#1a1820">E</span><div><b>Full-stack Engineer at Ecube</b><span>Full-time · since Jul 2026</span></div></li>
+        <li><span class="logo" style="background:var(--accent)">A</span><div><b>Software Engineer at AlgoVerse</b><span>Part-time · since Dec 2025</span></div></li>
+      </ul>
+    </div>
+    <div class="t stack">
+      <span class="k">Daily toolkit</span>
+      <div class="floaty" aria-label="TypeScript, Next.js, React Native, PostgreSQL, Hono">
+        <span style="left:2%;top:8%;transform:rotate(-6deg)">TypeScript</span>
+        <span style="left:36%;top:0%;transform:rotate(4deg);background:var(--lemon)">Next.js</span>
+        <span style="left:66%;top:14%;transform:rotate(-3deg)">Hono</span>
+        <span style="left:10%;top:52%;transform:rotate(3deg);background:var(--mint)">React Native</span>
+        <span style="left:52%;top:56%;transform:rotate(-5deg);background:var(--peach)">PostgreSQL</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <div class="head"><h2>Featured projects<span class="sq"></span></h2><p>Production apps I’ve built for employers and clients. Click through to the live sites.</p></div>
+    <div class="feat">
+      <a class="card big c-lav" href="https://tour.ecube.gg/">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="tags"><span class="live">Live</span><span>2026</span><span>Ecube</span></div>
+          <h3>Ecube Tournament</h3>
+          <p>Esports tournament platform for Free Fire events: registration, group draws, schedules, result checks and team chat, in English and Bangla.</p>
+          <p class="role"><b>My role:</b> Full-stack engineer. Built the web app, API and database.</p>
+          <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Hono</span><span>PostgreSQL</span><span>Socket.IO</span></div>
+        </div>
+        <div class="shot"><img src="../public/work/ecube-tournament/web-home.jpg" alt="Ecube Tournament homepage"></div>
+      </a>
+      <a class="card c-peach" href="https://selfshop.com.bd/">
+        <div class="shot"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780454810/Screenshot_2026-06-03_084636_adaai5.png" alt="SelfShop"></div>
+        <div class="tags"><span class="live">Live</span><span>2026</span><span>Web + Android</span></div>
+        <h3>SelfShop</h3>
+        <p>Reseller marketplace where suppliers list products and resellers sell them through their own channels.</p>
+        <p class="role"><b>My role:</b> Built the admin, reseller and supplier dashboards and the reseller Android app.</p>
+      </a>
+      <a class="card c-sky" href="https://mstamimenterprise.shop/">
+        <div class="shot"><img src="https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png" alt="Stock Management dashboard"></div>
+        <div class="tags"><span class="live">Live</span><span>2025–2026</span><span>Distributor</span></div>
+        <h3>Stock Management</h3>
+        <p>Inventory and invoicing system that replaced a distributor’s spreadsheets and Telegram group.</p>
+        <p class="role"><b>My role:</b> Built the web app and backend, including printable invoices.</p>
+      </a>
+    </div>
+    <div class="others">
+      <a class="o" href="https://brighteducations.com/"><div class="row"><span class="mark c-mint">B</span><svg width="12" height="12" stroke="currentColor"><use href="#ar"/></svg></div><h3>Bright Tutor</h3><p>Tutoring platform: six web and mobile apps on one shared API.</p></a>
+      <a class="o" href="https://padmaservice.com"><div class="row"><span class="mark c-lemon">P</span><svg width="12" height="12" stroke="currentColor"><use href="#ar"/></svg></div><h3>Padma Service</h3><p>Bilingual services marketplace with member accounts and admin.</p></a>
+      <a class="o" href="https://b2b.bikalpo.com/"><div class="row"><span class="mark c-peach">B</span><svg width="12" height="12" stroke="currentColor"><use href="#ar"/></svg></div><h3>Bikalpo</h3><p>Wholesale ordering with customer-specific pricing. Partly live.</p></a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="twin">
+      <div class="box">
+        <h2>Work experience</h2>
+        <div class="job"><span class="logo" style="background:#1a1820">E</span><div><b>Full-stack Engineer · Ecube <span class="now-tag">Now</span></b><span class="when">Jul 2026 – Present · Full-time</span></div></div>
+        <div class="job"><span class="logo" style="background:var(--accent)">A</span><div><b>Software Engineer · AlgoVerse <span class="now-tag">Now</span></b><span class="when">Dec 2025 – Present · Part-time</span></div></div>
+        <div class="job"><span class="logo" style="background:#e0703a">A</span><div><b>Frontend Developer · AppCube</b><span class="when">Sep 2024 – Dec 2025 · Part-time</span></div></div>
+        <div class="job"><span class="logo" style="background:#2a8a5c">D</span><div><b>BSc in Computer Science & Engineering</b><span class="when">Daffodil International University · 2022 – 2026 · CGPA 3.30</span></div></div>
+      </div>
+      <div class="box" id="skills">
+        <h2>Skills</h2>
+        <div class="sk-g"><h3>Frontend</h3><div class="sk"><span class="c-lav">TypeScript</span><span class="c-lav">React</span><span class="c-lav">Next.js</span><span class="c-lav">Tailwind CSS</span></div></div>
+        <div class="sk-g"><h3>Backend & databases</h3><div class="sk"><span class="c-mint">Node.js</span><span class="c-mint">Bun</span><span class="c-mint">Hono</span><span class="c-mint">PostgreSQL</span><span class="c-mint">Drizzle ORM</span></div></div>
+        <div class="sk-g"><h3>Mobile</h3><div class="sk"><span class="c-peach">React Native</span><span class="c-peach">Expo</span></div></div>
+        <div class="sk-g"><h3>Real-time & jobs</h3><div class="sk"><span class="c-sky">Socket.IO</span><span class="c-sky">Pusher</span><span class="c-sky">Inngest</span></div></div>
+        <div class="sk-g" style="margin:0"><h3>DevOps</h3><div class="sk"><span class="c-lemon">Coolify</span><span class="c-lemon">VPS</span><span class="c-lemon">Cloudflare R2</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-block" id="contact">
+    <span class="shape s1" aria-hidden="true"></span><span class="shape s2" aria-hidden="true"></span>
+    <h2>Let’s build something together.</h2>
+    <p>I’m open to full-stack developer roles: remote, on-site or hybrid. Send me a message and I’ll reply within one working day.</p>
+    <div class="cta"><a class="btn solid" href="mailto:fb.shorno@gmail.com">Email me <svg><use href="#ar"/></svg></a><a class="btn" href="#cv">Resume</a><a class="btn" href="https://www.linkedin.com/in/shorno/">LinkedIn</a></div>
+  </div>
+
+  <footer><span>© 2026 Shorno Kamal Roy</span><span><a href="#">Code archive</a> · <a href="https://github.com/Shorno">GitHub</a></span></footer>
+</div>
+</body>
+</html>

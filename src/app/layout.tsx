@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
+import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 
 import { JsonLd } from "@/components/seo/json-ld";
@@ -18,12 +17,17 @@ import { site } from "@/lib/site";
 
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz"],
+});
+
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -54,8 +58,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0B0B0C" },
-    { media: "(prefers-color-scheme: light)", color: "#F4F1EA" },
+    { media: "(prefers-color-scheme: dark)", color: "#111316" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f3ef" },
   ],
 };
 
@@ -68,7 +72,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable} ${fraunces.variable}`}
+      className={`${hanken.variable} ${bricolage.variable} ${GeistMono.variable}`}
     >
       <body className="min-h-dvh bg-bg text-fg antialiased">
         <JsonLd data={[personJsonLd(), webSiteJsonLd()]} />

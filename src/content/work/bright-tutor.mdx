@@ -92,7 +92,7 @@ Two reasons. First, the URL becomes part of the role's identity. Guardians never
 
 ### End-to-end types across six surfaces
 
-Every endpoint, error code, and payload flows through one oRPC router. The React Native app, the admin console, and the teacher web app all import the same typed client. When the schema changes in `packages/db`, every app that uses the affected route fails its type check in CI. There's no &ldquo;hopefully the mobile build picks it up&rdquo;.
+Every endpoint, error code, and payload flows through one oRPC router. The React Native app, the admin console, and the teacher web app all import the same typed client. When the schema changes in `packages/db`, every app that uses the affected route fails its type check in CI. There's no “hopefully the mobile build picks it up”.
 
 <Stack
   items={[
@@ -127,4 +127,4 @@ The marketing site is live at [brighteducations.com](https://brighteducations.co
 
 ## What I'd do differently
 
-I'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them &ldquo;no, this is the shape&rdquo;. With the contract in place first, every app gets the same answer the same way.
+I'd start with the oRPC contract before any UI. Half of the early friction came from web and native diverging on payload shapes before the server told them “no, this is the shape”. With the contract in place first, every app gets the same answer the same way.

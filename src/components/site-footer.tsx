@@ -12,7 +12,6 @@ export function SiteFooter() {
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 text-sm text-fg-soft">
             <Link href="/archive" className="inline-flex min-h-11 items-center hover:text-accent">Code archive</Link>
             <Link href={site.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 hover:text-accent">GitHub <span aria-hidden>↗</span></Link>
-            <Link href="/operator" className="inline-flex min-h-11 items-center text-xs text-muted hover:text-accent">Sign in</Link>
           </nav>
         </div>
       </Container>

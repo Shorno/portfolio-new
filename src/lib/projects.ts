@@ -215,7 +215,7 @@ export const featuredProjects: Project[] = [
     image:
       "https://res.cloudinary.com/def3zwztt/image/upload/v1780456379/stock-management_tbbhr6.png",
     imageAlt: "Stock Management — distributor operations dashboard",
-    github: "https://github.com/Shorno/stock-management",
+    github: undefined,
     stack: [
       "Vite",
       "React 19",

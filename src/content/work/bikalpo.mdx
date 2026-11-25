@@ -1,30 +1,18 @@
 ## The brief
 
-
-
 A Dhaka-based distributor needed a commerce platform for warehouses, retailers, and consumers. Each audience has different pricing and ordering rules, while sharing the same product catalog.
-
-
 
 I shipped partial surfaces at [b2b.bikalpo.com](https://b2b.bikalpo.com). The full platform lives in `bikalpo-project`: a Turborepo with Next.js web, Expo native, and a Hono · oRPC server (documented API) on Postgres, Better-Auth, Drizzle, and Lexical for product copy and policy pages. Part of the catalogue is live today; warehouse tiers, consumer checkout, and the mobile app are still under build.
 
-
-
 ## The problem
-
-
 
 <Callout label="constraint">
 
-Multi-party commerce isn&rsquo;t one checkout flow. Platform admin, warehouse, two retailer tiers, and consumers each place orders differently. Every step has its own audience.
+Multi-party commerce isn’t one checkout flow. Platform admin, warehouse, two retailer tiers, and consumers each place orders differently. Every step has its own audience.
 
 </Callout>
 
-
-
 The status quo had four pain points:
-
-
 
 - **Per-customer pricing:** every wholesale account negotiates its own tiered price, and the storefront has to respect it without leaking other customers' tiers.
 
@@ -34,19 +22,11 @@ The status quo had four pain points:
 
 - **Bangladesh-specific payments:** local payment rails, COD, and partial-payment flows that most platforms ignore.
 
-
-
 ## The approach
-
-
 
 The platform is a [Turborepo](https://turbo.build) monorepo: a Next.js storefront, a React Native buyer app, and a Hono server. Both apps use a shared [oRPC](https://orpc.unnoq.com) client for catalogue, order, and content APIs.
 
-
-
 Postgres holds catalogue rows and Lexical JSON for product copy and policy pages. Auth, sessions, and role gating run through Better-Auth, including per-customer pricing keyed off the authenticated identity.
-
-
 
 <Diagram
   caption="web + native through Hono · oRPC — documented API, shared Postgres"
@@ -118,47 +98,27 @@ Postgres holds catalogue rows and Lexical JSON for product copy and policy pages
 
 </Diagram>
 
-
-
 ## The hard parts
-
-
 
 ### Per-tier pricing without per-tier fetches
 
-
-
 Each authenticated buyer sees their own price column on every product. The naive shape (fetch product, then fetch overrides) adds a round-trip on every catalogue page. I push tier resolution into the Drizzle query on the API with a single `LEFT JOIN ... ON pricing.tier_id = $session.tier`, so the listing page returns 60 products with the right number on each, in one query. The same hook covers cart totals, so the price the buyer sees is the price they're charged. No second source of truth.
-
-
 
 ### Lexical alongside SKU data
 
-
-
 Treating product copy and policy pages as the same content primitive was the call that paid off most. Both render through a single set of Lexical nodes (paragraph, heading, image, callout, table). New page types are a database row, not a new template.
-
-
 
 ### Shared packages
 
-
-
 `packages/db`, `packages/auth`, and `packages/ui` sit between the three apps so schema, auth rules, and design tokens stay in one place. The oRPC contract is the only front door: web and native both call the same documented API, not separate data paths.
 
-
-
 ## What's running today
-
-
 
 <Callout label="stage">
 
 Not fully shipped yet. Partial storefront and admin work is live on [b2b.bikalpo.com](https://b2b.bikalpo.com). Warehouse, retailer tiers, consumer checkout, and the monorepo rewrite are still under development.
 
 </Callout>
-
-
 
 <StatRow>
 
@@ -170,16 +130,9 @@ Not fully shipped yet. Partial storefront and admin work is live on [b2b.bikalpo
 
 </StatRow>
 
-
-
 The live surfaces cover part of the catalogue and account tooling on b2b.bikalpo.com. The rest of the multi-party platform ships through the same Hono · oRPC stack described above.
-
-
 
 ## What I'd do differently
 
-
-
 Lexical was the right call for content; it would have been the right call sooner. Earlier versions used a hand-rolled markdown layer that I had to keep patching. Once the rich-text model is treated as part of the schema, every other decision gets easier.
-
 

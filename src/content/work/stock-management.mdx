@@ -1,6 +1,6 @@
 ## The brief
 
-A distributor was running wholesale inventory in three spreadsheets and a Telegram group. Stock counts disagreed across them weekly. Retailers got the wrong invoice. Receiving from suppliers and selling to shop owners were both manual data entry into the same file. They asked for &ldquo;a simple inventory app.&rdquo;
+A distributor was running wholesale inventory in three spreadsheets and a Telegram group. Stock counts disagreed across them weekly. Retailers got the wrong invoice. Receiving from suppliers and selling to shop owners were both manual data entry into the same file. They asked for “a simple inventory app.”
 
 What they actually needed was a tool that mirrored how stock physically moves through wholesale: procurement, transfers, sales to retailers, returns, printing. Without making someone type the same SKU twice.
 
@@ -14,14 +14,14 @@ The status quo:
 
 - **Two systems of record:** physical stock on the shelf and a spreadsheet that's always one delivery behind.
 - **Invoicing as an afterthought:** printed from a different tool, manually keyed in, often wrong.
-- **No transfer concept:** when stock moves between locations it just &ldquo;disappears&rdquo; and reappears.
+- **No transfer concept:** when stock moves between locations it just “disappears” and reappears.
 - **No audit trail:** when a count is wrong, no one can tell when it went wrong.
 
 ## The approach
 
 I shipped this as two separate repos: a Vite + React 19 SPA and a TypeScript backend, both deployed on Vercel. That split was deliberate. The frontend is the high-iteration surface the operations team uses daily; the backend is the slower-changing source of truth.
 
-The data model treats every stock change as an immutable movement event (receiving, sale, transfer, adjustment). The current count is derived from the sum. Nothing &ldquo;updates&rdquo; a stock level directly. That single decision makes the audit trail free and the bugs visible.
+The data model treats every stock change as an immutable movement event (receiving, sale, transfer, adjustment). The current count is derived from the sum. Nothing “updates” a stock level directly. That single decision makes the audit trail free and the bugs visible.
 
 <Diagram
   caption="movements are the truth; current counts are derived"
@@ -66,7 +66,7 @@ The data model treats every stock change as an immutable movement event (receivi
       </g>
 
       {/* note */}
-      <text x="450" y="290" textAnchor="middle" fontSize="13" opacity="0.6" fontStyle="italic">no row in any table directly stores &quot;87&quot;</text>
+      <text x="450" y="290" textAnchor="middle" fontSize="13" opacity="0.6" fontStyle="italic">no row in any table directly stores “87”</text>
     </g>
   </svg>
 </Diagram>
@@ -108,4 +108,4 @@ Both the [frontend](https://stock-management-ochre.vercel.app) and the backend a
 
 ## What I'd do differently
 
-The two-repo split was right for this team, but it added deploy-coordination friction. Next time I'd reach for a monorepo from day one. Turbo's pipelines catch the &ldquo;don't ship the frontend if the backend types changed&rdquo; case more reliably than a careful git habit.
+The two-repo split was right for this team, but it added deploy-coordination friction. Next time I'd reach for a monorepo from day one. Turbo's pipelines catch the “don't ship the frontend if the backend types changed” case more reliably than a careful git habit.

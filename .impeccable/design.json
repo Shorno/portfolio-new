@@ -245,7 +245,7 @@
       },
       "title-small": {
         "displayName": "Title Small",
-        "purpose": "Compact project card names, Profile card head, Education sub-heading."
+        "purpose": "Preview project card names, Profile card head, Education sub-heading."
       },
       "lead": {
         "displayName": "Lead",
@@ -257,7 +257,7 @@
       },
       "body-small": {
         "displayName": "Body Small",
-        "purpose": "Fact values, project fact table, compact summaries, nav links, medium buttons."
+        "purpose": "Fact values, project fact table, preview card summaries, nav links, medium buttons."
       },
       "label": {
         "displayName": "Label",
@@ -387,12 +387,12 @@
       "css": ".ds-feat { display: grid; grid-template-columns: 1fr 1.35fr; overflow: hidden; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow-card); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; color: var(--fg); } .ds-feat-body { padding: 36px; } .ds-feat h3 { margin: 0; font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.875rem; line-height: 1.04; letter-spacing: -0.03em; } .ds-meta { margin: 4px 0 0; font-size: 0.875rem; font-weight: 500; color: var(--fg-soft); font-variant-numeric: tabular-nums lining-nums; } .ds-feat-body > p:not(.ds-meta) { margin: 16px 0 0; } .ds-table { margin: 20px 0 0; border-top: 1px solid var(--line); } .ds-table > div { display: grid; grid-template-columns: 4.5rem 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; } .ds-table dt { color: var(--fg-soft); } .ds-table dd { margin: 0; } .ds-frame { display: flex; align-items: flex-end; margin: 18px 18px 0 0; padding: 22px 22px 0; border-radius: 18px 18px 0 0; background: var(--tint-sky); } .ds-shot { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px 12px 0 0; background: var(--bg-elev); box-shadow: 0 -2px 30px -10px rgb(22 24 27 / 0.25); transition: transform 400ms ease-out; } .ds-feat:hover .ds-shot { transform: translateY(-6px); }"
     },
     {
-      "name": "Compact Project Card",
+      "name": "Preview Project Card",
       "kind": "card",
-      "refersTo": "card-compact",
-      "description": "More projects: name, year and status meta, summary, role, hairline footer with accent hostname link and Source link. No hover movement.",
-      "html": "<div class=\"ds-compact\"><h4>Inventory tool</h4><p class=\"ds-cmeta\">2024 · Partly live</p><p class=\"ds-csum\">Stock tracking for a small shop.</p><p class=\"ds-crole\">Built the frontend.</p><div class=\"ds-cfoot\"><a class=\"ds-host\" href=\"#\">example.com</a><a class=\"ds-src\" href=\"#\">Source</a></div></div>",
-      "css": ".ds-compact { display: flex; flex-direction: column; padding: 24px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow-card); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-compact h4 { margin: 0; font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.375rem; line-height: 1.04; letter-spacing: -0.03em; color: var(--fg); } .ds-cmeta { margin: 2px 0 0; font-size: 0.875rem; font-weight: 500; color: var(--fg-soft); font-variant-numeric: tabular-nums lining-nums; } .ds-csum { margin: 12px 0 0; font-size: 0.9375rem; color: var(--fg); } .ds-crole { margin: 4px 0 20px; font-size: 0.9375rem; color: var(--fg-soft); } .ds-cfoot { display: flex; gap: 16px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.875rem; font-weight: 600; } .ds-host { color: var(--accent); text-decoration: none; } .ds-host:hover { color: var(--accent-hover); } .ds-src { color: var(--fg-soft); text-decoration: none; } .ds-src:hover { color: var(--fg); } .ds-cfoot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
+      "refersTo": "card-preview",
+      "description": "A 28px card, newest project first, two across from 768px. The live screenshot fills the top at full width in 16:9 (object-top, never cropped at the sides) on a surface fill. A card-white details sheet with 20px top corners overlaps the screenshot’s lower edge by 48px (56px on desktop) and casts a soft upward shadow. Sheet content: a title-small name, a \"client · year · team · status\" meta line (status only when not live, e.g. \"Partly live\"), the summary in ink, what was built in text-soft, then a hairline footer with the accent hostname and a soft \"Source\" link, each with an arrow. The whole card is one link to the live site (the Source link sits above it). On hover the screenshot scales to 1.03 over 600ms and the hostname arrow nudges; the card itself does not move.",
+      "html": "<div class=\"ds-preview\"><div class=\"ds-shot\"></div><div class=\"ds-sheet\"><h4>Inventory tool</h4><p class=\"ds-cmeta\">Client · 2024 · Solo</p><p class=\"ds-csum\">Stock tracking for a small shop.</p><p class=\"ds-cbuilt\">Web app and API.</p><div class=\"ds-cfoot\"><a class=\"ds-host\" href=\"#\">example.com &#8599;</a></div></div></div>",
+      "css": ".ds-preview { display: flex; flex-direction: column; overflow: hidden; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow-card); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-shot { aspect-ratio: 16 / 9; background: var(--surface); } .ds-sheet { position: relative; margin-top: -56px; display: flex; flex-direction: column; padding: 24px; background: var(--bg-elev); border-radius: 20px 20px 0 0; box-shadow: 0 -10px 30px -12px rgb(22 24 27 / 0.28); } .ds-sheet h4 { margin: 0; font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.375rem; line-height: 1.04; letter-spacing: -0.03em; color: var(--fg); } .ds-cmeta { margin: 2px 0 0; font-size: 0.875rem; font-weight: 500; color: var(--fg-soft); font-variant-numeric: tabular-nums lining-nums; } .ds-csum { margin: 12px 0 0; font-size: 0.9375rem; color: var(--fg); } .ds-cbuilt { margin: 4px 0 16px; font-size: 0.9375rem; color: var(--fg-soft); } .ds-cfoot { display: flex; gap: 16px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.875rem; font-weight: 600; } .ds-host { color: var(--accent); text-decoration: none; } .ds-host:hover { color: var(--accent-hover); } .ds-cfoot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
     },
     {
       "name": "Floating Pill Header",
@@ -472,7 +472,7 @@
     ],
     "dos": [
       "Do set facts as label-and-value rows with hairlines between them; reach for this before any other pattern.",
-      "Do put every content group in a card: card-white, 1px hairline, 28px (or 20px for compact) corners, card shadow.",
+      "Do put every content group in a card: card-white, 1px hairline, 28px corners, card shadow.",
       "Do give each featured project one pastel tint frame, and set `tint` on the project data rather than styling a frame by hand.",
       "Do use one accent pill button per group; other primary-weight actions are outline (or ink for compact solids, inverse on the ink card), and secondary actions are underlined text links.",
       "Do label a live-site link with its real hostname.",

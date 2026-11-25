@@ -22,7 +22,7 @@ Software actually running for real businesses in Bangladesh, most of it built en
 
 - Readers skim on desktop between other candidates; many also open it on a phone from LinkedIn.
 - The CV PDF (`public/cv/shorno-kamal-roy-cv.pdf`) is the companion document and is often opened alongside.
-- Live product links (tour.ecube.gg, selfshop.com.bd, Play Store listing, brighteducations.com, padmaservice.com, mstamimenterprise.shop, b2b.bikalpo.com) are the main way a reader verifies claims.
+- Live product links (tour.ecube.gg, selfshop.com.bd, Play Store listing, brighteducations.com, padmaservice.com, mstamimenterprise.shop, bikalpo.com, esports.ecube.gg, esportstimes.news) are the main way a reader verifies claims.
 
 ## Capabilities and Constraints
 
@@ -38,10 +38,11 @@ Software actually running for real businesses in Bangladesh, most of it built en
 - Public repo `Shorno/bikalpo-project` with ~150 test files, CI workflows, and Dockerfiles.
 - **Owner-confirmed (Nov 2026):**
   - Ecube Tournament: solo; about 15,000 teams registered.
-  - SelfShop: built in a team of three, now maintained solo; 15,000+ monthly active users.
+  - SelfShop: lead developer, team of three, now maintained solo; 15,000+ monthly active users.
   - Stock Management: solo, end to end. Core features: sales, SR/DSR and stock tracking, customer dues, SMS automation.
-  - Bright Educations (renamed from Bright Tutor): team of three; about 5,000 active users; the largest project, featured. Marketing launch expected soon, so update the user count then.
-  - Padma Service: solo. Bikalpo: team of two.
+  - Bright Educations (renamed from Bright Tutor): lead developer, team of three; about 5,000 active users; the largest project, featured. Marketing launch expected soon, so update the user count then.
+  - Padma Service: solo. Bikalpo: lead developer, team of two. Shorno led every team project listed.
+  - Ecube Esports (esports.ecube.gg, PUBG Mobile results, match replays, player stats) and The Esports Times (esportstimes.news, Bangla esports news site and newsroom): both solo at Ecube, 2026. Do not name the tournament data source publicly.
 - **Still pending (do not fabricate):** usage numbers for Stock Management, Padma Service and Bikalpo. Until supplied, no result row renders.
 
 ## Product Principles

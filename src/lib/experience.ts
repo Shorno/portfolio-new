@@ -24,7 +24,7 @@ export const experience: ExperienceEntry[] = [
     company: "Ecube",
     companyUrl: "https://www.facebook.com/ecube.gg",
     role: "Full-stack Engineer",
-    scope: "Built the Ecube Tournament platform",
+    scope: "Built Ecube Tournament, Ecube Esports and The Esports Times",
     start: "2026-07",
     end: "present",
     type: "full-time",

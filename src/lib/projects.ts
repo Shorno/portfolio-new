@@ -2,7 +2,8 @@
  * Project records for the homepage "Featured projects" section.
  *
  * Featured projects render as split cards (details left, screenshot in a
- * tinted frame right); the rest render as compact "More projects" cards.
+ * tinted frame right); the rest render as "More projects" preview cards
+ * with the screenshot behind the details. Keep "More projects" newest first.
  *
  * Invariant: `team` and `results` hold only values the owner has
  * confirmed. Results are omitted, never shown as a placeholder.
@@ -20,7 +21,7 @@ export type Project = {
   summary: string;
   /** Who it was built for, shown in the meta line under the name, e.g. "Ecube". */
   client?: string;
-  /** Who built it, owner-confirmed, e.g. "Solo" or "Team of three". */
+  /** Who built it, owner-confirmed, e.g. "Solo" or "Lead developer, team of three". Team projects always lead with the owner's lead role. */
   team: string;
   /** What I built, or the core features, in one line. */
   built: string;
@@ -53,7 +54,7 @@ export const projects: Project[] = [
     featured: true,
     summary:
       "Tutoring platform in Bangladesh that connects guardians with verified tutors. Web and mobile apps for guardians, tutors and admins.",
-    team: "Team of three",
+    team: "Lead developer, team of three",
     built: "Web and mobile apps",
     year: "2026",
     status: "live",
@@ -89,7 +90,7 @@ export const projects: Project[] = [
     summary:
       "Reseller marketplace where suppliers list products and resellers sell them through their own channels, on the web and Android.",
     client: "AlgoVerse client",
-    team: "Built in a team of three; I now maintain it alone",
+    team: "Lead developer, team of three; I now maintain it alone",
     built: "Admin, reseller and supplier dashboards, and the reseller Android app on Google Play",
     year: "2026",
     status: "live",
@@ -123,6 +124,41 @@ export const projects: Project[] = [
     tint: "sky",
   },
   {
+    slug: "ecube-esports",
+    name: "Ecube Esports",
+    featured: false,
+    summary:
+      "PUBG Mobile esports results for Bangladesh: tournaments, standings, teams and player stats.",
+    client: "Ecube",
+    team: "Solo",
+    built: "Match replays on the map, live standings, and player pages with playstyle and hit maps",
+    year: "2026",
+    status: "live",
+    stack: ["Next.js", "Hono", "oRPC", "PostgreSQL", "Drizzle"],
+    url: "https://esports.ecube.gg/pubgm",
+    image: "/work/ecube-esports/web-home.png",
+    imageAlt: "Ecube Esports PUBG Mobile page with match replay maps and tournaments in progress",
+    tint: "mint",
+  },
+  {
+    slug: "the-esports-times",
+    name: "The Esports Times",
+    featured: false,
+    summary:
+      "Bangla esports news site with its own newsroom, from writing and review to publishing.",
+    client: "Ecube",
+    team: "Solo",
+    built:
+      "Editorial review and scheduling, revision history, auto-posting to Facebook, and push notifications for readers",
+    year: "2026",
+    status: "live",
+    stack: ["Next.js", "Hono", "oRPC", "PostgreSQL", "Tiptap"],
+    url: "https://esportstimes.news/",
+    image: "/work/the-esports-times/web-home.png",
+    imageAlt: "The Esports Times homepage with the lead story and latest Bangla esports news",
+    tint: "sand",
+  },
+  {
     slug: "padma-service",
     name: "Padma Service",
     featured: false,
@@ -143,16 +179,15 @@ export const projects: Project[] = [
     name: "Bikalpo",
     featured: false,
     summary: "Wholesale ordering with customer-specific pricing.",
-    team: "Team of two",
+    team: "Lead developer, team of two",
     built: "Storefront, API and mobile app",
     year: "2025–now",
     status: "partial-live",
     stack: ["Next.js", "Drizzle", "PostgreSQL"],
-    url: "https://b2b.bikalpo.com/",
+    url: "https://bikalpo.com/",
     github: "https://github.com/Shorno/bikalpo-project",
-    image:
-      "https://res.cloudinary.com/def3zwztt/image/upload/v1780456221/Create-Next-App_zngg7r.png",
-    imageAlt: "Bikalpo B2B storefront",
+    image: "/work/bikalpo/web-home.png",
+    imageAlt: "Bikalpo storefront homepage: Everyday shopping, made easier",
     tint: "sky",
   },
 ];

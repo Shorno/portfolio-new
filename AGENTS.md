@@ -47,7 +47,7 @@ src/
   components/
     primitives/          # Container, ButtonLink, Arrow, BlockHead, Grid, Rule
     hero/                # intro card + Profile fact card
-    work/                # featured project cards + "More projects" cards
+    work/                # featured split cards + "More projects" preview cards
     experience/          # experience rows + skills rows, side by side
     contact/             # the close
     index/               # repo archive, rendered on /archive
@@ -91,7 +91,7 @@ All tokens live in `src/app/globals.css`: paper on `:root`, dark on `.dark`. Tai
 | `shadow-card`, `shadow-lift` | Card shadow and its hover lift |
 | `signal-ok`, `signal-warn` | Status dots (hero pill, operator console) |
 
-The `.card` utility (white, 28px radius, hairline border, soft shadow) is the base surface. Radii: `--radius-lg` 20px for compact cards, `--radius-xl` 28px for cards, `rounded-full` for buttons and nav links.
+The `.card` utility (white, 28px radius, hairline border, soft shadow) is the base surface. Radii: `--radius-lg` 20px for the preview-card details sheet, `--radius-xl` 28px for cards, `rounded-full` for buttons and nav links.
 
 **Rule:** never introduce a raw hex in components. If a new role is genuinely needed, add it to **both** `:root` and `.dark` and expose it in `@theme inline`.
 
@@ -129,7 +129,7 @@ Headline sizes use `clamp()`: hero `clamp(2.4rem,4.6vw,3.9rem)`, section heads v
 Standard recruiter wording: plain, conventional, specific.
 
 - **Conventional labels.** "Featured projects", "Work experience", "Skills", "Get in touch", "Resume".
-- **Say what the product is, then who built it and what.** Each project card has a summary, a "Team" row (Solo, Team of three) and a "Built" row. No job-title "Role" row: it read the same on every project.
+- **Say what the product is, then who built it and what.** Each project card has a summary, a "Team" row ("Solo", or "Lead developer, team of three" when others worked on it) and a "Built" row. No job-title "Role" row: it read the same on every project.
 - **Specific and checkable.** Dates, employer names, live URLs. No adjectives doing the work of evidence.
 - **Light on em-dashes.** Use a period or comma first.
 - **Unicode characters, not HTML entities.** ’, –, — directly in TS strings. Never `&rsquo;` or `dangerouslySetInnerHTML`.
@@ -152,7 +152,7 @@ Standard recruiter wording: plain, conventional, specific.
 
 ### Projects (`src/lib/projects.ts`)
 
-`featured: true` renders a split card (name, client · year line, summary, a Team / Built / Results / Stack fact table, the live address as the button, screenshot in its `tint` frame); the rest render as compact "More projects" cards. `team` is required and `results` optional; both are **owner-confirmed only**. When `results` is absent, the row isn't rendered. Only set `github` for public repos.
+`featured: true` renders a split card (name, client · year line, summary, a Team / Built / Results / Stack fact table, the live address as the button, screenshot in its `tint` frame); the rest render as "More projects" preview cards (full-width screenshot on top, details sheet overlapping it, whole card links to the live site). Keep `otherProjects` newest first; every project needs a 16:9 desktop screenshot without private people in frame. `team` is required and `results` optional; both are **owner-confirmed only**. When `results` is absent, the row isn't rendered. Only set `github` for public repos.
 
 The hero figures (years of experience, projects shipped) are derived from `experience` and `projects`; don't hardcode them.
 

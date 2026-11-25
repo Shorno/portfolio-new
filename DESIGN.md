@@ -162,9 +162,9 @@ components:
     backgroundColor: "{colors.card}"
     rounded: "{rounded.xl}"
     padding: "{spacing.card-pad}"
-  card-compact:
+  card-preview:
     backgroundColor: "{colors.card}"
-    rounded: "{rounded.lg}"
+    rounded: "{rounded.xl}"
     padding: "24px"
   profile-card:
     backgroundColor: "{colors.tint-sand}"
@@ -221,7 +221,7 @@ Two themes share one structure. `paper` (default, `:root`) is warm off-white wit
 A neutral warm-paper ground with one deep teal-blue accent and four soft pastel tints that only ever appear as fills.
 
 ### Primary
-- **Deep Studio Teal** (accent; dark: accent-dark): the one accent button per group ("Get in touch"), linked company names in work experience, the live-site links on compact project cards, the hover colour of text links, focus outlines and text selection. Hover deepens to **Teal Shadow** (accent-hover; dark: a lighter cyan). Text on accent is accent-fg.
+- **Deep Studio Teal** (accent; dark: accent-dark): the one accent button per group ("Get in touch"), linked company names in work experience, the live-site addresses on preview project cards, the hover colour of text links, focus outlines and text selection. Hover deepens to **Teal Shadow** (accent-hover; dark: a lighter cyan). Text on accent is accent-fg.
 - **Teal Wash** (accent-soft): an 8% (12% in dark) translucent accent for quiet highlighted grounds, currently used only in the operator console.
 
 ### Secondary
@@ -235,8 +235,8 @@ A neutral warm-paper ground with one deep teal-blue accent and four soft pastel 
 - **Card White** (card): every card, outline buttons, the header pill (at 85% opacity under a backdrop blur).
 - **Stone** (surface): a deeper panel tone, operator console only.
 - **Graphite Ink** (ink-text): headings, body text and every fact value.
-- **Slate Soft** (text-soft): fact labels, meta lines, dates, intros, the built line on compact cards, inactive nav. **text-muted** and **text-faint** exist for the archive and operator console; on the homepage, text-soft is the only quiet text tone.
-- **Hairline** (hairline): card borders, the rules between fact rows, the footer rule on compact project cards. On the sand profile card the row rules are ink at 10% instead, because the hairline tone vanishes against sand.
+- **Slate Soft** (text-soft): fact labels, meta lines, dates, intros, the built line on preview cards, inactive nav. **text-muted** and **text-faint** exist for the archive and operator console; on the homepage, text-soft is the only quiet text tone.
+- **Hairline** (hairline): card borders, the rules between fact rows, the footer rule on preview project cards. On the sand profile card the row rules are ink at 10% instead, because the hairline tone vanishes against sand.
 - **Hairline Strong** (hairline-strong): the outline button border and the underline on text links and footer links.
 - **Signals** (signal-ok, signal-warn): status only, operator console.
 
@@ -260,10 +260,10 @@ A neutral warm-paper ground with one deep teal-blue accent and four soft pastel 
 - **Email Display** (600, clamp(1.6rem, 5.2vw, 3.4rem), 1.04): the contact email address, set as an underlined link. It is the contact card's largest type.
 - **Headline** (600, clamp(2rem, 3.4vw, 2.75rem), 1.04): section heads via the block head ("Featured projects").
 - **Title** (600, 1.875rem): featured project names, the "More projects" subhead, the card heads "Work experience" and "Skills", and the contact heading "Get in touch".
-- **Title Small** (600, 1.375rem): compact project card names, the "Profile" card head and the "Education" sub-heading.
+- **Title Small** (600, 1.375rem): preview project card names, the "Profile" card head and the "Education" sub-heading.
 - **Lead** (400, 1.125rem, 1.6): the hero intro, max 54ch.
 - **Body** (400, 1.0625rem, 1.6): default body and featured project summaries. Block-head intros cap at 44ch, the contact paragraph at 52ch.
-- **Body Small** (0.9375rem): fact values (500 in the profile and skills rows), the project fact table, compact card summaries, nav links and medium buttons (600).
+- **Body Small** (0.9375rem): fact values (500 in the profile and skills rows), the project fact table, preview card summaries, nav links and medium buttons (600).
 - **Label** (500, 0.875rem): fact labels, dates, and the meta line under project names ("client · year", "year · Partly live").
 - The header name is the display face at 1.0625rem; it is the site's wordmark.
 
@@ -284,12 +284,12 @@ Inside sections, cards sit in asymmetric two-column grids with a 20px gap:
 - Hero: intro card and sand profile card at 1.35fr / 1fr.
 - Featured project card: details and screenshot at 1fr / 1.35fr. On mobile the screenshot moves above the details.
 - Experience and skills: 1.2fr / 1fr.
-- More projects: three equal compact cards from 768px.
+- More projects: two preview cards per row from 768px, newest first.
 - Contact card: a single column (heading, paragraph, email, then a hairline and the two pill buttons).
 
 Fact rows use a fixed label column sized to their labels: 6.5rem in the profile card, 9.5rem in work experience, education and skills, 4.5rem in the project fact table. Rows are 14 to 16px tall in padding (10px in the denser project table) with a 16px column gap.
 
-Card padding is 24px on mobile and 32 to 44px on desktop (hero intro 28/44px, profile card 28/36px, project details 24/36px, experience and skills 24/32px, compact cards 24px, contact 24×36px / 56px). The sticky header floats 14px below the top of the viewport; anchor targets offset by the header height (80px) plus 1rem.
+Card padding is 24px on mobile and 32 to 44px on desktop (hero intro 28/44px, profile card 28/36px, project details 24/36px, experience and skills 24/32px, preview card sheets 20/24px, contact 24×36px / 56px). The sticky header floats 14px below the top of the viewport; anchor targets offset by the header height (80px) plus 1rem.
 
 ## Elevation & Depth
 
@@ -306,7 +306,7 @@ Lifted, but softly, and still. Cards and the header rest on a two-layer ambient 
 
 ## Shapes
 
-Generously rounded, with pills reserved for controls. Large containers use 28px (`xl`), with the contact card going to 36px on desktop (28px on mobile). Compact project cards use 20px (`lg`); 14px (`md`) and 10px (`sm`) remain for the archive and operator console. The header, nav links and buttons are full pills; nothing that is only a label is a pill. Screenshot frames are rounded on the top corners only (18px) and run off the bottom edge of the card; the screenshot inside is top-rounded at 12px and clipped, always tighter than its frame. Borders and rules are always solid 1px hairlines. There are no decorative shapes: no blobs, glows, blurred circles or rotated markers.
+Generously rounded, with pills reserved for controls. Large containers use 28px (`xl`), with the contact card going to 36px on desktop (28px on mobile). Preview project cards use 28px with a 20px (`lg`) top-rounded details sheet; 14px (`md`) and 10px (`sm`) remain for the archive and operator console. The header, nav links and buttons are full pills; nothing that is only a label is a pill. Screenshot frames are rounded on the top corners only (18px) and run off the bottom edge of the card; the screenshot inside is top-rounded at 12px and clipped, always tighter than its frame. Borders and rules are always solid 1px hairlines. There are no decorative shapes: no blobs, glows, blurred circles or rotated markers.
 
 The drawn outbound arrow (12px grid, 1.8 stroke, inherits text colour) is the only icon. It appears inline after a label, never inside a badge or circle.
 
@@ -323,7 +323,7 @@ Calm, solid pills that change colour, never position.
 - **Hover / Focus:** background, border and opacity transition over 200ms ease-out; no lift, no shadow. Focus is a 2px accent outline at 3px offset. Buttons are native anchors so mail and PDF links bypass the router.
 
 ### Text Links
-Secondary actions are underlined text, not buttons: 14px semibold ink with a hairline-strong underline (4px offset) and an inline arrow, turning accent on hover ("Google Play", "Source code"). Footer links use the same treatment at 3px offset. On compact project cards the live hostname link is accent (hover accent-hover) and the "Source" link is text-soft (hover ink), both without underline.
+Secondary actions are underlined text, not buttons: 14px semibold ink with a hairline-strong underline (4px offset) and an inline arrow, turning accent on hover ("Google Play", "Source code"). Footer links use the same treatment at 3px offset. On preview project cards the live hostname is accent (hover accent-hover) and the "Source" link is text-soft (hover ink), both without underline.
 
 ### Fact Rows (signature)
 The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of rows: a quiet label column (text-soft) and a value (ink), separated by 1px hairlines.
@@ -334,7 +334,7 @@ The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of
 - Below 640px the profile, experience and skills rows stack label over value; the project table keeps its two columns.
 
 ### Cards / Containers
-- **Corner Style:** 28px for primary cards, 20px for compact cards.
+- **Corner Style:** 28px for cards; 20px for the details sheet on preview cards.
 - **Background:** card-white; the hero profile card is tint-sand with no border or shadow.
 - **Shadow Strategy:** card shadow at rest, unchanged on hover; see Elevation & Depth.
 - **Border:** 1px hairline.
@@ -349,8 +349,8 @@ The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of
 ### Featured Project Card
 A 28px card split into details and a screenshot. Details, in order: title-size name; a label-size "client · year" meta line (adding the status only when not live); the summary; the fact table; then actions at the bottom: the small ink button labelled with the live hostname, and text links for Google Play and Source code. The screenshot sits in a 16:9 clipped plate inside its project's tint frame, inset 18px from the card's top and right, bleeding off the bottom. On card hover only the screenshot moves: it rises 6px over 400ms.
 
-### Compact Project Card
-A 20px card with a title-small name, a "year · team · status" meta line (status only when not live, e.g. "Partly live"), the summary in ink, what was built in text-soft, then a hairline footer holding the accent hostname link and a soft "Source" link, each with an arrow. The card does not move on hover.
+### Preview Project Card
+A 28px card, newest project first, two across from 768px. The live screenshot fills the top at full width in 16:9 (object-top, never cropped at the sides) on a surface fill. A card-white details sheet with 20px top corners overlaps the screenshot’s lower edge by 48px (56px on desktop) and casts a soft upward shadow. Sheet content: a title-small name, a "client · year · team · status" meta line (status only when not live, e.g. "Partly live"), the summary in ink, what was built in text-soft, then a hairline footer with the accent hostname and a soft "Source" link, each with an arrow. The whole card is one link to the live site (the Source link sits above it). On hover the screenshot scales to 1.03 over 600ms and the hostname arrow nudges; the card itself does not move.
 
 ### Contact Card
 The closing ink card: a title-size "Get in touch", a 75%-opacity paragraph, then the email address in Email Display as an underlined link (ink-fg underline at 25%, solid on hover) with an arrow that nudges 4px. Below a 15% ink-fg hairline sit two small pills: inverse "Resume (PDF)" and ghost-inverse "LinkedIn" with arrow.
@@ -362,7 +362,7 @@ Nothing moves on its own. State motion is colour, border and opacity (200ms ease
 
 ### Do:
 - **Do** set facts as label-and-value rows with hairlines between them; reach for this before any other pattern.
-- **Do** put every content group in a card: card-white, 1px hairline, 28px (or 20px for compact) corners, card shadow.
+- **Do** put every content group in a card: card-white, 1px hairline, 28px corners, card shadow.
 - **Do** give each featured project one pastel tint frame, and set `tint` on the project data rather than styling a frame by hand.
 - **Do** use one accent pill button per group; other primary-weight actions are outline (or ink for compact solids, inverse on the ink card), and secondary actions are underlined text links.
 - **Do** label a live-site link with its real hostname.

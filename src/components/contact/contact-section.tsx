@@ -1,6 +1,6 @@
 /**
  * Closing call to action: an ink card where the email address itself is
- * the headline-sized link, with the resume and LinkedIn beside it.
+ * the headline-sized link, with the resume, LinkedIn and GitHub beside it.
  */
 import { Arrow } from "@/components/primitives/arrow";
 import { ButtonLink } from "@/components/primitives/button-link";
@@ -28,6 +28,7 @@ export function ContactSection() {
           <div className="mt-8 flex flex-wrap gap-2.5 border-t border-ink-fg/15 pt-6">
             <ButtonLink variant="inverse" size="sm" href={site.cvUrl} target="_blank" rel="noreferrer">Resume (PDF)</ButtonLink>
             <ButtonLink variant="ghost-inverse" size="sm" arrow href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</ButtonLink>
+            <ButtonLink variant="ghost-inverse" size="sm" arrow href={site.github} target="_blank" rel="noreferrer">GitHub</ButtonLink>
           </div>
         </div>
       </Container>

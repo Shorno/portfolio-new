@@ -1,5 +1,5 @@
 /**
- * Hero: an intro card (headline, short bio, two actions) beside a profile
+ * Hero: an intro card (name as the headline, role, short bio, two actions) beside a profile
  * card that answers the recruiter's first questions as plain facts:
  * current roles, experience, location, availability, education.
  * Every value comes from the profile and experience data.
@@ -15,11 +15,14 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title">
-      <Container className="grid gap-5 pt-6 md:grid-cols-[1.35fr_1fr] md:pt-12">
+      <Container className="grid gap-5 pt-6 md:pt-12 lg:grid-cols-[1.35fr_1fr]">
         <div className="card flex flex-col p-7 md:p-11">
-          <h1 id="hero-title" className="mb-5 font-display text-[clamp(2.4rem,4.6vw,3.9rem)] text-balance text-fg">
-            Full-stack engineer building web and mobile apps.
+          <h1 id="hero-title" className="font-display text-[clamp(2.6rem,5.2vw,4.25rem)] text-balance text-fg">
+            {site.fullName}<span className="text-accent">.</span>
           </h1>
+          <p className="mt-3 mb-6 font-display text-[clamp(1.375rem,2.3vw,1.875rem)] text-balance text-fg-soft">
+            Full-stack engineer building web and mobile apps.
+          </p>
           <p className="mb-8 max-w-[54ch] text-lg text-fg-soft">{site.intro}</p>
           <div className="mt-auto flex flex-wrap gap-2.5">
             <ButtonLink variant="accent" href="#contact">Get in touch</ButtonLink>

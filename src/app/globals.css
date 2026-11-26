@@ -170,7 +170,7 @@
   .font-display {
     font-family: var(--font-display);
     font-optical-sizing: auto;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: var(--tracking-tightest);
     line-height: 1.04;
   }

@@ -47,33 +47,33 @@ colors:
 typography:
   display:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.4rem, 4.6vw, 3.9rem)"
-    fontWeight: 600
+    fontSize: "clamp(2.6rem, 5.2vw, 4.25rem)"
+    fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.03em"
     fontVariation: "opsz auto"
   email-display:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.6rem, 5.2vw, 3.4rem)"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.03em"
   headline:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2rem, 3.4vw, 2.75rem)"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.03em"
   title:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.875rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.03em"
   title-small:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.375rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.04
     letterSpacing: "-0.03em"
   lead:
@@ -253,24 +253,25 @@ A neutral warm-paper ground with one deep teal-blue accent and four soft pastel 
 **Body Font:** Hanken Grotesk (with ui-sans-serif, system-ui)
 **Label/Mono Font:** Geist Mono, for code-like data only (repo names on the archive, operator fields)
 
-**Character:** A characterful, slightly quirky grotesque set heavy-ish (600) and tight (-0.03em, 1.04 line height) for headings and the contact email, against a calm, legible humanist grotesque for everything a recruiter actually reads.
+**Character:** A characterful, slightly quirky grotesque set bold (700) and tight (-0.03em, 1.04 line height) for headings and the contact email, against a calm, legible humanist grotesque for everything a recruiter actually reads.
 
 ### Hierarchy
-- **Display** (600, clamp(2.4rem, 4.6vw, 3.9rem), 1.04): the hero headline only, one colour throughout.
-- **Email Display** (600, clamp(1.6rem, 5.2vw, 3.4rem), 1.04): the contact email address, set as an underlined link. It is the contact card's largest type.
-- **Headline** (600, clamp(2rem, 3.4vw, 2.75rem), 1.04): section heads via the block head ("Featured projects").
-- **Title** (600, 1.875rem): featured project names, the "More projects" subhead, the card heads "Work experience" and "Skills", and the contact heading "Get in touch".
-- **Title Small** (600, 1.375rem): preview project card names, the "Profile" card head and the "Education" sub-heading.
+- **Display** (700, clamp(2.6rem, 5.2vw, 4.25rem), 1.04): the hero headline only, which is the owner’s full name ending in a teal full stop.
+- **Role line** (700, clamp(1.375rem, 2.3vw, 1.875rem), fg-soft): the job title under the name, in the display face.
+- **Email Display** (700, clamp(1.6rem, 5.2vw, 3.4rem), 1.04): the contact email address, set as an underlined link. It is the contact card's largest type.
+- **Headline** (700, clamp(2rem, 3.4vw, 2.75rem), 1.04): section heads via the block head ("Featured projects").
+- **Title** (700, 1.875rem): featured project names, the "More projects" subhead, the card heads "Work experience" and "Skills", and the contact heading "Get in touch".
+- **Title Small** (700, 1.375rem): preview project card names, the "Profile" card head and the "Education" sub-heading.
 - **Lead** (400, 1.125rem, 1.6): the hero intro, max 54ch.
 - **Body** (400, 1.0625rem, 1.6): default body and featured project summaries. Block-head intros cap at 44ch, the contact paragraph at 52ch.
 - **Body Small** (0.9375rem): fact values (500 in the profile and skills rows), the project fact table, preview card summaries, nav links and medium buttons (600).
 - **Label** (500, 0.875rem): fact labels, dates, and the meta line under project names ("client · year", "year · Partly live").
-- The header name is the display face at 1.0625rem; it is the site's wordmark.
+- The header name is the short name “Shorno.” in the display face at 1.1875rem, with the full stop in accent; it is the site’s wordmark.
 
 ### Named Rules
 **The Display-for-Heads Rule.** Bricolage is for headings, the header name and the contact email. Body, labels, fact rows and buttons are Hanken.
 
-**The One-Colour Headline Rule.** A headline is one colour from end to end. No highlighted phrase, no gradient text.
+**The One-Colour Headline Rule.** A headline is one colour from end to end. No highlighted phrase, no gradient text. The one exception is the teal full stop after the name, in the header wordmark and the hero headline; it is the site’s signature mark and appears nowhere else.
 
 **The Mono-Is-Data Rule.** Geist Mono only for code-like data. Never as decoration, never uppercase-tracked labels.
 
@@ -281,8 +282,9 @@ A neutral warm-paper ground with one deep teal-blue accent and four soft pastel 
 A centred container (max 1200px) with a 16px gutter on mobile and 28px from 640px. The page is a vertical sequence of sections, each opening with 64px of top space (80px from 768px); no dividing rules between sections. 768px (`md`) is the layout pivot: below it every grid stacks into one column. 640px (`sm`) is where fact rows split into a label column and a value column.
 
 Inside sections, cards sit in asymmetric two-column grids with a 20px gap:
-- Hero: intro card and sand profile card at 1.35fr / 1fr.
-- Featured project card: details and screenshot at 1fr / 1.35fr. On mobile the screenshot moves above the details.
+- Hero: intro card and sand profile card at 1.35fr / 1fr from 1024px; stacked below that.
+- Featured project card: details and screenshot at 1fr / 1.35fr from 1024px. Below that the screenshot moves above the details.
+- Lead project card (the first featured project): details in two columns from 768px (summary and live link left, fact table right), a wide screenshot frame below. On mobile the screenshot moves above the details.
 - Experience and skills: 1.2fr / 1fr.
 - More projects: two preview cards per row from 768px, newest first.
 - Contact card: a single column (heading, paragraph, email, then a hairline and the two pill buttons).
@@ -341,7 +343,7 @@ The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of
 - **Internal Padding:** 24px mobile, 32 to 44px desktop.
 
 ### Navigation
-- **Header:** a sticky floating pill (card-white at 85% with a medium backdrop blur, hairline border, card shadow) holding the full name in the display face, then section links, the theme toggle and an ink Resume button with arrow.
+- **Header:** a sticky floating pill (card-white at 85% with a medium backdrop blur, hairline border, card shadow) holding the short name “Shorno.” (teal full stop) in the display face, then section links, the theme toggle and an ink Resume button with arrow.
 - **Links:** 15px medium pills, 40px tall. Default text-soft; hover and active (the section in view, `aria-current="location"`) take the page fill and ink text. Links hide below 768px, leaving name, toggle and Resume.
 - **Theme toggle:** plain text naming the theme it switches to ("Dark" / "Light"), styled like a nav link.
 - **Footer:** a plain row, no card: copyright in text-soft, then "Code archive" and "GitHub" as text links.
@@ -349,11 +351,13 @@ The system's main information pattern. A `<dl>` (or `<ol>` for dated entries) of
 ### Featured Project Card
 A 28px card split into details and a screenshot. Details, in order: title-size name; a label-size "client · year" meta line (adding the status only when not live); the summary; the fact table; then actions at the bottom: the small ink button labelled with the live hostname, and text links for Google Play and Source code. The screenshot sits in a 16:9 clipped plate inside its project's tint frame, inset 18px from the card's top and right, bleeding off the bottom. On card hover only the screenshot moves: it rises 6px over 400ms.
 
+The first featured project, the flagship, uses a lead layout instead: the card's top holds a larger name (clamp(1.875rem, 3.2vw, 2.5rem)), meta line, summary (1.125rem from 768px) and live-site button on the left and the fact table on the right; below, a full-width tint frame (40px inset from 768px) holds the screenshot at 2.2:1 (16:9 on mobile), object-top. It breaks the run of identical split cards and says which project matters most.
+
 ### Preview Project Card
 A 28px card, newest project first, two across from 768px. The live screenshot fills the top at full width in 16:9 (object-top, never cropped at the sides) on a surface fill. A card-white details sheet with 20px top corners overlaps the screenshot’s lower edge by 48px (56px on desktop) and casts a soft upward shadow. Sheet content: a title-small name, a "client · year · team · status" meta line (status only when not live, e.g. "Partly live"), the summary in ink, what was built in text-soft, then a hairline footer with the accent hostname and a soft "Source" link, each with an arrow. The whole card is one link to the live site (the Source link sits above it). On hover the screenshot scales to 1.03 over 600ms and the hostname arrow nudges; the card itself does not move.
 
 ### Contact Card
-The closing ink card: a title-size "Get in touch", a 75%-opacity paragraph, then the email address in Email Display as an underlined link (ink-fg underline at 25%, solid on hover) with an arrow that nudges 4px. Below a 15% ink-fg hairline sit two small pills: inverse "Resume (PDF)" and ghost-inverse "LinkedIn" with arrow.
+The closing ink card: a title-size "Get in touch", a 75%-opacity paragraph, then the email address in Email Display as an underlined link (ink-fg underline at 25%, solid on hover) with an arrow that nudges 4px. Below a 15% ink-fg hairline sit three small pills: inverse "Resume (PDF)", and ghost-inverse "LinkedIn" and "GitHub" with arrows.
 
 ### Motion
 Nothing moves on its own. State motion is colour, border and opacity (200ms ease-out), plus two small movements: arrows nudge up-right on hover (2px in buttons, 4px on the contact email), and a featured screenshot rises 6px inside its frame on card hover (400ms ease-out). Featured project cards below the fold fade in and settle up 16px once, over 400ms, on first entering the viewport (10% bottom margin), then stop observing; cards already on screen at load, and every card under reduced motion or without JS, are simply visible. Route changes crossfade the root over 320ms. `prefers-reduced-motion` collapses all transitions and animations to effectively zero.

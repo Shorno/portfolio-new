@@ -19,7 +19,7 @@ export const site = {
     "Shorno Kamal Roy, full-stack engineer in Dhaka. Web and mobile apps, APIs and databases in production for businesses in Bangladesh. Selected work, experience and CV.",
   /** Homepage introduction under the headline. */
   intro:
-    "Hi, I’m Shorno, a software engineer based in Dhaka, Bangladesh. I build products end to end with TypeScript, React, Next.js, React Native and PostgreSQL, from the interface to the API, database and deployment.",
+    "Based in Dhaka, Bangladesh. I build products end to end with TypeScript, React, Next.js, React Native and PostgreSQL, from the interface to the API, database and deployment.",
   timezoneLabel: "UTC+6",
   workTypes: ["Remote", "On-site", "Hybrid"],
   hireEmailSubject: "Role inquiry",

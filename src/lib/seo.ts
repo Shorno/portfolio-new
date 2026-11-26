@@ -16,10 +16,11 @@ export function absoluteUrl(path = ""): string {
 
 /** Default share image for the homepage and fallback previews. */
 export const defaultOgImage = {
-  url: "https://res.cloudinary.com/def3zwztt/image/upload/v1780498340/Screenshot_2026-06-03_205020_igfxuv.png",
+  /** 1200x630, rendered from design-previews/og-image.html. */
+  url: "/og.png",
   width: OG_IMAGE_WIDTH,
   height: OG_IMAGE_HEIGHT,
-  alt: "Shorno — full-stack engineer portfolio",
+  alt: "Shorno Kamal Roy, full-stack engineer building web and mobile apps. Dhaka, Bangladesh. shorno.dev",
 } as const;
 
 export function ogImageFromUrl(
@@ -29,7 +30,7 @@ export function ogImageFromUrl(
   return [
     {
       url: new URL(cloudinaryOgImageUrl(url), site.url).toString(),
-      ...(url.includes("res.cloudinary.com")
+      ...(url.includes("res.cloudinary.com") || url === defaultOgImage.url
         ? { width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT }
         : {}),
       alt,

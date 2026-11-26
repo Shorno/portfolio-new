@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share image source</title>
+<!--
+  Source for public/og.png, the 1200x630 link preview (LinkedIn, WhatsApp,
+  X). Render at exactly 1200x630 and save over public/og.png. Values match
+  src/lib/site.ts and the Soft Studio paper tokens.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Hanken+Grotesk:wght@500;600&display=block" rel="stylesheet">
+<style>
+  :root { --bg: #f4f3ef; --bg-elev: #ffffff; --fg: #16181b; --fg-soft: #545a63; --line: #e5e2da; --accent: #0e5a70; --tint-sand: #f6ead8; }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { background: var(--bg); color: var(--fg); font-family: "Hanken Grotesk", sans-serif; padding: 40px; }
+  .card { height: 100%; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 36px; box-shadow: 0 1px 2px rgb(22 24 27 / 0.04), 0 16px 40px -18px rgb(22 24 27 / 0.18); padding: 64px 72px 56px; display: flex; flex-direction: column; }
+  .display { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; font-optical-sizing: auto; }
+  h1 { font-size: 104px; }
+  .dot { color: var(--accent); }
+  .role { margin-top: 18px; font-size: 44px; color: var(--fg-soft); }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 28px; font-size: 26px; font-weight: 500; color: var(--fg-soft); }
+  .foot .site { font-weight: 600; color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="display">Shorno Kamal Roy<span class="dot">.</span></h1>
+    <p class="display role">Full-stack engineer building web and mobile apps.</p>
+    <div class="foot">
+      <span>Dhaka, Bangladesh · Open to full-stack roles</span>
+      <span class="site">shorno.dev</span>
+    </div>
+  </div>
+</body>
+</html>

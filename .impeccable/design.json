@@ -229,7 +229,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline only, one colour throughout."
+        "purpose": "Hero headline only: the full name ending in a teal full stop."
       },
       "email-display": {
         "displayName": "Email Display",
@@ -398,7 +398,7 @@
       "name": "Floating Pill Header",
       "kind": "nav",
       "refersTo": "nav-pill",
-      "description": "Sticky translucent pill: name in the display face, section links, theme toggle, ink Resume.",
+      "description": "Sticky translucent pill: the short name with a teal full stop in the display face, section links, theme toggle, ink Resume.",
       "html": "<nav class=\"ds-nav\"><span class=\"ds-name\">Shorno Kamal Roy</span><span class=\"ds-links\"><a class=\"ds-link ds-link-active\" href=\"#\">Projects</a><a class=\"ds-link\" href=\"#\">Experience</a><a class=\"ds-link\" href=\"#\">Skills</a><a class=\"ds-link\" href=\"#\">Contact</a><a class=\"ds-link\" href=\"#\">Dark</a></span></nav>",
       "css": ".ds-nav { display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 20px; border-radius: 9999px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg-elev) 85%, transparent); backdrop-filter: blur(12px); box-shadow: var(--shadow-card); font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif; } .ds-name { margin-right: auto; font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.03em; white-space: nowrap; color: var(--fg); } .ds-links { display: flex; gap: 4px; } .ds-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: var(--fg-soft); text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-link:hover, .ds-link-active { background: var(--bg); color: var(--fg); } .ds-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }"
     },

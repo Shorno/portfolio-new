@@ -53,7 +53,7 @@ src/
     index/               # repo archive, rendered on /archive
     operator/            # operator dashboard + login form
     seo/                 # JSON-LD
-    site-header.tsx      # floating pill header: name + SiteHeaderNav
+    site-header.tsx      # floating pill header: “Shorno.” wordmark + SiteHeaderNav
     site-header-nav.tsx  # section links, theme toggle, Resume button
     site-footer.tsx      # copyright, archive + GitHub links
     theme-provider.tsx, theme-toggle.tsx
@@ -65,7 +65,7 @@ src/
     system.ts            # skill groups + GitHub language colors
     github.ts            # getAllRepos, getLatestPush, timeAgo, deriveStatus
     repo-descriptions.ts # archive blurbs for repos with no GitHub description
-    seo.ts, cloudinary.ts# metadata/JSON-LD helpers, image URLs
+    seo.ts, cloudinary.ts# metadata/JSON-LD helpers, image URLs; the share image is public/og.png, rendered at 1200x630 from design-previews/og-image.html
     auth.ts, db/         # Better-Auth + Drizzle schema for /operator
     utils.ts             # `cn()` (clsx + tailwind-merge)
 ```
@@ -102,13 +102,15 @@ The `.card` utility (white, 28px radius, hairline border, soft shadow) is the ba
 - **Geist Mono** (`font-mono`): code-like data only (repo names on `/archive`).
 - `.tabular` for dates and figures.
 
-Headline sizes use `clamp()`: hero `clamp(2.4rem,4.6vw,3.9rem)`, section heads via `<BlockHead>`.
+Headline sizes use `clamp()`: hero `clamp(2.6rem,5.2vw,4.25rem)`, section heads via `<BlockHead>`. Display headings are weight 700 (`.font-display`).
+
+The hero headline is the full name ending in a teal full stop, with the job title under it; the header shows the short name “Shorno.” the same way. That teal full stop is the site’s one signature mark: don’t add it to other headings.
 
 ### Layout
 
 - `<Container>`: `max-w-[1200px]`, gutter `px-4 sm:px-7`.
 - Sections are spaced with `pt-16 md:pt-20`; cards sit together with `gap-5`.
-- The hero splits `1.35fr / 1fr`; featured project cards split `1fr / 1.35fr`; experience and skills split `1.2fr / 1fr`.
+- The hero splits `1.35fr / 1fr` and featured project cards `1fr / 1.35fr`, both from `lg` (1024px): at tablet width they stack, because two columns there cramp the name and the fact tables. Experience and skills split `1.2fr / 1fr` from `md`.
 - Rounded corners everywhere, soft shadows on cards only, no gradients. The only icon is the arrow.
 
 ---
@@ -152,7 +154,7 @@ Standard recruiter wording: plain, conventional, specific.
 
 ### Projects (`src/lib/projects.ts`)
 
-`featured: true` renders a split card (name, client · year line, summary, a Team / Built / Results / Stack fact table, the live address as the button, screenshot in its `tint` frame); the rest render as "More projects" preview cards (full-width screenshot on top, details sheet overlapping it, whole card links to the live site). Keep `otherProjects` newest first; every project needs a 16:9 desktop screenshot without private people in frame. `team` is required and `results` optional; both are **owner-confirmed only**. When `results` is absent, the row isn't rendered. Only set `github` for public repos.
+The first featured project is the flagship and renders as a wide lead card (details across the top, summary left and fact table right, a wide screenshot frame below). The other `featured: true` projects render as split cards (name, client · year line, summary, a Team / Built / Results / Stack fact table, the live address as the button, screenshot in its `tint` frame); the rest render as "More projects" preview cards (full-width screenshot on top, details sheet overlapping it, whole card links to the live site). Keep `otherProjects` newest first; every project needs a 16:9 desktop screenshot without private people in frame. `team` is required and `results` optional; both are **owner-confirmed only**. When `results` is absent, the row isn't rendered. Only set `github` for public repos.
 
 The hero figures (years of experience, projects shipped) are derived from `experience` and `projects`; don't hardcode them.
 
@@ -192,7 +194,7 @@ Env vars (see `.env.example`): `GITHUB_TOKEN`, `DATABSE_URL` (spelling kept for 
 1. **Don't fabricate.** No placeholder numbers, no guessed team sizes, no unverifiable outcomes.
 2. **Don't import `<ViewTransition>` from `react`**; it doesn't exist in 19.2.
 3. **Don't use HTML entities in TSX strings.**
-4. **Prefer `md:` over `lg:`**; `md` (768px) is the pivot. `max-md:` is fine for stacked tables.
+4. **Prefer `md:` over `lg:`**; `md` (768px) is the pivot. `max-md:` is fine for stacked tables. The exceptions are the hero and the featured split cards, which go two-column at `lg`.
 5. **Don't bring back** section numbers (§01), uppercase mono labels, generative project art, the case-study pages, or the AI-template tells removed in the polish pass: status pills with glowing dots, two-colour highlighted headlines, decorative blobs, big-number stat tiles ("2+ years"), bullet markers, chip/badge rows, round arrow badges, timeline rings, a tilted monogram. Show facts as label/value rows and links by their real address.
 6. **Don't downgrade React, Next or Tailwind** to fix a problem.
 7. **Don't commit `.commit-msg.tmp`.** Remove it after `git commit -F`.

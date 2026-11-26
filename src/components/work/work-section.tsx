@@ -1,5 +1,6 @@
 /**
- * Featured projects as split cards, the rest as preview cards: the live
+ * Featured projects as split cards (the first, the flagship, as a wide
+ * lead card), the rest as preview cards: the live
  * screenshot fills the card and a solid details panel sits at its foot,
  * so the product is seen before it is read about. Every project links to
  * the live product by its real address; there are no case-study pages.
@@ -14,19 +15,17 @@ import { hostname } from "@/lib/utils";
 import { ProjectSpread } from "./project-spread";
 
 export function WorkSection() {
-  const allFeaturedLive = featuredProjects.every((p) => p.status === "live");
-
   return (
     <section id="projects" aria-labelledby="projects-title" className="pt-16 md:pt-20">
       <Container>
         <BlockHead
           id="projects-title"
           title="Featured projects"
-          intro={`Apps I built for employers and clients.${allFeaturedLive ? " Each link opens the live product." : ""}`}
+          intro="Apps I built for employers and clients."
         />
 
-        {featuredProjects.map((project) => (
-          <ProjectSpread key={project.slug} project={project} />
+        {featuredProjects.map((project, i) => (
+          <ProjectSpread key={project.slug} project={project} lead={i === 0} />
         ))}
 
         <h3 className="mt-12 mb-5 font-display text-[1.875rem] text-fg">More projects</h3>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shorno Kamal Roy – Resume</title>
+<!--
+  Source for public/cv/shorno-kamal-roy-cv.pdf. Print to PDF on US Letter
+  with no headers or footers, for example:
+    msedge --headless --no-pdf-header-footer --print-to-pdf=public/cv/shorno-kamal-roy-cv.pdf cv-source/resume.html
+  Keep it to one page, plain text and real links so applicant tracking
+  systems parse it. Every fact matches src/lib (projects, experience,
+  system); numbers and team sizes are owner-confirmed only.
+-->
+<style>
+  @page { size: Letter; margin: 0.42in 0.6in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 9.6pt; line-height: 1.3; color: #111; }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 0.5pt; text-underline-offset: 1.5pt; }
+  h1 { font-size: 23pt; line-height: 1.05; letter-spacing: -0.01em; }
+  .title { font-size: 12pt; margin-top: 3pt; }
+  .contact { margin-top: 4pt; }
+  .contact .sep { margin: 0 5pt; color: #666; }
+  h2 { font-size: 12pt; margin-top: 9pt; padding-bottom: 2pt; border-bottom: 0.75pt solid #bbb; margin-bottom: 5pt; }
+  .entry { margin-top: 6pt; }
+  .entry:first-of-type { margin-top: 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .row b { font-size: 10.5pt; }
+  .date { color: #444; white-space: nowrap; }
+  .sub { margin-top: 1pt; }
+  .facts { margin-top: 1pt; color: #333; }
+  ul { margin-top: 2pt; padding-left: 11pt; }
+  li { margin-top: 1pt; }
+  .skills p { margin-top: 2pt; }
+</style>
+</head>
+<body>
+  <h1>Shorno Kamal Roy</h1>
+  <p class="title">Full-stack Engineer</p>
+  <p class="contact">Dhaka, Bangladesh<span class="sep">|</span>+8801841151827<span class="sep">|</span>fb.shorno@gmail.com</p>
+  <p class="contact"><a href="https://shorno.dev">shorno.dev</a><span class="sep">|</span><a href="https://github.com/Shorno">github.com/Shorno</a><span class="sep">|</span><a href="https://www.linkedin.com/in/shorno/">linkedin.com/in/shorno</a></p>
+
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="row"><b>Ecube</b><span class="date">July 2026 – Present</span></div>
+    <p class="sub">Full-stack Engineer (Full-time)</p>
+    <ul>
+      <li>Built three products on my own, end to end: <a href="https://tour.ecube.gg/">Ecube Tournament</a>, <a href="https://esports.ecube.gg/pubgm">Ecube Esports</a> and <a href="https://esportstimes.news/">The Esports Times</a>, each a Next.js site on a Hono API and PostgreSQL database.</li>
+      <li>Ecube Esports: PUBG Mobile tournaments, teams and rankings with match replays and player stats. The Esports Times: Bangla news site with editorial review, scheduling, revision history and auto-posting to Facebook.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><b>AlgoVerse</b><span class="date">Dec. 2025 – Present</span></div>
+    <p class="sub">Software Engineer (Part-time)</p>
+    <ul>
+      <li>Lead developer, team of three, on <a href="https://brighteducations.com/">Bright Educations</a>, a tutoring platform with web portals and mobile apps; about 5,000 active users.</li>
+      <li>Lead developer, team of two, on <a href="https://bikalpo.com/">Bikalpo</a>, an online store with categories, brands, offers and seller shops. The storefront is live; the wider platform is in development.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><b>AppCube</b><span class="date">Sept. 2024 – Dec. 2025</span></div>
+    <p class="sub">Frontend Developer (Part-time)</p>
+    <ul>
+      <li>Built Ubaky’s React merchant dashboard for restaurant operators; integrated backend APIs and built responsive layouts.</li>
+    </ul>
+  </div>
+
+  <h2>Selected Projects</h2>
+  <div class="entry">
+    <div class="row"><span><b>Bright Educations</b><span class="sep"> | </span><a href="https://brighteducations.com/">brighteducations.com</a></span><span class="date">Lead developer, team of three</span></div>
+    <ul>
+      <li>Tutoring platform in Bangladesh that connects guardians with verified tutors; about 5,000 active users.</li>
+      <li>Built the web portals and mobile apps (Next.js, Expo) for tutors, guardians and admins on a shared Hono API and PostgreSQL database.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><b>Ecube Tournament</b><span class="sep"> | </span><a href="https://tour.ecube.gg/">tour.ecube.gg</a></span><span class="date">Solo</span></div>
+    <ul>
+      <li>About 15,000 teams registered; hosts tournaments with a BDT 10,00,000 prize pool. Registration, match scheduling and role-based access for participants, operators and administrators.</li>
+      <li>Made seeded group allocation reproducible; reused scheduling and result workflows across seven tournament rounds.</li>
+      <li>Built result review and audited corrections, Socket.IO group chat, and queued email updates with Inngest and Resend.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><b>SelfShop</b><span class="sep"> | </span><a href="https://selfshop.com.bd/">selfshop.com.bd</a></span><span class="date">Lead developer, team of three; now maintained solo</span></div>
+    <ul>
+      <li>15,000+ monthly active users across the web and Android.</li>
+      <li>Built Next.js dashboards for admins, resellers and suppliers, plus the React Native reseller app on <a href="https://play.google.com/store/apps/details?id=com.selfshop.reseller">Google Play</a>.</li>
+      <li>Integrated the team’s Laravel API and connected order updates through Pusher and Firebase Cloud Messaging.</li>
+    </ul>
+  </div>
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <p><b>Languages:</b> TypeScript, JavaScript, SQL, HTML/CSS</p>
+    <p><b>Web &amp; mobile:</b> React, Next.js, React Native / Expo, Tailwind CSS</p>
+    <p><b>Backend &amp; data:</b> Hono, oRPC, PostgreSQL, Drizzle ORM, Better-Auth, Socket.IO, Pusher</p>
+    <p><b>Monitoring &amp; analytics:</b> PostHog (analytics, session recordings, error tracking), self-hosted SigNoz (logs, monitoring)</p>
+    <p><b>Tools &amp; deployment:</b> Git, Turborepo, pnpm, Vite, Inngest, Resend, Coolify, VPS hosting, Cloudflare R2</p>
+  </div>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="row"><b>Daffodil International University</b><span class="date">Graduated May 2026</span></div>
+    <p class="sub">BSc in Computer Science &amp; Engineering<span class="sep"> | </span>CGPA: 3.30 / 4.00</p>
+  </div>
+</body>
+</html>
